@@ -71,7 +71,7 @@
          <!-- autocomplete: HTML5 속성, 자동완성 꺼주는 기능 -->
         <button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#findIdModal" autocomplete="off">
         	<span class="glyphicon glyphicon-tag"> 아이디찾기&nbsp;</span>
-        </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         
         <button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#findPwdModal" autocomplete="off">
         	<span class="glyphicon glyphicon-tags"> 비밀번호찾기&nbsp;</span>

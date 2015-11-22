@@ -40,13 +40,11 @@ public class BoardController {
 	
 	@RequestMapping(value="/insertboard", method=RequestMethod.POST)
 	public ModelAndView insertBoard(BoardVO bvo, HttpServletRequest request) {
-		System.out.println("log1");
 		String bcode=String.valueOf(bvo.getBcode());
 		ModelAndView mav=new ModelAndView("redirect:/boardlist?bcode="+bcode);
 		
 		HttpSession session=request.getSession();
 		String r_path=session.getServletContext().getRealPath("/");
-		System.out.println("log2");
 		
 		StringBuffer sb=new StringBuffer();
 		sb.append(r_path).append("\\img\\");
@@ -55,30 +53,29 @@ public class BoardController {
 		sb.append(originalFile);
 		
 		File file=new File(sb.toString());
-		System.out.println("log3");
 		
 		try {
 			bvo.getMfile().transferTo(file);
 		} catch (IllegalStateException | IOException e) {
 			e.printStackTrace();
 		}
-		System.out.println("log4");
 		
 		bvo.setBfile(originalFile);
-		System.out.println("log5");
 		bdao.insertBoard(bvo);
-		System.out.println("log6");
 		
 		return mav;
 	}
 	
 	@RequestMapping(value="/boardlist")
-	public ModelAndView listBoard(int bcode) {
-		List<BoardVO> list=bdao.listBoard(bcode);
+	public ModelAndView listBoard(BoardVO bvo) {
+		System.out.println("getBcode "+bvo.getBcode());
+		System.out.println("getSearchType "+bvo.getSearchType());
+		System.out.println("getSearchValue "+bvo.getSearchValue());
+		List<BoardVO> list=bdao.listBoard(bvo);
 		ModelAndView mav=new ModelAndView("board/boardlist");
 		
 		mav.addObject("list", list);
-		mav.addObject("bcode", bcode);
+		mav.addObject("bcode", bvo.getBcode());
 		return mav;
 	}
 	
@@ -91,15 +88,6 @@ public class BoardController {
 		List<CommBoardVO> list=cbdao.selectCommBoard(bno);
 		
 		ModelAndView mav=new ModelAndView("board/boarddetail");
-		
-//		System.out.println("--");
-//		System.out.println("<br>");
-//		System.out.println("<br>");
-//		System.out.println("--");
-//		
-//		System.out.println(bvo.getBcontent().replaceAll("\n", "<br/>"));
-//		bvo.setBcontent(bvo.getBcontent().replaceAll("\n", "<br/>"));
-//		System.out.println(bvo.getBcontent());
 		mav.addObject("bvo", bvo);
 		mav.addObject("list", list);
 		
@@ -155,6 +143,47 @@ public class BoardController {
 		}
 		inputStream.close();
 		outStream.close();
+	}
+	
+	
+	@RequestMapping(value="/setreply")
+	public ModelAndView goreply(BoardVO bvo){
+		System.out.println("Bref "+bvo.getBref());
+		System.out.println("Bseq "+bvo.getBseq());
+		System.out.println("Blvl "+bvo.getBlvl());
+		System.out.println("Bcode "+bvo.getBcode());
+		ModelAndView mav=new ModelAndView("board/boardreply");
+		mav.addObject("reply", bvo);
+		return mav;
+	}
+	
+	
+	@RequestMapping(value="/replyinsertboard", method=RequestMethod.POST)
+	public ModelAndView replyinsertboard(BoardVO bvo, HttpServletRequest request){
+		
+		ModelAndView mav=new ModelAndView("redirect:/boardlist?bcode="+bvo.getBcode());
+		
+		HttpSession session=request.getSession();
+		String r_path=session.getServletContext().getRealPath("/");
+		
+		StringBuffer sb=new StringBuffer();
+		sb.append(r_path).append("\\img\\");
+		
+		String originalFile=bvo.getMfile().getOriginalFilename();
+		sb.append(originalFile);
+		
+		File file=new File(sb.toString());
+		
+		try {
+			bvo.getMfile().transferTo(file);
+		} catch (IllegalStateException | IOException e) {
+			e.printStackTrace();
+		}
+		
+		bvo.setBfile(originalFile);
+		bdao.replyBoard(bvo);
+		
+		return mav;
 	}
 	
 	

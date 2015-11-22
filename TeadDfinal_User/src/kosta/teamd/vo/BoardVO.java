@@ -23,6 +23,10 @@ public class BoardVO {
 	private MultipartFile mfile;
 	private int brpt;         // 신고당한 횟수
 	
+	private String searchType; //검색타입
+	private String searchValue; //검색값
+	
+
 	public int getBcode() {
 		return bcode;
 	}
@@ -118,5 +122,17 @@ public class BoardVO {
 	}
 	public void setMfile(MultipartFile mfile) {
 		this.mfile = mfile;
+	}
+	public String getSearchType() {
+		return searchType;
+	}
+	public void setSearchType(String searchType) {
+		this.searchType = searchType;
+	}
+	public String getSearchValue() {
+		return searchValue;
+	}
+	public void setSearchValue(String searchValue) {
+		this.searchValue = searchValue;
 	}
 }

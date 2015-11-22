@@ -96,7 +96,7 @@ a:FOCUS, a:HOVER {
 								<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">　커뮤니티　<span class="caret"><!--화살표--></span></a>
 								   <ul class="dropdown-menu">
 								     <li><a href="boardlist?bcode=1">게시판</a></li>
-								     <li><a href="#">질문게시판</a></li>
+								     <li><a href="boardlist?bcode=2">질문게시판</a></li>
 								   </ul>
 								</li>
 

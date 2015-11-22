@@ -17,8 +17,8 @@ public class BoardDao {
 	public void insertBoard(BoardVO bvo){
 		template.insert("board.insert", bvo);
 	}
-	public List<BoardVO> listBoard(int bcode){
-		return template.selectList("board.getlist", bcode);
+	public List<BoardVO> listBoard(BoardVO bvo){
+		return template.selectList("board.getlist", bvo);
 	}
 	public BoardVO detailBoard(int bno){
 		return template.selectOne("board.detail", bno);
@@ -34,6 +34,10 @@ public class BoardDao {
 	}
 	public void hitBoard(int bno){
 		template.update("board.hitBoard", bno);
+	}
+	public void replyBoard(BoardVO bvo){
+		template.update("board.replyupdate", bvo);
+		template.insert("board.insertreply", bvo);
 	}
 
 	
