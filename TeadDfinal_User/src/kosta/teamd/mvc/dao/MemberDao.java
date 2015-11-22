@@ -13,6 +13,16 @@ public class MemberDao {
 	@Autowired
 	private SqlSessionTemplate template;
 	
+	// 아이디 존재유무 체크
+	public int midCntCheck(String mid) {
+		return template.selectOne("member.midCntCheck", mid);
+	}
+	
+	// 이메일 존재유무 체크
+	public int memailCntCheck(String memail) {
+		return template.selectOne("member.memailCntCheck", memail);
+	}
+	
 	// 회원 정보 등록
 	public void insertMember(MemberVO mvo) {
 		
@@ -55,4 +65,15 @@ public class MemberDao {
 		template.update("member.updateMember", mvo);
 	}
 	
+	// 회원 제재 상태 풀리는 시간 검색
+	public String selectFreetime(String mid) {
+		
+		return template.selectOne("member.selectFreetime", mid);
+	}
+	
+	// 회원 제재 상태 권한 수정
+	public void updateRoleUp(String mid) {
+		
+		template.update("member.updateRoleUp", mid);
+	}
 }

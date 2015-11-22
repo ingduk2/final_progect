@@ -56,9 +56,9 @@
         <div class="form-login">
         <h1 class="text-center">Login<small>로그인페이지</small></h1>
          
-        <input type="text" id="loginemail" name="mid" class="form-control input-lg chat-input" placeholder="아이디" autocomplete="off"/></br>
+        <input type="text" id="loginemail" name="mid" class="form-control input-lg chat-input" placeholder="아이디" /></br>
          
-        <input type="password" id="loginpwd" name="mpwd" class="form-control input-lg chat-input" placeholder="비밀번호" autocomplete="off"/></br>
+        <input type="password" id="loginpwd" name="mpwd" class="form-control input-lg chat-input" placeholder="비밀번호" /></br>
          
         <div class="wrapper">
          <span class="group-btn">     
@@ -69,11 +69,11 @@
          
         <hr>
          <!-- autocomplete: HTML5 속성, 자동완성 꺼주는 기능 -->
-        <button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#findIdModal">
+        <button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#findIdModal" autocomplete="off">
         	<span class="glyphicon glyphicon-tag"> 아이디찾기&nbsp;</span>
-        </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         
-        <button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#findPwdModal">
+        <button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#findPwdModal" autocomplete="off">
         	<span class="glyphicon glyphicon-tags"> 비밀번호찾기&nbsp;</span>
         </button>
        </div>

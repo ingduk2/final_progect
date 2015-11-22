@@ -42,8 +42,8 @@ public class CalController {
 		ModelAndView mav= new ModelAndView("/callendar/loadcal");
 		
 		List<VolunteerVO> list=vdao.select();
-		System.out.println(list.size());
-		System.out.println(list.get(0).getVolunteerno());
+//		System.out.println(list.size());
+//		System.out.println(list.get(0).getVolunteerno());
 		JSONObject jo= new JSONObject();
 		JSONArray ja= new JSONArray();
 		JSONObject vol=null;

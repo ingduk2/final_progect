@@ -5,6 +5,16 @@
     
     <mapper namespace="member">
     
+    	<!-- 아이디 존재유무 체크 -->
+    	<select id="midCntCheck" parameterType="String" resultType="int">
+    		select count(*) cnt from member where mid=#{mid}
+    	</select>
+    	
+    	<!-- 이메일 존재유무 체크 -->
+    	<select id="memailCntCheck" parameterType="String" resultType="int">
+    		select count(*) cnt from member where memail=#{memail}
+    	</select>
+    
     	<!-- 회원 정보 등록 -->
     	<insert id="insertMember" parameterType="mvo">
     		insert into member values(
@@ -47,6 +57,16 @@
     		memail=#{memail}, mpwd=#{mpwd}, mpwdkey=#{mpwdkey}, mpwdval=#{mpwdval}, mtel=#{mtel},
     		mpost=#{mpost}, mroad=#{mroad}, mjibun=#{mjibun}, mimg=#{mimg}, mintro=#{mintro}
     		where mid=#{mid}
+    	</update>
+    	
+    	<!-- 회원 제재 상태 풀리는 시간 검색 -->
+    	<select id="selectFreetime" parameterType="String" resultType="String">
+    		select to_char(mfreetime, 'yyyymmddhh24mi') mfreetime from member where mid=#{mid}
+    	</select>
+    	
+    	<!-- 회원 제재 상태 권한 복권 수정 -->
+    	<update id="updateRoleUp" parameterType="String">
+    		update memroles set role='User' where mid=#{mid}
     	</update>
     
     </mapper>
