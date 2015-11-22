@@ -113,20 +113,9 @@
     <update id="replyupdate" parameterType="bvo">
     	update board set bseq=bseq+1 where bseq >= #{bseq} and bref=#{bref}
     </update>
+    
+    <select id="namecard" parameterType="String" resultType="mvo">
+    	select * from member where mid=#{mid}
+    </select>
 
     </mapper>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    

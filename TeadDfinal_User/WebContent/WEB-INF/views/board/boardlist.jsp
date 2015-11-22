@@ -31,7 +31,7 @@
 					<c:if test="${list.blvl != 0}">
 						<span class="glyphicon glyphicon-arrow-right"></span>&nbsp;
 					</c:if>
-					<a href="boarddetail?bno=${list.bno}">
+					<a href="boarddetail?bno=${list.bno}&mid=${list.mid}">
 						${list.btitle}
 					</a>
 				</td>

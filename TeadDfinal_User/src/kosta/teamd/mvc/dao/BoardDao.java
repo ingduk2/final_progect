@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kosta.teamd.vo.BoardVO;
+import kosta.teamd.vo.MemberVO;
 
 @Repository
 public class BoardDao {
@@ -38,6 +39,9 @@ public class BoardDao {
 	public void replyBoard(BoardVO bvo){
 		template.update("board.replyupdate", bvo);
 		template.insert("board.insertreply", bvo);
+	}
+	public MemberVO namecard(String mid){
+		return template.selectOne("board.namecard", mid);
 	}
 
 	

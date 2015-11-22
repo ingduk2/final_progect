@@ -22,6 +22,7 @@ import kosta.teamd.mvc.dao.BoardDao;
 import kosta.teamd.mvc.dao.CommBoardDao;
 import kosta.teamd.vo.BoardVO;
 import kosta.teamd.vo.CommBoardVO;
+import kosta.teamd.vo.MemberVO;
 
 @Controller
 public class BoardController {
@@ -80,9 +81,11 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="/boarddetail")
-	public ModelAndView detailBoard(int bno){
+	public ModelAndView detailBoard(int bno, String mid){
 		//hit
 		bdao.hitBoard(bno);
+
+		MemberVO mvo= bdao.namecard(mid);
 		
 		BoardVO bvo=bdao.detailBoard(bno);
 		List<CommBoardVO> list=cbdao.selectCommBoard(bno);
@@ -90,6 +93,7 @@ public class BoardController {
 		ModelAndView mav=new ModelAndView("board/boarddetail");
 		mav.addObject("bvo", bvo);
 		mav.addObject("list", list);
+		mav.addObject("namecard", mvo);
 		
 		return mav;
 	}

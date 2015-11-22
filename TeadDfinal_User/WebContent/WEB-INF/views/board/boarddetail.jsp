@@ -83,12 +83,13 @@ table th {
 		  <div class="jumbotron">
 		  	<div style="float: left; width: 90%">
 			    <p>
-			    	<b>${pageContext.request.userPrincipal.name}님<!--abcdefg가 ID가 되어야겠징!--></b><br/>
-			    	나는 지금 무지막지 졸리지만 프로젝트를 해야한다. UI가 밀려서 슬프다.<!-- 이게 인사말이 되겠지.. -->
+			    	<b>${namecard.mid}님<!--abcdefg가 ID가 되어야겠징!--></b><br/>
+			    	${namecard.mintro}
+			    	<!-- 이게 인사말이 되겠지.. -->
 			    </p>
 		   </div> 
 		   <div style="right:0;">
-		   	<img src="img/a.PNG" class="alignleft img-circle" width="50px" height="50px">
+		   	<img src="img/${namecard.mimg}" class="alignleft img-circle" width="50px" height="50px">
 		   </div>
 		  </div>
 		</td>
