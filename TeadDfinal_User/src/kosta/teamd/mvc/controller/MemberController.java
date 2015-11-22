@@ -54,7 +54,7 @@ public class MemberController {
 			resMsg = "사용 가능한 아이디 입니다.";
 		}
 		
-		ModelAndView mav = new ModelAndView("member/midchkres");
+		ModelAndView mav = new ModelAndView("checkpage/midchkres");
 		mav.addObject("resMsg", resMsg);
 		
 		return mav;
@@ -74,7 +74,7 @@ public class MemberController {
 			resMsg = "사용 가능한 메일 주소 입니다.";
 		}
 		
-		ModelAndView mav = new ModelAndView("member/memailchkres");
+		ModelAndView mav = new ModelAndView("checkpage/memailchkres");
 		mav.addObject("resMsg", resMsg);
 		
 		return mav;
@@ -84,7 +84,7 @@ public class MemberController {
 	@RequestMapping(value="/mpwdchk")
 	public String pwdchkPage() {
 		
-		return "member/mpwdchk";
+		return "checkpage/mpwdchk";
 	}
 	
 	// -- 회원 정보, 권한 등록 --
