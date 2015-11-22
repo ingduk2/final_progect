@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+    <mapper namespace="member">
+    
+    	<!-- 회원 정보 등록 -->
+    	<insert id="insertMember" parameterType="mvo">
+    		insert into member values(
+    		#{mid}, #{mname}, #{memail}, #{mpwd}, #{mpwdkey}, #{mpwdval}, 
+    		#{mbirth}, #{mtel}, #{mpost}, #{mroad}, #{mjibun}, #{mimg}, 
+    		#{mintro}, 3, 0, sysdate, 1
+    		)
+    	</insert>
+    	
+    	<!-- 회원 권한 등록 -->
+    	<insert id="insertMemRoles" parameterType="mrvo">
+    		insert into memroles values(
+    		#{mid}, 'User'
+    		)
+    	</insert>
+    	
+    	<!-- 회원 정보 삭제 -->
+    	<delete id="deleteMember" parameterType="String">
+    		delete from member where mid=#{mid}
+    	</delete>
+    	
+    	<!-- 회원 권한 삭제 -->
+    	<delete id="deleteMemRoles" parameterType="String">
+    		delete from memroles where mid=#{mid}
+    	</delete>
+    	
+    	<!-- 회원 정보 검색 -->
+    	<select id="selectMember" parameterType="String" resultType="mvo">
+    		select * from member where mid=#{mid}
+    	</select>
+    	
+    	<!-- 회원 권한 검색 -->
+    	<select id="selectMemRoles" parameterType="String" resultType="mrvo">
+		    select * from memroles where mid=#{mid}
+    	</select>
+    	
+    	<!-- 회원 정보 수정 -->
+    	<update id="updateMember" parameterType="mvo">
+    		update member set
+    		memail=#{memail}, mpwd=#{mpwd}, mpwdkey=#{mpwdkey}, mpwdval=#{mpwdval}, mtel=#{mtel},
+    		mpost=#{mpost}, mroad=#{mroad}, mjibun=#{mjibun}, mimg=#{mimg}, mintro=#{mintro}
+    		where mid=#{mid}
+    	</update>
+    
+    </mapper>

@@ -1,0 +1,47 @@
+@CHARSET "EUC-KR";
+
+	body{
+		/* 배경 100% 채우기 알아보기 */
+		background-color : #f0fff0;
+		width: 100%; height:auto;
+		background-repeat:no-repeat;
+		text-align: center;
+		
+/* 		position: fixed;  */
+/* 		min-height: 100%; */
+/* 		min-width: 1024px; */
+	}
+	table{
+	    margin:auto; text-align: center;
+	}
+	tbody td{
+		 border-bottom: 1px solid #f0fff0; height: 33px
+	}
+	#title{
+		background-color: #90ee90	;
+		opacity: 0.4;
+		font: bold;
+	}
+	#header{
+		background-image: url('img/headerBgImg.png');
+		background-repeat:no-repeat;
+/* 		background-color: red */
+	}
+	
+	/* bootstrap Navigation Overriding */
+	.nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus{
+		color:white;
+		font-weight: bold;
+		cursor:default;
+		background-color: #90ee90;
+		border:1px solid #ddd;
+		border-bottom-color: transparent;
+	}
+	a{
+		color:#228b22;
+		text-decoration: none;
+	}
+	a:focus, a:hover{
+		color: #90ee90;
+		text-decoration: none;
+	}
