@@ -68,5 +68,20 @@
     	<update id="updateRoleUp" parameterType="String">
     		update memroles set role='User' where mid=#{mid}
     	</update>
+    	
+    	<!-- 회원 아이디 찾기 -->
+    	<select id="findMid" parameterType="mvo" resultType="String">
+    		select mid from member where mname=#{mname} and memail=#{memail} and mtel=#{mtel}
+    	</select>
+    	
+    	<!-- 회원 비밀번호 찾기 질문 찾기 -->
+    	<select id="findMpwdKey" parameterType="mvo" resultType="String">
+    		select mpwdkey from member where mid=#{mid} and memail=#{memail}
+    	</select>
+    	
+    	<!-- 회원 비밀번호 찾기 -->
+    	<select id="findMpwd" parameterType="mvo" resultType="String">
+    		select mpwd from member where mid=#{mid} and memail=#{memail} and mpwdval=#{mpwdval}
+    	</select>
     
     </mapper>

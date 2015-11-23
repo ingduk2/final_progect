@@ -76,4 +76,19 @@ public class MemberDao {
 		
 		template.update("member.updateRoleUp", mid);
 	}
+	
+	// 회원 아이디 찾기
+	public String findMid(MemberVO mvo) {
+		return template.selectOne("member.findMid", mvo);
+	}
+	
+	// 회원 비밀번호 찾기 질문 찾기
+	public String findMpwdKey(MemberVO mvo) {
+		return template.selectOne("member.findMpwdKey", mvo);
+	}
+	
+	// 회원 비밀번호 찾기
+	public String findMpwd(MemberVO mvo) {
+		return template.selectOne("member.findMpwd", mvo);
+	}
 }

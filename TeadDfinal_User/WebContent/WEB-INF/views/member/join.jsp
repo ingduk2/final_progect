@@ -193,7 +193,7 @@
 			return false
 		}
 		
-		// 비밀번호와 비밀번호 확인의 아이디가 동일하지 않을 시 수행
+		// 비밀번호와 비밀번호 확인의 비밀번호가 동일하지 않을 시 수행
 		if (document.joinform.mpwd.value!=document.joinform.mpwdchk.value) {
 			alert("비밀번호가 틀립니다. 다시 확인해주세요.")
 			document.joinform.mpwdchk.focus()
@@ -201,18 +201,22 @@
 		}
 		
 		// 동일한 아이디가 이미 존재할 시 수행
-		if (document.joinform.midchkres.value=="이미 존재하는 아이디 입니다.") {
-			alert("아이디를 다시 입력해주세요")
-			document.joinform.mid.focus()
-			return false
-		}
+// 		var mid = "이미 존재하는 아이디 입니다.";
+		
+// 		if (document.joinform.midchkres.value==mid) {
+// 			alert("아이디를 다시 입력해주세요")
+// 			document.joinform.mid.focus()
+// 			return false
+// 		}
 		
 		// 동일한 메일 주소가 이미 존재할 시 수행
-		if (document.joinform.memailchkres.value=="이미 존재하는 메일 주소 입니다.") {
-			alert("이메일을 다시 입력해주세요.")
-			document.joinform.memail.focus()
-			return false
-		}
+// 		var memail = "이미 존재하는 메일 주소 입니다.";
+		
+// 		if (document.joinform.memailchkres.value==memail) {
+// 			alert("이메일을 다시 입력해주세요.")
+// 			document.joinform.memail.focus()
+// 			return false
+// 		}
 		
 		return true
 	}
@@ -293,12 +297,15 @@
 			<tr>
 				<th>아이디</th>
 				<td>
-					<input type="text" class="form-control input-sm" placeholder="아이디" id="mid" name="mid" maxlength="20" />
+					<div class="input-group">
+						<input type="text" class="form-control input-sm" placeholder="아이디" id="mid" name="mid" maxlength="20" />
+						<span class="input-group-btn">
+							<button type="button" class="btn btn-default btn-sm" id="midchk"> 중복체크	</button>
+						</span>
+					</div>
 					<div id="midchkres"></div>
 				</td> 
-				<td>
-					<button type="button" class="btn btn-default btn-sm" id="midchk"> 중복체크	</button>
-				</td> 
+				<td></td> 
 			</tr>
 	
 			<tr>
@@ -351,14 +358,17 @@
 			<tr> 
 				<th>이메일</th>
 				<td>
-					<input type="email" class="form-control input-sm" 
-					placeholder="이메일 주소" 
-					name="memail" id="memail" pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" />
+					<div class="input-group">
+						<input type="email" class="form-control input-sm" 
+						placeholder="이메일 주소" 
+						name="memail" id="memail" pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" />
+						<span class="input-group-btn">
+							<button type="button" class="btn btn-default btn-sm" id="memailchk"> 중복체크	</button>
+						</span>
+					</div>
 					<div id="memailchkres" name="memailchkres"></div>
 				</td> 
-				<td>
-					<button type="button" class="btn btn-default btn-sm" id="memailchk"> 중복체크	</button>
-				</td> 
+				<td></td> 
 			</tr>
 			
 			<tr> 
@@ -385,11 +395,14 @@
 			<tr> 
 				<th class="exit">주소</th>   
 				<td>
-					<input id="post" name="mpost" class="form-control input-sm" type="text" placeholder="우편번호 (검색)" readonly="readonly"/>
+					<div class="input-group">
+						<input id="post" name="mpost" class="form-control input-sm" type="text" placeholder="우편번호 (검색)" readonly="readonly"/>
+						<span class="input-group-btn">
+							<button type="button" class="btn btn-default btn-sm" onclick="execDaumPostcode()">우편번호</button>
+						</span>
+					</div>
 				</td> 
-				<td>
-					<button type="button" class="btn btn-default btn-sm" onclick="execDaumPostcode()">우편번호</button>
-				</td> 
+				<td></td> 
 			</tr>
 			
 			<tr> 

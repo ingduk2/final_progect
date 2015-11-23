@@ -62,6 +62,9 @@ a:link {
 	height: 100px;
 	width: 100px;
 }
+.list-group>li>a{
+	color: white;
+}
 .panel{
 	width: 450px
 }

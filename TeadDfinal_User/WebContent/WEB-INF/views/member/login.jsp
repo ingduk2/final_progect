@@ -46,13 +46,127 @@
 	}
 </style>
 
+<script>
+// 회원 아이디 찾기
+$(function() {
+	$('#findmid').click(function() {
+		$.ajax({
+			url: "findmid",
+			type: "GET",
+			data: {
+				mname: $('#midmname').val(),
+				memail: $('#midmemail').val(),
+				mtel: $('#midmtel').val()
+			},
+			dataType: "text",
+			
+			success: function(res) {
+				if (res == "값을 모두 입력해주세요.") {
+					alert(res);
+				}
+				else {
+					$('#demo').html(res);
+				}
+			},
+			error: function(a, b) {
+				alert("Request: " + JSON.stringify(a));
+			}
+		});
+	});
+});
+// 회원 아이디 찾기
+
+// 회원 비밀번호 찾기 _ 비밀번호 찾기 질문 가져오기
+$(function() {
+	$('#findmpwdkey').click(function() {
+		$.ajax({
+			url: "findmpwdkey",
+			type: "GET",
+			data: {
+				mid: $('#mpwdmid').val(),
+				memail: $('#mpwdmemail').val()
+			},
+			dataType: "text",
+			
+			success: function(res) {
+				if (res == "값을 모두 입력해주세요.") {
+					alert(res);
+				}
+				else if (res == "해당하는 정보가 존재하지 않습니다.") {
+					alert(res);
+				}
+				else {
+					$('#mpwdkey').html(res);
+				}
+			},
+			error: function(a, b) {
+				alert("Request: " + JSON.stringify(a));
+			}
+		});
+	});
+});
+//회원 비밀번호 찾기 _ 비밀번호 찾기 질문 가져오기
+
+// 회원 비밀번호 찾기
+$(function() {
+	$('#findmpwd').click(function() {
+		$.ajax({
+			url: "findmpwd",
+			type: "GET",
+			data: {
+				mid: $('#mpwdmid').val(),
+				memail: $('#mpwdmemail').val(),
+				mpwdval: $('#mpwdmpwdval').val()
+			},
+			dataType: "text",
+			
+			success: function(res) {
+				alert(res);
+			},
+			error: function(a, b) {
+				alert("Request: " + JSON.stringify(a));
+			}
+		});
+	});
+});
+//회원 비밀번호 찾기
+
+$(document).ready(function(){
+	$("#close1").click(function(){
+		closereset1();
+	});
+	$("#close2").click(function(){
+		closereset1();
+	});
+	$("#close3").click(function(){
+		closereset2();
+	});
+	$("#close4").click(function(){
+		closereset2();
+	});
+});
+function closereset1(){
+	document.getElementById("midmname").value="";
+	document.getElementById("midmemail").value="";
+	document.getElementById("midmtel").value="";
+	$('#demo').empty();
+}
+function closereset2(){
+	document.getElementById("mpwdmid").value="";
+	document.getElementById("mpwdmemail").value="";
+	document.getElementById("mpwdmpwdval").value="";
+	$('#mpwdkey').empty();
+}
+
+</script>
+
 <c:url var="loginUrl" value="/j_spring_security_check"></c:url>
 
 <div id="my_container">
 
 	<form action="${loginUrl }" method="post">
 
-    <div class="col-md-offset-5 col-md-3">
+    <div class="col-md-offset-4 col-md-3" style="width: 450px">
         <div class="form-login">
         <h1 class="text-center">Login<small>로그인페이지</small></h1>
          
@@ -71,7 +185,7 @@
          <!-- autocomplete: HTML5 속성, 자동완성 꺼주는 기능 -->
         <button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#findIdModal" autocomplete="off">
         	<span class="glyphicon glyphicon-tag"> 아이디찾기&nbsp;</span>
-        </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        </button>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         
         <button type="button" class="btn btn-success btn-xs" data-toggle="modal" data-target="#findPwdModal" autocomplete="off">
         	<span class="glyphicon glyphicon-tags"> 비밀번호찾기&nbsp;</span>
@@ -87,22 +201,23 @@
    <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <button type="button" class="close" id="close1" data-dismiss="modal">&times;</button>
         <h2 class="modal-title">Forget your ID?</h2>
       </div>
       <div class="modal-body">
         <p>		
-        	<input type="text" id="" class="form-control input-xs chat-input" placeholder="이름을 입력하세요" /><br/>
-        	<input type="text" id="" class="form-control input-xs chat-input" placeholder="메일을 입력하세요" /><br/>
-        	<input type="text" id="" class="form-control input-xs chat-input" placeholder="전화번호를을 입력하세요" /><br/>
+        	<input type="text" id="midmname" class="form-control input-xs chat-input" placeholder="가입하신 이름을 입력하세요" /><br/>
+        	<input type="text" id="midmemail" class="form-control input-xs chat-input" placeholder="가입하신 메일주소를 입력하세요" /><br/>
+        	<input type="text" id="midmtel" class="form-control input-xs chat-input" placeholder="가입하신 전화번호를 입력하세요" /><br/>
         </p>
-        <button id="btn1" type="button" class="btn btn-success" data-toggle="collapse" data-target="#demo">입　　　력</button><p>
-        <div id="demo" class="collapse alert alert-success">
-        	{memname}님의 ID는 {howsostupidru}입니다.
+<!--         <button id="findmid" type="button" class="btn btn-success" data-toggle="collapse" data-target="#demo">찾　　　기</button><p> -->
+        <button id="findmid" type="button" class="btn btn-success">찾　　　기</button><p><p>
+<!--         <div id="demo" class="collapse alert alert-success"> -->
+        <div id="demo">
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-success input-sm" data-dismiss="modal">Close</button>
+        <button type="button" id="close2" class="btn btn-success input-sm" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
@@ -116,21 +231,24 @@
     <!-- Modal content-->
    <div class="modal-content">
      <div class="modal-header">
-       <button type="button" class="close" data-dismiss="modal">&times;</button>
+       <button type="button" class="close" id="close3" data-dismiss="modal">&times;</button>
        <h2 class="modal-title">Forget your Password?</h2>
      </div>
      <div class="modal-body">
-       	<input type="text" id="" class="form-control input-xs chat-input" placeholder="ID를 입력하세요" /></br>
-       	<input type="text" id="" class="form-control input-xs chat-input" placeholder="메일을 입력하세요" /></br>
+       	<input type="text" id="mpwdmid" class="form-control input-xs chat-input" placeholder="가입하신 아이디를 입력하세요" /></br>
+       	<input type="text" id="mpwdmemail" class="form-control input-xs chat-input" placeholder="가입하신 메일주소를 입력하세요" /></br>
+       	
+       	<button type="button" class="btn btn-success" id="findmpwdkey">입　　　력</button>
+       	
        	<div style="text-align: left; color: #006600;">
        		<!-- 비밀번호 찾기 질문은 이곳에 나와야 합니당.  -->
-        		<span>&nbsp;&nbsp;질문이 뭐였게 ?  난 기억안남</span>
+        		<span>&nbsp;&nbsp;비밀번호 찾기 질문 : <span id="mpwdkey"></span></span>
         	</div>
-        	<input type="text" id="" class="form-control input-xs chat-input" placeholder="질문에 답을 입력하세요" /></br>
-        <button type="button" class="btn btn-success">입　　　력</button>
+        	<input type="text" id="mpwdmpwdval" class="form-control input-xs chat-input" placeholder="질문에 답을 입력하세요" /></br>
+        <button type="button" class="btn btn-success" id="findmpwd">찾　　　기</button>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-success input-sm" data-dismiss="modal">Close</button>
+        <button type="button" id="close4" class="btn btn-success input-sm" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>

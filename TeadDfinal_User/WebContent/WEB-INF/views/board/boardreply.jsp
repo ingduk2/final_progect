@@ -65,11 +65,15 @@ table th {
 	<h1>게시글작성<small>게시글작성을위한form임</small></h1>
 	<table><tr height="30px"><!-- 높이 조절용 칸 떼우기 --><td></td></tr></table>
 	
-<form action="insertboard" method="post" enctype="multipart/form-data">
+<form action="replyinsertboard" method="post" enctype="multipart/form-data">
 	
-	<input type="hidden" name="bcode" value="${bcode}">
 	<input type="hidden" name="mid" value="${pageContext.request.userPrincipal.name}">
 	<input type="hidden" name="bip" value="<%= request.getRemoteAddr() %>">
+	
+	<input type="text" name="bref" value="${reply.bref}">
+	<input type="text" name="bseq" value="${reply.bseq+1}">
+	<input type="text" name="blvl" value="${reply.blvl+1}">
+	<input type="text" name="bcode" value="${reply.bcode}">
 	
 	<table width="500px">
 		<tr> <th colspan="2">글쓰기</th> </tr>			
@@ -109,7 +113,7 @@ table th {
 	
 	<table><tr height="30px"><!-- 높이 조절용 칸 떼우기 --><td></td></tr></table>
 	<button type="submit" class="btn btn-success btn-sm">　글 작 성　</button>
-	<button type="button" class="btn btn-success btn-sm" onclick="location='boardlist?bcode=${bcode}'">　취　　소　</button>
+	<button type="button" class="btn btn-success btn-sm" onclick="location='boardlist?bcode=${reply.bcode}'">　취　　소　</button>
 </form>
 	
 </div>

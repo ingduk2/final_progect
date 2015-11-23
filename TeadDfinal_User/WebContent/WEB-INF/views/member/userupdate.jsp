@@ -68,31 +68,6 @@ function execDaumPostcode() {   //주소 가져오는 api
 
 
 
-//생년월일 달력으로 받기 위함
-	$(function() {
-		$( "#datepicker" ).datepicker({
-			changeMonth: true,
-			changeYear: true
-		});
-		// 날짜 형식 yyyy-mm-dd로 변경
-		$( "#datepicker" ).datepicker({
-			dateFormat: "yy-mm-dd"
-		});
-		// 날짜 형식 getter
-		var dateFormat = $( "#datepicker" ).datepicker( "option", "dateFormat" );
-		// 날짜 형식 setter
-		$( "#datepicker" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
-		
-		// 년도 기간 변경
-		$( "#datepicker" ).datepicker({
-			yearRange: "1915:2015"
-		});
-		// 년도 기간 getter
-		var yearRange = $( "#datepicker" ).datepicker( "option", "yearRange" );
-		// 년도 기간 setter
-		$( "#datepicker" ).datepicker( "option", "yearRange", "1915:2015" );
-	});   //생년월일 가져오는 function
-
 //이미지 업데이트용
 $(document).on('change', '.btn-file :file', function() {
 	  var input = $(this),
@@ -188,6 +163,116 @@ function previewImage(targetObj, View_area) {
         }
     }
 }	
+
+
+
+//이메일 주소 중복 체크
+$(function() {
+	$('#memailchk').click(function() {
+		$.ajax({
+			url: "memailchk",
+			type: "GET",
+			data: {
+				memail: $('#memail').val()
+			},
+			dataType: "html",
+			
+			success: function(res) {
+				if (res == "이미 존재하는 메일 주소 입니다.") {
+					$('#memailchkres').html(res).css('color', 'red');
+				}
+				else {
+					$('#memailchkres').html(res).css('color', 'blue');
+				}
+			}
+		});
+	});
+});
+
+//비밀번호 확인 똑같이 입력했는지 확인해서 뿌려줌
+$(function() {
+	$('#mpwdchk').keyup(function() {		
+		$val_mpwdchk = $('#mpwdchk').val();
+		$val_mpwd = $('#mpwd').val();
+		
+		if ($val_mpwdchk.length > 0) {
+			$('#mpwdchkres').load('mpwdchk?mpwd='+$val_mpwd+'&mpwdchk='+$val_mpwdchk);
+		}
+	});
+});
+// 비밀번호 확인 똑같이 입력했는지 확인해서 뿌려줌
+
+	// 모든 양식 제대로 기입했을 때만 진행할 수 있도록 체크하는 함수
+	function checksubmit() {
+		
+		var ori = ${mvo.mpwd};
+		// 비밀번호가 기존과 변경되면 수행
+		if (document.updateform.mpwd.value!=ori) {
+			
+			if (document.updateform.mpwd.value=="") {
+				alert("비밀번호를 입력해주세요.")
+				document.updateform.mpwd.focus()
+				return false
+			}
+			if (document.updateform.mpwdchk.value=="") {
+				alert("비밀번호를 확인해주세요.")
+				document.updateform.mpwdchk.focus()
+				return false
+			}
+			
+			// 비밀번호와 비밀번호 확인의 비밀번호가 동일하지 않을 시 수행
+			if (document.updateform.mpwd.value!=document.updateform.mpwdchk.value) {
+				alert("비밀번호가 틀립니다. 다시 확인해주세요.")
+				document.updateform.mpwdchk.focus()
+				return false
+			}
+		}
+		
+		if (document.updateform.mpwdkey.value=="") {
+			alert("비밀번호 찾기 질문을 입력해주세요.")
+			document.updateform.mpwdkey.focus()
+			return false
+		}
+		if (document.updateform.mpwdval.value=="") {
+			alert("비밀번호 찾기 답변을 입력해주세요.")
+			document.updateform.mpwdval.focus()
+			return false
+		}
+		
+		if (document.updateform.memail.value=="") {
+			alert("이메일을 입력해주세요.")
+			document.updateform.memail.focus()
+			return false
+		}
+		if (document.updateform.mtel.value=="") {
+			alert("전화번호를 입력해주세요.")
+			document.updateform.mtel.focus()
+			return false
+		}
+		if (document.updateform.mpost.value=="") {
+			alert("주소를 입력해주세요.")
+			document.updateform.mpost.focus()
+			return false
+		}
+		if (document.updateform.mroad.value=="") {
+			alert("주소를 입력해주세요.")
+			document.updateform.mroad.focus()
+			return false
+		}
+		
+		// 동일한 메일 주소가 이미 존재할 시 수행
+// 		var memail = "이미 존재하는 메일 주소 입니다.";
+		
+// 		if (document.updateform.memailchkres.value==memail) {
+// 			alert("이메일을 다시 입력해주세요.")
+// 			document.updateform.memail.focus()
+// 			return false
+// 		}
+		
+		return true
+	}
+	// 모든 양식 제대로 기입했을 때만 진행할 수 있도록 체크하는 함수
+
 </script>
 
 <style>
@@ -315,7 +400,7 @@ input[readonly] {
 		<h1>회원정보수정</h1>
 		<table><tr height="30px"><!-- 높이 조절용 칸 떼우기 --><td></td></tr></table>
 		
-		<form action="mupdate" method="post" enctype="multipart/form-data">
+		<form onsubmit="return checksubmit()" name="updateform" action="mupdate" method="post" enctype="multipart/form-data">
 		
 		<table id="formtable">
 		<!-- <tr> <th></th> <td></td> </tr> -->
@@ -331,10 +416,10 @@ input[readonly] {
 			
 			
 			<tr>
-				<th>사진</th>
+				<th>프로필 사진</th>
 				<td>
 					<div class="input-group">
-						<input type="text" class="form-control input-sm" placeholder="프로필 이미지" name="mimg" value="${mvo.mimg }" readonly="readonly" >
+						<input type="text" class="form-control input-sm" placeholder="프로필 사진" name="mimg" value="${mvo.mimg }" readonly="readonly" >
 						<span class="input-group-btn">
 							<span class="btn btn-success btn-file btn-sm">
 		                    	<span class="glyphicon glyphicon-folder-open"></span>
@@ -348,16 +433,17 @@ input[readonly] {
 			<tr>
 				<th>비밀번호</th>   
 				<td> 
-					<input type="password" class="form-control input-sm" placeholder="비밀번호(8자리 이상)" name="mpwd" value="${mvo.mpwd }" minlength="8" maxlength=20">
+					<input type="password" class="form-control input-sm" placeholder="비밀번호(8자리 이상)" name="mpwd" id="mpwd" value="${mvo.mpwd }" minlength="8" maxlength=20">
 				</td> 
 			</tr>
 			
 			<tr> 
-				<th>비밀번호 재확인</th>  
+				<th>비밀번호 확인</th>  
 				<td>
-					<input type="password" class="form-control input-sm" placeholder="비밀번호 확인">
+					<input type="password" class="form-control input-sm" placeholder="비밀번호 확인" id="mpwdchk" name="mpwdchk"/>
+					<div id="mpwdchkres"></div>
 				</td> 
-				<td>KeeyUp</td> 
+				<td></td> 
 			</tr>
 			
 			<tr>
@@ -385,7 +471,7 @@ input[readonly] {
 			<tr> 
 				<th>생년월일</th>   
 				<td>
-					<input class="form-control input-sm" type="text" placeholder="생년월일 (클릭)" id="datepicker" name="mbirth" value="${mvo.mbirth }" readonly="readonly"  />
+					<input class="form-control input-sm" type="text" placeholder="생년월일 (클릭)" name="mbirth" value="${mvo.mbirth }" readonly="readonly"  />
 				</td> 
 				<td></td> 
 			</tr>
@@ -395,9 +481,12 @@ input[readonly] {
 				<td>
 					<input type="email" class="form-control input-sm" 
 					placeholder="이메일 주소 (abc@abc.com)" 
-					name="memail" pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" value="${mvo.memail }" />
+					name="memail" id="memail" pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" value="${mvo.memail }" />
+					<div id="memailchkres" name="memailchkres"></div>
 				</td> 
-				<td></td> 
+				<td>
+					<button type="button" class="btn btn-default btn-sm" id="memailchk"> 중복체크	</button>
+				</td> 
 			</tr>
 			
 			<tr> 
@@ -425,11 +514,14 @@ input[readonly] {
 			<tr> 
 				<th>주소</th>   
 				<td>
-					<input id="post" name="mpost" class="form-control input-sm" type="text" placeholder="우편번호(검색)" value="${mvo.mpost }" readonly="readonly"/>
+					<div class="input-group" style="width: 100%">
+						<input id="post" name="mpost" class="form-control input-sm" type="text" placeholder="우편번호(검색)" value="${mvo.mpost }" readonly="readonly"/>
+						<span class="input-group-btn">
+							<button type="button" class="btn btn-default btn-sm" onclick="execDaumPostcode()">우편번호</button>
+						</span>
+					</div>
 				</td> 
-				<td>
-					<button type="button" class="btn btn-default btn-sm" onclick="execDaumPostcode()">우편번호</button>
-				</td> 
+				<td></td> 
 			</tr>
 			<tr> 
 				<th></th> 
@@ -467,7 +559,7 @@ input[readonly] {
 
 		<table><tr height="30px"><td></td></tr></table>
 		<button type="submit" class="btn btn-success btn-sm">　수　　정　</button>
-		<button type="button" class="btn btn-success btn-sm">　취　　소　</button>
+		<button type="button" class="btn btn-success btn-sm" onclick="goUrl('mselectview')">　취　　소　</button>
 		
 		</form>
 	</div>

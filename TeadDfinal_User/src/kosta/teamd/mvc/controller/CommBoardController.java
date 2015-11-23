@@ -16,9 +16,9 @@ public class CommBoardController {
 	private CommBoardDao cbdao;
 	
 	@RequestMapping(value="/insertComboard", method=RequestMethod.POST)
-	public ModelAndView insertComm(CommBoardVO cbvo){
+	public ModelAndView insertComm(CommBoardVO cbvo, String orimid){
 		System.out.println(cbvo.getBno()+"이당당당");
-		ModelAndView mav=new ModelAndView("redirect:/boarddetail?bno="+cbvo.getBno());
+		ModelAndView mav=new ModelAndView("redirect:/boarddetail?bno="+cbvo.getBno()+"&mid="+orimid);
 		cbdao.insertCommBoard(cbvo);
 		return mav;
 	}
