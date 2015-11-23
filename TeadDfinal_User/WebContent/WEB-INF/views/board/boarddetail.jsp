@@ -38,7 +38,7 @@ table th {
 </style>
 
 <div>		
-	<img src="img/boarddetail.png" width="300px">
+	<h1>답변글<small>답변글작성용</small></h1>
 	
 <table width="50%">							
 	<tr>	
@@ -83,12 +83,13 @@ table th {
 		  <div class="jumbotron">
 		  	<div style="float: left; width: 90%">
 			    <p>
-			    	<b>${pageContext.request.userPrincipal.name}님<!--abcdefg가 ID가 되어야겠징!--></b><br/>
-			    	나는 지금 무지막지 졸리지만 프로젝트를 해야한다. UI가 밀려서 슬프다.<!-- 이게 인사말이 되겠지.. -->
+			    	<b>${namecard.mid}님<!--abcdefg가 ID가 되어야겠징!--></b><br/>
+			    	${namecard.mintro}
+			    	<!-- 이게 인사말이 되겠지.. -->
 			    </p>
 		   </div> 
 		   <div style="right:0;">
-		   	<img src="img/a.PNG" class="alignleft img-circle" width="50px" height="50px">
+		   	<img src="img/${namecard.mimg}" class="alignleft img-circle" width="50px" height="50px">
 		   </div>
 		  </div>
 		</td>
@@ -105,12 +106,14 @@ table th {
 		    	<input type="hidden" name="mid" value="${pageContext.request.userPrincipal.name}">
 		    	<input type="hidden" name="cbip" value="<%= request.getRemoteAddr() %>">
 		    	
+		    	<div class="input-group" style="width: 100%">
 		        	<input name="cbcontent" type="text" class="form-control input-sm " placeholder="Your comments">
 		            	<span class="input-group-btn">
 		            		<button type="submit" value="Add" class="btn btn-success btn-sm">&nbsp;
 		            			<span class="glyphicon glyphicon-plus-sign"></span>Add&nbsp;
 		            		</button>
 		                </span>
+		        </div>
 		        </form>
 	        </div>					
 		</td>
@@ -126,7 +129,7 @@ table th {
 				<c:forEach var="list" items="${list}">
 					<tr> 
 						<td>${list.mid}</td>
-						<td class="reply">
+						<td class="reply" style="text-align: left; padding-left: 20px; width: 220px">
 							${list.cbcontent}
 						</td>
 						<td>${list.cbdate}</td>
@@ -141,8 +144,16 @@ table th {
 	</tr>
 </table>							
 
+	<c:url var="reply" value="/setreply">
+		<c:param name="bref" value="${bvo.bref}"/>
+		<c:param name="bseq" value="${bvo.bseq}"/>
+		<c:param name="blvl" value="${bvo.blvl}"/>
+		<c:param name="bcode" value="${bvo.bcode}"/>
+	</c:url>
+
 <table><tr height="30px"><!-- 높이 조절용 칸 떼우기 --><td></td></tr></table>
 <button type="button" class="btn btn-success btn-sm" onclick="location='boardupdateform?bno=${bvo.bno}'">　수　　정　</button>
 <button type="button" class="btn btn-success btn-sm" onclick="location='boarddelete?bno=${bvo.bno}&bcode=${bvo.bcode}'">　삭　　제　</button>
 <button type="button" class="btn btn-success btn-sm" onclick="location='boardlist?bcode=${bvo.bcode}'">　목　　록　</button>
+<a href="${reply}" type="button" class="btn btn-success btn-sm">　답　　변　</a>
 </div>

@@ -514,11 +514,14 @@ input[readonly] {
 			<tr> 
 				<th>주소</th>   
 				<td>
-					<input id="post" name="mpost" class="form-control input-sm" type="text" placeholder="우편번호(검색)" value="${mvo.mpost }" readonly="readonly"/>
+					<div class="input-group" style="width: 100%">
+						<input id="post" name="mpost" class="form-control input-sm" type="text" placeholder="우편번호(검색)" value="${mvo.mpost }" readonly="readonly"/>
+						<span class="input-group-btn">
+							<button type="button" class="btn btn-default btn-sm" onclick="execDaumPostcode()">우편번호</button>
+						</span>
+					</div>
 				</td> 
-				<td>
-					<button type="button" class="btn btn-default btn-sm" onclick="execDaumPostcode()">우편번호</button>
-				</td> 
+				<td></td> 
 			</tr>
 			<tr> 
 				<th></th> 
