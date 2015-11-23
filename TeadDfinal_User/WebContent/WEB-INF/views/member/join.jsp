@@ -193,7 +193,7 @@
 			return false
 		}
 		
-		// 비밀번호와 비밀번호 확인의 아이디가 동일하지 않을 시 수행
+		// 비밀번호와 비밀번호 확인의 비밀번호가 동일하지 않을 시 수행
 		if (document.joinform.mpwd.value!=document.joinform.mpwdchk.value) {
 			alert("비밀번호가 틀립니다. 다시 확인해주세요.")
 			document.joinform.mpwdchk.focus()
@@ -201,18 +201,22 @@
 		}
 		
 		// 동일한 아이디가 이미 존재할 시 수행
-		if (document.joinform.midchkres.value=="이미 존재하는 아이디 입니다.") {
-			alert("아이디를 다시 입력해주세요")
-			document.joinform.mid.focus()
-			return false
-		}
+// 		var mid = "이미 존재하는 아이디 입니다.";
+		
+// 		if (document.joinform.midchkres.value==mid) {
+// 			alert("아이디를 다시 입력해주세요")
+// 			document.joinform.mid.focus()
+// 			return false
+// 		}
 		
 		// 동일한 메일 주소가 이미 존재할 시 수행
-		if (document.joinform.memailchkres.value=="이미 존재하는 메일 주소 입니다.") {
-			alert("이메일을 다시 입력해주세요.")
-			document.joinform.memail.focus()
-			return false
-		}
+// 		var memail = "이미 존재하는 메일 주소 입니다.";
+		
+// 		if (document.joinform.memailchkres.value==memail) {
+// 			alert("이메일을 다시 입력해주세요.")
+// 			document.joinform.memail.focus()
+// 			return false
+// 		}
 		
 		return true
 	}

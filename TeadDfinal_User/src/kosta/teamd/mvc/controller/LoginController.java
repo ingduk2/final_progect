@@ -9,10 +9,12 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import kosta.teamd.mvc.dao.MemberDao;
 import kosta.teamd.mvc.inter.MemRolesSelectInter;
 import kosta.teamd.vo.MemRolesVO;
+import kosta.teamd.vo.MemberVO;
 
 @Controller
 public class LoginController {
@@ -59,5 +61,101 @@ public class LoginController {
 		}
 		
 		return "index";
+	}
+	
+	// -- 아이디 찾기 --
+	@RequestMapping(value="/findmid")
+	public ModelAndView findMid(MemberVO mvo) {
+		
+		String result = "";
+		
+		if (mvo.getMname().length() == 0 || mvo.getMemail().length() == 0 || mvo.getMtel().length() == 0) {
+			result = "값을 모두 입력해주세요.";
+		}
+		else {
+			
+			String mid = mdao.findMid(mvo);
+			
+			if (mid == null) {
+				result = "해당하는 아이디가 존재하지 않습니다.";
+			}
+			else {
+				int len = mid.length();
+				
+				mid = mid.substring(0, (len/2));
+				
+				for(int i=0; i<len/2; i++) {
+					mid += "*";
+				}
+				
+				result = "회원님의 아이디는 [" + mid + "] 입니다.";
+			}
+		}
+		
+		ModelAndView mav = new ModelAndView("checkpage/findmidres");
+		mav.addObject("result", result);
+		
+		return mav;
+	}
+	
+	// -- 비밀번호 찾기 질문 찾기 --
+	@RequestMapping(value="/findmpwdkey")
+	public ModelAndView findMpwdKey(MemberVO mvo) {
+		
+		String result = "";
+		
+		if (mvo.getMid().length() == 0 || mvo.getMemail().length() == 0) {
+			result = "값을 모두 입력해주세요."; 
+		}
+		else {
+			
+			String mpwdkey = mdao.findMpwdKey(mvo);
+			
+			if (mpwdkey == null) {
+				result = "해당하는 정보가 존재하지 않습니다.";
+			}
+			else {
+				result = mpwdkey;
+			}
+		}
+		
+		ModelAndView mav = new ModelAndView("checkpage/findmpwdkeyres");
+		mav.addObject("result", result);
+		
+		return mav;
+	}
+	
+	@RequestMapping(value="/findmpwd")
+	public ModelAndView findMpwd(MemberVO mvo) {
+		
+		String result = "";
+		
+		if (mvo.getMid().length() == 0 || mvo.getMemail().length() == 0 || mvo.getMpwdval().length() == 0) {
+			result = "값을 모두 입력해주세요.";
+		}
+		else {
+			
+			// 여기서 이메일을 보내주는 로직을 짜야허는디...............................!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+			// 여기서 이메일을 보내주는 로직을 짜야허는디...............................!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+			// 여기서 이메일을 보내주는 로직을 짜야허는디...............................!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+			// 여기서 이메일을 보내주는 로직을 짜야허는디...............................!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+			// 여기서 이메일을 보내주는 로직을 짜야허는디...............................!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+			
+			String mpwd = mdao.findMpwd(mvo);
+			
+			if (mpwd == null) {
+				result = "해당하는 정보가 존재하지 않습니다.";
+			}
+			else {
+				System.out.println("Log: 비밀번호 [" + mpwd + "]");
+				
+				result = "가입하신 이메일 주소로 비밀번호를 보내드렸습니다.";
+			}
+		}
+		
+		ModelAndView mav = new ModelAndView("checkpage/findmpwdres");
+		mav.addObject("result", result);
+		
+		return mav;
 	}
 }

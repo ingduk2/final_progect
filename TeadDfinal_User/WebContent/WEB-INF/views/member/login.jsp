@@ -46,6 +46,93 @@
 	}
 </style>
 
+<script>
+// 회원 아이디 찾기
+$(function() {
+	$('#findmid').click(function() {
+		$.ajax({
+			url: "findmid",
+			type: "GET",
+			data: {
+				mname: $('#midmname').val(),
+				memail: $('#midmemail').val(),
+				mtel: $('#midmtel').val()
+			},
+			dataType: "text",
+			
+			success: function(res) {
+				if (res == "값을 모두 입력해주세요.") {
+					alert(res);
+				}
+				else {
+					$('#demo').html(res);
+				}
+			},
+			error: function(a, b) {
+				alert("Request: " + JSON.stringify(a));
+			}
+		});
+	});
+});
+// 회원 아이디 찾기
+
+// 회원 비밀번호 찾기 _ 비밀번호 찾기 질문 가져오기
+$(function() {
+	$('#findmpwdkey').click(function() {
+		$.ajax({
+			url: "findmpwdkey",
+			type: "GET",
+			data: {
+				mid: $('#mpwdmid').val(),
+				memail: $('#mpwdmemail').val()
+			},
+			dataType: "text",
+			
+			success: function(res) {
+				if (res == "값을 모두 입력해주세요.") {
+					alert(res);
+				}
+				else if (res == "해당하는 정보가 존재하지 않습니다.") {
+					alert(res);
+				}
+				else {
+					$('#mpwdkey').html(res);
+				}
+			},
+			error: function(a, b) {
+				alert("Request: " + JSON.stringify(a));
+			}
+		});
+	});
+});
+//회원 비밀번호 찾기 _ 비밀번호 찾기 질문 가져오기
+
+// 회원 비밀번호 찾기
+$(function() {
+	$('#findmpwd').click(function() {
+		$.ajax({
+			url: "findmpwd",
+			type: "GET",
+			data: {
+				mid: $('#mpwdmid').val(),
+				memail: $('#mpwdmemail').val(),
+				mpwdval: $('#mpwdmpwdval').val()
+			},
+			dataType: "text",
+			
+			success: function(res) {
+				alert(res);
+			},
+			error: function(a, b) {
+				alert("Request: " + JSON.stringify(a));
+			}
+		});
+	});
+});
+//회원 비밀번호 찾기
+
+</script>
+
 <c:url var="loginUrl" value="/j_spring_security_check"></c:url>
 
 <div id="my_container">
@@ -92,13 +179,14 @@
       </div>
       <div class="modal-body">
         <p>		
-        	<input type="text" id="" class="form-control input-xs chat-input" placeholder="이름을 입력하세요" /><br/>
-        	<input type="text" id="" class="form-control input-xs chat-input" placeholder="메일을 입력하세요" /><br/>
-        	<input type="text" id="" class="form-control input-xs chat-input" placeholder="전화번호를을 입력하세요" /><br/>
+        	<input type="text" id="midmname" class="form-control input-xs chat-input" placeholder="가입하신 이름을 입력하세요" /><br/>
+        	<input type="text" id="midmemail" class="form-control input-xs chat-input" placeholder="가입하신 메일주소를 입력하세요" /><br/>
+        	<input type="text" id="midmtel" class="form-control input-xs chat-input" placeholder="가입하신 전화번호를 입력하세요" /><br/>
         </p>
-        <button id="btn1" type="button" class="btn btn-success" data-toggle="collapse" data-target="#demo">입　　　력</button><p>
-        <div id="demo" class="collapse alert alert-success">
-        	{memname}님의 ID는 {howsostupidru}입니다.
+<!--         <button id="findmid" type="button" class="btn btn-success" data-toggle="collapse" data-target="#demo">찾　　　기</button><p> -->
+        <button id="findmid" type="button" class="btn btn-success">찾　　　기</button><p><p>
+<!--         <div id="demo" class="collapse alert alert-success"> -->
+        <div id="demo">
         </div>
       </div>
       <div class="modal-footer">
@@ -120,14 +208,17 @@
        <h2 class="modal-title">Forget your Password?</h2>
      </div>
      <div class="modal-body">
-       	<input type="text" id="" class="form-control input-xs chat-input" placeholder="ID를 입력하세요" /></br>
-       	<input type="text" id="" class="form-control input-xs chat-input" placeholder="메일을 입력하세요" /></br>
+       	<input type="text" id="mpwdmid" class="form-control input-xs chat-input" placeholder="가입하신 아이디를 입력하세요" /></br>
+       	<input type="text" id="mpwdmemail" class="form-control input-xs chat-input" placeholder="가입하신 메일주소를 입력하세요" /></br>
+       	
+       	<button type="button" class="btn btn-success" id="findmpwdkey">입　　　력</button>
+       	
        	<div style="text-align: left; color: #006600;">
        		<!-- 비밀번호 찾기 질문은 이곳에 나와야 합니당.  -->
-        		<span>&nbsp;&nbsp;질문이 뭐였게 ?  난 기억안남</span>
+        		<span>&nbsp;&nbsp;비밀번호 찾기 질문 : <span id="mpwdkey" /></span>
         	</div>
-        	<input type="text" id="" class="form-control input-xs chat-input" placeholder="질문에 답을 입력하세요" /></br>
-        <button type="button" class="btn btn-success">입　　　력</button>
+        	<input type="text" id="mpwdmpwdval" class="form-control input-xs chat-input" placeholder="질문에 답을 입력하세요" /></br>
+        <button type="button" class="btn btn-success" id="findmpwd">찾　　　기</button>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-success input-sm" data-dismiss="modal">Close</button>
