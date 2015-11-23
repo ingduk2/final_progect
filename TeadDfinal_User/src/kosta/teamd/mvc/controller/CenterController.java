@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kosta.teamd.mvc.dao.CenterDao;
 import kosta.teamd.mvc.service.urljson;
+import kosta.teamd.vo.BoardVO;
 import kosta.teamd.vo.CenterVO;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -46,21 +47,23 @@ public class CenterController {
 	}
 	
 	@RequestMapping(value="/listcenter")
-	public ModelAndView listcenter(){
+	public ModelAndView listcenter(BoardVO bvo){ //search 때무에 씀
 		ModelAndView mav= new ModelAndView("center/map");
 		
-		List<CenterVO> list=cdao.list();
+		List<CenterVO> list=cdao.list(bvo);
 		//여기서 json으로 만들어서 보내줘얗ㄴ다
 		mav.addObject("list",list);
+		mav.addObject("sv",bvo.getSearchValue());
+		mav.addObject("st",bvo.getSearchType());
 		return mav;
 		
 	}
 	
 	//ajax!!
 	@RequestMapping(value="jsoncenter")
-	public ModelAndView jsoncenter(){
-		ModelAndView mav= new ModelAndView("center/jsonmap");
-		List<CenterVO> list=cdao.list();
+	public ModelAndView jsoncenter(BoardVO bvo){
+		ModelAndView mav= new ModelAndView("/center/jsonmap");
+		List<CenterVO> list=cdao.list(bvo);
 		
 		JSONObject jsonObject = new JSONObject();
 		JSONArray jsonArray = new JSONArray();
