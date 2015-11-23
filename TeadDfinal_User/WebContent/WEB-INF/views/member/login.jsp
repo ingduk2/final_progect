@@ -131,6 +131,33 @@ $(function() {
 });
 //회원 비밀번호 찾기
 
+$(document).ready(function(){
+	$("#close1").click(function(){
+		closereset1();
+	});
+	$("#close2").click(function(){
+		closereset1();
+	});
+	$("#close3").click(function(){
+		closereset2();
+	});
+	$("#close4").click(function(){
+		closereset2();
+	});
+});
+function closereset1(){
+	document.getElementById("midmname").value="";
+	document.getElementById("midmemail").value="";
+	document.getElementById("midmtel").value="";
+	$('#demo').empty();
+}
+function closereset2(){
+	document.getElementById("mpwdmid").value="";
+	document.getElementById("mpwdmemail").value="";
+	document.getElementById("mpwdmpwdval").value="";
+	$('#mpwdkey').empty();
+}
+
 </script>
 
 <c:url var="loginUrl" value="/j_spring_security_check"></c:url>
@@ -139,7 +166,7 @@ $(function() {
 
 	<form action="${loginUrl }" method="post">
 
-    <div class="col-md-offset-5 col-md-3">
+    <div class="col-md-offset-4 col-md-3" style="width: 450px">
         <div class="form-login">
         <h1 class="text-center">Login<small>로그인페이지</small></h1>
          
@@ -174,7 +201,7 @@ $(function() {
    <!-- Modal content-->
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <button type="button" class="close" id="close1" data-dismiss="modal">&times;</button>
         <h2 class="modal-title">Forget your ID?</h2>
       </div>
       <div class="modal-body">
@@ -190,7 +217,7 @@ $(function() {
         </div>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-success input-sm" data-dismiss="modal">Close</button>
+        <button type="button" id="close2" class="btn btn-success input-sm" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
@@ -204,7 +231,7 @@ $(function() {
     <!-- Modal content-->
    <div class="modal-content">
      <div class="modal-header">
-       <button type="button" class="close" data-dismiss="modal">&times;</button>
+       <button type="button" class="close" id="close3" data-dismiss="modal">&times;</button>
        <h2 class="modal-title">Forget your Password?</h2>
      </div>
      <div class="modal-body">
@@ -215,13 +242,13 @@ $(function() {
        	
        	<div style="text-align: left; color: #006600;">
        		<!-- 비밀번호 찾기 질문은 이곳에 나와야 합니당.  -->
-        		<span>&nbsp;&nbsp;비밀번호 찾기 질문 : <span id="mpwdkey" /></span>
+        		<span>&nbsp;&nbsp;비밀번호 찾기 질문 : <span id="mpwdkey"></span></span>
         	</div>
         	<input type="text" id="mpwdmpwdval" class="form-control input-xs chat-input" placeholder="질문에 답을 입력하세요" /></br>
         <button type="button" class="btn btn-success" id="findmpwd">찾　　　기</button>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-success input-sm" data-dismiss="modal">Close</button>
+        <button type="button" id="close4" class="btn btn-success input-sm" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>

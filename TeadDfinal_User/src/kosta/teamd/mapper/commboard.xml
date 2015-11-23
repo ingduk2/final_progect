@@ -23,7 +23,10 @@
     </insert>
 
 	<select id="getCommlist" parameterType="int" resultType="cbvo">
-		select * from commboard where bno=#{bno} order by cbno desc
+		select
+			cbno, bno, cbcontent, mid, cbip,
+			to_char(cbdate, 'yyyy/mm/dd') as cbdate
+		from commboard where bno=#{bno} order by cbno desc
 	</select>
 	
 	<delete id="deleteComm" parameterType="int">

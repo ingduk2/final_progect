@@ -4,7 +4,7 @@
 	.glyphicon{
 		color: #8fbc8f
 	}
-</style>{
+</style>
 
 <div id="bg">
 	<img src="img/boardTitle.png" width="200px">

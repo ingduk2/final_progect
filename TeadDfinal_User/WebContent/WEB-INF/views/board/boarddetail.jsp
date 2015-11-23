@@ -35,6 +35,7 @@ table th {
 	font-size: 12px;
 	font-weight: normal;
 }
+
 </style>
 
 <div>		
@@ -44,13 +45,12 @@ table th {
 	<tr>	
 		<th>제목</th>	
 		<td colspan="5" class="bgwhite"> 
-
 			${bvo.btitle}
 		</td>					
 	</tr>
 	<tr>	
 		<th>글쓴이</th>
-		<td class="bgwhite">
+		<td class="bgwhite" style="width: 220px">
 			${bvo.mid}
 		</td>	
 		<th>작성일</th>	
@@ -83,12 +83,12 @@ table th {
 		  <div class="jumbotron">
 		  	<div style="float: left; width: 90%">
 			    <p>
-			    	<b>${namecard.mid}님<!--abcdefg가 ID가 되어야겠징!--></b><br/>
+			    	<b>${namecard.mid}님</b><br/>
 			    	${namecard.mintro}
 			    	<!-- 이게 인사말이 되겠지.. -->
 			    </p>
 		   </div> 
-		   <div style="right:0;">
+		   <div style="right:0; padding-right: 11px">
 		   	<img src="img/${namecard.mimg}" class="alignleft img-circle" width="50px" height="50px">
 		   </div>
 		  </div>
@@ -102,9 +102,11 @@ table th {
 		<td colspan="6">
 	    	<div class="input-group col-xs-12">
 		    	<form action="insertComboard" method="post" >
+		    	
 		    	<input type="hidden" name="bno" value="${bvo.bno}">
 		    	<input type="hidden" name="mid" value="${pageContext.request.userPrincipal.name}">
 		    	<input type="hidden" name="cbip" value="<%= request.getRemoteAddr() %>">
+		    	<input type="hidden" name="orimid" value="${bvo.mid}">
 		    	
 		    	<div class="input-group" style="width: 100%">
 		        	<input name="cbcontent" type="text" class="form-control input-sm " placeholder="Your comments">
