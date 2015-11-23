@@ -49,6 +49,7 @@
 	#fsf{
 		color: red;
 	}
+	.ui-datepicker{z-index: 99 !important};
 </style>
 
 <script>
@@ -134,7 +135,7 @@
 		// 년도 기간 setter
 		$( "#datepicker" ).datepicker( "option", "yearRange", "1915:2015" );
 	}); // end 생년월일 가져오는 function
-
+	
 	// 모든 양식 제대로 기입했을 때만 진행할 수 있도록 체크하는 함수
 	function checksubmit() {
 		if (document.joinform.mid.value=="") {
