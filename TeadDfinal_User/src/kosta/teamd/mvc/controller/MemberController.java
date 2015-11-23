@@ -94,7 +94,7 @@ public class MemberController {
 	@RequestMapping(value="/minsert", method=RequestMethod.POST)
 	public ModelAndView insertDB(MemberVO mvo, MemRolesVO mrvo) throws Exception {
 		
-		mvo.setMimg("default.jsp"); // 디폴트 프로필 사진 설정
+		mvo.setMimg("UnknownProfile.png"); // 디폴트 프로필 사진 설정
 		mvo.setMintro("안녕하세요 ^^"); // 디폴트 프로필 인사말 설정
 		
 		// 전화번호 변환

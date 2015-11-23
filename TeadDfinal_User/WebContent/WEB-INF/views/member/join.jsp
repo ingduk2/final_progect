@@ -126,13 +126,13 @@
 		$( "#datepicker" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
 		
 		// 년도 기간 변경
-		$( "#datepicker" ).datepicker({
-			yearRange: "1915:2015"
-		});
+// 		$( "#datepicker" ).datepicker({
+// 			yearRange: "1915:2015"
+// 		});
 		// 년도 기간 getter
 		var yearRange = $( "#datepicker" ).datepicker( "option", "yearRange" );
 		// 년도 기간 setter
-		$( "#datepicker" ).datepicker( "option", "yearRange", "1915:2015" );
+		$( "#datepicker" ).datepicker( "option", "yearRange", "-50:c" );
 	}); // end 생년월일 가져오는 function
 
 	// 모든 양식 제대로 기입했을 때만 진행할 수 있도록 체크하는 함수
