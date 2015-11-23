@@ -120,9 +120,10 @@
 				</td>
 			</tr>
 			
-			<tr height="500px">	<!-- 내용 들어가면 height="500px" 빼줘야함 -->
-				<td colspan="6" class="bgwhite" >
+			<tr height="300px">	<!-- 내용 들어가면 height="500px" 빼줘야함 -->
+				<td colspan="6" class="bgwhite">
 					${avo.bcontent}
+				</textarea>
 				</td>						
 			</tr>
 			
@@ -140,7 +141,7 @@
 				    		<input type="hidden" name="bno" value="${avo.bno}"/>
 				    		<input type="hidden" name="anino" value="${avo.anino}"/>
 				    		<input type="hidden" name="cbip" value="<%=request.getRemoteAddr() %>">
-				        	<input type="text" name="cbcontent" class="form-control input-sm " placeholder="Your comments">
+				        	<input type="text" name="cbcontent" class="form-control input-sm " placeholder="Your comments" required="required">
 				            	<span class="input-group-btn">
 <!-- 				            	 <span class="btn btn-success btn-sm">&nbsp; -->
 				                    <button type="submit" value="ADD" class="btn btn-success btn-sm">&nbsp;
@@ -159,7 +160,7 @@
 				<th><span class="glyphicon glyphicon-user"></span></th>
 				<td colspan="6">
 					<table width="100%">
-						<tr> <th style="border-left: 1px solid #f0fff0;">ID</th> <th  class="reply">Comment</th> <th>Date</th> </tr>
+						<tr> <th style="border-left: 1px solid #f0fff0;">ID</th> <th  class="reply">Comment</th> <th>Date</th><th>삭제</th> </tr>
 						<!-- 댓글 부분 이곳에서 반복처리하면 됩니다. 시작 -->
 						
 			<%-- 			 <s:iterator value="list"> <!-- 갑가져오기 -->
@@ -176,6 +177,8 @@
 								<!-- Comment내용이나오겠지,아마도! -->
 							</td>
 							<td>${cbvo.cbdate }</td> 
+							
+							<td><input type="button" value="삭제" onclick="location='commDelete?cbno=${cbvo.cbno}&anino=${avo.anino}&bno=${avo.bno }'"></td>
 						</tr>
 						</c:forEach>
 						<!-- 끝 -->

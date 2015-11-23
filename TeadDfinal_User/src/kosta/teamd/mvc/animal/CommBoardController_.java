@@ -29,4 +29,14 @@ public class CommBoardController_ {
 		return mav;
 	}
 	
+	
+	@RequestMapping(value="commDelete")
+	public ModelAndView commdelete(int cbno, int anino, int bno){
+		cbdao.commDelete(cbno);
+		ModelAndView mav = new ModelAndView("redirect:imgboarddetail");
+		mav.addObject("anino", anino);
+		mav.addObject("bno", bno);
+		return mav;
+	}
+	
 }

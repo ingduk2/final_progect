@@ -20,12 +20,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import kosta.teamd.mvc.dao.AnimalDao;
 import kosta.teamd.mvc.dao.CommBoardDao;
 import kosta.teamd.mvc.service.AniboardImple;
 import kosta.teamd.mvc.service.AnimalService;
+import kosta.teamd.mvc.service.Paging;
 import kosta.teamd.vo.AniBoardVO;
 import kosta.teamd.vo.AnimalVO;
 import kosta.teamd.vo.BoardVO;
@@ -47,6 +49,8 @@ public class AnimalController {
 	@Autowired
 	private AniboardImple abi;
 	
+	@Autowired
+	private Paging page;
 	
 	
 	// 이미지게시판 쓰기폼
@@ -65,7 +69,7 @@ public class AnimalController {
 		//이미지 저장폴더 이름
 		
 		//img가 있어서 upload로 바꿈
-		String img_path = "upload/";
+		String img_path = "\\upload\\";
 		// 이미지 전체경로를 저장하기 위해 버퍼를 생성
 		StringBuffer path = new StringBuffer();
 		path.append(r_path).append(img_path);
@@ -112,17 +116,22 @@ public class AnimalController {
 //	            ex.printStackTrace();  
 //	        }
 //	     
-
+		
 		ModelAndView mav = new ModelAndView("redirect:/imgboardlist");
     return mav;
 	}
 	
 	@RequestMapping(value="/imgboardlist")
-	public ModelAndView getList(){
+	public ModelAndView getList(@RequestParam(name="nowPage", defaultValue="1") int nowPage){
 		List<AnimalVO> alist = adao.getImgList();
 		ModelAndView mav = new ModelAndView("imgboard/imgboardlist");
 		mav.addObject("alist", alist);
 		mav.addObject("size",alist.size());
+		int total = adao.imgCnt();
+		System.out.println(total);
+		String url = "imgboardlist";
+		String pagecode = page.Paging(total, nowPage, 5, 5, url);
+		mav.addObject("page", pagecode);
 		return mav;
 	}
 	

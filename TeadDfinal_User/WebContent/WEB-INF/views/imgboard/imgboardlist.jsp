@@ -109,11 +109,12 @@ a.thumbnail.active, a.thumbnail:focus, a.thumbnail:hover{
 			</c:if>
 			
 		<div class="numbering">
+		<td>${page}</td>
 			<br><button type="button" class="btn btn-success btn-sm" onclick="location='imgboardwrite'">¡¡±Û ¾² ±â¡¡</button><br><br>
 <!-- 			<input type="button" value="click" onclick="goUrl('aniboardwrite')"/><br> -->
-			<span class="glyphicon glyphicon-circle-arrow-left"></span>
+<!-- 			<span class="glyphicon glyphicon-circle-arrow-left"></span> -->
 <!-- 				<s:property value="pagingCode" escape="false"/> -->
-			<span class="glyphicon glyphicon-circle-arrow-right"></span>
+<!-- 			<span class="glyphicon glyphicon-circle-arrow-right"></span> -->
 			
 		</div>
 		
