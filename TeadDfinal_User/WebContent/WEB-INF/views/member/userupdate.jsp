@@ -10,6 +10,106 @@
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <link rel="stylesheet" href="/resources/demos/style.css">
 
+<style>
+	table th {
+		font-weight: bold;
+		color: black;
+		background-color: #90ee90;
+		opacity: 0.4;
+		font: bold;
+		text-align: center;
+		border-bottom: 1px solid #f0fff0;
+		width: 150px;
+	}
+	#formtable{
+		height: 400px
+	}
+	/* CSS used here will be applied after bootstrap.css */
+	/* bootstrap Navigation Overriding */
+	.navbar {
+		background: #FFFFFF;
+	}
+	.navbar .navbar-center {
+		display: inline-block;
+		float: none;
+		vertical-align: top;
+		text-align: center;
+	}
+	#page_footer {
+		height: 60px;
+		background: #f5f5f5;
+	}
+	.footer_text {
+		margin: 20px 0;
+		color: #777;
+	}
+	
+/* 이미지용 Css */
+/* 메뉴바용스타일 */
+#menubar{
+	background-image: url('img/mypagemenu.png');
+	background-repeat:no-repeat;
+	height: 400px;
+	text-align: left;
+/* 	 -webkit-text-stroke: 1px black; */
+	 -webkit-text-fill-color: white;	
+/*   	color: white; */
+/*  	 text-shadow: */
+/*    	 -1px -1px 0 #000, /*앰보싱인가보다*/ */
+/*    	  1px -1px 0 white, /*얘도 앰보싱인가보다.. 맞나..*/ */
+/*   	  -1px 1px 0 #000, */
+/*    	  1px 1px 0 #000; /*그림자인가보다*/ */
+}
+.list-group-item-success{
+	background-color: transparent;
+/* 	font-weight:bold;  */
+	font-size: 15px
+}
+#aa{
+	color : white;
+	padding-top: 140px;
+	margin-left: 50px;	
+}
+.list-group-item{
+	border: 1px solid transparent;
+	width: 150px
+}
+a:link {
+    text-decoration: none;
+}
+/* 사진업로드용style */
+.btn-file {
+  position: relative;
+  overflow: hidden;
+}
+.btn-file input[type=file] {
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 100%;
+  min-height: 100%;
+  font-size: 100px;
+  text-align: right;
+  filter: alpha(opacity=0);
+  opacity: 0;
+  background: red;
+  cursor: inherit;
+  display: block;
+}
+input[readonly] {
+  background-color: white !important;
+  cursor: text !important;
+}
+#id{
+	height: 100px;
+	width: 100px;
+}
+.list-group>li>a{
+	color: white;
+}
+</style>
+
+
 <script>
 function execDaumPostcode() {   //주소 가져오는 api
 	new daum.Postcode(
@@ -175,10 +275,11 @@ $(function() {
 			data: {
 				memail: $('#memail').val()
 			},
-			dataType: "html",
+			dataType: "text",
 			
 			success: function(res) {
 				if (res == "이미 존재하는 메일 주소 입니다.") {
+					$('#memail').val("");
 					$('#memailchkres').html(res).css('color', 'red');
 				}
 				else {
@@ -202,30 +303,41 @@ $(function() {
 });
 // 비밀번호 확인 똑같이 입력했는지 확인해서 뿌려줌
 
+
 	// 모든 양식 제대로 기입했을 때만 진행할 수 있도록 체크하는 함수
 	function checksubmit() {
 		
-		var ori = ${mvo.mpwd};
+// 		var ori = ${mvo.mpwd};
+		
+		//이부분이 잘못되서 javascript 아래 부분이 안도는듯함....
 		// 비밀번호가 기존과 변경되면 수행
-		if (document.updateform.mpwd.value!=ori) {
+// 		if (document.updateform.mpwd.value!=ori) {
 			
-			if (document.updateform.mpwd.value=="") {
-				alert("비밀번호를 입력해주세요.")
-				document.updateform.mpwd.focus()
-				return false
-			}
-			if (document.updateform.mpwdchk.value=="") {
-				alert("비밀번호를 확인해주세요.")
-				document.updateform.mpwdchk.focus()
-				return false
-			}
+// 			if (document.updateform.mpwd.value=="") {
+// 				alert("비밀번호를 입력해주세요.")
+// 				document.updateform.mpwd.focus()
+// 				return false
+// 			}
+// 			if (document.updateform.mpwdchk.value=="") {
+// 				alert("비밀번호를 확인해주세요.")
+// 				document.updateform.mpwdchk.focus()
+// 				return false
+// 			}
+			
 			
 			// 비밀번호와 비밀번호 확인의 비밀번호가 동일하지 않을 시 수행
-			if (document.updateform.mpwd.value!=document.updateform.mpwdchk.value) {
-				alert("비밀번호가 틀립니다. 다시 확인해주세요.")
-				document.updateform.mpwdchk.focus()
-				return false
-			}
+// 			if (document.updateform.mpwd.value!=document.updateform.mpwdchk.value) {
+// 				alert("비밀번호가 틀립니다. 다시 확인해주세요.")
+// 				document.updateform.mpwdchk.focus()
+// 				return false
+// 			}
+// 		}
+		
+		// 비밀번호와 비밀번호 확인의 비밀번호가 동일하지 않을 시 수행
+		if (document.updateform.mpwd.value!=document.updateform.mpwdchk.value) {
+			alert("비밀번호가 틀립니다. 다시 확인해주세요.")
+			document.updateform.mpwdchk.focus()
+			return false
 		}
 		
 		if (document.updateform.mpwdkey.value=="") {
@@ -261,118 +373,19 @@ $(function() {
 		}
 		
 		// 동일한 메일 주소가 이미 존재할 시 수행
-// 		var memail = "이미 존재하는 메일 주소 입니다.";
+		var memail = "이미 존재하는 메일 주소 입니다.";
 		
-// 		if (document.updateform.memailchkres.value==memail) {
-// 			alert("이메일을 다시 입력해주세요.")
-// 			document.updateform.memail.focus()
-// 			return false
-// 		}
+		if ($('#memailchkres').text==memail) {
+			alert("이메일을 다시 입력해주세요.")
+			document.updateform.memail.focus()
+			return false
+		}
 		
-		return true
+		return true;
 	}
 	// 모든 양식 제대로 기입했을 때만 진행할 수 있도록 체크하는 함수
 
 </script>
-
-<style>
-	table th {
-		font-weight: bold;
-		color: black;
-		background-color: #90ee90;
-		opacity: 0.4;
-		font: bold;
-		text-align: center;
-		border-bottom: 1px solid #f0fff0;
-		width: 150px;
-	}
-	#formtable{
-		height: 400px
-	}
-	/* CSS used here will be applied after bootstrap.css */
-	/* bootstrap Navigation Overriding */
-	.navbar {
-		background: #FFFFFF;
-	}
-	.navbar .navbar-center {
-		display: inline-block;
-		float: none;
-		vertical-align: top;
-		text-align: center;
-	}
-	#page_footer {
-		height: 60px;
-		background: #f5f5f5;
-	}
-	.footer_text {
-		margin: 20px 0;
-		color: #777;
-	}
-	
-/* 이미지용 Css */
-/* 메뉴바용스타일 */
-#menubar{
-	background-image: url('img/mypagemenu.png');
-	background-repeat:no-repeat;
-	height: 400px;
-	text-align: left;
-/* 	 -webkit-text-stroke: 1px black; */
-	 -webkit-text-fill-color: white;	
-/*   	color: white; */
-/*  	 text-shadow: */
-/*    	 -1px -1px 0 #000, /*앰보싱인가보다*/ */
-/*    	  1px -1px 0 white, /*얘도 앰보싱인가보다.. 맞나..*/ */
-/*   	  -1px 1px 0 #000, */
-/*    	  1px 1px 0 #000; /*그림자인가보다*/ */
-}
-.list-group-item-success{
-	background-color: transparent;
-/* 	font-weight:bold;  */
-	font-size: 15px
-}
-#aa{
-	color : white;
-	padding-top: 140px;
-	margin-left: 50px;	
-}
-.list-group-item{
-	border: 1px solid transparent;
-	width: 150px
-}
-a:link {
-    text-decoration: none;
-}
-/* 사진업로드용style */
-.btn-file {
-  position: relative;
-  overflow: hidden;
-}
-.btn-file input[type=file] {
-  position: absolute;
-  top: 0;
-  right: 0;
-  min-width: 100%;
-  min-height: 100%;
-  font-size: 100px;
-  text-align: right;
-  filter: alpha(opacity=0);
-  opacity: 0;
-  background: red;
-  cursor: inherit;
-  display: block;
-}
-input[readonly] {
-  background-color: white !important;
-  cursor: text !important;
-}
-#id{
-	height: 100px;
-	width: 100px;
-}
-.list-group>li>a{
-	color: white;
-}
-</style>
 
 <div>
 			<!--MenuBar_회원정보보기/수정/탈퇴/내가쓴글-->
@@ -400,7 +413,7 @@ input[readonly] {
 		<h1>회원정보수정</h1>
 		<table><tr height="30px"><!-- 높이 조절용 칸 떼우기 --><td></td></tr></table>
 		
-		<form onsubmit="return checksubmit()" name="updateform" action="mupdate" method="post" enctype="multipart/form-data">
+		<form onsubmit="return checksubmit()" id="updateform" name="updateform" action="mupdate" method="post" enctype="multipart/form-data">
 		
 		<table id="formtable">
 		<!-- <tr> <th></th> <td></td> </tr> -->

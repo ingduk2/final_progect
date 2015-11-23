@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- 다음 주소 찾기 api 사용 -->
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 	
@@ -201,24 +201,24 @@
 		}
 		
 		// 동일한 아이디가 이미 존재할 시 수행
-// 		var mid = "이미 존재하는 아이디 입니다.";
+		var mid = "이미 존재하는 아이디 입니다.";
 		
-// 		if (document.joinform.midchkres.value==mid) {
-// 			alert("아이디를 다시 입력해주세요")
-// 			document.joinform.mid.focus()
-// 			return false
-// 		}
+		if ($('#midchkres').text()==mid) {
+			alert("아이디 중복 확인을 해주세요.")
+			document.joinform.mid.focus()
+			return false
+		}
 		
 		// 동일한 메일 주소가 이미 존재할 시 수행
-// 		var memail = "이미 존재하는 메일 주소 입니다.";
+		var memail = "이미 존재하는 메일 주소 입니다.";
 		
-// 		if (document.joinform.memailchkres.value==memail) {
-// 			alert("이메일을 다시 입력해주세요.")
-// 			document.joinform.memail.focus()
-// 			return false
-// 		}
+		if ($('#memailchkres').text()==memail) {
+			alert("이메일 중복 확인을 해주세요.")
+			document.joinform.memail.focus()
+			return false
+		}
 		
-		return true
+		return true;
 	}
 	// 모든 양식 제대로 기입했을 때만 진행할 수 있도록 체크하는 함수
 	
@@ -247,15 +247,16 @@
 				dataType: "text",
 				
 				success: function(res) {
+
 					if (res == "이미 존재하는 아이디 입니다.") {
+						
+						$('#mid').val("");
 						$('#midchkres').html(res).css('color', 'red');
 					}
 					else {
+						
 						$('#midchkres').html(res).css('color', 'blue');
 					}
-				},
-				error: function(a, b) {
-					alert("Request: " + JSON.stringify(a));
 				}
 			});
 		});
@@ -271,10 +272,13 @@
 				data: {
 					memail: $('#memail').val()
 				},
-				dataType: "html",
+				dataType: "text",
 				
 				success: function(res) {
+
 					if (res == "이미 존재하는 메일 주소 입니다.") {
+						
+						$('#memail').val("");
 						$('#memailchkres').html(res).css('color', 'red');
 					}
 					else {
@@ -284,6 +288,7 @@
 			});
 		});
 	});
+	
 </script>
 
 
@@ -367,7 +372,7 @@
 						</span>
 					</div>
 					<div id="memailchkres" name="memailchkres"></div>
-				</td> 
+									</td> 
 				<td></td> 
 			</tr>
 			
@@ -423,7 +428,9 @@
 
 		<table><tr height="30px"><td></td></tr></table>
 		<button type="button" class="btn btn-success btn-sm" onclick="goUrl('index')">　취　　소　</button>
-		<button type="submit" class="btn btn-success btn-sm">　가　　입　</button>
+		
 	
+		<button type="submit" class="btn btn-success btn-sm" >　가　　입　</button>
+		
 	</div>
 </form>
