@@ -109,7 +109,7 @@ table th {
 	
 	<table><tr height="30px"><!-- 높이 조절용 칸 떼우기 --><td></td></tr></table>
 	<button type="submit" class="btn btn-success btn-sm">　글 작 성　</button>
-	<button type="button" class="btn btn-success btn-sm">　취　　소　</button>
+	<button type="button" class="btn btn-success btn-sm" onclick="location='boardlist?bcode=${bcode}'">　취　　소　</button>
 </form>
 	
 </div>

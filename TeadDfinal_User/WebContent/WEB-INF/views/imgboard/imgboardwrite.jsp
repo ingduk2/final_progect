@@ -131,7 +131,7 @@
 		var kindv=new Array(new Array("--선택--"),
 				  new Array("--선택--", "요크셔테리어", "푸들", "허스키", "말라뮤트", "비글", "말티즈", "시츄", "진돗개", "세퍼트", "퍼그", "베들링턴테리어","보더콜리", "웰시코기", "코카스파니엘", "아프간하운드", "시바이누", "바셋하운드", "비숑프리제", "제페니즈첸", "블러드하운드", "포메라이언", "빠삐용", "보스턴테리어", "치와와", "차우차우", "샤페이"),
 				  new Array("--선택--", "페르시안", "익스트림", "페르시안핀칠라", "히말라얀", "터키쉬앙고라", "러시안블루", "스콜티쉬폴드", "코리안숏헤어", "아메리칸숏헤어", "스핑크스", "렉돌", "노르웨이숲", "엔죠틱", "버만", "브리티쉬숏헤어", "봄베이", "메인쿤", "라가머핀", "발리네즈", "샴", "먼치킨","아비시니안", "뱅갈"),
-				  new Array("--선택--", "토끼", "새", "거북이", "페릿", "원숭이", "사막여우", "햄스터", "기니피그", "미니피그", "기타")
+				  new Array("--선택--", "고슴도치", "토끼", "새", "거북이", "페릿", "원숭이", "사막여우", "햄스터", "기니피그", "미니피그", "기타")
 		);
 		var temp;
 		var oSelect="";
@@ -228,11 +228,10 @@
 								<td>
 								<input type="hidden" name="anisex" id="anisex"/>
 									<label class="radio-inline">
-					     				<input type="radio" id="girl" value="남아">남아
+					     				<input name="gender" type="radio" id="girl" value="남아">남아
 					    			</label>
 					   				<label class="radio-inline">
-					      				<input type="radio" id="boy" value="여아">여아
-					      				
+					      				<input name="gender" type="radio" id="boy" value="여아">여아
 					   				</label>
 								</td> 
 							</tr>
@@ -249,13 +248,13 @@
 								<td>
 									<input type="hidden" name="anisize" id="anisize" />
 									<label class="radio-inline">
-					     				<input type="radio" id="small" value="소">소
+					     				<input name="anisize" type="radio" id="small" value="소">소
 					    			</label>
 					   				<label class="radio-inline">
-					      				<input type="radio" id="middle" value="중">중
+					      				<input name="anisize" type="radio" id="middle" value="중">중
 					   				</label>									
 					   				<label class="radio-inline">
-					      				<input type="radio" id="big" value="대">대
+					      				<input name="anisize" type="radio" id="big" value="대">대
 					   				</label>									
 								</td> 
 							</tr>
