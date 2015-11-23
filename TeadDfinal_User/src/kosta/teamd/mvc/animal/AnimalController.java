@@ -65,7 +65,7 @@ public class AnimalController {
 		//이미지 저장폴더 이름
 		
 		//img가 있어서 upload로 바꿈
-		String img_path = "upload/";
+		String img_path = "\\img\\";
 		// 이미지 전체경로를 저장하기 위해 버퍼를 생성
 		StringBuffer path = new StringBuffer();
 		path.append(r_path).append(img_path);

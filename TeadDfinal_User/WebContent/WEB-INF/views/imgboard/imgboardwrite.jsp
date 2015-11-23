@@ -244,13 +244,13 @@
 								<td>
 									<input type="hidden" name="anisize" id="anisize" />
 									<label class="radio-inline">
-					     				<input name="anisize" type="radio" id="small" value="소">소
+					     				<input name="anisizesub" type="radio" id="small" value="소">소
 					    			</label>
 					   				<label class="radio-inline">
-					      				<input name="anisize" type="radio" id="middle" value="중">중
+					      				<input name="anisizesub" type="radio" id="middle" value="중">중
 					   				</label>									
 					   				<label class="radio-inline">
-					      				<input name="anisize" type="radio" id="big" value="대">대
+					      				<input name="anisizesub" type="radio" id="big" value="대">대
 					   				</label>									
 								</td> 
 							</tr>
