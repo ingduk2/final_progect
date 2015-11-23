@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
-import kosta.teamd.mvc.inter.MemRolesSelectInter;
+import kosta.teamd.mvc.dao.MemberDao;
 import kosta.teamd.mvc.inter.MemberDeleteInter;
 import kosta.teamd.mvc.inter.MemberInsertInter;
 import kosta.teamd.mvc.inter.MemberSelectInter;
@@ -24,6 +24,69 @@ import kosta.teamd.vo.MemberVO;
 @Controller
 public class MemberController {
 
+	@Autowired
+	private MemberDao mdao;
+	
+	// -- 회원 가입 페이지 연결 --
+	@RequestMapping(value="/join")
+	public String joinFormView(Principal prcp) {
+			
+		// 이미 로그인 한 회원이 회원가입 페이지에 접근하려 할 시 처리
+		if (prcp == null) {
+			return "member/join";
+		}
+		else {
+			return "index";
+		}
+	}
+	
+	// -- 아이디 존재유무 체크 --
+	@RequestMapping(value="/midchk")
+	public ModelAndView midExistCheck(String mid) {
+		
+		int check = mdao.midCntCheck(mid);
+		String resMsg = "";
+		
+		if (check > 0) {
+			resMsg = "이미 존재하는 아이디 입니다.";
+		}
+		else {
+			resMsg = "사용 가능한 아이디 입니다.";
+		}
+		
+		ModelAndView mav = new ModelAndView("checkpage/midchkres");
+		mav.addObject("resMsg", resMsg);
+		
+		return mav;
+	}
+	
+	// -- 이메일 존재유무 체크 --
+	@RequestMapping(value="/memailchk")
+	public ModelAndView memailExistCheck(String memail) {
+		
+		int check = mdao.memailCntCheck(memail);
+		String resMsg = "";
+		
+		if (check > 0) {
+			resMsg = "이미 존재하는 메일 주소 입니다.";
+		}
+		else {
+			resMsg = "사용 가능한 메일 주소 입니다.";
+		}
+		
+		ModelAndView mav = new ModelAndView("checkpage/memailchkres");
+		mav.addObject("resMsg", resMsg);
+		
+		return mav;
+	}
+	
+	// -- 회원가입 시 비밀번호 동일성 여부 체크 --
+	@RequestMapping(value="/mpwdchk")
+	public String pwdchkPage() {
+		
+		return "checkpage/mpwdchk";
+	}
+	
 	// -- 회원 정보, 권한 등록 --
 	@Autowired
 	private MemberInsertInter minsert;
@@ -62,7 +125,7 @@ public class MemberController {
 	@Autowired
 	private MemberDeleteInter mdelete;
 	
-	@RequestMapping(value="/mdelete", method=RequestMethod.GET)
+	@RequestMapping(value="/mdelete")
 	public ModelAndView deleteDB(Principal mid, HttpServletRequest request) throws Exception {
 		
 		// 세션에서 해당 아이디 제거
@@ -84,7 +147,7 @@ public class MemberController {
 	public ModelAndView updateDB(MemberVO mvo, HttpServletRequest request) throws Exception {
 		
 		// 프로필 이미지 파일이 있으면 수행
-		if (mvo.getMfile() != null) {
+		if (mvo.getMfile().getSize() > 0) {
 			// ----- 이미지 경로 설정 및 업로드 처리 -----
 			// 이미지 저장 절대 경로
 			HttpSession session = request.getSession();
@@ -120,24 +183,38 @@ public class MemberController {
 		
 		System.out.println("Log: [" + mvo.getMid() + "] 정보 수정");
 		
-		return new ModelAndView("index"); // ---------------------------- 어디로 보낼지 결정해야 한다(정보보기 페이지로)
+		return new ModelAndView("redirect:/mselectview");
 	}
 	
 	// -- 회원 정보 검색 --
 	@Autowired
 	private MemberSelectInter mselect;
 	
-	@RequestMapping(value="/mselect", method=RequestMethod.GET)
-	public ModelAndView selectDB(Principal mid) throws Exception {
+	// --- 회원 정보 보기로 연결 ---
+	@RequestMapping(value="/mselectview")
+	public ModelAndView selectViewDB(Principal mid) throws Exception {
 		
 		MemberVO mvo = mselect.memberSelect(mid.getName());
 		
-		ModelAndView mav = new ModelAndView("member/update"); // ------------ 여기는 주소를 어떻게 줄지 생각해 봐야 할 듯
-		mav.addObject("mvo", mvo);                            // ------------ 정보 수정 페이지와 정보 보여주기 페이지 있으니..
+		ModelAndView mav = new ModelAndView("member/userinfo");
+		mav.addObject("mvo", mvo);
 		
 		System.out.println("Log: [" + mid.getName() + "] 정보 검색");
 		
 		return mav;
 	}
 	
+	// --- 회원 정보 수정으로 연결 ---
+	@RequestMapping(value="/mselectupdate")
+	public ModelAndView selectUpdateDB(Principal mid) throws Exception {
+		
+		MemberVO mvo = mselect.memberSelect(mid.getName());
+		
+		ModelAndView mav = new ModelAndView("member/userupdate");
+		mav.addObject("mvo", mvo);
+		
+		System.out.println("Log: [" + mid.getName() + "] 정보 검색");
+		
+		return mav;
+	}
 }

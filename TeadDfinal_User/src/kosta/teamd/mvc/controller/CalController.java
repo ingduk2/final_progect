@@ -42,7 +42,7 @@ public class CalController {
 		ModelAndView mav= new ModelAndView("/callendar/loadcal");
 		
 		List<VolunteerVO> list=vdao.select();
-		
+
 		JSONObject jo= new JSONObject();
 		JSONArray ja= new JSONArray();
 		JSONObject vol=null;

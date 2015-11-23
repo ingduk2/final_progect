@@ -10,7 +10,13 @@
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=cafcd4fae4be10d7ffdde1bc7cadf004"></script>
-
+<style>
+	#map{
+	margin : auto;
+	width:600px;
+	height:400px;
+	}
+</style>
 <script>
 $(document).ready(function() {
 	
@@ -154,11 +160,10 @@ function geoFindMe() {
 
 <!--리스트를 ${araymap} 형식으로 받아서. 하묜 안되내...
 스크립트니 ajax로 db에서 빼올지.. 데이터 만들어서 노가다로 해올지..  -->
-<div id="map" style="width:100%;height:350px;">
-</div>
-<input type="text" id="mapmap">
+<div id="map"></div>
+<!-- <input type="text" id="mapmap"> -->
 <!-- <div id="res1"></div> -->
-<p><button onclick="geoFindMe()">현 위치</button></p>
+<!-- <p><button onclick="geoFindMe()">현 위치</button></p> -->
 <div id="out"></div>
 <div>
 	<table>
@@ -189,6 +194,7 @@ function geoFindMe() {
 		<tfoot>
 			<tr>
 				<td><input type="button" value="최단거리"></td>
+				
 			</tr>
 		</tfoot>
 	</table>

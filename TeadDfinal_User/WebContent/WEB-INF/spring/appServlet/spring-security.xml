@@ -14,10 +14,8 @@
 <beans:beans xmlns="http://www.springframework.org/schema/security"
 	xmlns:beans="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:tx="http://www.springframework.org/schema/tx"
 	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
-		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd">
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<!-- 이름들 내가 커스터마이징 할 수 있게 해주는 설정 -->
 	<beans:bean id="roleVoter" class="org.springframework.security.access.vote.RoleVoter">
@@ -29,6 +27,10 @@
 		<beans:constructor-arg name="decisionVoters" ref="roleVoter" />
 	</beans:bean>
 	
+	<!-- dataSource -->
+	<beans:bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
+		<beans:property name="jndiName" value="java:comp/env/jdbc/final" />
+	</beans:bean>
 	
 	<!-- 인증(users-by-username-query) / 권한(authorities-by-username-query) -->
 	<!-- authentication-manager id는 마음대로 설정 가능 -->
@@ -49,14 +51,14 @@
 	 	  access-decision-manager-ref="accessDecisionManager">
 
 		<!-- 각 페이지 접근 권한 설정 -->
-		<intercept-url pattern="/update" access="User" />
+		<intercept-url pattern="/mselectupdate" access="User" />
 	 	
 	 	<!-- login 처리 -->
 	 	<form-login
 	 		login-page="/login" authentication-failure-url="/denied"
 	 		username-parameter="mid"
 	 		password-parameter="mpwd"
-	 		default-target-url="/index"
+	 		default-target-url="/mfreetimecheck"
 	 	/>
 	 	
 	 	<!-- logout 처리 -->
@@ -79,42 +81,5 @@
 	 	</session-management>
 	 	
 	 </http>
-	 
-	 
-	 <!-- dataSource -->
-	<beans:bean id="dataSource" class="org.springframework.jndi.JndiObjectFactoryBean">
-		<beans:property name="jndiName" value="java:comp/env/jdbc/final" />
-	</beans:bean>
-
-	<!-- MyBatis -->
-<!-- 	<beans:bean id="factorybean" class="org.mybatis.spring.SqlSessionFactoryBean"> -->
-<!-- 		<beans:property name="configLocation" value="classpath:kosta/teamd/config/config.xml"/> -->
-<!-- 		<beans:property name="mapperLocations" value="classpath*:kosta/teamd/mapper/*.xml"/> -->
-<!-- 		<beans:property name="dataSource" ref="dataSource"/> -->
-<!-- 	</beans:bean> -->
-
-	<!-- SqlSessionTemplate -->
-<!-- <beans:bean id="template" class="org.mybatis.spring.SqlSessionTemplate"> -->
-<!-- 	<beans:constructor-arg ref="factorybean"/> -->
-<!-- 	</beans:bean> -->
-
-	
-<!-- 	<beans:bean id="transactionManager" -->
-<!-- 	class="org.springframework.jdbc.datasource.DataSourceTransactionManager"> -->
-<!-- 		<beans:property name="dataSource" ref="dataSource"/> -->
-<!-- 	</beans:bean> -->
-	
-	<!-- transaction annoation 방식 설정 -->
-<!-- 	<tx:annotation-driven transaction-manager="transactionManager"/> -->
-	
-<!-- 	<beans:bean name="/txform" class="org.springframework.web.servlet.mvc.ParameterizableViewController"> -->
-<!-- 	<beans:property name="viewName" value="txform"/> -->
-<!-- 	</beans:bean> -->
-	
-<!-- 	<beans:bean id="aniservice" class="kosta.teamd.mvc.service.AnimalService"/> -->
-
-<!-- 	<beans:bean id="myjson" class="kosta.teamd.mvc.service.urljson"></beans:bean> -->
-	
-
 
 </beans:beans>

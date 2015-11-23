@@ -11,7 +11,9 @@
 	<script	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script> 
     
     <link rel="stylesheet" type="text/css" href="resources/default.css"/>
-    
+
+    <!-- js ÆÄÀÏ »ç¿ë °æ·Î ¼³Á¤  -->
+    <script src="resources/js/goUrl.js"></script>    
     
 <style>
 .nav .open>a, .nav .open>a:focus, .nav .open>a:hover{
@@ -72,7 +74,7 @@ a:FOCUS, a:HOVER {
 							
 							<!--<s:else> -->
 							<c:if test="${pageContext.request.userPrincipal.name != null}">
-								<a class="loginout" href="mselect">${pageContext.request.userPrincipal.name}</a>&nbsp;<font color="#b5b2b2">´Ô&nbsp;|</font>&nbsp;	
+								<a class="loginout" href="mselectview">${pageContext.request.userPrincipal.name}</a>&nbsp;<font color="#b5b2b2">´Ô&nbsp;|</font>&nbsp;	
 								
 								<c:url var="logout" value="j_spring_security_logout"></c:url>
 								<a class="loginout" href="${logout }"><!--·Î±×¾Æ¿ô--><img src="img/logout_top_btn.png"></a>&nbsp;<font color="#b5b2b2">|</font>&nbsp;
