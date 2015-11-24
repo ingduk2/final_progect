@@ -131,8 +131,13 @@ public class urljson {
 //		urljson uj= new urljson();
 //		
 //		String param="제주 특별자치도 제주시 첨단로 242";
-//		uj.mock();
+//		//uj.mock();
 //		//uj.myJason(param);
+//		JSONObject jsonObject= new JSONObject();
+//		jsonObject = uj.myJason(param);
+//		//그 후에 리턴받아서 디비에 저장한다.
+//		//필요한거 뽑아서
+//		System.out.println(uj.mock(jsonObject));
 //		
 //	}
 }

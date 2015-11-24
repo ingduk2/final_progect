@@ -124,7 +124,7 @@ function callendar(){
 								        url: "applyService", //"testAjax.jsp", 
 								        type: "POST",
 								        data: { //파라미터로 q
-							                 memid : 'bbaico',
+							                 memid : username,
 							                 volunteerno : calEvent.title.split(".")[0]
 							                 //title start end 
 							                 

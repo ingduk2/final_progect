@@ -1,16 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html>
-<html>
-<head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
-<title>Insert title here</title>
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=cafcd4fae4be10d7ffdde1bc7cadf004"></script>
-
+<style>
+	#map{
+	margin : auto;
+	width:600px;
+	height:400px;
+	}
+</style>
 <script>
 $(document).ready(function() {
 	
@@ -28,6 +30,17 @@ function loadMap(a,b){
 
 var map = new daum.maps.Map(mapContainer, mapOption); // 지도를 생성합니다
 
+//일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
+var mapTypeControl = new daum.maps.MapTypeControl();
+
+//지도에 컨트롤을 추가해야 지도위에 표시됩니다
+//daum.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
+map.addControl(mapTypeControl, daum.maps.ControlPosition.TOPRIGHT);
+
+//지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
+var zoomControl = new daum.maps.ZoomControl();
+map.addControl(zoomControl, daum.maps.ControlPosition.RIGHT);
+
 //마커가 표시될 위치입니다 
 var markerPosition  = new daum.maps.LatLng(a,b); 
 
@@ -42,12 +55,20 @@ marker.setMap(map);
 // 아래 코드는 지도 위의 마커를 제거하는 코드입니다
 // marker.setMap(null);
 
-/*
+
+var sv=$('#sv').val();
+var st=$('#st').val();
+
 var array= new Array();
 $.ajax({
 // 	url:"/zdaum_map/json",
 	url:"jsoncenter",
 	type:"GET",
+	 data: { //파라미터로 q
+         //volunteertitle : calEvent.title,
+        searchValue : sv,
+        searchType : st
+      },
 	success: function(json) {
 		alert("ajax");
 		alert(json);
@@ -92,7 +113,7 @@ $.ajax({
 	}
 	
 });
-*/
+
 
 //var lat=new daum.maps.LatLng(33.450705, 126.570677);
 // 마커를 표시할 위치와 title 객체 배열입니다 
@@ -147,18 +168,16 @@ function geoFindMe() {
 
 
 </script>
-</head>
-<body>
 
 <input type="hidden" id="v" value="33.450705,126.570677"><%-- <input type="text" id="v" value="${json}"> --%>
-
+<input type="text" id="sv" value="${ sv}">
+<input type="text" id="st" value="${ st}">
 <!--리스트를 ${araymap} 형식으로 받아서. 하묜 안되내...
 스크립트니 ajax로 db에서 빼올지.. 데이터 만들어서 노가다로 해올지..  -->
-<div id="map" style="width:100%;height:350px;">
-</div>
-<input type="text" id="mapmap">
+<div id="map"></div>
+<!-- <input type="text" id="mapmap"> -->
 <!-- <div id="res1"></div> -->
-<p><button onclick="geoFindMe()">현 위치</button></p>
+<!-- <p><button onclick="geoFindMe()">현 위치</button></p> -->
 <div id="out"></div>
 <div>
 	<table>
@@ -185,13 +204,36 @@ function geoFindMe() {
 				</tr>
 			</c:forEach>
 		</tbody>
-		
 		<tfoot>
-			<tr>
-				<td><input type="button" value="최단거리"></td>
-			</tr>
 		</tfoot>
+		</table>
+		<form action="" method="post">
+	<table><!-- 넘버링이랑, 검색, 글쓰기버튼,  --> 
+		<thead> 
+			<tr> <td colspan="5"> <!-- 페이징작업부분입니다. --> Numbering  </td> </tr>
+		</thead>
+		<tbody>
+			<tr>  
+				<td> &nbsp;
+						<!--  다이나믹쿼리로 검색기능 추가할 부분 -->
+				      <select name="searchType" class="form-control input-sm" id="sel1">
+					        <option value="1">센터 이름</option>
+					        <option value="2">센터 주소</option>
+					        
+				      </select>&nbsp;
+				</td>
+				<td>&nbsp;
+					<input class="form-control input-sm" type="text" name="searchValue" />&nbsp;
+				</td>
+				<td>&nbsp;
+				 <!--  검색버튼, 파라미터값넘길부분  -->
+					<button type="submit" class="btn btn-default btn-sm">검색</button> &nbsp;
+				</td>  
+			</tr>
+		</tbody>
 	</table>
+	</form>
+	
 </div>
 
 
