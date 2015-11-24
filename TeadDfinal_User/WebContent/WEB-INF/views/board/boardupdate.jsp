@@ -18,11 +18,11 @@ table th {
 <img src="img/boardupdate.png" width="300px">
 <table><tr height="30px"><!-- 높이 조절용 칸 떼우기 --><td></td></tr></table>
 	
-<form action="boardupdate" method="post">
+<form action="updateBoard" method="post">
 	
 	
 <input type="hidden" name="bno" value="${bvo.bno}">
-	
+<input type="hidden" name="mid" value="${bvo.mid }">	
 <table width="500px">	
 	<tr> <th colspan="2">게시글 수정</th> </tr>			
 	<tr>	
@@ -46,7 +46,7 @@ table th {
 	
 <table><tr height="30px"><!-- 높이 조절용 칸 떼우기 --><td></td></tr></table>
 <button type="submit" class="btn btn-success btn-sm">　수정완료　</button>
-<button type="button" class="btn btn-success btn-sm" onclick="location='boardlist?bcode=${bvo.bcode}'">　수정취소　</button>
+<button type="button" class="btn btn-success btn-sm" onclick="location='selectallBoard?bcode=${bvo.bcode}'">　수정취소　</button>
 
 </form>		
 

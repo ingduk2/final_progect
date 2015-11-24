@@ -28,8 +28,8 @@ public class MemberController {
 	private MemberDao mdao;
 	
 	// -- 회원 가입 페이지 연결 --
-	@RequestMapping(value="/join")
-	public String joinFormView(Principal prcp) {
+	@RequestMapping(value="/formJoin")
+	public String formJoin(Principal prcp) {
 			
 		// 이미 로그인 한 회원이 회원가입 페이지에 접근하려 할 시 처리
 		if (prcp == null) {
@@ -42,7 +42,7 @@ public class MemberController {
 	
 	// -- 아이디 존재유무 체크 --
 	@RequestMapping(value="/midchk")
-	public ModelAndView midExistCheck(String mid) {
+	public ModelAndView selectchkId(String mid) {
 		
 		int check = mdao.midCntCheck(mid);
 		String resMsg = "";
@@ -62,7 +62,7 @@ public class MemberController {
 	
 	// -- 이메일 존재유무 체크 --
 	@RequestMapping(value="/memailchk")
-	public ModelAndView memailExistCheck(String memail) {
+	public ModelAndView selectchkEmail(String memail) {
 		
 		int check = mdao.memailCntCheck(memail);
 		String resMsg = "";
@@ -91,8 +91,8 @@ public class MemberController {
 	@Autowired
 	private MemberInsertInter minsert;
 	
-	@RequestMapping(value="/minsert", method=RequestMethod.POST)
-	public ModelAndView insertDB(MemberVO mvo, MemRolesVO mrvo) throws Exception {
+	@RequestMapping(value="/insertMember", method=RequestMethod.POST)
+	public ModelAndView insertMember(MemberVO mvo, MemRolesVO mrvo) throws Exception {
 		
 		mvo.setMimg("default.jsp"); // 디폴트 프로필 사진 설정
 		mvo.setMintro("안녕하세요 ^^"); // 디폴트 프로필 인사말 설정
@@ -125,8 +125,8 @@ public class MemberController {
 	@Autowired
 	private MemberDeleteInter mdelete;
 	
-	@RequestMapping(value="/mdelete")
-	public ModelAndView deleteDB(Principal mid, HttpServletRequest request) throws Exception {
+	@RequestMapping(value="/deleteMember")
+	public ModelAndView deleteMember(Principal mid, HttpServletRequest request) throws Exception {
 		
 		// 세션에서 해당 아이디 제거
 		HttpSession session = request.getSession();
@@ -143,8 +143,8 @@ public class MemberController {
 	@Autowired
 	private MemberUpdateInter mupdate;
 	
-	@RequestMapping(value="/mupdate", method=RequestMethod.POST)
-	public ModelAndView updateDB(MemberVO mvo, HttpServletRequest request) throws Exception {
+	@RequestMapping(value="/updateMember", method=RequestMethod.POST)
+	public ModelAndView updateMember(MemberVO mvo, HttpServletRequest request) throws Exception {
 		
 		// 프로필 이미지 파일이 있으면 수행
 		if (mvo.getMfile().getSize() > 0) {
@@ -191,8 +191,8 @@ public class MemberController {
 	private MemberSelectInter mselect;
 	
 	// --- 회원 정보 보기로 연결 ---
-	@RequestMapping(value="/mselectview")
-	public ModelAndView selectViewDB(Principal mid) throws Exception {
+	@RequestMapping(value="/selectoneMember")
+	public ModelAndView selectoneMember(Principal mid) throws Exception {
 		
 		MemberVO mvo = mselect.memberSelect(mid.getName());
 		
@@ -205,8 +205,8 @@ public class MemberController {
 	}
 	
 	// --- 회원 정보 수정으로 연결 ---
-	@RequestMapping(value="/mselectupdate")
-	public ModelAndView selectUpdateDB(Principal mid) throws Exception {
+	@RequestMapping(value="/updateformMember")
+	public ModelAndView updateformMember(Principal mid) throws Exception {
 		
 		MemberVO mvo = mselect.memberSelect(mid.getName());
 		

@@ -47,4 +47,5 @@ public class AnimalDao{
 	  return ss.selectOne("animal.imgcnt");
 	}
 	
+	
 }

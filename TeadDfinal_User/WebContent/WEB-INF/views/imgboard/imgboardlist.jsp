@@ -36,7 +36,7 @@ a.thumbnail.active, a.thumbnail:focus, a.thumbnail:hover{
 		 	<c:if test="${not doneLoop }">
 		 	
 			<div class="col-md-3">
-				<a href="imgboarddetail?anino=${alist[i].anino}&bno=${alist[i].bno}" class="thumbnail nounderline">
+				<a href="selectoneAnimal?anino=${alist[i].anino}&bno=${alist[i].bno}" class="thumbnail nounderline">
 					<h5 style="text-align: left; padding-left: 15px"><span class="label label-warning">뭐게?</span></h5>
 					<img src="upload/${alist[i].aniimg}" style="width: 150px; height: 150px"></a>
 					<p><label>동물번호: </label>${alist[i].anino}<br><label>동물종류: </label>${alist[i].anispecies}<br><label>동물품종: </label>${alist[i].anibreed}<br>
@@ -53,7 +53,7 @@ a.thumbnail.active, a.thumbnail:focus, a.thumbnail:hover{
 			<c:if test="${not doneLoop }">
 			
 			<div class="col-md-3">
-				<a href="imgboarddetail?anino=${alist[i+1].anino}&bno=${alist[i+1].bno}" class="thumbnail nounderline">
+				<a href="selectoneAnimal?anino=${alist[i+1].anino}&bno=${alist[i+1].bno}" class="thumbnail nounderline">
 					<h5 style="text-align: left; padding-left: 15px"><span class="label label-warning">뭐게?</span></h5>
 					<img src="upload/${alist[i+1].aniimg}"  style="width: 150px; height: 150px"></a>
 				<p><label>동물번호: </label>${alist[i+1].anino}<br><label>동물종류: </label>${alist[i+1].anispecies}<br><label>동물품종: </label>${alist[i+1].anibreed}<br>
@@ -71,7 +71,7 @@ a.thumbnail.active, a.thumbnail:focus, a.thumbnail:hover{
 			<c:if test="${not doneLoop }">
 			
 			<div class="col-md-3">
-				<a href="imgboarddetail?anino=${alist[i+2].anino}&bno=${alist[i+2].bno}" class="thumbnail nounderline">
+				<a href="selectoneAnimal?anino=${alist[i+2].anino}&bno=${alist[i+2].bno}" class="thumbnail nounderline">
 					<h5 style="text-align: left; padding-left: 15px"><span class="label label-warning">뭐게?</span></h5>
 					<img src="upload/${alist[i+2].aniimg}"  style="width: 150px; height: 150px"></a>
 					<p><label>동물번호: </label>${alist[i+2].anino}<br><label>동물종류: </label>${alist[i+2].anispecies}<br><label>동물품종: </label>${alist[i+2].anibreed}<br>
@@ -89,7 +89,7 @@ a.thumbnail.active, a.thumbnail:focus, a.thumbnail:hover{
 			<c:if test="${not doneLoop }">
 			 <td>
 				<div class="col-md-3">
-					<a href="imgboarddetail?anino=${alist[i+3].anino}&bno=${alist[i].bno}" class="thumbnail nounderline">
+					<a href="selectoneAnimal?anino=${alist[i+3].anino}&bno=${alist[i].bno}" class="thumbnail nounderline">
 						<h5 style="text-align: left; padding-left: 15px"><span class="label label-warning">뭐게?</span></h5>
 						<img src="upload/${alist[i+3].aniimg}"  style="width: 150px; height: 150px"></a>
 						<p><label>동물번호: </label>${alist[i+3].anino}<br><label>동물종류: </label>${alist[i+3].anispecies}<br><label>동물품종: </label>${alist[i+3].anibreed}<br>
@@ -110,7 +110,7 @@ a.thumbnail.active, a.thumbnail:focus, a.thumbnail:hover{
 			
 		<div class="numbering">
 		<td>${page}</td>
-			<br><button type="button" class="btn btn-success btn-sm" onclick="location='imgboardwrite'">　글 쓰 기　</button><br><br>
+			<br><button type="button" class="btn btn-success btn-sm" onclick="location='formAnimal'">　등 록　</button><br><br>
 <!-- 			<input type="button" value="click" onclick="goUrl('aniboardwrite')"/><br> -->
 <!-- 			<span class="glyphicon glyphicon-circle-arrow-left"></span> -->
 <!-- 				<s:property value="pagingCode" escape="false"/> -->

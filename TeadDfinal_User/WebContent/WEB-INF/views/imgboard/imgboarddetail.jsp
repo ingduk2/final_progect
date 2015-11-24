@@ -41,13 +41,31 @@
 	$(document).ready(function(){
 	    $('[data-toggle="tooltip"]').tooltip();   
 	});
+	$("#rpt").click(function(){
+		$.ajax({
+			url: "updateRptAnimal",
+			data:{
+				bno:$("#bno").val(),
+				anino:$("#anino").val()
+			} 
+			
+		});
+	});
 </script>
+>
 
 
 	<div>		
 		<img src="img/boarddetail.png" width="300px">
 		
 <!-- 		<table width="50%" border="1px">							 -->
+
+	<!-- 임시로 설정  수정..................-->
+		<input type="button" style="margin-right: 0px auto; background-color: orange;" , id="rpt"
+		value="신고하기" onclick="location='updateRptAnimal?bno=${avo.bno}&anino=${avo.anino }'" /><label>신고수 : ${avo.brpt}</label>
+	<!-- 임시로 설정  수정..................-->
+	
+	
 		<table style="border:1px ; width: 500px"> 
 			<tr>	
 				<th>제목</th>	
@@ -57,7 +75,7 @@
 			</tr>
 			<tr>	
 				<th>글쓴이</th>
-				<td class="bgwhite">${avo.mid}</td>	
+				<td class="bgwhite" id="mid" name="mid">${avo.mid}</td>	
 				<th>작성일</th>	
 				<td class="bgwhite">${avo.bdate }</td>	
 				<th>조회수</th>	
@@ -138,8 +156,8 @@
 				    	<div class="input-group col-xs-12">
 <%-- 				    		<input type="hidden" name="mid" value="${sessionScope['loginid']}"/> --%>
 				    		<input type="text" name="mid" value="테스트"/>
-				    		<input type="hidden" name="bno" value="${avo.bno}"/>
-				    		<input type="hidden" name="anino" value="${avo.anino}"/>
+				    		<input type="hidden" name="bno" id="bno" value="${avo.bno}"/>
+				    		<input type="hidden" name="anino" id="anino" value="${avo.anino}"/>
 				    		<input type="hidden" name="cbip" value="<%=request.getRemoteAddr() %>">
 				        	<input type="text" name="cbcontent" class="form-control input-sm " placeholder="Your comments" required="required">
 				            	<span class="input-group-btn">
@@ -177,7 +195,7 @@
 								<!-- Comment내용이나오겠지,아마도! -->
 							</td>
 							<td>${cbvo.cbdate }</td> 
-							
+																				<!-- 수정해야지 함. -->
 							<td><input type="button" value="삭제" onclick="location='commDelete?cbno=${cbvo.cbno}&anino=${avo.anino}&bno=${avo.bno }'"></td>
 						</tr>
 						</c:forEach>
@@ -189,7 +207,7 @@
 
 		
 		<table><tr height="30px"><!-- 높이 조절용 칸 떼우기 --><td></td></tr></table>
-		<button type="button" class="btn btn-success btn-sm" onclick="location='imgupdateform?anino=${avo.anino}'">　수　　정　</button>
-		<button type="button" class="btn btn-success btn-sm" onclick="location='imgboarddelete?anino=${avo.anino}'">　삭　　제　</button>
-		<button type="button" class="btn btn-success btn-sm" onclick="location='imgboardlist'">　목　　록　</button>
+		<button type="button" class="btn btn-success btn-sm" onclick="location='updateformAnimal?anino=${avo.anino}'">　수　　정　</button>
+		<button type="button" class="btn btn-success btn-sm" onclick="location='deleteAnimal?anino=${avo.anino}'">　삭　　제　</button>
+		<button type="button" class="btn btn-success btn-sm" onclick="location='selectallAnimal'">　목　　록　</button>
 	</div>		

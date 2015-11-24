@@ -68,7 +68,7 @@ a:FOCUS, a:HOVER {
 							<!-- <s:if test="#session.loginid==null"> -->
 							<c:if test="${pageContext.request.userPrincipal.name == null}">
 								<a class="loginout" href="login"><!--로그인--><img src="img/login_top_btn.png"></a>&nbsp;&nbsp;<font color="#b5b2b2">|</font>&nbsp;
-								<a class="loginout" href="join"><!--회원가입-->  <img src="img/joinus_top_btn.png"></a>&nbsp;<font color="#b5b2b2">|</font>&nbsp;
+								<a class="loginout" href="formJoin"><!--회원가입-->  <img src="img/joinus_top_btn.png"></a>&nbsp;<font color="#b5b2b2">|</font>&nbsp;
 							</c:if>
 							<!-- </s:if> -->
 							
@@ -95,30 +95,30 @@ a:FOCUS, a:HOVER {
 								
 								<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">　커뮤니티　<span class="caret"><!--화살표--></span></a>
 								   <ul class="dropdown-menu">
-								     <li><a href="boardlist?bcode=1">게시판</a></li>
-								     <li><a href="boardlist?bcode=2">질문게시판</a></li>
+								     <li><a href="selectallBoard?bcode=1">게시판</a></li>
+								     <li><a href="selectallBoard?bcode=2">질문게시판</a></li>
 								   </ul>
 								</li>
 
 								<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">　참여하기　<span class="caret"><!--화살표--></span></a>
 								   <ul class="dropdown-menu">
 								     <li><a href="">입양신청</a></li>
-								     <li><a href="cal">봉사활동</a></li>
+								     <li><a href="formCal">봉사활동</a></li>
 								   </ul>
 								</li>
 
 								<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">　X동물X　<span class="caret"><!--화살표--></span></a>
 								   <ul class="dropdown-menu">
-								     <li><a href="imgboardlist">실종신고</a></li>
+								     <li><a href="selectallAnimal">실종신고</a></li>
 								     <li><a href="test">발견보고</a></li>
 								   </ul>
 								</li>
 
 								<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">　X정보X　<span class="caret"><!--화살표--></span></a>
 								   <ul class="dropdown-menu">
-								     <li><a href="listcenter">보호센터</a></li>
-								     <li><a href="chart?year=2012">그래프/차트</a></li>
-								     <li><a href="admincenter">센터</a></li>
+								     <li><a href="selectallCenter">보호센터</a></li>
+								     <li><a href="formChart?year=2012">그래프/차트</a></li>
+								     <li><a href="formCenter">센터</a></li>
 								   </ul>
 								</li>
 

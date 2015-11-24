@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import kosta.teamd.mvc.dao.AnimalDao;
+import kosta.teamd.mvc.dao.BoardDao;
 import kosta.teamd.mvc.dao.CommBoardDao;
 import kosta.teamd.mvc.service.AniboardImple;
 import kosta.teamd.mvc.service.AnimalService;
@@ -44,6 +45,8 @@ public class AnimalController {
 	//댓글 dao
 	@Autowired
 	private CommBoardDao cbdao;
+	@Autowired
+	private BoardDao bdao;
 	
 	//이미지게시판 서비서(transactional용)
 	@Autowired
@@ -54,14 +57,14 @@ public class AnimalController {
 	
 	
 	// 이미지게시판 쓰기폼
-	@RequestMapping(value="/imgboardwrite")
-	public String aniInsert(){
+	@RequestMapping(value="/formAnimal")
+	public String formAnimal(){
 		return "imgboard/imgboardwrite";
 	}
 	
 	// 이미지게시판 insert 
-	@RequestMapping(value="ins", method=RequestMethod.POST)	
-	public ModelAndView insert(AnimalVO avo,BoardVO bvo ,HttpServletRequest request) {
+	@RequestMapping(value="insertAnimal", method=RequestMethod.POST)	
+	public ModelAndView insertAnimal(AnimalVO avo,BoardVO bvo ,HttpServletRequest request) {
 		//세션에 request로 넘오온 세션 갑을 저장
 		HttpSession session = request.getSession();
 		//세션에서 실제경로를 받음
@@ -117,26 +120,28 @@ public class AnimalController {
 //	        }
 //	     
 		
-		ModelAndView mav = new ModelAndView("redirect:/imgboardlist");
+		ModelAndView mav = new ModelAndView("redirect:/selectallAnimal");
     return mav;
 	}
 	
-	@RequestMapping(value="/imgboardlist")
-	public ModelAndView getList(@RequestParam(name="nowPage", defaultValue="1") int nowPage){
+	@RequestMapping(value="/selectallAnimal")
+	public ModelAndView selectallAnimal(@RequestParam(name="nowPage", defaultValue="1") int nowPage){
 		List<AnimalVO> alist = adao.getImgList();
 		ModelAndView mav = new ModelAndView("imgboard/imgboardlist");
 		mav.addObject("alist", alist);
 		mav.addObject("size",alist.size());
 		int total = adao.imgCnt();
 		System.out.println(total);
-		String url = "imgboardlist";
+		String url = "selectallAnimal";
 		String pagecode = page.Paging(total, nowPage, 5, 5, url);
 		mav.addObject("page", pagecode);
 		return mav;
 	}
 	
-	@RequestMapping(value="/imgboarddetail")
-	public ModelAndView getDetail(int anino, int bno){
+	@RequestMapping(value="/selectoneAnimal")
+	public ModelAndView selectoneAnimal(int anino, int bno){
+		// 조회수 
+		bdao.hitBoard(bno);
 		AniBoardVO avo = adao.imgDetail(anino);
 		ModelAndView mav = new ModelAndView("imgboard/imgboarddetail");
 		mav.addObject("avo", avo);
@@ -146,17 +151,17 @@ public class AnimalController {
 	}
 	
 	
-	@RequestMapping(value="/imgboarddelete")
-	public ModelAndView imgDelete(int anino){
+	@RequestMapping(value="/deleteAnimal")
+	public ModelAndView deleteAnimal(int anino){
 		System.out.println(anino);
 		abi.delete(anino);
-		return new ModelAndView("redirect:/imgboardlist");
+		return new ModelAndView("redirect:/selectallAnimal");
 	}
 	
 	
 	//이미지폼 실행
-	@RequestMapping(value="/imgupdateform")
-	public ModelAndView imgUpdateForm(int anino){
+	@RequestMapping(value="/updateformAnimal")
+	public ModelAndView updateformAnimal(int anino){
 		AniBoardVO avo = adao.imgDetail(anino);
 		ModelAndView mav = new ModelAndView("imgboard/imgupdate");
 		mav.addObject("avo", avo);
@@ -165,8 +170,8 @@ public class AnimalController {
 	
 	
 	//이미지 업로드 실행 
-	@RequestMapping(value="/imgupdate", method=RequestMethod.POST)
-	public ModelAndView imgUpdate(AnimalVO avo, BoardVO bvo, HttpServletRequest request){
+	@RequestMapping(value="/updateAnimal", method=RequestMethod.POST)
+	public ModelAndView updateAnimal(AnimalVO avo,  BoardVO bvo,HttpServletRequest request){
 		HttpSession session = request.getSession();
 		String r_path = session.getServletContext().getRealPath("/");
 		String img_path = "\\upload\\";
@@ -182,6 +187,18 @@ public class AnimalController {
 		}
 		avo.setAniimg(ofile);
 		abi.update(bvo, avo);
-		return new ModelAndView("redirect:/imgboardlist");
+		return new ModelAndView("redirect:/selectoneAnimal?anino="+avo.getAnino()+"&bno="+bvo.getBno());
 	}
+	
+	//신고수 업데이트
+	@RequestMapping(value="/updateRptAnimal")
+	public ModelAndView updateRptAnimal(int bno, int anino){
+		bdao.rpt(bno);
+		ModelAndView mav = new ModelAndView("redirect:/selectoneAnimal");
+		mav.addObject("bno", bno);
+		mav.addObject("anino", anino);
+		return mav;
+	}
+	
+	
 }

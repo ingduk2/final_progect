@@ -1,28 +1,28 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 
 <div id="wrap">
 <form method="post" action="insertcenter">
 	<table>
 		<thead>
 			<tr>
-				<td colspan="2">¼¾ÅÍ µî·Ï!</td>
+				<td colspan="2">ì„¼í„° ë“±ë¡!</td>
 			</tr>
 		</thead>
 		
 		<tbody>
 			<tr>
-				<td colspan="2">¼¾ÅÍ ÀÌ¸§ : <input type="text" name="cname" id="cname">
+				<td colspan="2">ì„¼í„° ì´ë¦„ : <input type="text" name="cname" id="cname">
 			</tr>
 			<tr>
-				<td>¼¾ÅÍ ÁÖ¼Ò : <input type="text" size="50" name="caddr" id="caddr" placeholder="ÁÖ¼Ò"></td>
-				<td><input type="button" onclick="sample5_execDaumPostcode()" value="ÁÖ¼Ò °Ë»ö"><br></td>
+				<td>ì„¼í„° ì£¼ì†Œ : <input type="text" size="50" name="caddr" id="caddr" placeholder="ì£¼ì†Œ"></td>
+				<td><input type="button" onclick="sample5_execDaumPostcode()" value="ì£¼ì†Œ ê²€ìƒ‰"><br></td>
 			</tr>
 		</tbody>
 		
 		<tfoot>
 			<tr>
-				<td colspan="2"><input type="submit" size="20" value="µî·Ï!"></td>
+				<td colspan="2"><input type="submit" size="20" value="ë“±ë¡!"></td>
 			</tr>
 		</tfoot>
 	</table>
@@ -33,17 +33,17 @@
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <script src="//apis.daum.net/maps/maps3.js?apikey=cafcd4fae4be10d7ffdde1bc7cadf004&libraries=services"></script>
 <script>
-    var mapContainer = document.getElementById('map'), // Áöµµ¸¦ Ç¥½ÃÇÒ div
+    var mapContainer = document.getElementById('map'), // ì§€ë„ë¥¼ í‘œì‹œí•  div
         mapOption = {
-            center: new daum.maps.LatLng(37.537187, 127.005476), // ÁöµµÀÇ Áß½ÉÁÂÇ¥
-            level: 5 // ÁöµµÀÇ È®´ë ·¹º§
+            center: new daum.maps.LatLng(37.537187, 127.005476), // ì§€ë„ì˜ ì¤‘ì‹¬ì¢Œí‘œ
+            level: 5 // ì§€ë„ì˜ í™•ëŒ€ ë ˆë²¨
         };
 
-    //Áöµµ¸¦ ¹Ì¸® »ı¼º
+    //ì§€ë„ë¥¼ ë¯¸ë¦¬ ìƒì„±
     var map = new daum.maps.Map(mapContainer, mapOption);
-    //ÁÖ¼Ò-ÁÂÇ¥ º¯È¯ °´Ã¼¸¦ »ı¼º
+    //ì£¼ì†Œ-ì¢Œí‘œ ë³€í™˜ ê°ì²´ë¥¼ ìƒì„±
     var geocoder = new daum.maps.services.Geocoder();
-    //¸¶Ä¿¸¦ ¹Ì¸® »ı¼º
+    //ë§ˆì»¤ë¥¼ ë¯¸ë¦¬ ìƒì„±
     var marker = new daum.maps.Marker({
         position: new daum.maps.LatLng(37.537187, 127.005476),
         map: map
@@ -52,39 +52,39 @@
     function sample5_execDaumPostcode() {
         new daum.Postcode({
             oncomplete: function(data) {
-                // °¢ ÁÖ¼ÒÀÇ ³ëÃâ ±ÔÄ¢¿¡ µû¶ó ÁÖ¼Ò¸¦ Á¶ÇÕÇÑ´Ù.
-                // ³»·Á¿À´Â º¯¼ö°¡ °ªÀÌ ¾ø´Â °æ¿ì¿£ °ø¹é('')°ªÀ» °¡Áö¹Ç·Î, ÀÌ¸¦ Âü°íÇÏ¿© ºĞ±â ÇÑ´Ù.
-                var fullAddr = data.address; // ÃÖÁ¾ ÁÖ¼Ò º¯¼ö
-                var extraAddr = ''; // Á¶ÇÕÇü ÁÖ¼Ò º¯¼ö
+                // ê° ì£¼ì†Œì˜ ë…¸ì¶œ ê·œì¹™ì— ë”°ë¼ ì£¼ì†Œë¥¼ ì¡°í•©í•œë‹¤.
+                // ë‚´ë ¤ì˜¤ëŠ” ë³€ìˆ˜ê°€ ê°’ì´ ì—†ëŠ” ê²½ìš°ì—” ê³µë°±('')ê°’ì„ ê°€ì§€ë¯€ë¡œ, ì´ë¥¼ ì°¸ê³ í•˜ì—¬ ë¶„ê¸° í•œë‹¤.
+                var fullAddr = data.address; // ìµœì¢… ì£¼ì†Œ ë³€ìˆ˜
+                var extraAddr = ''; // ì¡°í•©í˜• ì£¼ì†Œ ë³€ìˆ˜
 
-                // ±âº» ÁÖ¼Ò°¡ µµ·Î¸í Å¸ÀÔÀÏ¶§ Á¶ÇÕÇÑ´Ù.
+                // ê¸°ë³¸ ì£¼ì†Œê°€ ë„ë¡œëª… íƒ€ì…ì¼ë•Œ ì¡°í•©í•œë‹¤.
                 if(data.addressType === 'R'){
-                    //¹ıÁ¤µ¿¸íÀÌ ÀÖÀ» °æ¿ì Ãß°¡ÇÑ´Ù.
+                    //ë²•ì •ë™ëª…ì´ ìˆì„ ê²½ìš° ì¶”ê°€í•œë‹¤.
                     if(data.bname !== ''){
                         extraAddr += data.bname;
                     }
-                    // °Ç¹°¸íÀÌ ÀÖÀ» °æ¿ì Ãß°¡ÇÑ´Ù.
+                    // ê±´ë¬¼ëª…ì´ ìˆì„ ê²½ìš° ì¶”ê°€í•œë‹¤.
                     if(data.buildingName !== ''){
                         extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
                     }
-                    // Á¶ÇÕÇüÁÖ¼ÒÀÇ À¯¹«¿¡ µû¶ó ¾çÂÊ¿¡ °ıÈ£¸¦ Ãß°¡ÇÏ¿© ÃÖÁ¾ ÁÖ¼Ò¸¦ ¸¸µç´Ù.
+                    // ì¡°í•©í˜•ì£¼ì†Œì˜ ìœ ë¬´ì— ë”°ë¼ ì–‘ìª½ì— ê´„í˜¸ë¥¼ ì¶”ê°€í•˜ì—¬ ìµœì¢… ì£¼ì†Œë¥¼ ë§Œë“ ë‹¤.
                     fullAddr += (extraAddr !== '' ? ' ('+ extraAddr +')' : '');
                 }
 
-                // ÁÖ¼Ò Á¤º¸¸¦ ÇØ´ç ÇÊµå¿¡ ³Ö´Â´Ù.
+                // ì£¼ì†Œ ì •ë³´ë¥¼ í•´ë‹¹ í•„ë“œì— ë„£ëŠ”ë‹¤.
                 document.getElementById("caddr").value = fullAddr;
-                // ÁÖ¼Ò·Î ÁÂÇ¥¸¦ °Ë»ö
+                // ì£¼ì†Œë¡œ ì¢Œí‘œë¥¼ ê²€ìƒ‰
                 geocoder.addr2coord(data.address, function(status, result) {
-                    // Á¤»óÀûÀ¸·Î °Ë»öÀÌ ¿Ï·áµÆÀ¸¸é
+                    // ì •ìƒì ìœ¼ë¡œ ê²€ìƒ‰ì´ ì™„ë£Œëìœ¼ë©´
                     if (status === daum.maps.services.Status.OK) {
-                        // ÇØ´ç ÁÖ¼Ò¿¡ ´ëÇÑ ÁÂÇ¥¸¦ ¹Ş¾Æ¼­
+                        // í•´ë‹¹ ì£¼ì†Œì— ëŒ€í•œ ì¢Œí‘œë¥¼ ë°›ì•„ì„œ
                         var coords = new daum.maps.LatLng(result.addr[0].lat, result.addr[0].lng);
-                        // Áöµµ¸¦ º¸¿©ÁØ´Ù.
+                        // ì§€ë„ë¥¼ ë³´ì—¬ì¤€ë‹¤.
                         mapContainer.style.display = "block";
                         map.relayout();
-                        // Áöµµ Áß½ÉÀ» º¯°æÇÑ´Ù.
+                        // ì§€ë„ ì¤‘ì‹¬ì„ ë³€ê²½í•œë‹¤.
                         map.setCenter(coords);
-                        // ¸¶Ä¿¸¦ °á°ú°ªÀ¸·Î ¹ŞÀº À§Ä¡·Î ¿Å±ä´Ù.
+                        // ë§ˆì»¤ë¥¼ ê²°ê³¼ê°’ìœ¼ë¡œ ë°›ì€ ìœ„ì¹˜ë¡œ ì˜®ê¸´ë‹¤.
                         marker.setPosition(coords)
                     }
                 });

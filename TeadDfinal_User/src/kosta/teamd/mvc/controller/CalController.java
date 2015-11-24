@@ -1,6 +1,9 @@
 package kosta.teamd.mvc.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,20 +28,16 @@ public class CalController {
 	@Autowired
 	private VapplyDao vadao;
 	
-	@RequestMapping(value="/cal")
-	public String cal(){
+	@RequestMapping(value="/formCal")
+	public String formCal(){
 		return "callendar/cal";
-	}
-	
-	@RequestMapping(value="/test")
-	public String calaa(){
-		return "/test";
 	}
 	
 	//처음에 DB접속해서 바로 AJAX로 요청을 보냄..
 	
-	@RequestMapping(value="/loadCal")
-	public ModelAndView loadCal(){
+	@RequestMapping(value="/selectallCal")
+	public ModelAndView selectallCal(HttpServletRequest request) throws UnsupportedEncodingException{
+		request.setCharacterEncoding("euc-kr");
 		ModelAndView mav= new ModelAndView("/callendar/loadcal");
 		
 		List<VolunteerVO> list=vdao.select();
@@ -78,8 +77,8 @@ public class CalController {
 		
 	}
 	
-	@RequestMapping(value="/insertcal", method=RequestMethod.POST)
-	public ModelAndView insertcal(VolunteerVO vo){
+	@RequestMapping(value="/insertCal", method=RequestMethod.POST)
+	public ModelAndView insertCal(VolunteerVO vo){
 		System.out.println("Log : insert cal!");
 		ModelAndView mav= new ModelAndView("/callendar/calinsert");
 		int seq=vdao.insert(vo);
@@ -89,8 +88,8 @@ public class CalController {
 	}
 	
 	//관리자용 지우개
-	@RequestMapping(value="/deletecal" , method= RequestMethod.POST)
-	public ModelAndView deletecal(int seq){
+	@RequestMapping(value="/deleteCal" , method= RequestMethod.POST)
+	public ModelAndView deleteCal(int seq){
 		System.out.println("delete cal");
 		ModelAndView mav= new ModelAndView("/callendar/deletecal");
 		vadao.deleteVa(seq);
@@ -100,8 +99,8 @@ public class CalController {
 		return mav;
 	}
 	
-	@RequestMapping(value="/applyService")
-	public ModelAndView applyService(VapplyVO vo){
+	@RequestMapping(value="/insertdeleteCal")
+	public ModelAndView insertdeleteCal(VapplyVO vo){
 		ModelAndView mav= new ModelAndView("/callendar/applyservice");
 		
 		

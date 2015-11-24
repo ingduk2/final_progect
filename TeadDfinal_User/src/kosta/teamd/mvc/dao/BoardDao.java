@@ -55,7 +55,22 @@ public class BoardDao {
 		}
 		
 		public void imgUpdate(BoardVO bvo){
-			template.update("board.imgupdate", bvo);
+			template.update("board.imgupdate", bvo);	
+		}	
+		
+		// ======================================
+		// 일반, 이미지 게시판  조회수 및 신고수 
+//			
+//		public void hit(int bno){
+//			template.update("board.hit", bno);
+//		}
+//		
+		public void rpt(int bno){
+			template.update("board.brpt", bno);
 		}
+			
+		
+		
+		
 	
 } //end BoardDao

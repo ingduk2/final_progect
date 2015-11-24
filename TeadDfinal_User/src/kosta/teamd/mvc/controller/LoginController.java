@@ -24,7 +24,7 @@ public class LoginController {
 
 	// -- 로그인 페이지 연결 --
 	@RequestMapping(value="/login")
-	public String loginFormView(Principal prcp, HttpServletRequest request) {
+	public String formLogin(Principal prcp, HttpServletRequest request) {
 		
 		// 이미 로그인 한 회원이 로그인 페이지에 접근하려 할 시 처리
 		if (prcp == null) {
@@ -40,7 +40,7 @@ public class LoginController {
 	private MemRolesSelectInter mrselect;
 	
 	@RequestMapping(value="/mfreetimecheck")
-	public String checkFreeTime(Principal mid) throws Exception {
+	public String selectoneFreeTime(Principal mid) throws Exception {
 		
 		String freetime = mdao.selectFreetime(mid.getName());
 		MemRolesVO mrvo = mrselect.memrolesSelect(mid.getName());
@@ -65,7 +65,7 @@ public class LoginController {
 	
 	// -- 아이디 찾기 --
 	@RequestMapping(value="/findmid")
-	public ModelAndView findMid(MemberVO mvo) {
+	public ModelAndView selectoneMid(MemberVO mvo) {
 		
 		String result = "";
 		
@@ -100,7 +100,7 @@ public class LoginController {
 	
 	// -- 비밀번호 찾기 질문 찾기 --
 	@RequestMapping(value="/findmpwdkey")
-	public ModelAndView findMpwdKey(MemberVO mvo) {
+	public ModelAndView selectonePwdKey(MemberVO mvo) {
 		
 		String result = "";
 		
@@ -125,8 +125,9 @@ public class LoginController {
 		return mav;
 	}
 	
+	//비밀번호 찾기
 	@RequestMapping(value="/findmpwd")
-	public ModelAndView findMpwd(MemberVO mvo) {
+	public ModelAndView selectonePwd(MemberVO mvo) {
 		
 		String result = "";
 		

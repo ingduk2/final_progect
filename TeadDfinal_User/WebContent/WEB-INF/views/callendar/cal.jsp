@@ -33,7 +33,7 @@ var last_seq;
 $(function(){
 	
 	 $.ajax({
-        url: "loadCal", //"testAjax.jsp", 
+        url: "selectallCal", //"testAjax.jsp", 
         type: "POST",
         success: function(json) { //데이터 받는 부분.response 
           
@@ -98,7 +98,7 @@ function callendar(){
 								
 								//삭제 ajax
 								 $.ajax({
-								        url: "deletecal", //"testAjax.jsp", 
+								        url: "deleteCal", //"testAjax.jsp", 
 								        type: "POST",
 								        data: { //파라미터로 q
 							                 //volunteertitle : calEvent.title,
@@ -121,7 +121,7 @@ function callendar(){
 						}else{
 							//신청했는지 아닌지 구분 한 후에 자바에서 구분하자.
 							$.ajax({
-								        url: "applyService", //"testAjax.jsp", 
+								        url: "insertdeleteCal", //"testAjax.jsp", 
 								        type: "POST",
 								        data: { //파라미터로 q
 							                 memid : username,
@@ -180,7 +180,7 @@ function callendar(){
 // 						alert("selected from: " + start.format() + ", to: "
 // 								+ end.format()); 
 						 $.ajax({
-				              url: "insertcal", //"testAjax.jsp", 
+				              url: "insertCal", //"testAjax.jsp", 
 				              type: "POST",
 				              data: { //파라미터로 q
 				            	  

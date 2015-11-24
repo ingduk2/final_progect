@@ -164,7 +164,7 @@
 
 
 <div>
-	<form action="ins" method="post" enctype="multipart/form-data">
+	<form action="insertAnimal" method="post" enctype="multipart/form-data">
 	<h1>이미지게시판<small>실종신고,발견신고 etc</small></h1>
 	
 	<table><tr height="30px"><!-- 높이 조절용 칸 떼우기 --><td></td></tr></table>
@@ -248,13 +248,13 @@
 								<td>
 									<input type="hidden" name="anisize" id="anisize" />
 									<label class="radio-inline">
-					     				<input name="anisize" type="radio" id="small" value="소">소
+					     				<input name="anisize1" type="radio" id="small" value="소">소
 					    			</label>
 					   				<label class="radio-inline">
-					      				<input name="anisize" type="radio" id="middle" value="중">중
+					      				<input name="anisize1" type="radio" id="middle" value="중">중																																		
 					   				</label>									
 					   				<label class="radio-inline">
-					      				<input name="anisize" type="radio" id="big" value="대">대
+					      				<input name="anisize1" type="radio" id="big" value="대">대
 					   				</label>									
 								</td> 
 							</tr>

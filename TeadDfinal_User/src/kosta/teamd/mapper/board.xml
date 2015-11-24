@@ -117,5 +117,29 @@
     <select id="namecard" parameterType="String" resultType="mvo">
     	select * from member where mid=#{mid}
     </select>
+    
+    
+    <!-- 일반,이미지 공통 사용... 조회수, 신고수  -->
+<!--     <update id="cnt" parameterType="int"> -->
+<!--     	update board set hit=hit+1 where bno=#{bno} -->
+<!--     </update> -->
+  
+    <!-- 게시판 신고수 업데이트 -->
+    <update id="brpt" parameterType="int">
+    	update board set brpt=brpt+1 where bno=#{bno} 
+    </update>
+    
+    <!-- 사용자 신고당한 수 업데이트 -->
+    <update id="mrpt" parameterType="String">  
+    	update member set mrpt=mrpt+1 where mid=#{mid}
+    </update>
+
+	<select id="cntrpt" resultType="int" parameterType="String">
+		select mrpt from member where mid=#{mid}
+	</select>
+	
+<!-- 	<select> -->
+		
+<!-- 	</select> -->
 
     </mapper>

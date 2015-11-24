@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ApplyController {
 
 	@RequestMapping(value="/applyForm")
-	public String apply(){
+	public String applyForm(){
 		return "etc/applyForm";
 	}
 	

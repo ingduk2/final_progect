@@ -101,7 +101,7 @@ table th {
 		<th>Comments</th>
 		<td colspan="6">
 	    	<div class="input-group col-xs-12">
-		    	<form action="insertComboard" method="post" >
+		    	<form action="insertComm" method="post" >
 		    	
 		    	<input type="hidden" name="bno" value="${bvo.bno}">
 		    	<input type="hidden" name="mid" value="${pageContext.request.userPrincipal.name}">
@@ -136,7 +136,7 @@ table th {
 						</td>
 						<td>${list.cbdate}</td>
 						<td>
-							<a type="button" href="deleteComm?cbno=${list.cbno}&bno=${list.bno}">삭제</a>
+							<a type="button" href="deleteComm?cbno=${list.cbno}&bno=${list.bno}&mid=${bvo.mid}">삭제</a>
 						</td> 
 					</tr>
 				</c:forEach>
@@ -146,7 +146,7 @@ table th {
 	</tr>
 </table>							
 
-	<c:url var="reply" value="/setreply">
+	<c:url var="reply" value="/formReply">
 		<c:param name="bref" value="${bvo.bref}"/>
 		<c:param name="bseq" value="${bvo.bseq}"/>
 		<c:param name="blvl" value="${bvo.blvl}"/>
@@ -154,8 +154,8 @@ table th {
 	</c:url>
 
 <table><tr height="30px"><!-- 높이 조절용 칸 떼우기 --><td></td></tr></table>
-<button type="button" class="btn btn-success btn-sm" onclick="location='boardupdateform?bno=${bvo.bno}'">　수　　정　</button>
-<button type="button" class="btn btn-success btn-sm" onclick="location='boarddelete?bno=${bvo.bno}&bcode=${bvo.bcode}'">　삭　　제　</button>
-<button type="button" class="btn btn-success btn-sm" onclick="location='boardlist?bcode=${bvo.bcode}'">　목　　록　</button>
+<button type="button" class="btn btn-success btn-sm" onclick="location='updateformBoard?bno=${bvo.bno}'">　수　　정　</button>
+<button type="button" class="btn btn-success btn-sm" onclick="location='deleteBoard?bno=${bvo.bno}&bcode=${bvo.bcode}'">　삭　　제　</button>
+<button type="button" class="btn btn-success btn-sm" onclick="location='selectallBoard?bcode=${bvo.bcode}'">　목　　록　</button>
 <a href="${reply}" type="button" class="btn btn-success btn-sm">　답　　변　</a>
 </div>

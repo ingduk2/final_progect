@@ -288,7 +288,7 @@
 
 
 
-<form onsubmit="return checksubmit()" name="joinform" action="minsert" method="post">
+<form onsubmit="return checksubmit()" name="joinform" action="insertMember" method="post">
 	<div>
 		<img src="img/jointitle.png" width="200px">
 		
