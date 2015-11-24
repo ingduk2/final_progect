@@ -29,6 +29,7 @@ public class urljson {
 		
 		String str=param.replaceAll(" ", "%20");
 		//String str="제주%20특별자치도%20제주시%20첨단로%20242";
+		
 		//XMLSerializer xmlseri= new XMLSerializer();
 		XMLSerializer xmlSeri=new XMLSerializer();
 		JSONObject jsonObject = new JSONObject();
@@ -36,6 +37,7 @@ public class urljson {
 		//String address="https://apis.daum.net/local/geo/addr2coord?apikey="+apikey+"&q="+str+"&output=json";
 		//String address="http://openapi.naver.com/search?key=c1b406b32dbbbbeee5f2a36ddc14067f&query=주식&target=news&start=1&display=10";
 		String address="https://apis.daum.net/local/geo/addr2coord?apikey="+apikey+"&q="+str+"&output=json";
+		System.out.println(address);
 		try {
 			url=new URL(address);
 //			URLConnection conn=url.openConnection();
