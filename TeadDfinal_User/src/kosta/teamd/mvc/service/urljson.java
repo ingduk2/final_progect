@@ -55,6 +55,7 @@ public class urljson {
 			StringBuffer sb= new StringBuffer();
 			while((line=br.readLine())!=null){
 				sb.append(line);
+				System.out.println("--"+line);
 			}
 			if(kind.equals("json")){
 //			Object obj= JSONValue.parse(new InputStreamReader(con.getInputStream()));
