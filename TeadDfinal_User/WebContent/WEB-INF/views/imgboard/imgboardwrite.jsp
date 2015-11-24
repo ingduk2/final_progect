@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
     
+    <!-- 다음 주소 찾기 api 사용 -->
+<script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+    
 	<!-- 생년월일 달력으로 받기 위함 by sky -->
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
@@ -155,6 +158,29 @@
 			};
 		};
 		
+		// 다음 주소 찾기 api
+		function execDaumPostcode() {   
+			new daum.Postcode(
+					{
+						oncomplete : function(data) {
+							var addr = '';
+		
+							if (data.sido !== '') {
+								addr = data.sido;
+							}
+							if (data.sigungu !== '' && /[시|군|구]$/g.test(data.sigungu)) {
+								addr += ' ' + data.sigungu;
+							}
+							// 법정동명이 있을 경우 추가한다. (법정리는 제외)
+							// 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+							if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
+								addr += ' ' + data.bname;
+							}
+
+							document.getElementById('region').value = addr;
+						}
+					}).open();
+		} // 다음에서 라이브러리를 가져오기 위함.
 		
 </script>
 
@@ -193,7 +219,7 @@
 					<td align="left">
 						<table id="animalapplyform">
 							<tr> 
-								<th>대분류</th>
+								<th style="width: 60px">대분류</th>
 								<td>
 			      					<select name="anispecies" id="bigkind" class="form-control input-sm">
 										<option>-- 선택 --</option>
@@ -271,7 +297,13 @@
 							<tr> 
 								<th>지역</th>
 								<td>
-									<input type="text" name="aniregion" class="form-control input-sm" placeholder="지역" />
+<!-- 									<input type="text" name="aniregion" class="form-control input-sm" placeholder="지역" /> -->
+									<div class="input-group" style="width: 100%">
+										<input id="region" name="aniregion" class="form-control input-sm" type="text" placeholder="지역 (검색)" readonly="readonly"/>
+										<span class="input-group-btn">
+											<button type="button" class="btn btn-default btn-sm" onclick="execDaumPostcode()">　검　　색　</button>
+										</span>
+									</div>
 								</td> 
 							</tr>
 							<tr> 

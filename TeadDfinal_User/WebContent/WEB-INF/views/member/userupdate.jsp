@@ -503,25 +503,11 @@ $(function() {
 			</tr>
 			
 			<tr> 
-				<th>전화번호</th>   
+				<th>휴대전화번호</th>
 				<td>
-<!-- 					<div class="col-sm-3"> -->
-<!-- 						<select class="form-control input-sm" id="sel1"> -->
-<!-- 							<option>010</option> -->
-<!-- 							<option>011</option> -->
-<!-- 							<option>016</option> -->
-<!-- 							<option>017</option> -->
-<!-- 							<option>018</option> -->
-<!-- 							<option>019</option> -->
-<!-- 						</select> -->
-<!-- 					</div> -->
-<!-- 					<div class="col-sm-7"> -->
-<!-- 						<input class="form-control input-sm" placeholder="-없이 작성해주세요"> -->
-<!-- 					</div> -->
-					<input type="tel" class="form-control input-sm" name="mtel" value="${mvo.mtel }">
+					<input class="form-control input-sm" name="mtel" placeholder=" -  없이 작성해주세요" pattern="[0-9]{10,11}" value="${mvo.mtel}">
 				</td> 
-				<td>
-				</td>
+				<td></td>
 			</tr>
 			
 			<tr> 

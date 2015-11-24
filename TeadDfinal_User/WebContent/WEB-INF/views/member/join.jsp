@@ -198,18 +198,14 @@
 		}
 		
 		// 동일한 아이디가 이미 존재할 시 수행
-		var mid = "이미 존재하는 아이디 입니다.";
-		
-		if ($('#midchkres').text()==mid) {
+		if ($('#midchkres').text()=="이미 존재하는 아이디 입니다." || $('#midchkres').text()=="") {
 			alert("아이디 중복 확인을 해주세요.")
 			document.joinform.mid.focus()
 			return false
 		}
 		
 		// 동일한 메일 주소가 이미 존재할 시 수행
-		var memail = "이미 존재하는 메일 주소 입니다.";
-		
-		if ($('#memailchkres').text()==memail) {
+		if ($('#memailchkres').text()=="이미 존재하는 메일 주소 입니다." || $('#memailchkres').text()=="") {
 			alert("이메일 중복 확인을 해주세요.")
 			document.joinform.memail.focus()
 			return false
@@ -374,22 +370,9 @@
 			</tr>
 			
 			<tr> 
-				<th>전화번호</th>   
+				<th>휴대전화번호</th>   
 				<td>
-<!-- 					<div class="col-sm-4"> -->
-<!-- 						<select class="form-control input-sm" id="sel1" name="memtelf"> -->
-<!-- 							<option>010</option> -->
-<!-- 							<option>011</option> -->
-<!-- 							<option>016</option> -->
-<!-- 							<option>017</option> -->
-<!-- 							<option>018</option> -->
-<!-- 							<option>019</option> -->
-<!-- 						</select> -->
-<!-- 					</div> -->
-<!-- 					<div class="col-sm-8"> -->
-<!-- 						<input class="form-control input-sm" placeholder=" - 없이 작성해주세요" name="memtel_back" pattern="[0-9]{7,8}"> -->
-<!-- 					</div> -->
-					<input type="tel" class="form-control input-sm" name="mtel">
+					<input class="form-control input-sm" name="mtel" placeholder=" -  없이 작성해주세요" pattern="[0-9]{10,11}">
 				</td> 
 				<td></td>
 			</tr>
