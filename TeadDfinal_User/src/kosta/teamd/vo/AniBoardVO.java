@@ -30,7 +30,15 @@ public class AniBoardVO {
 	private int blvl;         // 답글_트리 단계
 	private String bip;       // 작성자 IP
 	private String bfile;     // 첨부 파일 이름
+	private int brpt;         // 신고당한 횟수
 	
+	
+	public int getBrpt() {
+		return brpt;
+	}
+	public void setBrpt(int brpt) {
+		this.brpt = brpt;
+	}
 	public int getAnino() {
 		return anino;
 	}

@@ -62,7 +62,7 @@ var st=$('#st').val();
 var array= new Array();
 $.ajax({
 // 	url:"/zdaum_map/json",
-	url:"jsoncenter",
+	url:"selectalljsonCenter",
 	type:"GET",
 	 data: { //파라미터로 q
          //volunteertitle : calEvent.title,

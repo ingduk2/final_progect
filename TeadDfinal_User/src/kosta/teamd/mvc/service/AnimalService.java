@@ -40,8 +40,8 @@ public class AnimalService implements AniboardImple {
 	@Transactional
 	@Override
 	public void update(BoardVO bvo, AnimalVO avo) {
-		bdao.imgUpdate(bvo);
 		adao.imgUpdate(avo);
+		bdao.imgUpdate(bvo);
 	}
 	
 	

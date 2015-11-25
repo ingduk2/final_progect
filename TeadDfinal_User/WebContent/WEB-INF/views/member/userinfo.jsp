@@ -88,17 +88,17 @@ a:link {
 	  <div id="aa">
 		<ul class="list-group">
 		  <li class="list-group-item list-group-item-success">
-		  	<span class="glyphicon glyphicon-info-sign"></span><a href="mselectview"> 정보 보기</a>
+		  	<span class="glyphicon glyphicon-info-sign"></span><a href="selectoneMember"> 정보 보기</a>
 		  </li>
 		  <li class="list-group-item list-group-item-success">
-		  	<span class="glyphicon glyphicon-cog"></span><a href="mselectupdate"> 정보 수정</a>
+		  	<span class="glyphicon glyphicon-cog"></span><a href="updateformMember"> 정보 수정</a>
 		  </li>
 		  	
 		  <li class="list-group-item list-group-item-success">
 		  	<span class="glyphicon glyphicon-user"></span><a href="#"> 나의 활동</a>
 		  </li>
 		  <li class="list-group-item list-group-item-success">
-		  	<span class="glyphicon glyphicon-trash"></span><a href="mdelete"> 탈 　　퇴</a>
+		  	<span class="glyphicon glyphicon-trash"></span><a href="deleteMember"> 탈 　　퇴</a>
 		  </li>
 		</ul>
 	  </div>

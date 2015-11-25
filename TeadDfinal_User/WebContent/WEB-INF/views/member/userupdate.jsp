@@ -413,7 +413,7 @@ $(function() {
 		<h1>회원정보수정</h1>
 		<table><tr height="30px"><!-- 높이 조절용 칸 떼우기 --><td></td></tr></table>
 		
-		<form onsubmit="return checksubmit()" id="updateform" name="updateform" action="mupdate" method="post" enctype="multipart/form-data">
+		<form onsubmit="return checksubmit()" name="updateform" action="updateMember" method="post" enctype="multipart/form-data">
 		
 		<table id="formtable">
 		<!-- <tr> <th></th> <td></td> </tr> -->
@@ -558,7 +558,7 @@ $(function() {
 
 		<table><tr height="30px"><td></td></tr></table>
 		<button type="submit" class="btn btn-success btn-sm">　수　　정　</button>
-		<button type="button" class="btn btn-success btn-sm" onclick="goUrl('mselectview')">　취　　소　</button>
+		<button type="button" class="btn btn-success btn-sm" onclick="goUrl('selectoneMember')">　취　　소　</button>
 		
 		</form>
 	</div>
