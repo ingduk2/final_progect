@@ -35,5 +35,9 @@
 		<put-attribute name="body" value="/WEB-INF/views/etc/{1}.jsp"/>
 	</definition>
 	
+	<!-- 입양 신청 폴더 연결 -->
+	<definition name="adopt/*" extends="defaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/adopt/{1}.jsp"/>
+	</definition>
 	
 </tiles-definitions>
