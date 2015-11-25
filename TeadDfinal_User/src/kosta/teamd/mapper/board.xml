@@ -125,16 +125,23 @@
 <!--     </update> -->
   
     <!-- 게시판 신고수 업데이트 -->
-    <update id="brpt" parameterType="int">
+    <update id="brpt" parameterType="bvo">
     	update board set brpt=brpt+1 where bno=#{bno} 
     </update>
     
     <!-- 사용자 신고당한 수 업데이트 -->
-    <update id="mrpt" parameterType="String">  
+    <update id="mrpt" parameterType="bvo">  
     	update member set mrpt=mrpt+1 where mid=#{mid}
-    </update>
+    </update>   
+    
+    <!-- 멤버 mrpt 수 조회 -->
+   	<update id="mrptlimit" parameterType="mvo">
+   		update member set mrptlimit=mrptlimit+1 where mid=#{mid}
+   	</update>
+    
+    
 
-	<select id="cntrpt" resultType="int" parameterType="String">
+	<select id="cntrpt" resultType="int" parameterType="bvo">
 		select mrpt from member where mid=#{mid}
 	</select>
 	

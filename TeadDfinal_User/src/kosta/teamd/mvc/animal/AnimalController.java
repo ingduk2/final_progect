@@ -11,6 +11,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -192,11 +193,18 @@ public class AnimalController {
 	
 	//신고수 업데이트
 	@RequestMapping(value="/updateRptAnimal")
-	public ModelAndView updateRptAnimal(int bno, int anino){
-		bdao.rpt(bno);
-		ModelAndView mav = new ModelAndView("redirect:/selectoneAnimal");
-		mav.addObject("bno", bno);
-		mav.addObject("anino", anino);
+	public ModelAndView updateRptAnimal(BoardVO bvo ,Principal rptmid){
+		
+		System.out.println(rptmid);
+		abi.rptUpdate(bvo, rptmid);
+		ModelAndView mav = new ModelAndView("imgboard/rptchk");
+		mav.addObject("bno", bvo.getBno());
+		mav.addObject("anino", bvo.getAnino());
+		mav.addObject("mid", bvo.getMid());
+		BoardVO vo = bdao.detailBoard(bvo.getBno());
+		int rpt= vo.getBrpt();
+		mav.addObject("rpt", rpt);
+		System.out.println("rpt : " + rpt);
 		return mav;
 	}
 	

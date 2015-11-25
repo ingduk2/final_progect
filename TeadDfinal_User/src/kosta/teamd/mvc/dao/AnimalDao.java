@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import kosta.teamd.vo.AniBoardVO;
 import kosta.teamd.vo.AnimalVO;
 import kosta.teamd.vo.BoardVO;
+import kosta.teamd.vo.MemberVO;
 
 @Repository
 public class AnimalDao{
@@ -46,6 +47,7 @@ public class AnimalDao{
 	public int imgCnt(){
 	  return ss.selectOne("animal.imgcnt");
 	}
+
 	
 	
 }
