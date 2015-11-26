@@ -412,9 +412,9 @@ $(function() {
 
 		<h1>회원정보수정</h1>
 		<table><tr height="30px"><!-- 높이 조절용 칸 떼우기 --><td></td></tr></table>
-		
+
 		<form onsubmit="return checksubmit()" name="updateform" action="updateMember" method="post" enctype="multipart/form-data">
-		
+
 		<table id="formtable">
 		<!-- <tr> <th></th> <td></td> </tr> -->
 			<tr>

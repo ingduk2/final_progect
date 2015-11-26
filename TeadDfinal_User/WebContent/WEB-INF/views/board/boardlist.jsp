@@ -1,14 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <style>
-	.glyphicon{
+	.glyphicon {
 		color: #8fbc8f
 	}
 </style>
 
 <div id="bg">
-	<img src="img/boardTitle.png" width="200px">
+<!-- 	<img src="img/boardTitle.png" width="200px"> -->
 
 <table>
 	<thead style="font-weight:bold; color:black;">
@@ -16,13 +17,6 @@
 	</thead>
 	
 	<tbody id="tbodycss">
-	
-	<!--관리자 공지용 table 만들어야함. -->
-	
-	
-
-	<!-- 요기밑에 주석 지워버릴거임 -->
-	<!--<tr> <td>seq</td><td>title</td><td>write</td><td>sysdate</td><td>hit</td> </tr> -->
 	
 		<c:forEach var="list" items="${list}">
 			<tr>

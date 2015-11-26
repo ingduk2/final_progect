@@ -34,28 +34,26 @@ public class CenterController {
 	}
 	
 	@RequestMapping(value="/insertCenter",method=RequestMethod.POST)
-	public ModelAndView insertCenter(String caddr, HttpServletRequest request) throws UnsupportedEncodingException{
-		request.setCharacterEncoding("UTF-8");
-		String ttt = request.getParameter("caddr");
-		System.out.println();
+	public ModelAndView insertCenter(CenterVO vo) throws UnsupportedEncodingException{
+		
+		
 		ModelAndView mav= new ModelAndView("redirect:/selectallCenter");
-		System.out.println(caddr);
+		
 		//먼저 주소를 변환한다.
 		JSONObject jsonObject= new JSONObject();
 		
 		//시험해....
-		String param =ttt.replaceAll(" ", "%20");
 		//String str=param.replaceAll(" ", "%20");
 		//jsonObject = myjson.myJason(vo.getCaddr().toString());
-		jsonObject = myjson.myJason(param);
-		myjson.mock(jsonObject);
+		jsonObject = myjson.myJason(vo.getCaddr());
+		//myjson.mock(jsonObject);
 		
 //		System.out.println("주소 : " + vo.getCaddr());
 		//그 후에 리턴받아서 디비에 저장한다.
 		//필요한거 뽑아서
-//		vo.setCxy(myjson.mock(jsonObject));
+		vo.setCxy(myjson.mock(jsonObject));
 		
-//		cdao.insert(vo);
+		cdao.insert(vo);
 		//jsonObject.get(key)
 		
 		return mav;

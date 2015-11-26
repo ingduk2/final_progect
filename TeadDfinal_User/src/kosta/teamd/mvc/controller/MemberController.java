@@ -97,23 +97,6 @@ public class MemberController {
 		mvo.setMimg("UnknownProfile.png"); // 디폴트 프로필 사진 설정
 		mvo.setMintro("안녕하세요 ^^"); // 디폴트 프로필 인사말 설정
 		
-		// 전화번호 변환
-//		StringBuffer tel = new StringBuffer();
-//		tel.append(mvo.getMtelf()).append("-");
-//		
-//		int len = mvo.getMtelb().length();
-//		
-//		if (len == 7) {
-//			tel.append(mvo.getMtelb().substring(0, 3)).append("-");
-//			tel.append(mvo.getMtelb().substring(3, 7));
-//		}
-//		if (len == 8) {
-//			tel.append(mvo.getMtelb().substring(0, 4)).append("-");
-//			tel.append(mvo.getMtelb().substring(4, 8));
-//		}
-//		
-//		mvo.setMtel(tel.toString());
-		
 		minsert.memberInsert(mvo, mrvo);
 		
 		System.out.println("Log: [" + mvo.getMid() + "] 가입");
