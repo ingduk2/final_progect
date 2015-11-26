@@ -17,7 +17,7 @@ public interface AniboardImple {
 	public void update(BoardVO bvo, AnimalVO avo);
 	
 	//신고자 신고수
-	public void rptUpdate(BoardVO bvo, Principal mrptid);
+	public void rptUpdate(BoardVO bvo, String mrptid);
 	
 	
 }

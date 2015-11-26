@@ -49,10 +49,10 @@ public class AnimalService implements AniboardImple {
 	
 	@Transactional
 	@Override
-	public void rptUpdate(BoardVO bvo, Principal mrptid) {
+	public void rptUpdate(BoardVO bvo, String mid) {
 		bdao.boardRpt(bvo);
 		bdao.memberRpt(bvo);
-		bdao.mrptUpdate(mrptid);
+		bdao.mrptUpdate(mid);
 	}
 		
 }

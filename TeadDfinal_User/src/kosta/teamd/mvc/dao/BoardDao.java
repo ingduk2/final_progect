@@ -83,12 +83,24 @@ public class BoardDao {
 		}
 		
 		// 유저 신고한 수 
-		public void mrptUpdate(Principal mid){
+		public void mrptUpdate(String mid){
 			template.update("board.mrptlimit", mid);
 		}
 		
+		// 신고한 수 출력
+		public int cntrptLimit(String mid){
+			return template.selectOne("board.cntrptlimit", mid);
+		}
 		
-			
+		// 게시판 블록 코드로 변경
+		public void blockBoard(int bno){
+			template.update("board.block", bno);
+		}
+		
+		// 제한 초기화 
+		public void resetLimit(){
+			template.update("board.resetlimit");
+		}
 		
 		
 		

@@ -47,11 +47,21 @@
 				type: "post",
 				data:{
 					bno:$("#bno").val(),
-					anino:$("#anino").val()
+					anino:$("#anino").val(),
+					mid:$("#mid").val(),
+					rpt:$("#rptchk").html()
 				}, 
-				success : function(a){
-					$("#rptchk").html(a);
-					
+				success : function(rpt){
+					if(rpt==$("#rptchk").html()){
+						$("#rptchk").html();
+						alert("금일 신고수가 초과하였습니다");
+						if($("#rptchk").html()>=15){
+							alert("게시물이 삭제됩니다.")
+						location.href='selectallAnimal';
+						}
+					}else{
+					$("#rptchk").html(rpt);
+					}
 				}
 			});
 		});
@@ -79,7 +89,7 @@
 			</tr>
 			<tr>	
 				<th>글쓴이</th>
-				<td class="bgwhite">${avo.mid}</td>	
+				<td class="bgwhite" >${avo.mid}</td>	
 				<th>작성일</th>	
 				<td class="bgwhite">${avo.bdate }</td>	
 				<th>조회수</th>	
@@ -143,7 +153,7 @@
 			</tr>
 			
 			<tr height="300px">	<!-- 내용 들어가면 height="500px" 빼줘야함 -->
-				<td colspan="6" class="bgwhite">
+				<td colspan="6" class="bgwhite"><textarea rows="15" cols="6">
 					${avo.bcontent}
 				</textarea>
 				</td>						
@@ -158,7 +168,7 @@
 					<form method="post" action="commInsert">
 				    	<div class="input-group col-xs-12">
 <%-- 				    		<input type="hidden" name="mid" value="${sessionScope['loginid']}"/> --%>
-				    		<input type="text" name="mid" value="테스트"/>
+				    		<input type="text" name="mid" id="mid" value="${pageContext.request.userPrincipal.name}"/>
 				    		<input type="hidden" name="bno" id="bno" value="${avo.bno}"/>
 				    		<input type="hidden" name="anino" id="anino" value="${avo.anino}"/>
 				    		<input type="hidden" name="cbip" value="<%=request.getRemoteAddr() %>">

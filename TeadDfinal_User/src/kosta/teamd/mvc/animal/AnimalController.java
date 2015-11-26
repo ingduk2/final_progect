@@ -191,21 +191,35 @@ public class AnimalController {
 		return new ModelAndView("redirect:/selectoneAnimal?anino="+avo.getAnino()+"&bno="+bvo.getBno());
 	}
 	
+	
+	
 	//신고수 업데이트
 	@RequestMapping(value="/updateRptAnimal")
-	public ModelAndView updateRptAnimal(BoardVO bvo ,Principal rptmid){
-		
-		System.out.println(rptmid);
-		abi.rptUpdate(bvo, rptmid);
-		ModelAndView mav = new ModelAndView("imgboard/rptchk");
-		mav.addObject("bno", bvo.getBno());
-		mav.addObject("anino", bvo.getAnino());
-		mav.addObject("mid", bvo.getMid());
-		BoardVO vo = bdao.detailBoard(bvo.getBno());
-		int rpt= vo.getBrpt();
-		mav.addObject("rpt", rpt);
-		System.out.println("rpt : " + rpt);
+	public ModelAndView updaterptAnimal(int bno, int anino ,String mid, int rpt){
+		System.out.println("p : "+mid);
+		int cnt = bdao.cntrptLimit(mid); //3
+		System.out.println("cnt : "+ cnt);
+		ModelAndView mav = new ModelAndView("checkpage/rptchk");
+		if(cnt>0){ //신고 가능 >0
+		BoardVO bvo = bdao.detailBoard(bno);
+		String id = bvo.getMid();
+		System.out.println("test : " +id);
+		int rptcnt = 15; //신고제한수 
+		abi.rptUpdate(bvo, mid); // -1 2,
+		int brpt= bvo.getBrpt(); // 게시글 신고수 업데이트 후 
+		mav.addObject("rpt", brpt);
+		System.out.println("rpt : " + brpt);
+		if(brpt >= rptcnt){
+			bdao.blockBoard(bno);
+		}
 		return mav;
+		}else{ //<=0
+		BoardVO bvo = bdao.detailBoard(bno);
+			System.out.println("-cnt : "+cnt);
+			mav.addObject("rpt", rpt);
+			System.out.println("rpt : " + rpt);
+			return mav;
+		}
 	}
 	
 	
