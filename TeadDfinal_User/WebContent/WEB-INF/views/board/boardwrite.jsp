@@ -1,6 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
+<!-- 
+	※ 변경 사항 ※
+	- 메뉴바와 폼 사이 공간 띄움
+	- 각종 멘트 변경
+ -->
+
 <style>
 table th { 
 	font-weight: bold; 
@@ -60,12 +66,13 @@ table th {
 		        
 		    });
 		});
+		
 </script>
 
 <div>
 	
-	<h1>게시글작성<small>게시글작성을위한form임</small></h1>
-	<table><tr height="30px"><!-- 높이 조절용 칸 떼우기 --><td></td></tr></table>
+<!-- 공간 띄우기 용 -->
+<table><tr height="50px"><td></td></tr></table>
 	
 <form action="insertBoard" method="post" enctype="multipart/form-data">
 	
@@ -74,19 +81,19 @@ table th {
 	<input type="hidden" name="bip" value="<%= request.getRemoteAddr() %>">
 	
 	<table width="500px">
-		<tr> <th colspan="2">글쓰기</th> </tr>			
+		<tr> <th colspan="2">　</th> </tr>			
 		<tr>	
-			<th>title</th>	
+			<th>제목</th>	
 			<td>
 				<input name="btitle" class="form-control input-sm" placeholder="제목을 입력하세요">
 			</td>	
 		</tr>
 		
 		<tr>
-			<th>업로드</th>
+			<th>파일</th>
 			<td>
 				<div class="input-group">
-	                <input type="text" class="form-control input-sm" placeholder="Try selecting one file" readonly >
+	                <input type="text" class="form-control input-sm" placeholder="업로드 할 파일을 선택하세요" readonly >
 	                <span class="input-group-btn">
 	                    <span class="btn btn-success btn-file btn-sm">
 	                    	<span class="glyphicon glyphicon-folder-open"></span>
@@ -98,7 +105,7 @@ table th {
 		</tr>
 		
 		<tr>	
-			<th colspan="2">Content</th>		
+			<th colspan="2">　</th>		
 		</tr>
 		
 		<tr>	
@@ -109,7 +116,7 @@ table th {
 	</table>				
 
 	<table><tr height="30px"><!-- 높이 조절용 칸 떼우기 --><td></td></tr></table>
-	<button type="submit" class="btn btn-success btn-sm">　글 작 성　</button>
+	<button type="submit" class="btn btn-success btn-sm">　완　　료　</button>
 	<button type="button" class="btn btn-success btn-sm" onclick="location='selectallBoard?bcode=${bcode}'">　취　　소　</button>
 
 </form>

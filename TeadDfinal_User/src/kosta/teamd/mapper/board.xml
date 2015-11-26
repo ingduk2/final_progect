@@ -27,6 +27,11 @@
     	sysdate, 0, 0, board_seq.nextVal, 1, #{blvl}, #{bip}, #{bfile}, 0)
     </insert>
     
+    <!-- 해당 회원이 작성한, 해당 게시판의 마지막 글 (방금 쓴 글)의 글 번호 추출 -->
+    <select id="selectBno" parameterType="bvo" resultType="String">
+    	select bno from board where mid=#{mid} and bcode=#{bcode} and rownum='1' order by bno desc
+    </select>
+    
     <select id="getlist" resultType="bvo" parameterType="bvo">
     	select
     	bcode, boricode, bno, btitle, mid, bcontent,

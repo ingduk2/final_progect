@@ -53,7 +53,13 @@
 	 	  access-decision-manager-ref="accessDecisionManager">
 	 	  
 		<!-- 각 페이지 접근 권한 설정 -->
+		<!-- 회원 -->
 		<intercept-url pattern="/selectoneMember" access="User" /> <!-- 회원 정보 보기 -->
+		
+		<!-- 게시판 -->
+		<intercept-url pattern="/formBoard" access="User" /> <!-- 글 쓰기 폼 -->
+		<intercept-url pattern="/formReply" access="User" /> <!-- 답글 쓰기 폼 -->
+		<intercept-url pattern="/insertComm" access="User" /> <!-- 댓글 등록 -->
 	 	
 	 	<!-- login 처리 -->
 	 	<form-login
