@@ -1,0 +1,347 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+    <%@taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
+    <style>
+    Highcharts.createElement('link', {
+   href: '//fonts.googleapis.com/css?family=Unica+One',
+   rel: 'stylesheet',
+   type: 'text/css'
+}, null, document.getElementsByTagName('head')[0]);
+
+Highcharts.theme = {
+   colors: ["#2b908f", "#90ee7e", "#f45b5b", "#7798BF", "#aaeeee", "#ff0066", "#eeaaee",
+      "#55BF3B", "#DF5353", "#7798BF", "#aaeeee"],
+   chart: {
+      backgroundColor: {
+         linearGradient: { x1: 0, y1: 0, x2: 1, y2: 1 },
+         stops: [
+            [0, '#2a2a2b'],
+            [1, '#3e3e40']
+         ]
+      },
+      style: {
+         fontFamily: "'Unica One', sans-serif"
+      },
+      plotBorderColor: '#606063'
+   },
+   title: {
+      style: {
+         color: '#E0E0E3',
+         textTransform: 'uppercase',
+         fontSize: '20px'
+      }
+   },
+   subtitle: {
+      style: {
+         color: '#E0E0E3',
+         textTransform: 'uppercase'
+      }
+   },
+   xAxis: {
+      gridLineColor: '#707073',
+      labels: {
+         style: {
+            color: '#E0E0E3'
+         }
+      },
+      lineColor: '#707073',
+      minorGridLineColor: '#505053',
+      tickColor: '#707073',
+      title: {
+         style: {
+            color: '#A0A0A3'
+
+         }
+      }
+   },
+   yAxis: {
+      gridLineColor: '#707073',
+      labels: {
+         style: {
+            color: '#E0E0E3'
+         }
+      },
+      lineColor: '#707073',
+      minorGridLineColor: '#505053',
+      tickColor: '#707073',
+      tickWidth: 1,
+      title: {
+         style: {
+            color: '#A0A0A3'
+         }
+      }
+   },
+   tooltip: {
+      backgroundColor: 'rgba(0, 0, 0, 0.85)',
+      style: {
+         color: '#F0F0F0'
+      }
+   },
+   plotOptions: {
+      series: {
+         dataLabels: {
+            color: '#B0B0B3'
+         },
+         marker: {
+            lineColor: '#333'
+         }
+      },
+      boxplot: {
+         fillColor: '#505053'
+      },
+      candlestick: {
+         lineColor: 'white'
+      },
+      errorbar: {
+         color: 'white'
+      }
+   },
+   legend: {
+      itemStyle: {
+         color: '#E0E0E3'
+      },
+      itemHoverStyle: {
+         color: '#FFF'
+      },
+      itemHiddenStyle: {
+         color: '#606063'
+      }
+   },
+   credits: {
+      style: {
+         color: '#666'
+      }
+   },
+   labels: {
+      style: {
+         color: '#707073'
+      }
+   },
+
+   drilldown: {
+      activeAxisLabelStyle: {
+         color: '#F0F0F3'
+      },
+      activeDataLabelStyle: {
+         color: '#F0F0F3'
+      }
+   },
+
+   navigation: {
+      buttonOptions: {
+         symbolStroke: '#DDDDDD',
+         theme: {
+            fill: '#505053'
+         }
+      }
+   },
+
+   // scroll charts
+   rangeSelector: {
+      buttonTheme: {
+         fill: '#505053',
+         stroke: '#000000',
+         style: {
+            color: '#CCC'
+         },
+         states: {
+            hover: {
+               fill: '#707073',
+               stroke: '#000000',
+               style: {
+                  color: 'white'
+               }
+            },
+            select: {
+               fill: '#000003',
+               stroke: '#000000',
+               style: {
+                  color: 'white'
+               }
+            }
+         }
+      },
+      inputBoxBorderColor: '#505053',
+      inputStyle: {
+         backgroundColor: '#333',
+         color: 'silver'
+      },
+      labelStyle: {
+         color: 'silver'
+      }
+   },
+
+   navigator: {
+      handles: {
+         backgroundColor: '#666',
+         borderColor: '#AAA'
+      },
+      outlineColor: '#CCC',
+      maskFill: 'rgba(255,255,255,0.1)',
+      series: {
+         color: '#7798BF',
+         lineColor: '#A6C7ED'
+      },
+      xAxis: {
+         gridLineColor: '#505053'
+      }
+   },
+
+   scrollbar: {
+      barBackgroundColor: '#808083',
+      barBorderColor: '#808083',
+      buttonArrowColor: '#CCC',
+      buttonBackgroundColor: '#606063',
+      buttonBorderColor: '#606063',
+      rifleColor: '#FFF',
+      trackBackgroundColor: '#404043',
+      trackBorderColor: '#404043'
+   },
+
+   // special colors for some of the
+   legendBackgroundColor: 'rgba(0, 0, 0, 0.5)',
+   background2: '#505053',
+   dataLabelsColor: '#B0B0B3',
+   textColor: '#C0C0C0',
+   contrastTextColor: '#F0F0F3',
+   maskColor: 'rgba(255,255,255,0.3)'
+};
+    </style>
+    
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/data.js"></script>
+<script src="https://code.highcharts.com/modules/drilldown.js"></script>
+    <script> 
+    var animal;
+
+    		$(function () {
+    		    $.ajax({
+    		    	url: "animalcnt",
+    		    	type: "GET",
+    		    	success:function(res){
+    		    		alert(res);
+    		    		animal=JSON.parse(res);
+    		    		alert(animal);
+    		    		
+    		    		$('#container').highcharts({
+    		    	        chart: {
+    		    	            type: 'pie'
+    		    	        },
+    		    	        title: {
+    		    	            text: 'Browser market shares. January, 2015 to May, 2015'
+    		    	        },
+    		    	        subtitle: {
+    		    	            text: 'Click the slices to view versions. Source: netmarketshare.com.'
+    		    	        },
+    		    	        plotOptions: {
+    		    	            series: {
+    		    	                dataLabels: {
+    		    	                    enabled: true,
+    		    	                    format: '{point.name}: {point.y:.1f}%'
+    		    	                }
+    		    	            }
+    		    	        },
+
+    		    	        tooltip: {
+    		    	            headerFormat: '<span style="font-size:11px">{series.name}</span><br>',
+    		    	            pointFormat: '<span style="color:{point.color}">{point.name}</span>: <b>{point.y:.2f}%</b> of total<br/>'
+    		    	        },
+    		    	        series: [{
+    		    	            name: 'Brands',
+    		    	            colorByPoint: true,
+    		    	            data:
+    		    	            	animal
+    		    	        }],
+    		    	        drilldown: {
+    		    	            series: [{
+    		    	                name: 'Microsoft Internet Explorer',
+    		    	                id: 'Microsoft Internet Explorer',
+    		    	                data: [
+    		    	                    ['v11.0', 24.13],
+    		    	                    ['v8.0', 17.2],
+    		    	                    ['v9.0', 8.11],
+    		    	                    ['v10.0', 5.33],
+    		    	                    ['v6.0', 1.06],
+    		    	                    ['v7.0', 0.5]
+    		    	                ]
+    		    	            }, {
+    		    	                name: 'Chrome',
+    		    	                id: 'Chrome',
+    		    	                data: [
+    		    	                    ['v40.0', 5],
+    		    	                    ['v41.0', 4.32],
+    		    	                    ['v42.0', 3.68],
+    		    	                    ['v39.0', 2.96],
+    		    	                    ['v36.0', 2.53],
+    		    	                    ['v43.0', 1.45],
+    		    	                    ['v31.0', 1.24],
+    		    	                    ['v35.0', 0.85],
+    		    	                    ['v38.0', 0.6],
+    		    	                    ['v32.0', 0.55],
+    		    	                    ['v37.0', 0.38],
+    		    	                    ['v33.0', 0.19],
+    		    	                    ['v34.0', 0.14],
+    		    	                    ['v30.0', 0.14]
+    		    	                ]
+    		    	            }, {
+    		    	                name: 'Firefox',
+    		    	                id: 'Firefox',
+    		    	                data: [
+    		    	                    ['v35', 2.76],
+    		    	                    ['v36', 2.32],
+    		    	                    ['v37', 2.31],
+    		    	                    ['v34', 1.27],
+    		    	                    ['v38', 1.02],
+    		    	                    ['v31', 0.33],
+    		    	                    ['v33', 0.22],
+    		    	                    ['v32', 0.15]
+    		    	                ]
+    		    	            }, {
+    		    	                name: 'Safari',
+    		    	                id: 'Safari',
+    		    	                data: [
+    		    	                    ['v8.0', 2.56],
+    		    	                    ['v7.1', 0.77],
+    		    	                    ['v5.1', 0.42],
+    		    	                    ['v5.0', 0.3],
+    		    	                    ['v6.1', 0.29],
+    		    	                    ['v7.0', 0.26],
+    		    	                    ['v6.2', 0.17]
+    		    	                ]
+    		    	            }, {
+    		    	                name: 'Opera',
+    		    	                id: 'Opera',
+    		    	                data: [
+    		    	                    ['v12.x', 0.34],
+    		    	                    ['v28', 0.24],
+    		    	                    ['v27', 0.17],
+    		    	                    ['v29', 0.16]
+    		    	                ]
+    		    	            }]
+    		    	        }
+    		    	    });
+
+    		    		
+    		    	}
+    		    });
+    		});
+  
+</script>    
+
+<div id="container" style="min-width: 310px; max-width: 600px; height: 400px; margin: 0 auto"></div>
+<div align="right" style="margin: auto;" >
+<table>
+<tr>
+<th>대분류</th><th>수량</th>
+</tr>
+<c:forEach items="${anisvo}" var="anisvo">
+<tr>
+<td>${anisvo.anispecies }</td>
+<td>${anisvo.cnt }</td>
+</tr>
+</c:forEach>
+</table>
+</div>

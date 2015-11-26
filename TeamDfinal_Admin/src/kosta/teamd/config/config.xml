@@ -24,5 +24,8 @@
 		
 		<typeAlias type="kosta.teamd.vo.CenterVO" alias="cvo"/>
 		<typeAlias type="kosta.teamd.vo.ChartVO" alias="chvo"/>
+		
+		<!-- 차트용 vo  -->
+		<typeAlias type="kosta.teamd.vo.AnimalsVO" alias="anvo"/> <!--  동물 차트용  -->
   	</typeAliases>
   </configuration>

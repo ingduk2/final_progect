@@ -74,7 +74,6 @@ public class urljson {
 				jsonObject =  (JSONObject) xmlSeri.read(xml);
 				System.out.println("xml->to json");
 				System.out.println(jsonObject);
-				
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
