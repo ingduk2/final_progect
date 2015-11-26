@@ -74,7 +74,7 @@ li { list-style: none}
   </h4>
   <div>
   	 <a href="formMember">강제 탈퇴</a><br />
-  	 <a href="">강제 수정</a><br /> 
+  	 <a href="formChart?year=2012">강제 수정</a><br /> 
   </div>
 
   <h4>

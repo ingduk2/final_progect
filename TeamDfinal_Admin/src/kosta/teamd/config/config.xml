@@ -23,6 +23,16 @@
 		<typeAlias type="kosta.teamd.vo.volFkVO" alias="fkvo"/> <!-- 외래키 지우는용 vo -->
 		
 		<typeAlias type="kosta.teamd.vo.CenterVO" alias="cvo"/>
+		
+		
 		<typeAlias type="kosta.teamd.vo.ChartVO" alias="chvo"/>
+		
+		
+		<!-- 차트 대량! -->
+		<!-- 차트 멤버 지역별 -->
+		<typeAlias type="kosta.teamd.vo.ChartMemberVO" alias="chmvo"/>
+		<!-- 차트 멤버 연령별 -->
+		<typeAlias type="kosta.teamd.vo.ChartMemAgeVO" alias="chmavo"/>
+		
   	</typeAliases>
   </configuration>
