@@ -11,6 +11,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -72,7 +73,6 @@ public class AnimalController {
 		//이미지 저장폴더 이름
 		
 		//img가 있어서 upload로 바꿈
-
 		String img_path = "\\upload\\";
 
 		// 이미지 전체경로를 저장하기 위해 버퍼를 생성
@@ -192,14 +192,35 @@ public class AnimalController {
 		return new ModelAndView("redirect:/selectoneAnimal?anino="+avo.getAnino()+"&bno="+bvo.getBno());
 	}
 	
+	
+	
 	//신고수 업데이트
 	@RequestMapping(value="/updateRptAnimal")
-	public ModelAndView updateRptAnimal(int bno, int anino){
-		bdao.rpt(bno);
-		ModelAndView mav = new ModelAndView("redirect:/selectoneAnimal");
-		mav.addObject("bno", bno);
-		mav.addObject("anino", anino);
+	public ModelAndView updaterptAnimal(int bno, int anino ,String mid, int rpt){
+		System.out.println("p : "+mid);
+		int cnt = bdao.cntrptLimit(mid); //3
+		System.out.println("cnt : "+ cnt);
+		ModelAndView mav = new ModelAndView("checkpage/rptchk");
+		if(cnt>0){ //신고 가능 >0
+		BoardVO bvo = bdao.detailBoard(bno);
+		String id = bvo.getMid();
+		System.out.println("test : " +id);
+		int rptcnt = 15; //신고제한수 
+		abi.rptUpdate(bvo, mid); // -1 2,
+		int brpt= bvo.getBrpt(); // 게시글 신고수 업데이트 후 
+		mav.addObject("rpt", brpt);
+		System.out.println("rpt : " + brpt);
+		if(brpt >= rptcnt){
+			bdao.blockBoard(bno);
+		}
 		return mav;
+		}else{ //<=0
+		BoardVO bvo = bdao.detailBoard(bno);
+			System.out.println("-cnt : "+cnt);
+			mav.addObject("rpt", rpt);
+			System.out.println("rpt : " + rpt);
+			return mav;
+		}
 	}
 	
 	

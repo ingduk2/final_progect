@@ -40,33 +40,47 @@
 <script> //image mouse over script
 	$(document).ready(function(){
 	    $('[data-toggle="tooltip"]').tooltip();   
-	});
-	$("#rpt").click(function(){
-		$.ajax({
-			url: "updateRptAnimal",
-			data:{
-				bno:$("#bno").val(),
-				anino:$("#anino").val()
-			} 
-			
+	   
+	    $("#rpt").click(function(){
+			$.ajax({
+				url: "updateRptAnimal",
+				type: "post",
+				data:{
+					bno:$("#bno").val(),
+					anino:$("#anino").val(),
+					mid:$("#mid").val(),
+					rpt:$("#rptchk").html()
+				}, 
+				success : function(rpt){
+					if(rpt==$("#rptchk").html()){
+						$("#rptchk").html();
+						alert("금일 신고수가 초과하였습니다");
+						if($("#rptchk").html()>=15){
+							alert("게시물이 삭제됩니다.")
+						location.href='selectallAnimal';
+						}
+					}else{
+					$("#rptchk").html(rpt);
+					}
+				}
+			});
 		});
 	});
+	
 </script>
->
-
 
 	<div>		
-		<img src="img/boarddetail.png" width="300px">
+		<img src="img/boarddetail.png" width="200px">
 		
 <!-- 		<table width="50%" border="1px">							 -->
 
 	<!-- 임시로 설정  수정..................-->
-		<input type="button" style="margin-right: 0px auto; background-color: orange;" , id="rpt"
-		value="신고하기" onclick="location='updateRptAnimal?bno=${avo.bno}&anino=${avo.anino }'" /><label>신고수 : ${avo.brpt}</label>
+	
 	<!-- 임시로 설정  수정..................-->
 	
-	
+
 		<table style="border:1px ; width: 500px"> 
+		<tr><td colspan="4" style="margin-right: 0px;"><input type="button" id="rpt" value="신고하기" /></td><td><label>신고수 : </label></td><td><label id="rptchk">${avo.brpt}</label></td></tr>
 			<tr>	
 				<th>제목</th>	
 				<td colspan="5" class="bgwhite"> 
@@ -75,7 +89,7 @@
 			</tr>
 			<tr>	
 				<th>글쓴이</th>
-				<td class="bgwhite" id="mid" name="mid">${avo.mid}</td>	
+				<td class="bgwhite" >${avo.mid}</td>	
 				<th>작성일</th>	
 				<td class="bgwhite">${avo.bdate }</td>	
 				<th>조회수</th>	
@@ -139,12 +153,11 @@
 			</tr>
 			
 			<tr height="300px">	<!-- 내용 들어가면 height="500px" 빼줘야함 -->
-				<td colspan="6" class="bgwhite">
+				<td colspan="6" class="bgwhite"><textarea rows="15" cols="6">
 					${avo.bcontent}
 				</textarea>
 				</td>						
 			</tr>
-			
 			<!-- 댓글 입력  -->
 			
 			
@@ -155,7 +168,7 @@
 					<form method="post" action="commInsert">
 				    	<div class="input-group col-xs-12">
 <%-- 				    		<input type="hidden" name="mid" value="${sessionScope['loginid']}"/> --%>
-				    		<input type="text" name="mid" value="테스트"/>
+				    		<input type="text" name="mid" id="mid" value="${pageContext.request.userPrincipal.name}"/>
 				    		<input type="hidden" name="bno" id="bno" value="${avo.bno}"/>
 				    		<input type="hidden" name="anino" id="anino" value="${avo.anino}"/>
 				    		<input type="hidden" name="cbip" value="<%=request.getRemoteAddr() %>">
@@ -203,8 +216,7 @@
 					</table>					
 				</td>
 			</tr>
-		</table>							
-
+		</table>								
 		
 		<table><tr height="30px"><!-- 높이 조절용 칸 떼우기 --><td></td></tr></table>
 		<button type="button" class="btn btn-success btn-sm" onclick="location='updateformAnimal?anino=${avo.anino}'">　수　　정　</button>

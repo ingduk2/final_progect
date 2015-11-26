@@ -119,24 +119,50 @@
     </select>
     
     
+    
+    
+    
+    
+    
     <!-- 일반,이미지 공통 사용... 조회수, 신고수  -->
 <!--     <update id="cnt" parameterType="int"> -->
 <!--     	update board set hit=hit+1 where bno=#{bno} -->
 <!--     </update> -->
   
     <!-- 게시판 신고수 업데이트 -->
-    <update id="brpt" parameterType="int">
+    <update id="brpt" parameterType="bvo">
     	update board set brpt=brpt+1 where bno=#{bno} 
+    	<selectKey keyProperty="brpt" resultType="int" order="AFTER">
+		SELECT brpt FROM board where bno=#{bno}
+	</selectKey>
     </update>
     
     <!-- 사용자 신고당한 수 업데이트 -->
-    <update id="mrpt" parameterType="String">  
+    <update id="mrpt" parameterType="bvo">  
     	update member set mrpt=mrpt+1 where mid=#{mid}
+    </update>   
+    
+    <!-- 멤버  신고한수 수 업데이트 -->
+   	<update id="mrptlimit" parameterType="String">
+   		update member set mrptlimit=mrptlimit-1 where mid=#{mid}
+   	</update>
+
+	<!--신고 제한수 출력 -->
+	<select id="cntrptlimit" resultType="int" parameterType="String">
+		select mrptlimit from member where mid=#{mid}
+	</select>
+	
+    
+    <!-- 게시물 블럭 처리 -->
+    <select id="block" parameterType="int">
+    	update board set  bcode=10 where bno=#{bno}
+    </select>
+    
+    <update id="resetlimit">
+    	update member set mrptlimit=3 where mrptlimit between 0 and 2
     </update>
 
-	<select id="cntrpt" resultType="int" parameterType="String">
-		select mrpt from member where mid=#{mid}
-	</select>
+
 	
 <!-- 	<select> -->
 		

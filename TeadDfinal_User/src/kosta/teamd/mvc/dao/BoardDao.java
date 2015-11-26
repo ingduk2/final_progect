@@ -1,5 +1,6 @@
 package kosta.teamd.mvc.dao;
 
+import java.security.Principal;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -65,10 +66,41 @@ public class BoardDao {
 //			template.update("board.hit", bno);
 //		}
 //		
-		public void rpt(int bno){
-			template.update("board.brpt", bno);
+		
+		
+		
+		
+		
+		
+		//게시판 신고수
+		public void boardRpt(BoardVO bvo){
+			template.update("board.brpt", bvo);
 		}
-			
+		
+		// 유저 신고당한 수
+		public void memberRpt(BoardVO bvo){
+			template.update("board.mrpt", bvo);
+		}
+		
+		// 유저 신고한 수 
+		public void mrptUpdate(String mid){
+			template.update("board.mrptlimit", mid);
+		}
+		
+		// 신고한 수 출력
+		public int cntrptLimit(String mid){
+			return template.selectOne("board.cntrptlimit", mid);
+		}
+		
+		// 게시판 블록 코드로 변경
+		public void blockBoard(int bno){
+			template.update("board.block", bno);
+		}
+		
+		// 제한 초기화 
+		public void resetLimit(){
+			template.update("board.resetlimit");
+		}
 		
 		
 		

@@ -138,5 +138,6 @@ public class urljson {
 		//필요한거 뽑아서
 		System.out.println(uj.mock(jsonObject));
 		
+		
 	}
 }
