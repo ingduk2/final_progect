@@ -40,7 +40,6 @@ table th {
 </style>
 
 <div>		
-	<h1>답변글<small>답변글작성용</small></h1>
 	
 <table width="50%">							
 	<tr>	

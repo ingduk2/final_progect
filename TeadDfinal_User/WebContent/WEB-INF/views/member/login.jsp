@@ -44,6 +44,13 @@
 	.modal-content{
 		background-color:#CCFFCC
 	}
+	
+	
+	
+	.col-md-offset-4{
+		padding-top: 60px
+	}
+	
 </style>
 
 <script>

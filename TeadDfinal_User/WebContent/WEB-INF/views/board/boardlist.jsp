@@ -11,9 +11,10 @@
 <div id="bg">
 <!-- 	<img src="img/boardTitle.png" width="200px"> -->
 
+<!-- <table id="table-pagination" data-toggle="table" data-pagination="true"> -->
 <table>
 	<thead style="font-weight:bold; color:black;">
-		<tr id="title"> <td colspan="2" width="300px">力格</td><td width="180px">累己磊</td><td width="100px">累己老</td><td>炼雀</td> </tr>
+		<tr id="title"> <th colspan="2" width="300px">力格</th><th width="180px">累己磊</th><th width="100px">累己老</th><th>炼雀</th> </tr>
 	</thead>
 	
 	<tbody id="tbodycss">

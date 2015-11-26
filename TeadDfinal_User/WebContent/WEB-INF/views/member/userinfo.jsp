@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
-	
+<!-- winni start -->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<!-- winni end -->
 <style>
 	table th {
 		font-weight: bold;
@@ -97,8 +99,11 @@ a:link {
 		  <li class="list-group-item list-group-item-success">
 		  	<span class="glyphicon glyphicon-user"></span><a href="#"> ³ªÀÇ È°µ¿</a>
 		  </li>
-		  <li class="list-group-item list-group-item-success">
-		  	<span class="glyphicon glyphicon-trash"></span><a href="deleteMember"> Å» ¡¡¡¡Åð</a>
+		  <li class="list-group-item list-group-item-success"><!-- winni -->
+<!-- 		  	<span class="glyphicon glyphicon-trash"></span><a href="deleteMember">Å» ¡¡¡¡Åð</a> -->
+			<c:url var="logout" value="j_spring_security_logout"/><!-- parent.µÎ¹øÂ°º¸ÀÏ°÷.location.href -->
+		  	<span class="glyphicon glyphicon-trash"></span>
+		  	<a href="deleteMember" onclick="location.href='${logout}';" target="_blank">Å» ¡¡¡¡Åð</a>
 		  </li>
 		</ul>
 	  </div>
