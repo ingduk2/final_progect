@@ -59,11 +59,11 @@ a:FOCUS, a:HOVER {
 		<div id="bg">
 			<div id="header">
 			
-				<table height="230px"> 
+				<table height="165px"> 
 				
 					<!-- Login, out 처리start -->
 					<tr>  <!-- 하다보니 드럽게 해버렸네요 그래도 잘 보고 해줄거라 믿어 의심치 않습니다.....(..) 믿어요 ㅋㅋㅋㅋ 잇힝 -->
-						<td align="left"><img src="img/logo.png"></td>
+						<td align="left"><img src="img/testlogo2.png" style="width: 170px"></td>
 						<td align="right" style="vertical-align: top;">
 							<!-- <s:if test="#session.loginid==null"> -->
 							<c:if test="${pageContext.request.userPrincipal.name == null}">

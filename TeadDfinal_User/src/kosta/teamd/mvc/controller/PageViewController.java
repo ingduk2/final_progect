@@ -17,4 +17,9 @@ public class PageViewController {
 	public String deniedView() {
 		return "denied";
 	}
+	
+	@RequestMapping(value="/popup")
+	public String popup(){
+		return "checkpage/popup";
+	}
 }
