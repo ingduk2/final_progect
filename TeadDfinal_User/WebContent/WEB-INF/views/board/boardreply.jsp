@@ -66,7 +66,7 @@ table th {
 	<h1>게시글작성<small>게시글작성을위한form임</small></h1>
 	<table><tr height="30px"><!-- 높이 조절용 칸 떼우기 --><td></td></tr></table>
 	
-<form action="replyinsertboard" method="post" enctype="multipart/form-data">
+<form action="insertReply" method="post" enctype="multipart/form-data">
 	
 	<input type="hidden" name="mid" value="${pageContext.request.userPrincipal.name}">
 	<input type="hidden" name="bip" value="<%= request.getRemoteAddr() %>">
@@ -111,10 +111,9 @@ table th {
 		</tr>
 	</table>				
 
-	
 	<table><tr height="30px"><!-- 높이 조절용 칸 떼우기 --><td></td></tr></table>
 	<button type="submit" class="btn btn-success btn-sm">　글 작 성　</button>
-	<button type="button" class="btn btn-success btn-sm" onclick="location='boardlist?bcode=${reply.bcode}'">　취　　소　</button>
+	<button type="button" class="btn btn-success btn-sm" onclick="location='selectallBoard?bcode=${reply.bcode}'">　취　　소　</button>
 </form>
 	
 </div>

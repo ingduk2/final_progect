@@ -41,5 +41,11 @@ public class AnimalDao{
 	public void imgUpdate(AnimalVO avo){
 		ss.update("animal.imgupdate", avo);
 	}
-
+	
+	//서치값이랑 합쳐야함.
+	public int imgCnt(){
+	  return ss.selectOne("animal.imgcnt");
+	}
+	
+	
 }

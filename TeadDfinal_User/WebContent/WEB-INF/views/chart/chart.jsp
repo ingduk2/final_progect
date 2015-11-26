@@ -16,7 +16,7 @@ function test() {
 	  var yearv=$('#year').val();
 	  alert(yearv);
 	  $.ajax({
-	   url : 'chartdata',
+	   url : 'selectallChart',
 	   type : 'GET',
 	   data : {
 		   year : yearv

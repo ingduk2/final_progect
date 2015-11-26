@@ -56,7 +56,6 @@
 		        } else {
 		            if( log ) alert(log);
 		        }
-		        
 		    });
 		});
 </script>
@@ -65,7 +64,7 @@
 <div>
 	
 	<img src="img/boardupdate.png" width="300px">
-	<form action="imgupdate" method="post" enctype="multipart/form-data">
+	<form action="updateAnimal" method="post" enctype="multipart/form-data">
 	<input type="hidden" name="anino" value="${avo.anino }">
 	<table><tr height="30px"><!-- 높이 조절용 칸 떼우기 --><td></td></tr></table>		
 			<table width="500px">				
@@ -111,6 +110,6 @@
 			<table><tr height="30px"><!-- 높이 조절용 칸 떼우기 --><td></td></tr></table>
 			<button type="submit" class="btn btn-success btn-sm">　수정완료　</button>
 			<button type="button" class="btn btn-success btn-sm" 
-			onclick="location='imgboarddetail?anino=${avo.anino}&bno=${avo.bno }'">　수정취소　</button>
+			onclick="location='selectoneAnimal?anino=${avo.anino}&bno=${avo.bno }'">　수정취소　</button>
 			</form>	
 </div>

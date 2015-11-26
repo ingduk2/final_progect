@@ -15,18 +15,18 @@ public class CommBoardController {
 	@Autowired
 	private CommBoardDao cbdao;
 	
-	@RequestMapping(value="/insertComboard", method=RequestMethod.POST)
+	@RequestMapping(value="/insertComm", method=RequestMethod.POST)
 	public ModelAndView insertComm(CommBoardVO cbvo, String orimid){
 		System.out.println(cbvo.getBno()+"이당당당");
-		ModelAndView mav=new ModelAndView("redirect:/boarddetail?bno="+cbvo.getBno()+"&mid="+orimid);
+		ModelAndView mav=new ModelAndView("redirect:/selectoneBoard?bno="+cbvo.getBno()+"&mid="+orimid);
 		cbdao.insertCommBoard(cbvo);
 		return mav;
 	}
 	
 	@RequestMapping(value="deleteComm")
-	public ModelAndView deleteComm(int cbno, int bno){
+	public ModelAndView deleteComm(int cbno, int bno, String mid){
 		cbdao.deleteComm(cbno);
-		return new ModelAndView("redirect:/boarddetail?bno="+bno);
+		return new ModelAndView("redirect:/selectoneBoard?bno="+bno+"&mid="+mid);
 	}
 	
 }
