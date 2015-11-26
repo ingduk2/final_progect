@@ -102,7 +102,10 @@ public class BoardDao {
 			template.update("board.resetlimit");
 		}
 		
-		
+		// 해당 회원이 작성한, 해당 게시판의 마지막 글 (방금 쓴 글)의 글 번호 추출
+		public String selectBno(BoardVO bvo) {
+			return template.selectOne("board.selectBno", bvo);
+		}
 		
 	
 } //end BoardDao
