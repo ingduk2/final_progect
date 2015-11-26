@@ -2,6 +2,13 @@
     pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<!-- 
+	※ 변경 사항 ※
+	- 메뉴바와 게시판 리스트 사이 공간 띄움
+	- bcode 1 (공지사항) 에서는 글쓰기 버튼 안보이게 함
+	- 각종 멘트 변경
+ -->
+
 <style>
 	.glyphicon {
 		color: #8fbc8f
@@ -9,11 +16,13 @@
 </style>
 
 <div id="bg">
-<!-- 	<img src="img/boardTitle.png" width="200px"> -->
+<!-- 공간 띄우기 용 -->
+<table><tr height="50px"><td></td></tr></table>
 
+<!-- <table id="table-pagination" data-toggle="table" data-pagination="true"> -->
 <table>
 	<thead style="font-weight:bold; color:black;">
-		<tr id="title"> <td colspan="2" width="300px">제목</td><td width="180px">작성자</td><td width="100px">작성일</td><td>조회</td> </tr>
+		<tr id="title"> <th colspan="2" width="300px">제목</th><th width="180px">작성자</th><th width="100px">작성일</th><th>조회</th> </tr>
 	</thead>
 	
 	<tbody id="tbodycss">
@@ -44,9 +53,14 @@
 		<tr> 
 			<td colspan="3"></td>  
 			<td colspan="2"> 
-				<button type="submit" onclick="location='formBoard?bcode=${bcode}'" class="btn btn-success btn-sm">
-					&nbsp;&nbsp;글 쓰 기&nbsp;&nbsp;
-				</button> 
+			
+				<!-- 공지사항 게시판에서는 글쓰기 버튼 안보이게 -->
+				<c:if test="${bcode != 1}">
+					<button type="submit" onclick="location='formBoard?bcode=${bcode}'" class="btn btn-success btn-sm">
+						&nbsp;&nbsp;글 쓰 기&nbsp;&nbsp;
+					</button>
+				</c:if>
+				 
 			</td> 
 		</tr>
 	</tfoot>

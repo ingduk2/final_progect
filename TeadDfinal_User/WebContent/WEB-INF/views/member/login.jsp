@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
+<!-- 
+	※ 변경 사항 ※
+	- 메뉴바와 로그인 폼 사이 공간 띄움
+ -->
+
 <style>
 	#my_container {
 	  -webkit-font-smoothing: antialiased;
@@ -44,6 +49,17 @@
 	.modal-content{
 		background-color:#CCFFCC
 	}
+	
+	.col-md-offset-4 {
+		margin-top: 50px;
+	}
+	
+	
+	
+	.col-md-offset-4{
+		padding-top: 60px
+	}
+	
 </style>
 
 <script>
@@ -168,7 +184,7 @@ function closereset2(){
 
     <div class="col-md-offset-4 col-md-3" style="width: 450px">
         <div class="form-login">
-        <h1 class="text-center">Login<small>로그인페이지</small></h1>
+        <h1 class="text-center">Login</h1>
          
         <input type="text" id="loginemail" name="mid" class="form-control input-lg chat-input" placeholder="아이디" /></br>
          
@@ -177,7 +193,7 @@ function closereset2(){
         <div class="wrapper">
          <span class="group-btn">     
 <!--              <a href="#" class="btn btn-success btn-lg btn-block">login <i class="fa fa-sign-in"></i></a> -->
-			<input type="submit" class="btn btn-success btn-lg btn-block" value="login">
+			<input type="submit" class="btn btn-success btn-lg btn-block" value="로그인">
          </span>
         </div>
          

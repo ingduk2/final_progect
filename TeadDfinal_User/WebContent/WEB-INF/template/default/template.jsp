@@ -10,14 +10,15 @@
 <title>TeamD</title>
 	<!-- Css  -->
 	<link rel="stylesheet" type="text/css" href="resources/default.css">
+<!-- 	<link rel="stylesheet" type="text/css" href="resources/bootstrap-table.min.css"> ë¯¼ì˜ css-->
 	
 <script type="text/javascript">
-var stmnLEFT = 10; // ¿À¸¥ÂÊ ¿©¹é 
-var stmnGAP1 = 0; // À§ÂÊ ¿©¹é 
-var stmnGAP2 = 150; // ½ºÅ©·Ñ½Ã ºê¶ó¿ìÀú À§ÂÊ°ú ¶³¾îÁö´Â °Å¸® 
-var stmnBASE = 150; // ½ºÅ©·Ñ ½ÃÀÛÀ§Ä¡ 
-var stmnActivateSpeed = 35; //½ºÅ©·ÑÀ» ÀÎ½ÄÇÏ´Â µô·¹ÀÌ (¼ıÀÚ°¡ Å¬¼ö·Ï ´À¸®°Ô ÀÎ½Ä)
-var stmnScrollSpeed = 20; //½ºÅ©·Ñ ¼Óµµ (Å¬¼ö·Ï ´À¸²)
+var stmnLEFT = 10; // ì˜¤ë¥¸ìª½ ì—¬ë°± 
+var stmnGAP1 = 0; // ìœ„ìª½ ì—¬ë°± 
+var stmnGAP2 = 150; // ìŠ¤í¬ë¡¤ì‹œ ë¸Œë¼ìš°ì € ìœ„ìª½ê³¼ ë–¨ì–´ì§€ëŠ” ê±°ë¦¬ 
+var stmnBASE = 150; // ìŠ¤í¬ë¡¤ ì‹œì‘ìœ„ì¹˜ 
+var stmnActivateSpeed = 35; ///ìŠ¤í¬ë¡¤ì„ ì¸ì‹í•˜ëŠ” ë”œë ˆì´ (ìˆ«ìê°€ í´ìˆ˜ë¡ ëŠë¦¬ê²Œ ì¸ì‹)
+var stmnScrollSpeed = 20; //ìŠ¤í¬ë¡¤ ì†ë„ (í´ìˆ˜ë¡ ëŠë¦¼)
 var stmnTimer;
  
  function RefreshStaticMenu() { 
@@ -33,7 +34,7 @@ var stmnTimer;
   stmnTimer = setTimeout("RefreshStaticMenu();", stmnActivateSpeed); 
   } 
  function InitializeStaticMenu() {
-  document.getElementById('staticmenu').style.right = stmnLEFT + 'px';  //Ã³À½¿¡ ¿À¸¥ÂÊ¿¡ À§Ä¡. left·Î ¹Ù²ãµµ.
+  document.getElementById('staticmenu').style.right = stmnLEFT + 'px';  //Ã³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ê¿ï¿½ ï¿½ï¿½Ä¡. leftï¿½ï¿½ ï¿½Ù²ãµµ.
   document.getElementById('staticmenu').style.top = document.body.scrollTop + stmnBASE + 'px'; 
   RefreshStaticMenu();
   }
@@ -41,6 +42,15 @@ var stmnTimer;
 
 <style type="text/css">
 #staticmenu { margin: 0pt; padding: 0pt;  position: absolute; right: 0px; top: 0px;}
+#wanted{
+	background-image: url('img/wanted.png');
+	width: 130px; 
+	height: 177px
+}
+#wantedbaby{
+	 width: 80px;
+	 padding-top: 70px;
+}
 </style>
 </head>
 <body onload="InitializeStaticMenu();">
@@ -60,7 +70,12 @@ var stmnTimer;
 </body>
 
 <div id="staticmenu" style="border: 1px solid red;">
-	<img src="http://skin011.com.ne.kr/HOME/tag1/img/ani_pskippy.gif">
+<!-- 	<img src="http://skin011.com.ne.kr/HOME/tag1/img/ani_pskippy.gif"> -->
+	
+	<div id="wanted">
+		<img id="wantedbaby" src="img/a.PNG"><p>
+		<strong>1,000,000ï¿¦</strong>
+	</div>
 	<p><img src="img/tabmenu_news.png">
 	<p><a href="http://edu2.kvma.or.kr/"><img src="img/tabmenu_camera.png" width="80px"></a>
 </div>

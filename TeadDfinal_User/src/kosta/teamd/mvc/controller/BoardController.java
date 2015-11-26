@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -41,8 +42,6 @@ public class BoardController {
 	
 	@RequestMapping(value="/insertBoard", method=RequestMethod.POST)
 	public ModelAndView insertBoard(BoardVO bvo, HttpServletRequest request) {
-		String bcode=String.valueOf(bvo.getBcode());
-		ModelAndView mav=new ModelAndView("redirect:/selectallBoard?bcode="+bcode);
 		
 		HttpSession session=request.getSession();
 		String r_path=session.getServletContext().getRealPath("/");
@@ -64,6 +63,10 @@ public class BoardController {
 		bvo.setBfile(originalFile);
 		bdao.insertBoard(bvo);
 		
+		String bno = bdao.selectBno(bvo);
+		
+		ModelAndView mav=new ModelAndView("redirect:/selectoneBoard?bno="+bno+"&mid="+bvo.getMid());
+
 		return mav;
 	}
 	
@@ -81,9 +84,19 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="/selectoneBoard")
-	public ModelAndView selectoneBoard(int bno, String mid){
-		//hit
-		bdao.hitBoard(bno);
+	public ModelAndView selectoneBoard(int bno, String mid, Principal prcp){
+		
+		if (prcp != null) {
+			
+			if (!prcp.getName().equals(mid)) {
+				//hit
+				bdao.hitBoard(bno);
+			}
+		}
+		else {
+			bdao.hitBoard(bno);
+		}
+		
 		MemberVO mvo= bdao.namecard(mid);
 		
 		BoardVO bvo=bdao.detailBoard(bno);
@@ -164,8 +177,6 @@ public class BoardController {
 	@RequestMapping(value="/insertReply", method=RequestMethod.POST)
 	public ModelAndView insertReply(BoardVO bvo, HttpServletRequest request){
 		
-		ModelAndView mav=new ModelAndView("redirect:/boardlist?bcode="+bvo.getBcode());
-		
 		HttpSession session=request.getSession();
 		String r_path=session.getServletContext().getRealPath("/");
 		
@@ -185,6 +196,10 @@ public class BoardController {
 		
 		bvo.setBfile(originalFile);
 		bdao.replyBoard(bvo);
+		
+		String bno = bdao.selectBno(bvo);
+		
+		ModelAndView mav=new ModelAndView("redirect:/selectoneBoard?bno="+bno+"&mid="+bvo.getMid());
 		
 		return mav;
 	}

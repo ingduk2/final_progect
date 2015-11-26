@@ -26,7 +26,7 @@
 		select
 			cbno, bno, cbcontent, mid, cbip,
 			to_char(cbdate, 'yyyy/mm/dd') as cbdate
-		from commboard where bno=#{bno} order by cbno desc
+		from commboard where bno=#{bno} order by cbno asc
 	</select>
 	
 	<delete id="deleteComm" parameterType="int">

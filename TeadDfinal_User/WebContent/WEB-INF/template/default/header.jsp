@@ -11,6 +11,7 @@
 
 <!-- js 파일 사용 경로 설정  -->
 <script src="resources/js/goUrl.js"></script>    
+<!-- <script src="resources/js/bootstrap-table.min.js"></script>  민영js   -->
     
 <style>
 .nav .open>a, .nav .open>a:focus, .nav .open>a:hover{

@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<!-- 
+	※ 변경 사항 ※
+	- 상단 이미지 삭제, 메뉴바와 로그인 폼 사이 공간 띄움
+ -->
+
 <!-- 다음 주소 찾기 api 사용 -->
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 	
@@ -288,7 +294,8 @@
 
 <form onsubmit="return checksubmit()" name="joinform" action="insertMember" method="post">
 	<div>
-		<img src="img/jointitle.png" width="200px">
+		<!-- 공간 띄우기 용 -->
+		<table><tr height="50px"><td></td></tr></table>
 		
 		<table id="formtable">
 			
