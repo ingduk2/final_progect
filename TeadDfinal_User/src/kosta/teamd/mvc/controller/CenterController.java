@@ -1,6 +1,9 @@
 package kosta.teamd.mvc.controller;
 
+import java.io.UnsupportedEncodingException;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,21 +24,31 @@ public class CenterController {
 
 	@Autowired
 	private urljson myjson;
+	
 	@Autowired
 	private CenterDao cdao;
 	
-	@RequestMapping(value="/admincenter")
-	public String gocenter(){
+	@RequestMapping(value="/formCenter")
+	public String formCenter(){
 		return "center/admincenter";
 	}
 	
-	@RequestMapping(value="/insertcenter",method=RequestMethod.POST)
-	public ModelAndView insertcenter(CenterVO vo){
-		ModelAndView mav= new ModelAndView("redirect:/listcenter");
-		System.out.println(vo.getCaddr());
+	@RequestMapping(value="/insertCenter",method=RequestMethod.POST)
+	public ModelAndView insertCenter(CenterVO vo) throws UnsupportedEncodingException{
+		
+		
+		ModelAndView mav= new ModelAndView("redirect:/selectallCenter");
+		
 		//먼저 주소를 변환한다.
 		JSONObject jsonObject= new JSONObject();
+		
+		//시험해....
+		//String str=param.replaceAll(" ", "%20");
+		//jsonObject = myjson.myJason(vo.getCaddr().toString());
 		jsonObject = myjson.myJason(vo.getCaddr());
+		//myjson.mock(jsonObject);
+		
+//		System.out.println("주소 : " + vo.getCaddr());
 		//그 후에 리턴받아서 디비에 저장한다.
 		//필요한거 뽑아서
 		vo.setCxy(myjson.mock(jsonObject));
@@ -46,10 +59,9 @@ public class CenterController {
 		return mav;
 	}
 	
-	@RequestMapping(value="/listcenter")
-	public ModelAndView listcenter(BoardVO bvo){ //search 때무에 씀
+	@RequestMapping(value="/selectallCenter")
+	public ModelAndView selectallCenter(BoardVO bvo){ //search 때무에 씀
 		ModelAndView mav= new ModelAndView("center/map");
-		
 		List<CenterVO> list=cdao.list(bvo);
 		//여기서 json으로 만들어서 보내줘얗ㄴ다
 		mav.addObject("list",list);
@@ -60,8 +72,8 @@ public class CenterController {
 	}
 	
 	//ajax!!
-	@RequestMapping(value="jsoncenter")
-	public ModelAndView jsoncenter(BoardVO bvo){
+	@RequestMapping(value="selectalljsonCenter")
+	public ModelAndView selectalljsonCenter(BoardVO bvo){
 		ModelAndView mav= new ModelAndView("/center/jsonmap");
 		List<CenterVO> list=cdao.list(bvo);
 		

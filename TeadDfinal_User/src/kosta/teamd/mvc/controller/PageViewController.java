@@ -8,13 +8,13 @@ public class PageViewController {
 
 	// 메인 페이지
 	@RequestMapping(value={"/", "/index"})
-	public String indexView() {
+	public String formIndex() {
 		return "index";
 	}
 	
 	// 디나이 페이지
 	@RequestMapping(value="/denied")
-	public String deniedView() {
+	public String formDenied() {
 		return "denied";
 	}
 	

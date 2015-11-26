@@ -17,15 +17,15 @@ public class ChartController {
 	@Autowired
 	private ChartDao cdao;
 	
-	@RequestMapping(value="/chart")
-	public ModelAndView chart(String year){
+	@RequestMapping(value="/formChart")
+	public ModelAndView formChart(String year){
 		ModelAndView mav= new ModelAndView("chart/chart");
 		mav.addObject("year",year);
 		return mav;
 	}
 	
-	@RequestMapping(value="/chartdata")
-	public ModelAndView chartdata(String year){
+	@RequestMapping(value="/selectallChart")
+	public ModelAndView selectallChart(String year){
 		ModelAndView mav= new ModelAndView("/chart/chartdata");
 		
 		ArrayList<Double> data= new ArrayList<>();

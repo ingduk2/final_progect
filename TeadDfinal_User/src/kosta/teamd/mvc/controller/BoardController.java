@@ -32,17 +32,17 @@ public class BoardController {
 	@Autowired
 	private CommBoardDao cbdao;
 	
-	@RequestMapping(value="boardwrite")
-	public ModelAndView writeBoard(String bcode){
+	@RequestMapping(value="formBoard")
+	public ModelAndView formBoard(String bcode){
 		ModelAndView mav=new ModelAndView("board/boardwrite");
 		mav.addObject("bcode", bcode);
 		return mav;
 	}
 	
-	@RequestMapping(value="/insertboard", method=RequestMethod.POST)
+	@RequestMapping(value="/insertBoard", method=RequestMethod.POST)
 	public ModelAndView insertBoard(BoardVO bvo, HttpServletRequest request) {
 		String bcode=String.valueOf(bvo.getBcode());
-		ModelAndView mav=new ModelAndView("redirect:/boardlist?bcode="+bcode);
+		ModelAndView mav=new ModelAndView("redirect:/selectallBoard?bcode="+bcode);
 		
 		HttpSession session=request.getSession();
 		String r_path=session.getServletContext().getRealPath("/");
@@ -67,8 +67,8 @@ public class BoardController {
 		return mav;
 	}
 	
-	@RequestMapping(value="/boardlist")
-	public ModelAndView listBoard(BoardVO bvo) {
+	@RequestMapping(value="/selectallBoard")
+	public ModelAndView selectallBoard(BoardVO bvo) {
 		System.out.println("getBcode "+bvo.getBcode());
 		System.out.println("getSearchType "+bvo.getSearchType());
 		System.out.println("getSearchValue "+bvo.getSearchValue());
@@ -80,11 +80,10 @@ public class BoardController {
 		return mav;
 	}
 	
-	@RequestMapping(value="/boarddetail")
-	public ModelAndView detailBoard(int bno, String mid){
+	@RequestMapping(value="/selectoneBoard")
+	public ModelAndView selectoneBoard(int bno, String mid){
 		//hit
 		bdao.hitBoard(bno);
-
 		MemberVO mvo= bdao.namecard(mid);
 		
 		BoardVO bvo=bdao.detailBoard(bno);
@@ -98,30 +97,30 @@ public class BoardController {
 		return mav;
 	}
 	
-	@RequestMapping(value="/boarddelete")
+	@RequestMapping(value="/deleteBoard")
 	public ModelAndView deleteBoard(int bno, int bcode){
 		bdao.deleteBoard(bno);
-		return new ModelAndView("redirect:/boardlist?bcode="+bcode);
+		return new ModelAndView("redirect:/selectallBoard?bcode="+bcode);
 	}
 	
-	@RequestMapping(value="/boardupdateform")
-	public ModelAndView updateFormBoard(int bno){
+	@RequestMapping(value="/updateformBoard")
+	public ModelAndView updateformBoard(int bno){
 		BoardVO bvo=bdao.updateFormBoard(bno);
 		ModelAndView mav=new ModelAndView("board/boardupdate");
 		mav.addObject("bvo", bvo);
 		return mav;
 	}
-	@RequestMapping(value="boardupdate", method=RequestMethod.POST)
+	@RequestMapping(value="updateBoard", method=RequestMethod.POST)
 	public ModelAndView updateBoard(BoardVO bvo){
 		System.out.println(bvo.getBtitle());
 		bdao.updateBoard(bvo);
-		ModelAndView mav=new ModelAndView("redirect:/boarddetail?bno="+String.valueOf(bvo.getBno()));
+		ModelAndView mav=new ModelAndView("redirect:/selectoneBoard?bno="+String.valueOf(bvo.getBno())+"&mid="+bvo.getMid());
 		return mav;
 	}
 	
 	private static final int BUFFER_SIZE=4096;
 	@RequestMapping(value="/fileDown")
-	public void fileDownBoard(@RequestParam("fileName") String fileName, HttpSession session, HttpServletRequest request, HttpServletResponse response) throws IOException{
+	public void filedownBoard(@RequestParam("fileName") String fileName, HttpSession session, HttpServletRequest request, HttpServletResponse response) throws IOException{
 		System.out.println("log1");
 		System.out.println("log2");
 		System.out.println("log2");
@@ -150,8 +149,8 @@ public class BoardController {
 	}
 	
 	
-	@RequestMapping(value="/setreply")
-	public ModelAndView goreply(BoardVO bvo){
+	@RequestMapping(value="/formReply")
+	public ModelAndView formReply(BoardVO bvo){
 		System.out.println("Bref "+bvo.getBref());
 		System.out.println("Bseq "+bvo.getBseq());
 		System.out.println("Blvl "+bvo.getBlvl());
@@ -162,8 +161,8 @@ public class BoardController {
 	}
 	
 	
-	@RequestMapping(value="/replyinsertboard", method=RequestMethod.POST)
-	public ModelAndView replyinsertboard(BoardVO bvo, HttpServletRequest request){
+	@RequestMapping(value="/insertReply", method=RequestMethod.POST)
+	public ModelAndView insertReply(BoardVO bvo, HttpServletRequest request){
 		
 		ModelAndView mav=new ModelAndView("redirect:/boardlist?bcode="+bvo.getBcode());
 		

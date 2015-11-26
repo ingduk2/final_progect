@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
- pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ page trimDirectiveWhitespaces="true"%>
 
 
@@ -16,7 +16,7 @@ function test() {
 	  var yearv=$('#year').val();
 	  alert(yearv);
 	  $.ajax({
-	   url : 'chartdata',
+	   url : 'selectallChart',
 	   type : 'GET',
 	   data : {
 		   year : yearv
@@ -29,7 +29,7 @@ function test() {
 	    var opt3 = [];
 	    var v = vals.split(",");
 	    //alert(v);
-	    //ÀÚ¹Ù½ºÅ©¸³Æ® ÀÇ »õ·Î¿î opt¶õ ¹è¿­°ª¿¡ ÀúÀåÇÒ ¶§ ½Ç¼öÇüÀ¸·Î º¯È¯ 
+	    //ìë°”ìŠ¤í¬ë¦½íŠ¸ ì˜ ìƒˆë¡œìš´ optë€ ë°°ì—´ê°’ì— ì €ì¥í•  ë•Œ ì‹¤ìˆ˜í˜•ìœ¼ë¡œ ë³€í™˜ 
 	    //alert(v.length);
 	    for (var i = 0; i < v.length; i++) {
 	    	if(i>=0 && i<12){

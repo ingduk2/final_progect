@@ -1,6 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-	
+<%@ page language="java" contentType="text/html" pageEncoding="UTF-8"%>
+
 <link rel='stylesheet'
 	href='http://fullcalendar.io/js/fullcalendar-2.3.1/lib/cupertino/jquery-ui.min.css' />
 <link
@@ -33,7 +32,7 @@ var last_seq;
 $(function(){
 	
 	 $.ajax({
-        url: "loadCal", //"testAjax.jsp", 
+        url: "selectallCal", //"testAjax.jsp", 
         type: "POST",
         success: function(json) { //데이터 받는 부분.response 
           
@@ -98,7 +97,7 @@ function callendar(){
 								
 								//삭제 ajax
 								 $.ajax({
-								        url: "deletecal", //"testAjax.jsp", 
+								        url: "deleteCal", //"testAjax.jsp", 
 								        type: "POST",
 								        data: { //파라미터로 q
 							                 //volunteertitle : calEvent.title,
@@ -121,7 +120,7 @@ function callendar(){
 						}else{
 							//신청했는지 아닌지 구분 한 후에 자바에서 구분하자.
 							$.ajax({
-								        url: "applyService", //"testAjax.jsp", 
+								        url: "insertdeleteCal", //"testAjax.jsp", 
 								        type: "POST",
 								        data: { //파라미터로 q
 							                 memid : username,
@@ -133,7 +132,7 @@ function callendar(){
 								     		alert("--"+msg+"--");
 								        	if(msg=='delete'){
 								        		alert("detetetete");
-								        		$(this).removeAttr("style");
+								 
 								        		$(this).css('background-color', 'green');
 								        	}else{
 								        		$(this).css('background-color', 'red');
@@ -152,6 +151,12 @@ function callendar(){
 						
 						
 					},
+					
+					//마우스 오버 이벤트
+// 					eventMouseover: function( calEvent, jsEvent, view ) { 
+// 						alert('Event: ' + calEvent.title);
+// 					},
+					
 					
 					//사용자
 					//사용자 색 바꾸기.
@@ -180,7 +185,7 @@ function callendar(){
 // 						alert("selected from: " + start.format() + ", to: "
 // 								+ end.format()); 
 						 $.ajax({
-				              url: "insertcal", //"testAjax.jsp", 
+				              url: "insertCal", //"testAjax.jsp", 
 				              type: "POST",
 				              data: { //파라미터로 q
 				            	  
@@ -223,7 +228,7 @@ function callendar(){
 // 				    },
 				    
 				
-
+					
 					
 					//둘다 필요한 부분.
 					//처음에 디비에서 끌어오는 부분

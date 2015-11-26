@@ -1,4 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
 <style>
 table th { 
 	font-weight: bold; 
@@ -36,7 +38,7 @@ table th {
 </style>
 
 <script>
-	// 	ÆÄÀÏ ¾÷·Îµå¿ë ½ºÅ©¸³Æ®
+	// 	íŒŒì¼ ì—…ë¡œë“œìš© ìŠ¤í¬ë¦½íŠ¸
 	$(document).on('change', '.btn-file :file', function() {
 		  var input = $(this),
 		      numFiles = input.get(0).files ? input.get(0).files.length : 1,
@@ -62,26 +64,26 @@ table th {
 
 <div>
 	
-	<h1>°Ô½Ã±ÛÀÛ¼º<small>°Ô½Ã±ÛÀÛ¼ºÀ»À§ÇÑformÀÓ</small></h1>
-	<table><tr height="30px"><!-- ³ôÀÌ Á¶Àı¿ë Ä­ ¶¼¿ì±â --><td></td></tr></table>
+	<h1>ê²Œì‹œê¸€ì‘ì„±<small>ê²Œì‹œê¸€ì‘ì„±ì„ìœ„í•œformì„</small></h1>
+	<table><tr height="30px"><!-- ë†’ì´ ì¡°ì ˆìš© ì¹¸ ë–¼ìš°ê¸° --><td></td></tr></table>
 	
-<form action="insertboard" method="post" enctype="multipart/form-data">
+<form action="insertBoard" method="post" enctype="multipart/form-data">
 	
 	<input type="hidden" name="bcode" value="${bcode}">
 	<input type="hidden" name="mid" value="${pageContext.request.userPrincipal.name}">
 	<input type="hidden" name="bip" value="<%= request.getRemoteAddr() %>">
 	
 	<table width="500px">
-		<tr> <th colspan="2">±Û¾²±â</th> </tr>			
+		<tr> <th colspan="2">ê¸€ì“°ê¸°</th> </tr>			
 		<tr>	
 			<th>title</th>	
 			<td>
-				<input name="btitle" class="form-control input-sm" placeholder="Á¦¸ñÀ» ÀÔ·ÂÇÏ¼¼¿ä">
+				<input name="btitle" class="form-control input-sm" placeholder="ì œëª©ì„ ì…ë ¥í•˜ì„¸ìš”">
 			</td>	
 		</tr>
 		
 		<tr>
-			<th>¾÷·Îµå</th>
+			<th>ì—…ë¡œë“œ</th>
 			<td>
 				<div class="input-group">
 	                <input type="text" class="form-control input-sm" placeholder="Try selecting one file" readonly >
@@ -101,15 +103,17 @@ table th {
 		
 		<tr>	
 			<td colspan="2"  height="500px">
-				<textarea name="bcontent" class="form-control" rows="10" id="comment" placeholder="³»¿ëÀ» ÀÔ·ÂÇÏ¼¼¿ä"></textarea>
+				<textarea name="bcontent" class="form-control" rows="10" id="comment" placeholder="ë‚´ìš©ì„ ì…ë ¥í•˜ì„¸ìš”"></textarea>
 			</td>		
 		</tr>
 	</table>				
 
 	
-	<table><tr height="30px"><!-- ³ôÀÌ Á¶Àı¿ë Ä­ ¶¼¿ì±â --><td></td></tr></table>
-	<button type="submit" class="btn btn-success btn-sm">¡¡±Û ÀÛ ¼º¡¡</button>
-	<button type="button" class="btn btn-success btn-sm" onclick="location='boardlist?bcode=${bcode}'">¡¡Ãë¡¡¡¡¼Ò¡¡</button>
+
+	<table><tr height="30px"><!-- ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ä­ ï¿½ï¿½ï¿½ï¿½ï¿½ --><td></td></tr></table>
+	<button type="submit" class="btn btn-success btn-sm">ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½</button>
+	<button type="button" class="btn btn-success btn-sm" onclick="location='selectallBoard?bcode=${bcode}'">ï¿½ï¿½ï¿½ë¡¡ï¿½ï¿½ï¿½Ò¡ï¿½</button>
+
 </form>
 	
 </div>

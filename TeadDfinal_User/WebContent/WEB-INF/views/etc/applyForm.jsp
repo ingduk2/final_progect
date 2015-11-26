@@ -121,6 +121,7 @@
 	        </div>
 		</td>  
 	</tr>
+
 	
 	<tr> 
 		<th>2</th>　　
@@ -274,7 +275,7 @@
 		<th>10</th>
 		<td align="left">　입양 후 중성화수술을 하시겠습니까?</td>  
 	</tr>
-	<tr> 
+	<tr> 	
 		<th></th> 
 		<td align="left">　　
 			<label class="radio-inline">

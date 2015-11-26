@@ -15,17 +15,27 @@ public class CommBoardController_ {
 	@Autowired
 	private CommBoardDao cbdao;
 	
-	
+	//합칠예정
 	@RequestMapping(value="commInsert", method=RequestMethod.POST)
 	public ModelAndView commInsert(CommBoardVO cbvo, int anino){
 		
 		System.out.println(cbvo.getBno());
 		cbdao.commInsert(cbvo);
-		ModelAndView mav = new ModelAndView("redirect:imgboarddetail");
+		ModelAndView mav = new ModelAndView("redirect:selectoneAnimal");
 		int bno = cbvo.getBno();
 		System.out.println("bno(comm) : " + bno);
 		mav.addObject("bno", bno);
 		mav.addObject("anino", anino);
+		return mav;
+	}
+	
+	
+	@RequestMapping(value="commDelete")
+	public ModelAndView commdelete(int cbno, int anino, int bno){
+		cbdao.commDelete(cbno);
+		ModelAndView mav = new ModelAndView("redirect:selectoneAnimal");
+		mav.addObject("anino", anino);
+		mav.addObject("bno", bno);
 		return mav;
 	}
 	

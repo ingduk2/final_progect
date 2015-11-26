@@ -36,12 +36,14 @@
 	<!-- authentication-manager id는 마음대로 설정 가능 -->
 	<authentication-manager id="jdbc-auth">
 		<authentication-provider>
-			<jdbc-user-service data-source-ref="dataSource"
-				users-by-username-query="select mid, mpwd, enabled from member where mid=?"
+			<jdbc-user-service data-source-ref="dataSource"		
+				users-by-username-query="select mid, mpwd,enabled from member where mid=?"
 				authorities-by-username-query="select mid, role from memroles where mid=?"
 			/>
 		</authentication-provider>
 	</authentication-manager>
+	
+	
 	
 	<!-- 
 		authentication-manager-ref : 인증(허가권)을 관리하는 매니저가 참조하는 속성(설정)
@@ -49,9 +51,9 @@
 	 -->
 	<http authentication-manager-ref="jdbc-auth"
 	 	  access-decision-manager-ref="accessDecisionManager">
-
+	 	  
 		<!-- 각 페이지 접근 권한 설정 -->
-		<intercept-url pattern="/mselectupdate" access="User" />
+		<intercept-url pattern="updateformMember" access="User" />
 	 	
 	 	<!-- login 처리 -->
 	 	<form-login

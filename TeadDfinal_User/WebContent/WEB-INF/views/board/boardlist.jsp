@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <style>
 	.glyphicon{
@@ -31,7 +32,7 @@
 					<c:if test="${list.blvl != 0}">
 						<span class="glyphicon glyphicon-arrow-right"></span>&nbsp;
 					</c:if>
-					<a href="boarddetail?bno=${list.bno}&mid=${list.mid}">
+					<a href="selectoneBoard?bno=${list.bno}&mid=${list.mid}">
 						${list.btitle}
 					</a>
 				</td>
@@ -49,7 +50,7 @@
 		<tr> 
 			<td colspan="3"></td>  
 			<td colspan="2"> 
-				<button type="submit" onclick="location='boardwrite?bcode=${bcode}'" class="btn btn-success btn-sm">
+				<button type="submit" onclick="location='formBoard?bcode=${bcode}'" class="btn btn-success btn-sm">
 					&nbsp;&nbsp;±Û ¾² ±â&nbsp;&nbsp;
 				</button> 
 			</td> 
