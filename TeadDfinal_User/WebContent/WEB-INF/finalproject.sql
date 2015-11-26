@@ -185,8 +185,13 @@ end;
 select new_line(bcontent) from board;
 
 
-
-
+--chart 예비
+create table chart(
+cdate date,
+a number,
+b number,
+c number,
+d number);
 --chart data
 insert into chart values('2011-01-01',10,10,10,10);
 insert into chart values('2011-02-01',10,10,10,10);

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
-
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- 다음 주소 찾기 api 사용 -->
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 	
@@ -49,6 +49,7 @@
 	#fsf{
 		color: red;
 	}
+	.ui-datepicker{z-index: 99 !important};
 </style>
 
 <script>
@@ -124,17 +125,13 @@
 		var dateFormat = $( "#datepicker" ).datepicker( "option", "dateFormat" );
 		// 날짜 형식 setter
 		$( "#datepicker" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
-		
-		// 년도 기간 변경
-		$( "#datepicker" ).datepicker({
-			yearRange: "1915:2015"
-		});
+
 		// 년도 기간 getter
 		var yearRange = $( "#datepicker" ).datepicker( "option", "yearRange" );
 		// 년도 기간 setter
-		$( "#datepicker" ).datepicker( "option", "yearRange", "1915:2015" );
+		$( "#datepicker" ).datepicker( "option", "yearRange", "-50:c" );
 	}); // end 생년월일 가져오는 function
-
+	
 	// 모든 양식 제대로 기입했을 때만 진행할 수 있도록 체크하는 함수
 	function checksubmit() {
 		if (document.joinform.mid.value=="") {
@@ -201,24 +198,20 @@
 		}
 		
 		// 동일한 아이디가 이미 존재할 시 수행
-// 		var mid = "이미 존재하는 아이디 입니다.";
-		
-// 		if (document.joinform.midchkres.value==mid) {
-// 			alert("아이디를 다시 입력해주세요")
-// 			document.joinform.mid.focus()
-// 			return false
-// 		}
+		if ($('#midchkres').text()=="이미 존재하는 아이디 입니다." || $('#midchkres').text()=="") {
+			alert("아이디 중복 확인을 해주세요.")
+			document.joinform.mid.focus()
+			return false
+		}
 		
 		// 동일한 메일 주소가 이미 존재할 시 수행
-// 		var memail = "이미 존재하는 메일 주소 입니다.";
+		if ($('#memailchkres').text()=="이미 존재하는 메일 주소 입니다." || $('#memailchkres').text()=="") {
+			alert("이메일 중복 확인을 해주세요.")
+			document.joinform.memail.focus()
+			return false
+		}
 		
-// 		if (document.joinform.memailchkres.value==memail) {
-// 			alert("이메일을 다시 입력해주세요.")
-// 			document.joinform.memail.focus()
-// 			return false
-// 		}
-		
-		return true
+		return true;
 	}
 	// 모든 양식 제대로 기입했을 때만 진행할 수 있도록 체크하는 함수
 	
@@ -247,15 +240,16 @@
 				dataType: "text",
 				
 				success: function(res) {
+
 					if (res == "이미 존재하는 아이디 입니다.") {
+						
+						$('#mid').val("");
 						$('#midchkres').html(res).css('color', 'red');
 					}
 					else {
+						
 						$('#midchkres').html(res).css('color', 'blue');
 					}
-				},
-				error: function(a, b) {
-					alert("Request: " + JSON.stringify(a));
 				}
 			});
 		});
@@ -271,10 +265,13 @@
 				data: {
 					memail: $('#memail').val()
 				},
-				dataType: "html",
+				dataType: "text",
 				
 				success: function(res) {
+
 					if (res == "이미 존재하는 메일 주소 입니다.") {
+						
+						$('#memail').val("");
 						$('#memailchkres').html(res).css('color', 'red');
 					}
 					else {
@@ -284,6 +281,7 @@
 			});
 		});
 	});
+	
 </script>
 
 
@@ -372,22 +370,9 @@
 			</tr>
 			
 			<tr> 
-				<th>전화번호</th>   
+				<th>휴대전화번호</th>   
 				<td>
-<!-- 					<div class="col-sm-4"> -->
-<!-- 						<select class="form-control input-sm" id="sel1" name="memtelf"> -->
-<!-- 							<option>010</option> -->
-<!-- 							<option>011</option> -->
-<!-- 							<option>016</option> -->
-<!-- 							<option>017</option> -->
-<!-- 							<option>018</option> -->
-<!-- 							<option>019</option> -->
-<!-- 						</select> -->
-<!-- 					</div> -->
-<!-- 					<div class="col-sm-8"> -->
-<!-- 						<input class="form-control input-sm" placeholder=" - 없이 작성해주세요" name="memtel_back" pattern="[0-9]{7,8}"> -->
-<!-- 					</div> -->
-					<input type="tel" class="form-control input-sm" name="mtel">
+					<input class="form-control input-sm" name="mtel" placeholder=" -  없이 작성해주세요" pattern="[0-9]{10,11}">
 				</td> 
 				<td></td>
 			</tr>
@@ -423,7 +408,9 @@
 
 		<table><tr height="30px"><td></td></tr></table>
 		<button type="button" class="btn btn-success btn-sm" onclick="goUrl('index')">　취　　소　</button>
-		<button type="submit" class="btn btn-success btn-sm">　가　　입　</button>
+		
 	
+		<button type="submit" class="btn btn-success btn-sm" >　가　　입　</button>
+		
 	</div>
 </form>

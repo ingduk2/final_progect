@@ -53,8 +53,10 @@ public class urljson {
 			StringBuffer sb= new StringBuffer();
 			while((line=br.readLine())!= null){
 				sb.append(line);
+
 				System.out.println("테스트 : " +line);
 				System.out.println("테스트x : " +sb.toString());
+
 			}
 			System.out.println("line : " +line);
 			System.out.println("sb : " + sb);

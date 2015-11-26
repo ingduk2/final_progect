@@ -1,6 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-	
+<%@ page language="java" contentType="text/html" pageEncoding="UTF-8"%>
+
 <link rel='stylesheet'
 	href='http://fullcalendar.io/js/fullcalendar-2.3.1/lib/cupertino/jquery-ui.min.css' />
 <link
@@ -133,7 +132,7 @@ function callendar(){
 								     		alert("--"+msg+"--");
 								        	if(msg=='delete'){
 								        		alert("detetetete");
-								        		$(this).removeAttr("style");
+								 
 								        		$(this).css('background-color', 'green');
 								        	}else{
 								        		$(this).css('background-color', 'red');
@@ -153,6 +152,9 @@ function callendar(){
 						
 					},
 					
+					eventMouseover: function( calEvent, jsEvent, view ) { 
+						alert('Event: ' + calEvent.title);
+					},
 					//사용자
 					//사용자 색 바꾸기.
 // 					 eventClick: function(calEvent, jsEvent, view) {
@@ -223,7 +225,7 @@ function callendar(){
 // 				    },
 				    
 				
-
+					
 					
 					//둘다 필요한 부분.
 					//처음에 디비에서 끌어오는 부분

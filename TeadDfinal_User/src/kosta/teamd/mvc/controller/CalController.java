@@ -81,6 +81,7 @@ public class CalController {
 	public ModelAndView insertCal(VolunteerVO vo){
 		System.out.println("Log : insert cal!");
 		ModelAndView mav= new ModelAndView("/callendar/calinsert");
+		System.out.println(vo.getVolunteertitle());
 		int seq=vdao.insert(vo);
 		
 		mav.addObject("msg",Integer.toString(seq));

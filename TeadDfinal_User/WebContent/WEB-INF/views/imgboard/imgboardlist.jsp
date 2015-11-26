@@ -55,7 +55,7 @@ a.thumbnail.active, a.thumbnail:focus, a.thumbnail:hover{
 			<div class="col-md-3">
 				<a href="selectoneAnimal?anino=${alist[i+1].anino}&bno=${alist[i+1].bno}" class="thumbnail nounderline">
 					<h5 style="text-align: left; padding-left: 15px"><span class="label label-warning">뭐게?</span></h5>
-					<img src="upload/${alist[i+1].aniimg}"  style="width: 150px; height: 150px"></a>
+					<img src="img/${alist[i+1].aniimg}"  style="width: 150px; height: 150px"></a>
 				<p><label>동물번호: </label>${alist[i+1].anino}<br><label>동물종류: </label>${alist[i+1].anispecies}<br><label>동물품종: </label>${alist[i+1].anibreed}<br>
 						<label>동물이름: </label>${alist[i+1].aniname}<br><label>나이 :</label>${alist[i+1].aniage}<br><label>성별: </label>${alist[i+1].anisex}<br>
 						<label>발견지역: </label>${alist[i+1].aniregion}<br><label>발견일자: </label>${alist[i+1].anidate}<br>
