@@ -1,13 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-    
-    <!-- 다음 주소 찾기 api 사용 -->
+
+<!-- 
+	※ 변경 사항 ※
+	>151126
+	- 크기 분류 (소, 중, 대) 삭제
+
+
+ -->
+ 
+<!-- 다음 주소 찾기 api 등록 -->
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
     
-	<!-- 생년월일 달력으로 받기 위함 by sky -->
+<!-- 달력 input api 등록 -->
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
 <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
 
 <!-- 	<link rel="stylesheet"	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"> -->
@@ -15,6 +24,7 @@
 <!-- 	<script	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script> -->
 
 <style>
+
 	table th {
 		font-weight: bold;
 		color: black;
@@ -104,7 +114,7 @@
 		    
 		});
 		
-		//생년월일 달력으로 받기 위함 by sky
+		// 달력 input api
 		$(function() {
 			$( "#datepicker" ).datepicker({
 				changeMonth: true,
@@ -121,7 +131,7 @@
 			
 			// 년도 기간 getter
 			var yearRange = $( "#datepicker" ).datepicker( "option", "yearRange" );
-			// 년도 기간 setter
+			// 년도 기간 setter (50년 전 ~ 현재)
 			$( "#datepicker" ).datepicker( "option", "yearRange", "-50:c" );
 		});   //생년월일 가져오는 function
 		
@@ -164,15 +174,16 @@
 					{
 						oncomplete : function(data) {
 							var addr = '';
-		
+	
+							// 도/시
 							if (data.sido !== '') {
 								addr = data.sido;
 							}
+							// 시/군/구
 							if (data.sigungu !== '' && /[시|군|구]$/g.test(data.sigungu)) {
 								addr += ' ' + data.sigungu;
 							}
-							// 법정동명이 있을 경우 추가한다. (법정리는 제외)
-							// 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
+							// 동
 							if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
 								addr += ' ' + data.bname;
 							}
@@ -187,156 +198,141 @@
 
 <div>
 	<form action="insertAnimal" method="post" enctype="multipart/form-data">
-	<h1>이미지게시판<small>실종신고,발견신고 etc</small></h1>
+		<h1>이미지게시판<small>실종신고,발견신고 etc</small></h1>
 	
-	<table><tr height="30px"><!-- 높이 조절용 칸 떼우기 --><td></td></tr></table>
+		<table>
+			<tr height="30px"><!-- 높이 조절용 칸 떼우기 --><td></td></tr>
+		</table>
 			
-			<table width="500px">				
-				<tr>	
-					<th width="80px">title</th>	
-					<td align="left">
-						<input class="form-control input-sm" name="btitle" placeholder="제목을 입력하세요">
-					</td>
-				</tr>
-				
-				<tr>
-					<th>이미지</th>
-					<td>
-			            <div class="input-group">
-			                <input type="text" class="form-control input-sm" placeholder="Try selecting one file" readonly>
-			                <span class="input-group-btn">
-			                    <span class="btn btn-success btn-file btn-sm">
-			                    <span class="glyphicon glyphicon-folder-open"></span>
-			                       &nbsp;ImageUpload<input name="maniimg" type="file" multiple="multiple">
-			                    </span>
-			                </span>
-			            </div>
-					</td>
-				</tr>
-				
-				<tr> 
-					<th>정보입력</th> 
-					<td align="left">
-						<table id="animalapplyform">
-							<tr> 
-								<th style="width: 60px">대분류</th>
-								<td>
-			      					<select name="anispecies" id="bigkind" class="form-control input-sm">
-										<option>-- 선택 --</option>
-									    <option value="dog">강아지</option>
-									    <option value="cat">고양이</option>
-									    <option value="etc">기타</option>
-									</select>
-								</td> 
-							</tr>
-							<tr> 
-								<th>소분류</th>
-								<td>
-			      					<select name="anibreed" id="smallkind" class="form-control input-sm">
-										<option>-- 선택 --</option>
-									</select>
-								</td> 
-							</tr>
-							<tr> 
-								<th>이름</th>
-								<td>
-									<input type="text" name="aniname" class="form-control input-sm" placeholder="이름" />
-								</td> 
-							</tr>
+		<table width="500px">				
+			
+			<tr>	
+				<th width="80px">title</th>	
+				<td align="left">
+					<input class="form-control input-sm" name="btitle" placeholder="제목을 입력하세요">
+				</td>
+			</tr>
+			
+			<tr>
+				<th>이미지</th>
+				<td>
+		            <div class="input-group">
+		                <input type="text" class="form-control input-sm" placeholder="Try selecting one file" readonly>
+		                <span class="input-group-btn">
+		                    <span class="btn btn-success btn-file btn-sm">
+		                    <span class="glyphicon glyphicon-folder-open"></span>
+		                       &nbsp;ImageUpload<input name="maniimg" type="file" multiple="multiple">
+		                    </span>
+		                </span>
+		            </div>
+				</td>
+			</tr>
+			
+			<tr> 
+				<th>정보입력</th> 
+				<td align="left">
+					<table id="animalapplyform">
+						<tr> 
+							<th style="width: 60px">대분류</th>
+							<td>
+		      					<select name="anispecies" id="bigkind" class="form-control input-sm">
+									<option>-- 선택 --</option>
+								    <option value="dog">강아지</option>
+								    <option value="cat">고양이</option>
+								    <option value="etc">기타</option>
+								</select>
+							</td> 
+						</tr>
+						<tr> 
+							<th>소분류</th>
+							<td>
+		      					<select name="anibreed" id="smallkind" class="form-control input-sm">
+									<option>-- 선택 --</option>
+								</select>
+							</td> 
+						</tr>
+						<tr> 
+							<th>이름</th>
+							<td>
+								<input type="text" name="aniname" class="form-control input-sm" placeholder="이름" />
+							</td> 
+						</tr>
 
-							<tr> 
-								<th>성별</th>
-								
-								<td>
-								<input type="hidden" name="anisex" id="anisex"/>
-									<label class="radio-inline">
-					     				<input name="gender" type="radio" id="girl" value="남아">남아
-					    			</label>
-					   				<label class="radio-inline">
-					      				<input name="gender" type="radio" id="boy" value="여아">여아
-					   				</label>
-								</td> 
-							</tr>
+						<tr> 
+							<th>성별</th>
 							
-							<tr> 
-								<th>나이</th>
-								<td>
-									<input type="number" name="aniage" class="form-control input-sm" placeholder="나이" />
-								</td> 
-							</tr>
-							
-							<tr> 
-								<th>크기</th>
-								<td>
-									<input type="hidden" name="anisize" id="anisize" />
-									<label class="radio-inline">
-					     				<input name="anisize1" type="radio" id="small" value="소">소
-					    			</label>
+							<td>
+							<input type="hidden" name="anisex" id="anisex"/>
+								<label class="radio-inline">
+				     				<input name="gender" type="radio" id="girl" value="남아">남아
+				    			</label>
+				   				<label class="radio-inline">
+				      				<input name="gender" type="radio" id="boy" value="여아">여아
+				   				</label>
+							</td> 
+						</tr>
+						
+						<tr> 
+							<th>나이</th>
+							<td>
+								<input type="number" name="aniage" class="form-control input-sm" placeholder="나이" />
+							</td> 
+						</tr>
+						
+						<tr> 
+							<th>몸무게</th>
+							<td>
+								<input type="number" name="aniweight" class="form-control input-sm" placeholder="Kg"/>
+							</td> 
+						</tr>
+						<tr> 
+							<th>특징</th>
+							<td>
+								<div class="form-group">
+     									<textarea class="form-control" name="anifeature" placeholder="잃어버린 유기 동물의 특징을 입력해주세요."></textarea>
+   								</div>
+							</td> 
+						</tr>
+						<tr> 
+							<th>지역</th>
+							<td>
+								<div class="input-group" style="width: 100%">
+									<input id="region" name="aniregion" class="form-control input-sm" type="text" placeholder="지역 (검색)" readonly="readonly"/>
+									<span class="input-group-btn">
+										<button type="button" class="btn btn-default btn-sm" onclick="execDaumPostcode()">　검　　색　</button>
+									</span>
+								</div>
+							</td> 
+						</tr>
+						<tr> 
+							<th>날짜</th>
+							<td>
+								<input class="form-control input-sm" type="text" placeholder="날짜(선택)" id="datepicker" name="anidate" readonly="readonly"  />
+							</td> 
+						</tr>
+					</table>
+				</td> 
+			</tr>
+			
+			<tr>	
+				<th colspan="2">Content</th>		
+			</tr>
+			
+			<tr>	
+				<td colspan="2"  height="500px">
+					<textarea class="form-control" name="bcontent" rows="10" id="comment" placeholder="내용을 입력하세요"></textarea>
+				</td>		
+			</tr>
 
-					   				<label class="radio-inline">
-					      				<input name="anisize1" type="radio" id="middle" value="중">중																																		
-					   				</label>									
+		</table>				
 
-					   				<label class="radio-inline">
-					      				<input name="anisize1" type="radio" id="big" value="대">대
-					   				</label>									
-								</td> 
-							</tr>
-							<tr> 
-								<th>몸무게</th>
-								<td>
-									<input type="number" name="aniweight" class="form-control input-sm" placeholder="Kg"/>
-								</td> 
-							</tr>
-							<tr> 
-								<th>특징</th>
-								<td>
-									<div class="form-group">
-      									<textarea class="form-control" name="anifeature" placeholder="잃어버린 유기 동물의 특징을 입력해주세요."></textarea>
-    								</div>
-								</td> 
-							</tr>
-							<tr> 
-								<th>지역</th>
-								<td>
-<!-- 									<input type="text" name="aniregion" class="form-control input-sm" placeholder="지역" /> -->
-									<div class="input-group" style="width: 100%">
-										<input id="region" name="aniregion" class="form-control input-sm" type="text" placeholder="지역 (검색)" readonly="readonly"/>
-										<span class="input-group-btn">
-											<button type="button" class="btn btn-default btn-sm" onclick="execDaumPostcode()">　검　　색　</button>
-										</span>
-									</div>
-								</td> 
-							</tr>
-							<tr> 
-								<th>날짜</th>
-								<td>
-									<input class="form-control input-sm" type="text" placeholder="날짜(선택)" id="datepicker" name="anidate" readonly="readonly"  />
-								</td> 
-							</tr>
-						</table>
-					</td> 
-				</tr>
-					
-				
-				
-				<tr>	
-					<th colspan="2">Content</th>		
-				</tr>
-				
-				<tr>	
-					<td colspan="2"  height="500px">
-						<textarea class="form-control" name="bcontent" rows="10" id="comment" placeholder="내용을 입력하세요"></textarea>
-					</td>		
-				</tr>
+		<input type="hidden" name="mid" value="${pageContext.request.userPrincipal.name}"/>
+		<input type="hidden" name="bcode" value="5"/>
+		<input type="hidden" name="bip" value="<%=request.getRemoteAddr() %>">
 
-			</table>				
-			<input type="hidden" name="mid" value="${pageContext.request.userPrincipal.name}"/>
-			<input type="hidden" name="bcode" value="5"/>
-			<input type="hidden" name="bip" value="<%=request.getRemoteAddr() %>">
-<!-- 			<input type="hidden" name="mid"/> 아이디 세션처리할 부분 -->
-			<table><tr height="30px"><!-- 높이 조절용 칸 떼우기 --><td></td></tr></table>
-			<button type="submit" class="btn btn-success btn-sm" id="write">　글 작 성　</button>
-			<button type="button" class="btn btn-success btn-sm">　취　　소　</button>
-			</form>
+		<table><tr height="30px"><!-- 높이 조절용 칸 떼우기 --><td></td></tr></table>
+		<button type="submit" class="btn btn-success btn-sm" id="write">　글 작 성　</button>
+		<button type="button" class="btn btn-success btn-sm">　취　　소　</button>
+		
+	</form>
 </div>
