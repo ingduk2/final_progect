@@ -152,9 +152,12 @@ function callendar(){
 						
 					},
 					
-					eventMouseover: function( calEvent, jsEvent, view ) { 
-						alert('Event: ' + calEvent.title);
-					},
+					//마우스 오버 이벤트
+// 					eventMouseover: function( calEvent, jsEvent, view ) { 
+// 						alert('Event: ' + calEvent.title);
+// 					},
+					
+					
 					//사용자
 					//사용자 색 바꾸기.
 // 					 eventClick: function(calEvent, jsEvent, view) {

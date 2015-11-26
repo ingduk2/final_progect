@@ -54,14 +54,14 @@ a:FOCUS, a:HOVER {
 <div id="bg">
 	<div id="header">
 			
-		<table height="230px"> 
-				
+		<table height="165px"> 
+		
 			<!-- Login, out 처리start -->
 			<tr>
 				<!-- 로고 -->
-				<td align="left"><a href="index"><img src="img/logo.png"></a></td>
+				<td align="left"><a href="index"><img src="img/testlogo2.png" style="width: 170px"></a></td>
 				<td align="right" style="vertical-align: top;">
-							
+
 					<!-- 비로그인 시 -->
 					<c:if test="${pageContext.request.userPrincipal.name == null}">
 						<!--로그인--><a class="loginout" href="login"><img src="img/login_top_btn.png"></a>&nbsp;&nbsp;<font color="#b5b2b2">|</font>&nbsp;
@@ -77,7 +77,7 @@ a:FOCUS, a:HOVER {
 						<a class="loginout" href="${logout }"><img src="img/logout_top_btn.png"></a>&nbsp;<font color="#b5b2b2">|</font>&nbsp;
 					</c:if>
 					
-					<!--연락--><a class="loginout" href="#"></a><img src="img/contactus_top_btn.png"></a>&nbsp;&nbsp;
+					<!--연락--><a class="loginout" href="#"><img src="img/contactus_top_btn.png"></a>&nbsp;&nbsp;
 					
 				</td> 
 			</tr>

@@ -260,7 +260,6 @@
 
 						<tr> 
 							<th>¼ºº°</th>
-							
 							<td>
 							<input type="hidden" name="anisex" id="anisex"/>
 								<label class="radio-inline">

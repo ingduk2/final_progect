@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 
 <div id="wrap">
-<form method="post" action="insertcenter">
+<form method="post" action="insertCenter">
 	<table>
 		<thead>
 			<tr>
