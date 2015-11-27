@@ -1,6 +1,9 @@
--- KOSTA 108 Final Project DB / 최종 업데이트 : 15/11/13 _ 회원, 동물, 게시판, 댓글 게시판 테이블 추가
--- KOSTA 108 Final Project DB / 최종 업데이트 : 15/11/14 _ 전용 아이디, 비밀번호, 권한 설정 방법 추가
--- 15/11/19 봉사 , 센터 일단 추가함.
+-- KOSTA 108 Final Project DB
+-- 최종 업데이트 : 15/11/13 _ 회원, 동물, 게시판, 댓글 게시판 테이블 추가
+-- 최종 업데이트 : 15/11/14 _ 전용 아이디, 비밀번호, 권한 설정 방법 추가
+-- 최종 업데이트 : 15/11/19 _ 봉사 , 센터 일단 추가함.
+-- 최종 업데이트 : 15/11/27 _ 동물 테이블 : 크기 컬럼 삭제, 사례금 컬럼 추가, 현재 상태 컬럼 추가, 더미 데이터 추가
+--                       회원 테이블 : 신분 컬럼 추가, 관리자 데이터 추가
 
 -- -----------------------------------------------------------------------------
 
@@ -34,7 +37,9 @@ mintro clob,                                                 -- 13.프로필 인
 mrptlimit number constraint member_mrptlimit_nn not null,    -- 14.하루 신고 제한수
 mrpt number constraint member_mrpt_nn not null,              -- 15.신고당한 횟수
 mfreetime date,                                              -- 16.제재 종료 시간
-enabled number constraint member_enabled_nn not null,        -- 17.아이디 활성화 여부
+mstatus number constraint member_mstatus_nn not null,        -- 17.가입자의 신분(일반 회원, 직원 등)
+-- mstatus: 1-일반 회원 / 2-직원
+enabled number constraint member_enabled_nn not null,        -- 18.아이디 활성화 여부
 constraint member_memail_uq unique(memail)
 );
 
@@ -43,8 +48,18 @@ create table memroles
 (
 mid varchar2(20) constraint memroles_mid_nn not null,        -- 01.회원 아이디
 role varchar2(20) constraint memroles_role_nn not null,      -- 02.회원 등급
+-- role: User-일반 회원 / Restrict-제재 회원 / Admin-관리자 / employee-직원
 constraint memroles_mid_role_pk primary key(mid, role)
 );
+
+-- 관리자 아이디 등록
+insert into member(mid, mname, memail, mpwd, mpwdkey, mpwdval, mbirth, mtel,
+mpost, mroad, mimg, mintro, mrptlimit, mrpt, mfreetime, mstatus, enabled) 
+values('admin', '관리자', 'admin@admin.com', 'temadadmin', '우리 조 막내 이름은 무엇일까요?', 'winni',
+'1984-03-13', '01000000000', '283', '유스페이스2 KOSTA 3강의실', 'UnknownProfile.png', '안녕하세요 ^^',
+0, 0, sysdate, 2, 1);
+insert into memroles values('admin', 'Admin');
+commit;
 
 -- -----------------------------------------------------------------------------
 
@@ -57,20 +72,26 @@ anibreed varchar2(50),                                       -- 03.동물 분류
 aniname varchar2(20),                                        -- 04.이름
 aniage number,                                               -- 05.나이
 anisex varchar2(10),                                         -- 06.성별
-anisize varchar2(10),                                        -- 07.크기 분류
-aniweight number,                                            -- 08.몸무게
-anifeature varchar2(400),                                    -- 09.특징
-aniregion varchar2(100),                                     -- 10.(실종,발견)지역
-anidate date,                                                -- 11.(실종,발견)날짜
-aniimg varchar2(50),                                         -- 12.동물 사진 파일 이름
-constraint animal_anisex_ck check(anisex='남아' or anisex='여아'),
-constraint animal_anisize_ck check(anisize='소' or anisize='중' or anisize='대')
+aniweight number,                                            -- 07.몸무게
+anifeature varchar2(400),                                    -- 08.특징
+aniregion varchar2(100),                                     -- 09.(실종,발견)지역
+anidate date,                                                -- 10.(실종,발견)날짜
+anireward number,                                            -- 11.사례금
+anistate number,                                             -- 12.현재 상태(실종,보호,입양대기,입양완료 등)
+-- anistate: (admin용)0-보호중 / 1-입양대기 / 2-입양완료
+--           (일반 회원용)3-실종 / 4-발견 / 5-개인 보호중
+aniimg varchar2(50),                                         -- 13.동물 사진 파일 이름
+constraint animal_anisex_ck check(anisex='남아' or anisex='여아')
 );
 
 -- 동물 테이블 / 동물 등록 번호 시퀀스 생성
 create sequence animal_seq
 increment by 1
 start with 1;
+
+-- 일반 게시판 용 더미 데이터 anino 0 등록
+insert into animal(anino) values(0);
+commit;
 
 -- -----------------------------------------------------------------------------
 

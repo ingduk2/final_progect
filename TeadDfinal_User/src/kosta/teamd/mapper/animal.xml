@@ -7,8 +7,8 @@
     <insert id="imgins" parameterType="anivo">
      insert into animal 
      values(animal_seq.nextVal, #{anispecies}, #{anibreed}, #{aniname}, #{aniage},
-     	#{anisex}, #{anisize}, #{aniweight}, #{anifeature}, #{aniregion}, sysdate,
-     	#{aniimg})
+     	#{anisex}, #{aniweight}, #{anifeature}, #{aniregion}, #{anidate}, #{anireward},
+     	#{anistate}, #{aniimg})
 	<selectKey keyProperty="anino" resultType="int" order="AFTER">
 		SELECT animal_seq.currval FROM dual
 	</selectKey>
