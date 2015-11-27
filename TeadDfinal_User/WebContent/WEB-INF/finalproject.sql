@@ -55,7 +55,7 @@ constraint memroles_mid_role_pk primary key(mid, role)
 -- 관리자 아이디 등록
 insert into member(mid, mname, memail, mpwd, mpwdkey, mpwdval, mbirth, mtel,
 mpost, mroad, mimg, mintro, mrptlimit, mrpt, mfreetime, mstatus, enabled) 
-values('admin', '관리자', 'admin@admin.com', 'temadadmin', '우리 조 막내 이름은 무엇일까요?', 'winni',
+values('admin', '관리자', 'admin@admin.com', 'teamdadmin', '우리 조 막내 이름은 무엇일까요?', 'winni',
 '1984-03-13', '01000000000', '283', '유스페이스2 KOSTA 3강의실', 'UnknownProfile.png', '안녕하세요 ^^',
 0, 0, sysdate, 2, 1);
 insert into memroles values('admin', 'Admin');
