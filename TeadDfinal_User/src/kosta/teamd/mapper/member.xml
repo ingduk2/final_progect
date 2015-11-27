@@ -20,7 +20,7 @@
     		insert into member values(
     		#{mid}, #{mname}, #{memail}, #{mpwd}, #{mpwdkey}, #{mpwdval}, 
     		#{mbirth}, #{mtel}, #{mpost}, #{mroad}, #{mjibun}, #{mimg}, 
-    		#{mintro}, 3, 0, sysdate, 1
+    		#{mintro}, 3, 0, sysdate, 1, 1
     		)
     	</insert>
     	
