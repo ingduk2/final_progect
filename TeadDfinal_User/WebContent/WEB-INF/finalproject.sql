@@ -93,6 +93,10 @@ start with 1;
 insert into animal(anino) values(0);
 commit;
 
+-- 일반 게시판 용 더미 데이터 anino 0 등록
+insert into animal(anino) values(0);
+commit;
+
 -- -----------------------------------------------------------------------------
 
 -- 게시판(board) 테이블 생성 _ 컬럼 b로 시작
