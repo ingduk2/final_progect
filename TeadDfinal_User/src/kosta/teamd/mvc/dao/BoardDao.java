@@ -27,6 +27,13 @@ public class BoardDao {
 	public void deleteBoard(int bno){
 		template.delete("board.delete", bno);
 	}
+	
+	// --------------- 게시글 삭제 시 해당 글에 달린 댓글 모두 삭제 _ FK 처리
+		public void deleteAllComm(int bno) {
+			template.delete("board.deleteAllComm", bno);
+		}
+	// --------------- 게시글 삭제 시 해당 글에 달린 댓글 모두 삭제 _ FK 처리
+	
 	public BoardVO updateFormBoard(int bno){
 		return template.selectOne("board.updateform", bno);
 	}

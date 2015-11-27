@@ -232,6 +232,14 @@
 				<th>정보입력</th> 
 				<td align="left">
 					<table id="animalapplyform">
+					
+						<tr>
+							<th>상태</th>
+							<td>
+								<input type="text" class="form-control input-sm" name="anistate" id="anistate" placeholder="일단 만듦. 수정하자">
+							</td>
+						</tr>
+					
 						<tr> 
 							<th style="width: 60px">대분류</th>
 							<td>
@@ -308,6 +316,13 @@
 							<td>
 								<input class="form-control input-sm" type="text" placeholder="날짜(선택)" id="datepicker" name="anidate" readonly="readonly"  />
 							</td> 
+						</tr>
+						
+						<tr>
+							<th>사례금</th>
+							<td>
+								<input type="text" class="form-control input-sm" name="anireward" id="anireward" placeholder="일단 만듦. 수정하자">
+							</td>
 						</tr>
 					</table>
 				</td> 
