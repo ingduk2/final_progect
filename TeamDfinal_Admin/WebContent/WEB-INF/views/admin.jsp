@@ -1,29 +1,28 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-
+<%@ page language="java" contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <link rel='stylesheet'
- href='http://fullcalendar.io/js/fullcalendar-2.3.1/lib/cupertino/jquery-ui.min.css' />
+	href='http://fullcalendar.io/js/fullcalendar-2.3.1/lib/cupertino/jquery-ui.min.css' />
 <link
- href='http://fullcalendar.io/js/fullcalendar-2.3.1/fullcalendar.css'
- rel='stylesheet' />
+	href='http://fullcalendar.io/js/fullcalendar-2.3.1/fullcalendar.css'
+	rel='stylesheet' />
 <link
- href='http://fullcalendar.io/js/fullcalendar-2.3.1/fullcalendar.print.css'
- rel='stylesheet' media='print' />
+	href='http://fullcalendar.io/js/fullcalendar-2.3.1/fullcalendar.print.css'
+	rel='stylesheet' media='print' />
 <script
- src='http://fullcalendar.io/js/fullcalendar-2.3.1/lib/moment.min.js'></script>
-<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+	src='http://fullcalendar.io/js/fullcalendar-2.3.1/lib/moment.min.js'></script>
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+<script
+	src='http://fullcalendar.io/js/fullcalendar-2.3.1/fullcalendar.min.js'></script>
+<script src='http://fullcalendar.io/js/fullcalendar-2.3.1/lang-all.js'></script>
 <script src="https://code.highcharts.com/highcharts.js"></script>
 <script src="https://code.highcharts.com/highcharts-3d.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
-<script
- src='http://fullcalendar.io/js/fullcalendar-2.3.1/fullcalendar.min.js'></script>
-<script src='http://fullcalendar.io/js/fullcalendar-2.3.1/lang-all.js'></script>
-
 <style>
-	
-</style>
+#cal_detail{width:30%; height:30%; float: right;}
 
+
+</style>
 <script>
 $(function () {
     $('#container').highcharts({
@@ -203,134 +202,103 @@ $(function () {
 });
 
 
+
+
+var caljson;
+var last_seq;
 $(function(){
-	  
-	  var currentLangCode = 'ko';
-	  $('#calendar').fullCalendar('destroy');
-	  $('#calendar').fullCalendar({
-	   
-	   //lang: currentLangCode,
-	   dragable:false,  //드래그앤 드랍 옵션
-	            timeFormat: 'hh:mm', //시간 포멧
-	           // lang: 'ko',  //언어타입
-	            header: {
-	     left: 'prev,next today',
-	     center: 'title',
-	     right: 'month,agendaWeek,agendaDay'
-	      },
-	      // 클릭이벤트 - 삭제 
-	            eventClick : function(calEvent,jsEvent,view){ 
-	              var r=confirm("Delete " + 
-	                calEvent.title+":"+calEvent._id);
-	              if (r===true)
-	                {
-	                    $('#calendar').fullCalendar('removeEvents', 
-	                      calEvent._id);
-	                    //관리자 ajax로 페이지나 action 매핑된거 연결해서 dao 불러서 delete보내기
-	                    
-	                    //사용자가 클릭하면 
-	                    /*
-	                    클릭하면 이 회원의 디비에 접속해서
-			봉사컬럼이 null인지 비교하고
-			null이면 신청하시겠습니까
-			아니면 삭제하시겠습니까		
+	//관리자 사용자 공통
+	//사용자 추가사항해야할것 - 로드하면서 신청한거 빨간색으로 바꿔주기?
+	 $.ajax({
+        url: "selectallCal", //"testAjax.jsp", 
+        type: "POST",
+        success: function(json) { //데이터 받는 부분.response 
+          
+     		//alert(json);
+     		caljson=JSON.parse(json);
+     		//alert(caljson);
+     		callendar();
+        },
+        error: function(a, b) {
+            alert("Request: " + JSON.stringify(a));
+        }
+    });
+	 
+	 
+	 
+});
 
-			신청하시겠습니까
-			-> 회원테이블에 봉사컬럼에 +
-			->update
+function callendar(){
 		
-			삭제하시겠습니까
-			->회원테이블 봉사컬럼을 다시
-			-> null이나 0으로 바꿔줌
-	                    */
-	                    
-	                    
-	                    $.ajax({
-	                        url: "testAjax.jsp",
-	                        type: "GET",
-	                        data: { //파라미터로 q
-	                            q: calEvent.title
-	                        },
-	                        dataType: "html",
-	                        success: function(q) {
-	                            alert("delete: " + q);
-	                            var v=q.split(".");
-	                            alert("seqseqseq : "+v[0]);
-	                        },
-	                        error: function(a, b) {
-	                            alert("Request: " + JSON.stringify(a));
-	                        }
-	                    });
-	                    ////////////////////////
-	                }
-	             },
-	   defaultView: 'month',//기본 뷰 - 옵션   //첫 페이지 기본 뷰 옵션
-	   editable: false,                                             //에디터 가능 옵션
-	   selectable: true,
-	   selectHelper: true,
-	   // 캘린더 셀렉트 된 값을 컬럼에 표시...
-	   select: function(start, end, event) {
-	    
-	    var title = prompt('Event Title:'); //값 입력.
-	    var eventData;
-	    if (title) {
-	     eventData = {
-	      title: title,
-	      start: start,
-	      end: end
-	     };
-	     
-	    $('#calendar').fullCalendar('renderEvent', eventData, true); // stick? = true
-	    }
-	    $('#calendar').fullCalendar('unselect');
-	    
-	    alert("selected from: " + start.format() + ", to: " + end.format());
-	    //alert(calEvent._id);
-	     // 셀렉트된 결과를 서버로 전송
-	     //인서트에 사용. 
-	          $.ajax({
-	              url: "testAjax.jsp",
-	              type: "GET",
-	              data: { //파라미터로 q
-	                  q: title
-	                 //title start end 
-	              },
-	              dataType: "html",
-	              success: function(q) {
-	                  alert("Data-: " + q);
-	                  alert("pk-: "+pk);
-	              },
-	              error: function(a, b) {
-	                  alert("Request: " + JSON.stringify(a));
-	              }
-	          });
-	   },
-	   editable: true,
-	   eventLimit: true,
-	   //load 하는 부분 ! , db에서 읽어오면 된다.
-	   events: [  
-	     {
-	        
-	        title: 'All Day Event',
-	       start: '2015-10-22',
-	       end: '2015-10-25'
-	      
-	      }
-	     ]
-	  })
-	 });
+		var currentLangCode = 'ko';
+		$('#cal_detail').fullCalendar('destroy');
+		$('#cal_detail').fullCalendar({
+					
+					//lang: currentLangCode,
+					dragable : false, //드래그앤 드랍 옵션
+					timeFormat : 'hh:mm', //시간 포멧
+					// lang: 'ko',  //언어타입
+					header : {
+						left : 'prev,next today',
+						center : 'title',
+						right : 'month,agendaWeek,agendaDay'
+					},
+					
+					
+					// 클릭이벤트 - 삭제
+					//관리자용+사용자용
+					eventClick : function(calEvent, jsEvent, view) {
+						
+						
+						
+						
+					},
+					
+					
+					
+					//관리자 기능.
+					//인서트
+					defaultView : 'month',//기본 뷰 - 옵션   //첫 페이지 기본 뷰 옵션
+					editable : false, //에디터 가능 옵션
+					selectable : true,
+					selectHelper : true,
+					select : function(start, end, event) {// 캘린더 셀렉트 된 값을 컬럼에 표시...
+					
+					},
+					
+					//둘다 필요한 부분.
+					//처음에 디비에서 끌어오는 부분
+				    editable : true,
+					eventLimit : true,
+					//load 하는 부분 ! , db에서 읽어오면 된다.
+// 					events : [
+// 					{
+// 						title : 'All Day Event',
+// 						start : '2015-11-16',
+// 						end : '2015-11-17'
 
+// 					} ]
+					
+					events : caljson
+				})
+	//});
+}
 </script>
 
 <div id="wrap">
-<table id="chart_table">
-	<tr>
-		<td><div class="chart" id="container" ></div></td>
-		<td><div class="chart" id="container1"></div></td>
-		<td><div class="chart" id="container2"></div></td>
-		<td><a href="#"><div id='calendar' style="width:300px; height:280px;"></div></a></td>
-	</tr>
-</table>
+<!-- <table id="chart_table"> -->
+<!-- 	<tr> -->
+<!-- 		<td><div class="chart" id="container" ></div></td> -->
+<!-- 		<td><div class="chart" id="container1"></div></td> -->
+<!-- 		<td><div class="chart" id="container2"></div></td> -->
+<!-- 		<td><a href="#"><div id='cal_detail'></div></a></td> -->
+<!-- 	</tr> -->
+<!-- </table> -->
+
+<div id='cal_detail' ></div>
+<div class="chart" id="container" ></div>
+<div class="chart" id="container1"></div>
+<div class="chart" id="container2"></div>
 
 <table id="list_table">
 	<tr>

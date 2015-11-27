@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kosta.teamd.vo.ChartAniBreedVO;
 import kosta.teamd.vo.ChartMemAgeVO;
 import kosta.teamd.vo.ChartMemberVO;
 import kosta.teamd.vo.ChartVO;
@@ -26,5 +27,9 @@ public class ChartDao {
 	
 	public ChartMemAgeVO selectallMemAge(){
 		return template.selectOne("chart.selectallmemage");
+	}
+	
+	public List<ChartAniBreedVO> selectallanibreed(){
+		return template.selectList("chart.selectallanibreed");
 	}
 }

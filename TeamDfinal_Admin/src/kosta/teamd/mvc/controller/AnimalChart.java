@@ -9,8 +9,10 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kosta.teamd.mvc.dao.AnimalDao;
 import kosta.teamd.mvc.dao.AnimalsDao;
+import kosta.teamd.mvc.dao.ChartDao;
 import kosta.teamd.vo.AniBoardVO;
 import kosta.teamd.vo.AnimalsVO;
+import kosta.teamd.vo.ChartAniBreedVO;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -24,11 +26,14 @@ public class AnimalChart {
 	@Autowired
 	private AnimalDao anidao;
 	
+	@Autowired
+	private ChartDao cdao;
+	
 	// 아작스 
 	@RequestMapping(value="animalcnt")
 	public ModelAndView anispectes(){
 	List<AnimalsVO> list=	anisdao.selectallCnt();
-	
+	List<ChartAniBreedVO> list2= cdao.selectallanibreed();
 //	JSONArray jlist =  null;
 //	JSONArray arr= new JSONArray();
 //	for(AnimalsVO e: list){
@@ -40,6 +45,13 @@ public class AnimalChart {
 //	}
 	JSONArray arr = new JSONArray();
 	JSONObject jobj = null;
+	
+	JSONArray arr2 = new JSONArray();
+	JSONObject jobj2= null;
+	JSONArray ja2= null;
+	JSONArray data_arr = null;
+	int start=0;
+	int end=list2.size();
 	for(AnimalsVO e : list){
 		jobj = new JSONObject();
 		jobj.put("name", e.getAnispecies());
@@ -47,18 +59,41 @@ public class AnimalChart {
 		jobj.put("drilldown", e.getAnispecies());
 		System.out.println(jobj);
 		arr.add(jobj);
+		
+		
+		jobj2= new JSONObject();
+		jobj2.put("name", e.getAnispecies());
+		jobj2.put("id", e.getAnispecies());
+		data_arr= new JSONArray();
+		for(int i=start; i<end; i++){
+			//같으면..
+			
+			if(e.getAnispecies().equals(list2.get(i).getAnispecies())){
+				
+				ja2=new JSONArray();
+				ja2.add(list2.get(i).getAnibreed());
+				ja2.add(list2.get(i).getCnt());
+				data_arr.add(ja2);
+			}else{
+				start=i;
+				break;
+			}
+		}
+		jobj2.put("data", data_arr);
+		arr2.add(jobj2);
 	}
-	
-
-	
 	ModelAndView mav =  new ModelAndView("/animaltest/anijson");
 	System.out.println(arr.toString());
-	mav.addObject("aniscnt", arr.toString());
+	System.out.println(arr2);
+	StringBuffer json = new StringBuffer();
+	json.append(arr.toString()).append("/").append(arr2.toString());
+	mav.addObject("aniscnt", json.toString());
 	
 		return mav;
 	}
 	
 	// 차트 뷰
+	//리스트 그냥 폼으로
 	@RequestMapping(value="testani")
 	public ModelAndView formaniChart(){
 		List<AniBoardVO> list = anidao.getImgList();

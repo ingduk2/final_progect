@@ -11,21 +11,28 @@
 
 
 <style>
-#member_chart_age{
-	width:400px;
-	height: 400px;
-	
-}
-#member_list{
-	margin-left : 30px;
+
+#wrap_mem{
+	float:right;
 	
 }
 
-#member_chart2{
-	width:400px;
-	height: 400px;
+.member_chart{
+	width:30%;
+	height: 50%;
+} 
+/* #member_chart_age{ */
 	
+	
+/* } */
+#member_list{
+	margin-left : 40px;
+	width:70%;
 }
+
+/* #member_chart2{ */
+	
+/* } */
 </style>
 
 <script>
@@ -37,18 +44,13 @@ $(function () {
         	alert(msg1);
             var json1=JSON.parse(msg1);
         	alert(json1);
-
-        	var v= msg1.split("/");
-    
-        		var a=JSON.parse(v[0]);
-        		var b=JSON.parse(v[1]);
         	
         	 $('#member_chart_age').highcharts({
         	        chart: {
         	            type: 'column'
         	        },
         	        title: {
-        	            text: 'Browser market shares. January, 2015 to May, 2015'
+        	            text: '회원 연령대별'
         	        },
         	        subtitle: {
         	            text: 'Click the columns to view versions. Source: <a href="http://netmarketshare.com">netmarketshare.com</a>.'
@@ -58,7 +60,7 @@ $(function () {
         	        },
         	        yAxis: {
         	            title: {
-        	                text: 'Total percent market share'
+        	                text: 'Total percent'
         	            }
 
         	        },
@@ -119,10 +121,10 @@ function memberchart(){
      	            }
      	        },
      	        title: {
-     	            text: 'Contents of Highsoft\'s weekly fruit delivery'
+     	            text: '회원 지역별'
      	        },
      	        subtitle: {
-     	            text: '3D donut in Highcharts'
+     	            text: 'Highcharts'
      	        },
      	        plotOptions: {
      	            pie: {
@@ -131,7 +133,7 @@ function memberchart(){
      	            }
      	        },
      	        series: [{
-     	            name: 'Delivered amount',
+     	            name: '회원 수',
      	            data: json
      	        }]
      	    });
@@ -148,13 +150,13 @@ function memberchart(){
 
 </script>
 
-<div>
+<div id=wrap_mem>
 <table>
 <!-- 1번 째 줄 -->
 <tr>
-<td><div id="member_chart_age" style="min-width: 310px; height: 400px; margin: 0 auto"></div></td>
+<td><div class="member_chart" id="member_chart_age" ></div></td>
 <td><!-- <div id="member_list"> -->
-	<table class="table table-striped">
+	<table id="member_list" class="table table-striped">
 		<thead class="table table-striped">
 			<tr>
 				<th colspan="8">회원 정보</th>
@@ -189,13 +191,13 @@ function memberchart(){
 		
 		<tfoot>
 		</tfoot>
-	</table>
+	</table></td>
+	</tr>
 <!-- </div> -->
-</td>
-</tr>
+
 <!-- 2번째 줄 -->
 	<tr>
-	<td><div id="member_chart2" ></div></td>
+	<td><div class="member_chart"  id="member_chart2" ></div></td>
 	</tr>
 </table>
 </div>
