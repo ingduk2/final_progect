@@ -20,8 +20,10 @@
 <!-- 공간 띄우기 용 -->
 <table><tr height="50px"><td></td></tr></table>
 
+<!-- <table id="table-pagination" data-toggle="table" data-pagination="true"> -->
 <table>
 	<thead style="font-weight:bold; color:black;">
+
 		<c:if test="${bcode == 1}">
 			<tr id="title"> <td colspan="5">공지사항</td> </tr>
 		</c:if>
@@ -33,6 +35,7 @@
 		</c:if>
 		<tr> <td colspan="5">　</td> </tr>
 		<tr id="title"> <td colspan="2" width="300px">제목</td><td width="180px">작성자</td><td width="100px">작성일</td><td>조회</td> </tr>
+
 	</thead>
 	
 	<tbody id="tbodycss">

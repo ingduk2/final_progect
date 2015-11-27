@@ -41,6 +41,17 @@
     		delete from memroles where mid=#{mid}
     	</delete>
     	
+    	<!-- ======== 아마 참조하는 테이블이 늘어날 수록 여기에 추가가 되어야 할 것이다!! ======== -->
+	    	<!-- 회원 탈퇴 시 게시물 처리 -->
+	    	<delete id="deleteBcont" parameterType="String">
+	    		delete from board where mid=#{mid}
+	    	</delete>
+	    	<!-- 회원 탈퇴 시 댓글 처리 -->
+	    	<delete id="deleteCBcont" parameterType="String">
+	    		delete from commboard where mid=#{mid}
+	    	</delete>
+	    <!-- ======== 아마 참조하는 테이블이 늘어날 수록 여기에 추가가 되어야 할 것이다!! ======== -->
+    	
     	<!-- 회원 정보 검색 -->
     	<select id="selectMember" parameterType="String" resultType="mvo">
     		select * from member where mid=#{mid}

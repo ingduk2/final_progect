@@ -13,23 +13,19 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <!-- 	Css  -->
-	<link rel="stylesheet" type="text/css" href="resources/default.css">
 	
 <style>
 	body{
 		margin: 0px;
 		padding : 0px;
 		height : 100%;
+		width: 100%;
 		/* overflow: hidden; */
 	}
 	.page{ min-height : 100%; }/* position: relative; */
 	.header{ width:100%; text-align:center;}
 	.content{padding :10px; padding-bottom: 20px; }/* overflow: hidden; */
-	
-	#wrap{
-		float:right;
-		padding: 20px 30px 0 20px;
-	}
+
 	
 	.footer{width:100%; background: #080808; color: #9d9d9d; clear: both;}
 	.body{width:100%;}
@@ -38,25 +34,31 @@
 		height:200px;
 		width:300px;
 	}
-/* 	#chart_table tr td{ */
-/* 	padding: 15px 15px 15px 15px; */
-/* 	} */
-/* 	#list_table tr td{ */
-/* 	padding: 15px 15px 15px 15px; */
-/* 	} */
-	table tr td{
-	padding: 15px 15px 15px 15px;
+	
+	/*메인 wrap */	
+	#wrap{
+		
+		padding: 20px 30px 0 20px;
+		
 	}
+	/*메인 차트테이블 padding*/
+	#chart_table tr td{
+		padding: 20px 20px 20px 20px;
+	}
+	
+	/*메인 테이블*/
 	#list_table{
 	margin-top: 30px;
 	}
+	/*메인 테이블*/
  	#list_table tr td{
  	padding: 0px 0px 0px 0px; 
 	} 
 	
+	/*메인 차트 사이즈!*/
 	.chart{
-		width:270px;
-		height:280px;
+		width:18%;
+		height:40%;
 	}
 </style>	
 </head>

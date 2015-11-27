@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-    
 <style>
 	table th {
 		font-weight: bold;
@@ -110,4 +110,7 @@
 	
 	ÁøÂ¥ Å»ÅðÇÏ½Ç°Å? <br />
 	<input type="button" value="¤·¤µ¤· ¤²¤²" onclick="goUrl('deleteMember')">
+<%-- 	<c:url var="logout" value="j_spring_security_logout"/> --%>
+<%-- 	<a type="button" href="deleteMember" onclick="location.href='${logout}';" target="_blank">¤·¤µ¤·</a> --%>
 	<input type="button" value="»ç½Ç ¾Æ´Ô µ¥Çò" onclick="goUrl('selectoneMember')">
+</div>

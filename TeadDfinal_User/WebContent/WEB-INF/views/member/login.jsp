@@ -53,6 +53,13 @@
 	.col-md-offset-4 {
 		margin-top: 50px;
 	}
+	
+	
+	
+	.col-md-offset-4{
+		padding-top: 60px
+	}
+	
 </style>
 
 <script>

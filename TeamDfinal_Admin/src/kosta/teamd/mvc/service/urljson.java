@@ -74,7 +74,6 @@ public class urljson {
 				jsonObject =  (JSONObject) xmlSeri.read(xml);
 				System.out.println("xml->to json");
 				System.out.println(jsonObject);
-				
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -138,6 +137,7 @@ public class urljson {
 		//그 후에 리턴받아서 디비에 저장한다.
 		//필요한거 뽑아서
 		System.out.println(uj.mock(jsonObject));
+		
 		
 	}
 }

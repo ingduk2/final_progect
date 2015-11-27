@@ -23,7 +23,7 @@ public class AnimalDao{
 	}
 	
 	//  이미지게시판 리스트 출력
-	public List<AnimalVO> getImgList(){
+	public List<AniBoardVO> getImgList(){
 		return ss.selectList("animal.imglist");
 	}
 	

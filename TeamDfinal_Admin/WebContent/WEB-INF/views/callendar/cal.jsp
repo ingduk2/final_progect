@@ -15,12 +15,19 @@
 <script
 	src='http://fullcalendar.io/js/fullcalendar-2.3.1/fullcalendar.min.js'></script>
 <script src='http://fullcalendar.io/js/fullcalendar-2.3.1/lang-all.js'></script>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-3d.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
 <style>
 #cal_detail{width:400px; height:400px; float:left;}
 #cal_table{margin-left:20px; width:500px; height: 400px; float:left;}
 
 </style>
 <script>
+
+
+
+
 
 var caljson;
 var last_seq;
@@ -138,9 +145,9 @@ function callendar(){
 						
 					},
 					
-					eventMouseover: function( calEvent, jsEvent, view ) { 
-						alert('Event: ' + calEvent.title);
-					},
+// 					eventMouseover: function( calEvent, jsEvent, view ) { 
+// 						alert('Event: ' + calEvent.title);
+// 					},
 					
 					
 					//사용자
@@ -241,6 +248,9 @@ function callendar(){
 	<input type="hidden" id="name" name="name" value="admin">
 <%-- 	<input type="hidden" id="name" name="name" value="${pageContext.request.userPrincipal.name}"> --%>
 	</div>
+<!-- 	<div class="chart" id="container" ></div> -->
+<!-- 		<div class="chart" id="container1"></div> -->
+<!-- 		<div class="chart" id="container2"></div> -->
 	
 <table id='cal_table' class="table table-striped">
 	<thead class="table table-striped">

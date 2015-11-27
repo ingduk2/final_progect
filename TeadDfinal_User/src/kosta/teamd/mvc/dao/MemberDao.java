@@ -50,6 +50,15 @@ public class MemberDao {
 		template.delete("member.deleteMemRoles", mid);
 	}
 	
+	// -------------------------------------- 회원 탈퇴 시, FK 항목 처리
+		public void deleteBcont(String mid) {
+			template.delete("member.deleteBcont", mid);
+		}
+		public void deleteCBcont(String mid) {
+			template.delete("member.deleteCBcont", mid);
+		}
+	// -------------------------------------- 회원 탈퇴 시, FK 항목 처리
+	
 	// 회원 정보 검색
 	public MemberVO selectMember(String mid) {
 		

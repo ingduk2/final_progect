@@ -1,6 +1,5 @@
 package kosta.teamd.mvc.dao;
 
-import java.security.Principal;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -106,6 +105,14 @@ public class BoardDao {
 		public String selectBno(BoardVO bvo) {
 			return template.selectOne("board.selectBno", bvo);
 		}
+		
+		
+		//main에 나올 mini board
+		public List<BoardVO> mainMiniBoard(BoardVO bvo){
+			return template.selectList("board.mainminiboard", bvo);
+		}
+		
+		
 		
 	
 } //end BoardDao
