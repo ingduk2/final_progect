@@ -128,7 +128,7 @@ public class AnimalController {
 	
 	@RequestMapping(value="/selectallAnimal")
 	public ModelAndView selectallAnimal(@RequestParam(name="nowPage", defaultValue="1") int nowPage){
-		List<AnimalVO> alist = adao.getImgList();
+		List<AniBoardVO> alist = adao.getImgList();
 		ModelAndView mav = new ModelAndView("imgboard/imgboardlist");
 		mav.addObject("alist", alist);
 		mav.addObject("size",alist.size());
