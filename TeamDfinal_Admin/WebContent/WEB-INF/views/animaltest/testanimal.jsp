@@ -247,7 +247,20 @@ Highcharts.theme = {
     		    	                dataLabels: {
     		    	                    enabled: true,
     		    	                    format: '{point.name}: {point.y:.1f}%'
-    		    	                }
+    		    	                },
+    		    	                cursor: 'pointer',
+    		    	                events:{
+    		    	                  click: function (event, i) {
+    		    	                	  var print="";
+    		    	                     alert(event.point.name);
+    		    	                     $.each(animal2,function(idx,item){
+    		    	                    	 if(item.name==event.point.name){
+    		    	             			print +="<h1>["+item.name+"]</h1><p> ADDR:"+item.data+"</p>";
+    		    	                    	 }
+    		    	             		});
+    		    	                     $('#print').html(print);
+    		    	                  }
+    		    	              }
     		    	            }
     		    	        },
 
@@ -273,17 +286,33 @@ Highcharts.theme = {
   
 </script>    
 
-<div id="container" ></div>
+
 <div  >
-<table>
+<div id="container" ></div>
+<div id="print"></div>
+<table id='cal_table' class="table table-striped">
+	<thead class="table table-striped">
 <tr>
 <th>대분류</th><th>수량</th>
 </tr>
+</thead>
+
+<tbody>
 <c:forEach items="${anisvo}" var="anisvo">
 <tr>
 <td>${anisvo.anispecies }</td>
 <td>${anisvo.cnt }</td>
 </tr>
 </c:forEach>
+</tbody>
+
+<tfoot>
+<tfoot>
+		<tr>
+			<td ><input type="button" value="무슨버튼!"/></td>
+		</tr>
+	</tfoot>
+</tfoot>
+
 </table>
 </div>
