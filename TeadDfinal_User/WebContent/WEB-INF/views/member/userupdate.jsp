@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 	
+<!-- 
+	※ 변경 사항 ※
+	- 상단에 공간 띄우기 추가
+ -->
+
 <!-- 다음 주소 찾기 api 사용 -->
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 	
@@ -393,25 +398,26 @@ $(function() {
 	  <div id="aa">
 		<ul class="list-group">
 		  <li class="list-group-item list-group-item-success">
-		  	<span class="glyphicon glyphicon-info-sign"></span><a href="mselectview"> 정보 보기</a>
+		  	<span class="glyphicon glyphicon-info-sign"></span><a href="selectoneMember"> 정보 보기</a>
 		  </li>
 		  <li class="list-group-item list-group-item-success">
-		  	<span class="glyphicon glyphicon-cog"></span><a href="mselectupdate"> 정보 수정</a>
+		  	<span class="glyphicon glyphicon-cog"></span><a href="updateformMember"> 정보 수정</a>
 		  </li>
 		  	
 		  <li class="list-group-item list-group-item-success">
-		  	<span class="glyphicon glyphicon-user"></span><a href="#"> 나의 활동</a>
+		  	<span class="glyphicon glyphicon-user"></span><a href="selectAllMyActivity"> 나의 활동</a>
 		  </li>
 		  <li class="list-group-item list-group-item-success">
-		  	<span class="glyphicon glyphicon-trash"></span><a href="mdelete"> 탈 　　퇴</a>
+		  	<span class="glyphicon glyphicon-trash"></span><a href="formWithdrawal"> 탈 　　퇴</a>
 		  </li>
 		</ul>
 	  </div>
 	</div>
 
 
-		<h1>회원정보수정</h1>
-		<table><tr height="30px"><!-- 높이 조절용 칸 떼우기 --><td></td></tr></table>
+		
+		<!-- 공간 띄우기 용 -->
+		<table><tr height="50px"><td></td></tr></table>
 
 		<form onsubmit="return checksubmit()" name="updateform" action="updateMember" method="post" enctype="multipart/form-data">
 

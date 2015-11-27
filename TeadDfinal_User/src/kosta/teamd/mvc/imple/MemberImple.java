@@ -19,7 +19,7 @@ public class MemberImple
 	@Autowired
 	private MemberDao mdao;
 
-	// @Transactional을 이용한 두 메서드 단위 처리
+	// @Transactional을 이용한 메서드 단위 처리
 	@Transactional
 	@Override
 	public void memberInsert(MemberVO mvo, MemRolesVO mrvo) throws Exception {
@@ -28,10 +28,15 @@ public class MemberImple
 		mdao.insertMemRoles(mrvo);
 	}
 	
-	// @Transactional을 이용한 두 메서드 단위 처리
+	// @Transactional을 이용한 메서드 단위 처리
 	@Transactional
 	@Override
 	public void memberDelete(String mid) throws Exception {
+		
+		// -------------------------------------- 회원 탈퇴 시, FK 항목 처리
+			mdao.deleteCBcont(mid);
+			mdao.deleteBcont(mid);
+		// -------------------------------------- 회원 탈퇴 시, FK 항목 처리
 		
 		mdao.deleteMember(mid);
 		mdao.deleteMemRoles(mid);

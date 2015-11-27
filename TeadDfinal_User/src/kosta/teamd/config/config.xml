@@ -25,5 +25,7 @@
 		
 		<!-- 입양 -->
 		<typeAlias type="kosta.teamd.vo.AdoptApplyVO" alias="adavo"/>
+		
+		
   	</typeAliases>
   </configuration>
