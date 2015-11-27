@@ -1,9 +1,12 @@
 package kosta.teamd.mvc.dao;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kosta.teamd.vo.BoardVO;
 import kosta.teamd.vo.MemRolesVO;
 import kosta.teamd.vo.MemberVO;
 
@@ -90,5 +93,10 @@ public class MemberDao {
 	// 회원 비밀번호 찾기
 	public String findMpwd(MemberVO mvo) {
 		return template.selectOne("member.findMpwd", mvo);
+	}
+	
+	// 회원 자신이 작성한 모든 글 검색
+	public List<BoardVO> selectAllMine(BoardVO bvo) {
+		return template.selectList("member.selectAllMine", bvo);
 	}
 }
