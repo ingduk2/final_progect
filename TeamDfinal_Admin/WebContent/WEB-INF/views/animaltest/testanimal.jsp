@@ -249,6 +249,7 @@ Highcharts.theme = {
     		    	                    format: '{point.name}: {point.y:.1f}%'
     		    	                },
     		    	                cursor: 'pointer',
+    		    	                
     		    	                events:{
     		    	                  click: function (event, i) {
     		    	                	  var print="";
