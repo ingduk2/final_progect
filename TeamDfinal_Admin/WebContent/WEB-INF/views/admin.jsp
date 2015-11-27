@@ -19,7 +19,7 @@
 <script src="https://code.highcharts.com/highcharts-3d.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 <style>
-#cal_detail{width:30%; height:30%; float: right;}
+#cal_detail{width:300px; height:300px; }
 
 
 </style>
@@ -286,19 +286,19 @@ function callendar(){
 </script>
 
 <div id="wrap">
-<!-- <table id="chart_table"> -->
-<!-- 	<tr> -->
-<!-- 		<td><div class="chart" id="container" ></div></td> -->
-<!-- 		<td><div class="chart" id="container1"></div></td> -->
-<!-- 		<td><div class="chart" id="container2"></div></td> -->
-<!-- 		<td><a href="#"><div id='cal_detail'></div></a></td> -->
-<!-- 	</tr> -->
-<!-- </table> -->
+<table id="chart_table">
+	<tr>
+		<td><div class="chart" id="container" ></div></td>
+		<td><div class="chart" id="container1"></div></td>
+		<td><div class="chart" id="container2"></div></td>
+		<td><a href="formCal"><div id='cal_detail'></div></a></td>
+	</tr>
+</table>
 
-<div id='cal_detail' ></div>
-<div class="chart" id="container" ></div>
-<div class="chart" id="container1"></div>
-<div class="chart" id="container2"></div>
+<!-- <div id='cal_detail' ></div> -->
+<!-- <div class="chart" id="container" ></div> -->
+<!-- <div class="chart" id="container1"></div> -->
+<!-- <div class="chart" id="container2"></div> -->
 
 <table id="list_table">
 	<tr>

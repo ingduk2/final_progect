@@ -37,7 +37,7 @@
 	
 	/*메인 wrap */	
 	#wrap{
-		float:right;
+		
 		padding: 20px 30px 0 20px;
 		
 	}

@@ -273,8 +273,8 @@ Highcharts.theme = {
   
 </script>    
 
-<div id="container" style="min-width: 310px; max-width: 600px; height: 400px; margin: 0 auto"></div>
-<div align="right" style="margin: auto;" >
+<div id="container" ></div>
+<div  >
 <table>
 <tr>
 <th>대분류</th><th>수량</th>
