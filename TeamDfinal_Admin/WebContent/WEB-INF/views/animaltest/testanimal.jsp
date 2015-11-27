@@ -288,9 +288,9 @@ Highcharts.theme = {
 </script>    
 
 
-<div  >
 <div id="container" ></div>
 <div id="print"></div>
+<div>
 <table id='cal_table' class="table table-striped">
 	<thead class="table table-striped">
 <tr>
@@ -307,13 +307,13 @@ Highcharts.theme = {
 </c:forEach>
 </tbody>
 
-<tfoot>
+
 <tfoot>
 		<tr>
 			<td ><input type="button" value="¹«½¼¹öÆ°!"/></td>
 		</tr>
 	</tfoot>
-</tfoot>
+
 
 </table>
 </div>

@@ -185,52 +185,29 @@ end;
 select new_line(bcontent) from board;
 
 
---chart 예비
-create table chart(
-cdate date,
-a number,
-b number,
-c number,
-d number);
---chart data
-insert into chart values('2011-01-01',10,10,10,10);
-insert into chart values('2011-02-01',10,10,10,10);
-insert into chart values('2011-03-01',10,10,10,10);
-insert into chart values('2011-04-01',10,10,10,10);
-insert into chart values('2011-05-01',10,10,10,10);
-insert into chart values('2011-06-01',10,10,10,10);
-insert into chart values('2011-07-01',10,10,10,10);
-insert into chart values('2011-08-01',10,10,10,10);
-insert into chart values('2011-09-01',10,10,10,10);
-insert into chart values('2011-10-01',10,10,10,10);
-insert into chart values('2011-11-01',10,10,10,10);
-insert into chart values('2011-12-01',10,10,10,10);
+--------입양신청 임시------
+create table adoptapply(
+adopno number constraint adoptapply_adoptno_pk primary key,
+mid varchar2(20),
+anino number,
+eid varchar2(20),
+memage varchar2(20),
+score number,
+qus1 varchar2(50),
+qus1sup1 varchar2(50),
+qus2 varchar2(50),
+qus2sup1 varchar2(50),
+qus3 varchar2(50),
+qus4 varchar2(50),
+qus5 varchar2(50),
+qus6 varchar2(50),
+qus6sup1 varchar2(50),
+qus7 varchar2(50),
+qus8 varchar2(50),
+qus9 varchar2(50),
+qus10 varchar2(50));
 
-insert into chart values('2012-01-01',20,20,20,20);
-insert into chart values('2012-02-01',20,20,20,20);
-insert into chart values('2012-03-01',20,20,20,20);
-insert into chart values('2012-04-01',20,20,20,20);
-insert into chart values('2012-05-01',20,20,20,20);
-insert into chart values('2012-06-01',20,20,20,20);
-insert into chart values('2012-07-01',20,20,20,20);
-insert into chart values('2012-08-01',20,20,20,20);
-insert into chart values('2012-09-01',20,20,20,20);
-insert into chart values('2012-10-01',20,20,20,20);
-insert into chart values('2012-11-01',20,20,20,20);
-insert into chart values('2012-12-01',20,20,20,20);
-
-insert into chart values('2013-01-01',30,30,30,30);
-insert into chart values('2013-02-01',30,30,30,30);
-insert into chart values('2013-03-01',30,30,30,30);
-insert into chart values('2013-04-01',30,30,30,30);
-insert into chart values('2013-05-01',30,30,30,30);
-insert into chart values('2013-06-01',30,30,30,30);
-insert into chart values('2013-07-01',30,30,30,30);
-insert into chart values('2013-08-01',30,30,30,30);
-insert into chart values('2013-09-01',30,30,30,30);
-insert into chart values('2013-10-01',30,30,30,30);
-insert into chart values('2013-11-01',30,30,30,30);
-insert into chart values('2013-12-01',30,30,30,30);
-
-commit;
+create sequence adopt_seq
+increment by 1
+start with 1;
 

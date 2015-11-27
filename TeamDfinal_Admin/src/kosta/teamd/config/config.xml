@@ -6,6 +6,9 @@
   <configuration>
   	<typeAliases>
   	
+  		<!-- 입양 -->
+		<typeAlias type="kosta.teamd.vo.AdoptApplyVO" alias="adavo"/>
+  		
   		<typeAlias type="kosta.teamd.vo.MemberVO" alias="mvo" />       <!-- member -->
   		<typeAlias type="kosta.teamd.vo.MemRolesVO" alias="mrvo" />    <!-- memroles -->
   		

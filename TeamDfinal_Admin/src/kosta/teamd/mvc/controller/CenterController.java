@@ -44,19 +44,8 @@ public class CenterController {
 		
 		ModelAndView mav= new ModelAndView("redirect:/formCenter");
 		
-		//먼저 주소를 변환한다.
-		JSONObject jsonObject= new JSONObject();
+		//웹에서 받는걸로 바꿈..
 		
-		//시험해....
-		//String str=param.replaceAll(" ", "%20");
-		//jsonObject = myjson.myJason(vo.getCaddr().toString());
-		jsonObject = myjson.myJason(vo.getCaddr());
-		//myjson.mock(jsonObject);
-		
-//		System.out.println("주소 : " + vo.getCaddr());
-		//그 후에 리턴받아서 디비에 저장한다.
-		//필요한거 뽑아서
-		vo.setCxy(myjson.mock(jsonObject));
 		
 		cdao.insert(vo);
 		//jsonObject.get(key)

@@ -285,21 +285,22 @@ function callendar(){
 }
 </script>
 
-<div id="wrap">
-<table id="chart_table">
-	<tr>
-		<td><div class="chart" id="container" ></div></td>
-		<td><div class="chart" id="container1"></div></td>
-		<td><div class="chart" id="container2"></div></td>
-		<td><a href="formCal"><div id='cal_detail'></div></a></td>
-	</tr>
-</table>
+<div class="form-inline">
+<!-- <table id="chart_table"> -->
+<!-- 	<tr> -->
+<!-- 		<td><div class="chart" id="container" ></div></td> -->
+<!-- 		<td><div class="chart" id="container1"></div></td> -->
+<!-- 		<td><div class="chart" id="container2"></div></td> -->
+<!-- 		<td><a href="formCal"><div id='cal_detail'></div></a></td> -->
+<!-- 	</tr> -->
+<!-- </table> -->
 
-<!-- <div id='cal_detail' ></div> -->
-<!-- <div class="chart" id="container" ></div> -->
-<!-- <div class="chart" id="container1"></div> -->
-<!-- <div class="chart" id="container2"></div> -->
 
+<div class="chart form-group"  id="container" ></div>
+<div class="chart form-group" id="container1"></div>
+<div class="chart form-group" id="container2"></div>
+<div class= "form-group" id='cal_detail' ></div>
+</div>
 <table id="list_table">
 	<tr>
 		<td><table>

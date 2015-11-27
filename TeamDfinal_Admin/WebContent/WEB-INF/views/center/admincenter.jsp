@@ -163,6 +163,7 @@ function sample5_execDaumPostcode() {
 		
 		<tfoot>
 			<tr>
+				<td><input type="text" id="code" name="cxy"></td>
 				<td colspan="2"><input type="submit" size="20" value="등록!"></td>
 			</tr>
 		</tfoot>
@@ -175,7 +176,7 @@ function sample5_execDaumPostcode() {
 	</tr>
 	
 	</table>
-	<input type="text" id="code" >
+	
 	
 </form>
 </div>

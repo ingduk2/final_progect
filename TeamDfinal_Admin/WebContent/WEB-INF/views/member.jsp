@@ -13,21 +13,18 @@
 <style>
 
 #wrap_mem{
-	float:right;
 	
 }
 
+
+/* #member_chart_age{ */
 .member_chart{
 	width:30%;
-	height: 50%;
-} 
-/* #member_chart_age{ */
-	
+}
 	
 /* } */
 #member_list{
-	margin-left : 40px;
-	width:70%;
+	width:30%;
 }
 
 /* #member_chart2{ */
@@ -150,13 +147,13 @@ function memberchart(){
 
 </script>
 
-<div id=wrap_mem>
-<table>
-<!-- 1번 째 줄 -->
-<tr>
-<td><div class="member_chart" id="member_chart_age" ></div></td>
-<td><!-- <div id="member_list"> -->
-	<table id="member_list" class="table table-striped">
+<div  class="form-inline">
+<div class="form-group">
+<div class="member_chart" id="member_chart_age" ></div>
+<div class="member_chart"  id="member_chart2" ></div>
+</div>
+<div class="form-group" >
+	<table  id="member_list" class="table table-striped">
 		<thead class="table table-striped">
 			<tr>
 				<th colspan="8">회원 정보</th>
@@ -191,14 +188,14 @@ function memberchart(){
 		
 		<tfoot>
 		</tfoot>
-	</table></td>
-	</tr>
+	</table>
+</div>
+</div>
 <!-- </div> -->
 
 <!-- 2번째 줄 -->
-	<tr>
-	<td><div class="member_chart"  id="member_chart2" ></div></td>
-	</tr>
-</table>
-</div>
+	
+	
+	
+
 

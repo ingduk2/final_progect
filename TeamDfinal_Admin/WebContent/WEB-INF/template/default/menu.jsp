@@ -91,7 +91,7 @@ li { list-style: none}
    <a href="#none">신청자 관리</a>
   </h4>
     <div>
-  	 <a href="">입양 신청자</a><br />
+  	 <a href="selectallAdopt">입양 신청자</a><br />
   	 <a href="formCal">봉사 신청자</a><br /> 
   </div>
   
@@ -117,6 +117,8 @@ li { list-style: none}
     <div>
   	 <a href="testani">animal</a><br />  
   </div>
+
+	
 
  </div>
 
