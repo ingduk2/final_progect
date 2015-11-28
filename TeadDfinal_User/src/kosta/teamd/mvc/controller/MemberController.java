@@ -164,7 +164,7 @@ public class MemberController {
 		
 		mupdate.memberUpdate(mvo);
 		
-		System.out.println("Log: [" + mvo.getMid() + "] 정보 수정");
+//		System.out.println("Log: [" + mvo.getMid() + "] 정보 수정");
 		
 		return new ModelAndView("redirect:/mselectview");
 	}

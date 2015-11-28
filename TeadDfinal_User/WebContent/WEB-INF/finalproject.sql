@@ -191,7 +191,7 @@ start with 1;
 
 
 
-줄바꿈 함수!!---------------------
+--줄바꿈 함수!!---------------------
 select replace(replace(bcontent,chr(10),'<br>'),chr(13),'') from board;
 
 create or replace function new_line(bcontent clob)

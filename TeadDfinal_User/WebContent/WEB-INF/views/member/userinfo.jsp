@@ -48,11 +48,6 @@
 /* 	font-weight:bold;  */
 	font-size: 15px
 }
-#aa{
-	color : white;
-	padding-top: 140px;
-	margin-left: 50px;	
-}
 .list-group-item{
 	border: 1px solid transparent;
 	width: 150px
@@ -80,11 +75,37 @@ a:link {
 	padding: 3px;
 	background-color: #E0EEEE
 }
+/* .nav-pills>li.active>a{
+	background-color:transparent;
+}
+.nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover{
+	color: white;
+	background-color: #90ee90;
+} */
+
+/* .pagination>li>a, .pagination>li>span{
+	Color: white;
+	background-color: #006400;
+}
+.pagination>li>a:focus, .pagination>li>a:hover, .pagination>li>span:focus, .pagination>li>span:hover{
+	background-color:#228B22;
+	color: white
+} */
+/* aa>ul{
+	text-align: center;
+	width: 100%
+} */
+/* .aa>.pagination{
+	width: 100%
+} */
+/* .aa{
+	text-align: center
+} */
 
 
 </style>
 
-<div>
+
 			<!--MenuBar_È¸¿øÁ¤º¸º¸±â/¼öÁ¤/Å»Åð/³»°¡¾´±Û-->
 	<div id="menubar">
 	  <div id="aa">
@@ -103,16 +124,17 @@ a:link {
 <!-- 		  	<span class="glyphicon glyphicon-trash"></span><a href="deleteMember">Å» ¡¡¡¡Åð</a> -->
 			<c:url var="logout" value="j_spring_security_logout"/><!-- parent.µÎ¹øÂ°º¸ÀÏ°÷.location.href -->
 		  	<span class="glyphicon glyphicon-trash"></span>
-		  	<a href="deleteMember" onclick="location.href='${logout}';" target="_blank">Å» ¡¡¡¡Åð</a>
+		  	<a href="deleteMember" onclick="location.href='${logout}';" target="_parent">Å» ¡¡¡¡Åð</a>
 		  </li>
 		</ul>
 	  </div>
 	</div>
 
-		<h1>È¸¿ø Á¤º¸</h1>
 		<table><tr height="30px"><!-- ³ôÀÌ Á¶Àý¿ë Ä­ ¶¼¿ì±â --><td></td></tr></table>
 		
-	<div class="row">
+		
+		
+ <div class="row">
 	<div class="col-md-4"><!-- À§Ä¡Á¶Á¤¿ë --></div>
 	<div class="col-md-6">
 	  <div class="panel panel-default">
@@ -138,7 +160,5 @@ a:link {
 	</div>
 	<div class="col-md-3"><!-- À§Ä¡Á¶Á¤¿ë --></div>
 	</div>	
-		
 
 		<table><tr height="30px"><td></td></tr></table>
-	</div>

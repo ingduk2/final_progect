@@ -174,6 +174,11 @@
 			rownum, mid, bno, substr(btitle, 1, 22) as btitle, to_char(bdate, 'yyyy/mm/dd') as bdate
 		from board where <![CDATA[rownum<=3]]> and bcode=1 order by bno desc
 	</select>
+	<select id="mainminiboard2" resultType="bvo">
+		select 
+			rownum, mid, bno, substr(btitle, 1, 22) as btitle, to_char(bdate, 'yyyy/mm/dd') as bdate
+		from board where <![CDATA[rownum<=3]]> and bcode=3 order by bno desc
+	</select>
 	
 
 

@@ -111,6 +111,9 @@ public class BoardDao {
 		public List<BoardVO> mainMiniBoard(BoardVO bvo){
 			return template.selectList("board.mainminiboard", bvo);
 		}
+		public List<BoardVO> mainMiniBoard2(BoardVO bvo){
+			return template.selectList("board.mainminiboard2", bvo);
+		}
 		
 		
 		
