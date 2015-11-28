@@ -65,9 +65,11 @@
 	}
 	#imgtest{
 		background-image: url("img/mainimg.png");
-		width: 600px;
+		width: 50%;
 		height: 250px;
-		background-repeat: repeat-x;
+		background-repeat: no-repeat;
+		margin: auto;
+		background-position: center center;
 	}
 	.label-info{
 		background-color: #C8E798;
@@ -94,7 +96,7 @@
 </script>
 
 
-<div class="body">
+<div class="body" style="width: 100%">
 
 	<div id="itsfloatdiv"> <!-- 얘는 설문조사를 넣을 애다. -->
 	<span class="label label-info" style="margin-left: 100px">설문조사 참여하기</span>
@@ -116,8 +118,8 @@
 	</table> 
 	</div>
 
-	<div id="imgtest" style="margin: auto; width: 50%">
-		<a href="#"><img src="img/gobtn.png" style="margin-top: 180px;  margin-right: 250px;"></a><!-- 바로가기버튼입니다 -->
+	<div id="imgtest">
+		<a href="#"><img src="img/gobtn.png" style="margin-top:190px;  margin-right: 250px;"></a><!-- 바로가기버튼입니다 -->
 	</div>
 	
 	<div style="margin: auto; width: 50%">

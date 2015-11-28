@@ -44,6 +44,11 @@
 		margin-bottom: 1px
 	}
 </style>
+<script>
+	function fin() {
+		window.close();
+	}
+</script>
 </head>
 <body>
 <div id="allbg">
@@ -92,7 +97,7 @@
 	    	<strong>※ 본 설문조사는 로그인이 필요없는 열린방식으로 진행하고,<br>
 	    	동일IP에서 중복투표를 방지하여 유의성을 제고합니다.</strong> 
 	    </span>
-	    <button type="button" class="btn btn-default btn-sm" style="margin-bottom: -15px; margin-left: 90%">투표하기</button>
+	    <button type="button" onclick="fin()" class="btn btn-default btn-sm" style="margin-bottom: -15px; margin-left: 90%">투표하기</button>
 	    
 	 </div>
 </div>
