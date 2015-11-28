@@ -51,6 +51,11 @@ public class BoardDao {
 		return template.selectOne("board.namecard", mid);
 	}
 
+	// ====================================================
+	public void insertImgBoard(BoardVO bvo) {
+		template.insert("board.imgBoardInsert", bvo);
+	}
+	// ====================================================
 	
 	//---------이미지게시판... 위에 일반게시판이랑 중복... 
 		public void imgInsert(BoardVO bvo){

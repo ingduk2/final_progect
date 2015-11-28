@@ -19,7 +19,7 @@ public class AnimalVO {
 	private int anireward;          // 사례금
 	private int anistate;           // 동물 등록 상태(실종, 발견, 개인 보호)
 	private String aniimg;          // 동물 사진 파일 이름
-	private MultipartFile maniimg;  //이미지 업로드용
+	private MultipartFile maniimg;  // 이미지 업로드용
 
 	public int getAnino() {
 		return anino;

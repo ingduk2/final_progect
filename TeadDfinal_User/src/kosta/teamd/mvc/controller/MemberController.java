@@ -134,7 +134,7 @@ public class MemberController {
 		
 		System.out.println("Log: [" + mid.getName() + "] 탈퇴");
 		
-		return new ModelAndView("index");
+		return new ModelAndView("redirect:/j_spring_security_logout");
 	}
 	
 	// -- 회원 정보 수정 --
