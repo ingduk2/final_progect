@@ -3,6 +3,7 @@ package kosta.teamd.mvc.controller;
 import java.io.File;
 import java.io.IOException;
 import java.security.Principal;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -18,6 +19,7 @@ import kosta.teamd.mvc.inter.MemberDeleteInter;
 import kosta.teamd.mvc.inter.MemberInsertInter;
 import kosta.teamd.mvc.inter.MemberSelectInter;
 import kosta.teamd.mvc.inter.MemberUpdateInter;
+import kosta.teamd.vo.BoardVO;
 import kosta.teamd.vo.MemRolesVO;
 import kosta.teamd.vo.MemberVO;
 
@@ -104,6 +106,19 @@ public class MemberController {
 		return new ModelAndView("index");
 	}
 	
+	// -- 회원 탈퇴 페이지 연결 --
+	@RequestMapping(value="/formWithdrawal")
+	public String formWithdrawal(Principal prcp) {
+			
+		// 이미 로그인 한 회원이 회원탈퇴 페이지에 접근하려 할 시 처리
+		if (prcp == null) {
+			return "index";
+		}
+		else {
+			return "member/withdrawal";
+		}
+	}
+	
 	// -- 회원 정보, 권한 삭제 --
 	@Autowired
 	private MemberDeleteInter mdelete;
@@ -119,7 +134,7 @@ public class MemberController {
 		
 		System.out.println("Log: [" + mid.getName() + "] 탈퇴");
 		
-		return new ModelAndView("index");
+		return new ModelAndView("redirect:/j_spring_security_logout");
 	}
 	
 	// -- 회원 정보 수정 --
@@ -166,14 +181,14 @@ public class MemberController {
 		
 //		System.out.println("Log: [" + mvo.getMid() + "] 정보 수정");
 		
-		return new ModelAndView("redirect:/mselectview");
+		return new ModelAndView("redirect:/selectoneMember");
 	}
 	
 	// -- 회원 정보 검색 --
 	@Autowired
 	private MemberSelectInter mselect;
 	
-	// --- 회원 정보 보기로 연결 ---
+	// -- 회원 정보 보기로 연결 --
 	@RequestMapping(value="/selectoneMember")
 	public ModelAndView selectoneMember(Principal mid) throws Exception {
 		
@@ -182,12 +197,12 @@ public class MemberController {
 		ModelAndView mav = new ModelAndView("member/userinfo");
 		mav.addObject("mvo", mvo);
 		
-		System.out.println("Log: [" + mid.getName() + "] 정보 검색");
+//		System.out.println("Log: [" + mid.getName() + "] 정보 검색");
 		
 		return mav;
 	}
 	
-	// --- 회원 정보 수정으로 연결 ---
+	// -- 회원 정보 수정으로 연결 --
 	@RequestMapping(value="/updateformMember")
 	public ModelAndView updateformMember(Principal mid) throws Exception {
 		
@@ -197,6 +212,20 @@ public class MemberController {
 		mav.addObject("mvo", mvo);
 		
 		System.out.println("Log: [" + mid.getName() + "] 정보 검색");
+		
+		return mav;
+	}
+	
+	// -- 나의 활동 페이지 연결 --
+	@RequestMapping(value="/selectAllMyActivity")
+	public ModelAndView selectMyActivity(BoardVO bvo, Principal prcp) {
+		
+		bvo.setMid(prcp.getName());
+		
+		List<BoardVO> mine = mdao.selectAllMine(bvo);
+		
+		ModelAndView mav = new ModelAndView("member/myactivity");
+		mav.addObject("mine", mine);
 		
 		return mav;
 	}

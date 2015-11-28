@@ -4,33 +4,41 @@
 
 <style>
 
-a.thumbnail:focus, a.thumbnail:hover{
-	color: #90ee90
-}
-a.nounderline {text-decoration: none; } 
-a.thumbnail.active, a.thumbnail:focus, a.thumbnail:hover{
-	border-color:#EDEDED
-}
-
+	a.thumbnail:focus, a.thumbnail:hover {
+		color: #90ee90
+	}
+	a.nounderline {
+		text-decoration: none; 
+	} 
+	a.thumbnail.active, a.thumbnail:focus, a.thumbnail:hover{
+		border-color:#EDEDED
+	}
  	.numbering{ 
   		clear: both; 
-/ 	}  
+ 	}  
 
+	
+	div {
+		border: 1px solid;
+	}
+	
 </style>
 
-<h2>
-	<img src="img/imgboardtitle.png" width="300px">
-</h2>
-<!-- 테이블 태그 삭제해야지됨... -->	
 
-<!--수정 해야함 -->
-<!-- <div class="col-md-offset-3 col-md-8 center"> -->
-	<div class="col-md-offset-2 col-md-8 center"> 
-	
+
+<!-- 공간 띄우기 용 -->
+<table><tr height="50px"><td></td></tr></table>
+
+
+
+<div class="col-md-offset-2 col-md-8 center" id="wrap"> 
+
+
 			 <c:if test="${size!=0}">
 			 <c:set var="doneLoop" value="false"/>
 		 	<c:forEach var="i" begin="0" end="11" step="4"> 
 		 	<div>
+		 	
 		 	
 		 			 	
 		 	<c:if test="${not doneLoop }">

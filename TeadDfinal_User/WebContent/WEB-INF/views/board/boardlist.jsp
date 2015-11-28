@@ -7,6 +7,7 @@
 	- 메뉴바와 게시판 리스트 사이 공간 띄움
 	- bcode 1 (공지사항) 에서는 글쓰기 버튼 안보이게 함
 	- 각종 멘트 변경
+	- bcode에 따라 어디 게시판인지 출력하도록 함
  -->
 
 <style>
@@ -22,7 +23,19 @@
 <!-- <table id="table-pagination" data-toggle="table" data-pagination="true"> -->
 <table>
 	<thead style="font-weight:bold; color:black;">
-		<tr id="title"> <th colspan="2" width="300px">제목</th><th width="180px">작성자</th><th width="100px">작성일</th><th>조회</th> </tr>
+
+		<c:if test="${bcode == 1}">
+			<tr id="title"> <td colspan="5">공지사항</td> </tr>
+		</c:if>
+		<c:if test="${bcode == 2}">
+			<tr id="title"> <td colspan="5">자유 게시판</td> </tr>
+		</c:if>
+		<c:if test="${bcode == 3}">
+			<tr id="title"> <td colspan="5">질문 게시판</td> </tr>
+		</c:if>
+		<tr> <td colspan="5">　</td> </tr>
+		<tr id="title"> <td colspan="2" width="300px">제목</td><td width="180px">작성자</td><td width="100px">작성일</td><td>조회</td> </tr>
+
 	</thead>
 	
 	<tbody id="tbodycss">

@@ -41,6 +41,17 @@
     		delete from memroles where mid=#{mid}
     	</delete>
     	
+    	<!-- ======== 아마 참조하는 테이블이 늘어날 수록 여기에 추가가 되어야 할 것이다!! ======== -->
+	    	<!-- 회원 탈퇴 시 게시물 처리 -->
+	    	<delete id="deleteBcont" parameterType="String">
+	    		delete from board where mid=#{mid}
+	    	</delete>
+	    	<!-- 회원 탈퇴 시 댓글 처리 -->
+	    	<delete id="deleteCBcont" parameterType="String">
+	    		delete from commboard where mid=#{mid}
+	    	</delete>
+	    <!-- ======== 아마 참조하는 테이블이 늘어날 수록 여기에 추가가 되어야 할 것이다!! ======== -->
+    	
     	<!-- 회원 정보 검색 -->
     	<select id="selectMember" parameterType="String" resultType="mvo">
     		select * from member where mid=#{mid}
@@ -82,6 +93,33 @@
     	<!-- 회원 비밀번호 찾기 -->
     	<select id="findMpwd" parameterType="mvo" resultType="String">
     		select mpwd from member where mid=#{mid} and memail=#{memail} and mpwdval=#{mpwdval}
+    	</select>
+    	
+    	<!-- 회원 자신이 작성한 모든 글 검색 -->
+    	<select id="selectAllMine" parameterType="bvo" resultType="bvo">
+			select bcode, boricode, bno, btitle, mid, bcontent,
+	    		   to_char(bdate, 'yyyy/mm/dd') as	bdate,
+	    		   bhit, anino, bref, bseq, blvl, bip, bfile, brpt 
+			from board 
+			
+			<if test="searchType!=null">
+				<where>
+					<choose>
+						<when test="searchType==1">
+							btitle like '%' || #{searchValue} || '%'
+						</when>
+						<when test="searchType==2">
+							bcontent like '%' || #{searchValue} || '%'
+						</when>
+					</choose>
+				</where>
+				and mid=#{mid}
+			</if>
+			<if test="searchType==null">
+				where mid=#{mid}
+			</if>
+
+	    	order by bno desc
     	</select>
     
     </mapper>

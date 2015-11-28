@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
-<!-- winni start -->
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!-- winni end -->
+
+<!-- 
+	※ 변경 사항 ※
+	- 상단에 공간 띄우기 추가
+ -->
+
 <style>
 	table th {
 		font-weight: bold;
@@ -75,39 +78,51 @@ a:link {
 	padding: 3px;
 	background-color: #E0EEEE
 }
-/* .nav-pills>li.active>a{
-	background-color:transparent;
-}
-.nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover{
-	color: white;
-	background-color: #90ee90;
-} */
-
-/* .pagination>li>a, .pagination>li>span{
-	Color: white;
-	background-color: #006400;
-}
-.pagination>li>a:focus, .pagination>li>a:hover, .pagination>li>span:focus, .pagination>li>span:hover{
-	background-color:#228B22;
-	color: white
-} */
-/* aa>ul{
-	text-align: center;
-	width: 100%
-} */
-/* .aa>.pagination{
-	width: 100%
-} */
-/* .aa{
-	text-align: center
-} */
-
+	#memberinfomenubar{
+		position: fixed; position: absolute; 
+/*  		z-index: -1;  */
+		overflow: hidden;
+		left: 0px;
+		top: 160px;
+		margin: 0;
+		padding: 0
+	}
+	.imgsize{
+		width:100px;
+		height:105px;
+		padding-bottom: 10px
+	}
 
 </style>
 
 
+<div id="memberinfomenubar"> <!-- memberpage : userinfo/userupdate/myactivity/withdrawal.jsp에 사용할 submenu -->
+<table style="margin-left: 130px;">
+	<tr>
+		<td><!-- 정보보기 -->
+			<a href="#"><img class="imgsize" src="img/test/myinfo.png"/></a>
+		</td>  
+	</tr>
+	<tr><!-- 정보수정 -->
+		<td><a href="updateformMember"><img class="imgsize" src="img/test/infoupdate.png"/></a></td>  
+	</tr>
+	<tr><!-- 나의 활동 -->
+		<td><a href="selectAllMyActivity"><img class="imgsize" src="img/test/involved.png"/></a></td>  
+	</tr>
+	<tr><!-- 탈퇴 -->
+		<td><a href="formWithdrawal"><img class="imgsize" src="img/test/withdrawal.png"/></a></td>
+	</tr>
+</table> 
+</div>
+
+
+
+
+
+
+
 			<!--MenuBar_회원정보보기/수정/탈퇴/내가쓴글-->
-	<div id="menubar">
+<!-- 	<div id="menubar">
 	  <div id="aa">
 		<ul class="list-group">
 		  <li class="list-group-item list-group-item-success">
@@ -118,23 +133,21 @@ a:link {
 		  </li>
 		  	
 		  <li class="list-group-item list-group-item-success">
-		  	<span class="glyphicon glyphicon-user"></span><a href="#"> 나의 활동</a>
+		  	<span class="glyphicon glyphicon-user"></span><a href="selectAllMyActivity"> 나의 활동</a>
 		  </li>
-		  <li class="list-group-item list-group-item-success"><!-- winni -->
-<!-- 		  	<span class="glyphicon glyphicon-trash"></span><a href="deleteMember">탈 　　퇴</a> -->
-			<c:url var="logout" value="j_spring_security_logout"/><!-- parent.두번째보일곳.location.href -->
-		  	<span class="glyphicon glyphicon-trash"></span>
-		  	<a href="deleteMember" onclick="location.href='${logout}';" target="_parent">탈 　　퇴</a>
+		  <li class="list-group-item list-group-item-success">
+		  	<span class="glyphicon glyphicon-trash"></span><a href="formWithdrawal"> 탈 　　퇴</a>
 		  </li>
 		</ul>
 	  </div>
-	</div>
+	</div> -->
 
-		<table><tr height="30px"><!-- 높이 조절용 칸 떼우기 --><td></td></tr></table>
+	
+	<!-- 공간 띄우기 용 -->
+	<table><tr height="50px"><td></td></tr></table>
 		
 		
 		
- <div class="row">
 	<div class="col-md-4"><!-- 위치조정용 --></div>
 	<div class="col-md-6">
 	  <div class="panel panel-default">
@@ -159,6 +172,5 @@ a:link {
 	  </div>
 	</div>
 	<div class="col-md-3"><!-- 위치조정용 --></div>
-	</div>	
 
 		<table><tr height="30px"><td></td></tr></table>

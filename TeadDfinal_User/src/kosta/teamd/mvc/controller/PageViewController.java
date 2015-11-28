@@ -13,12 +13,6 @@ import kosta.teamd.vo.BoardVO;
 @Controller
 public class PageViewController {
 
-/*	// 메인 페이지
-	@RequestMapping(value={"/", "/index"})
-	public String formIndex() {
-		return "index";
-	}*/
-	
 	@Autowired
 	private BoardDao bdao;
 	
@@ -32,13 +26,11 @@ public class PageViewController {
 		return mav;
 	}
 	
-	
 	// 디나이 페이지
 	@RequestMapping(value="/denied")
 	public String formDenied() {
 		return "denied";
 	}
-	
 	
 	//popup용 페이지들
 	@RequestMapping(value="/popup")
@@ -57,7 +49,5 @@ public class PageViewController {
 	public String popup4(){
 		return "checkpage/popup4";
 	}
-	
-	
 	
 }

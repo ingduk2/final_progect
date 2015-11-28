@@ -21,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kosta.teamd.mvc.dao.BoardDao;
 import kosta.teamd.mvc.dao.CommBoardDao;
+import kosta.teamd.mvc.inter.BoardDeleteInter;
 import kosta.teamd.vo.BoardVO;
 import kosta.teamd.vo.CommBoardVO;
 import kosta.teamd.vo.MemberVO;
@@ -110,9 +111,14 @@ public class BoardController {
 		return mav;
 	}
 	
+	@Autowired
+	private BoardDeleteInter bdelete;
+	
 	@RequestMapping(value="/deleteBoard")
-	public ModelAndView deleteBoard(int bno, int bcode){
-		bdao.deleteBoard(bno);
+	public ModelAndView deleteBoard(int bno, int bcode) throws Exception{
+		
+		bdelete.boardDelete(bno);
+		
 		return new ModelAndView("redirect:/selectallBoard?bcode="+bcode);
 	}
 	

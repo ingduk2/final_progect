@@ -54,7 +54,7 @@ public class CalController {
 		StringBuffer sb= new StringBuffer();
 		
 		for(VolunteerVO e : list){
-			vol=new JSONObject();
+			vol=new JSONObject();// { //[
 			//stringbuffer로 바꾸기.?
 			System.out.println(e.getVolunteerno());
 			System.out.println(vol);

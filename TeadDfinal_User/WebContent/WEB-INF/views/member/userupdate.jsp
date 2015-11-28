@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 	
+<!-- 
+	※ 변경 사항 ※
+	- 상단에 공간 띄우기 추가
+ -->
+
 <!-- 다음 주소 찾기 api 사용 -->
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 	
@@ -107,6 +112,22 @@ input[readonly] {
 .list-group>li>a{
 	color: white;
 }
+
+/* 	서브메뉴바style */
+	#memberinfomenubar{
+		position: fixed; position: absolute; 
+/*  		z-index: -1;  */
+		overflow: hidden;
+		left: 0px;
+		top: 160px;
+		margin: 0;
+		padding: 0
+	}
+	.imgsize{
+		width:100px;
+		height:105px;
+		padding-bottom: 10px
+	}
 </style>
 
 
@@ -387,178 +408,177 @@ $(function() {
 
 </script>
 
+
+<div id="memberinfomenubar"> <!-- memberpage : userinfo/userupdate/myactivity/withdrawal.jsp에 사용할 submenu -->
+<table style="margin-left: 130px;">
+	<tr>
+		<td><!-- 정보보기 -->
+			<a href="selectoneMember"><img class="imgsize" src="img/test/myinfo.png"/></a>
+		</td>  
+	</tr>
+	<tr><!-- 정보수정 -->
+		<td><a href="#"><img class="imgsize" src="img/test/infoupdate.png"/></a></td>  
+	</tr>
+	<tr><!-- 나의 활동 -->
+		<td><a href="selectAllMyActivity"><img class="imgsize" src="img/test/involved.png"/></a></td>  
+	</tr>
+	<tr><!-- 탈퇴 -->
+		<td><a href="formWithdrawal"><img class="imgsize" src="img/test/withdrawal.png"/></a></td>
+	</tr>
+</table> 
+</div>
+
+	<!-- 공간 띄우기 용 -->
+	<table><tr height="50px"><td></td></tr></table>
+
+
 <div>
-			<!--MenuBar_회원정보보기/수정/탈퇴/내가쓴글-->
-	<div id="menubar">
-	  <div id="aa">
-		<ul class="list-group">
-		  <li class="list-group-item list-group-item-success">
-		  	<span class="glyphicon glyphicon-info-sign"></span><a href="mselectview"> 정보 보기</a>
-		  </li>
-		  <li class="list-group-item list-group-item-success">
-		  	<span class="glyphicon glyphicon-cog"></span><a href="mselectupdate"> 정보 수정</a>
-		  </li>
-		  	
-		  <li class="list-group-item list-group-item-success">
-		  	<span class="glyphicon glyphicon-user"></span><a href="#"> 나의 활동</a>
-		  </li>
-		  <li class="list-group-item list-group-item-success">
-		  	<span class="glyphicon glyphicon-trash"></span><a href="mdelete"> 탈 　　퇴</a>
-		  </li>
-		</ul>
-	  </div>
-	</div>
+<form onsubmit="return checksubmit()" name="updateform" action="updateMember" method="post" enctype="multipart/form-data">
 
-
-		<h1>회원정보수정</h1>
-		<table><tr height="30px"><!-- 높이 조절용 칸 떼우기 --><td></td></tr></table>
-
-		<form onsubmit="return checksubmit()" name="updateform" action="updateMember" method="post" enctype="multipart/form-data">
-
-		<table id="formtable">
-		<!-- <tr> <th></th> <td></td> </tr> -->
-			<tr>
-				<th>아이디</th>
-				<td>
-					<input type="text" class="form-control input-sm" placeholder="아이디" name="mid" value="${mvo.mid }" readonly="readonly"/>
-				</td> 
-				<td rowspan="3">
-					<div id="imgimg"></div>
-				</td> 
-			</tr>
-			
-			
-			<tr>
-				<th>프로필 사진</th>
-				<td>
-					<div class="input-group">
-						<input type="text" class="form-control input-sm" placeholder="프로필 사진" name="mimg" value="${mvo.mimg }" readonly="readonly" >
-						<span class="input-group-btn">
-							<span class="btn btn-success btn-file btn-sm">
-		                    	<span class="glyphicon glyphicon-folder-open"></span>
-		                        &nbsp;ImageUpload<input type="file" name="mfile" id="file">
-		                    </span>
-		              	</span>
-			        </div>
-				</td>
-			</tr>
-			
-			<tr>
-				<th>비밀번호</th>   
-				<td> 
-					<input type="password" class="form-control input-sm" placeholder="비밀번호(8자리 이상)" name="mpwd" id="mpwd" value="${mvo.mpwd }" minlength="8" maxlength=20">
-				</td> 
-			</tr>
-			
-			<tr> 
-				<th>비밀번호 확인</th>  
-				<td>
-					<input type="password" class="form-control input-sm" placeholder="비밀번호 확인" id="mpwdchk" name="mpwdchk"/>
-					<div id="mpwdchkres"></div>
-				</td> 
-				<td></td> 
-			</tr>
-			
-			<tr>
-				<th>비밀번호 찾기 질문</th>
-				<td>
-					<input type="text" class="form-control input-sm" placeholder="비밀번호를 잊었을 때 사용할 질문을 입력해주세요" name="mpwdkey" value="${mvo.mpwdkey }">
-				</td>
-			</tr>
-			
-			<tr>
-				<th>비밀번호 찾기 답변</th>
-				<td>
-					<input type="text" class="form-control input-sm" placeholder="위 질문의 답을 입력해주세요" name="mpwdval" value="${mvo.mpwdval }">
-				</td>
-			</tr>
-			
-			<tr> 
-				<th>이름</th>
-				<td>
-					<input class="form-control input-sm" placeholder="이름" name="mname" value="${mvo.mname }" readonly="readonly" >
-				</td> 
-				<td></td> 
-			</tr>
-			
-			<tr> 
-				<th>생년월일</th>   
-				<td>
-					<input class="form-control input-sm" type="text" placeholder="생년월일 (클릭)" name="mbirth" value="${mvo.mbirth }" readonly="readonly"  />
-				</td> 
-				<td></td> 
-			</tr>
-			
-			<tr> 
-				<th>이메일</th>
-				<td>
-					<input type="email" class="form-control input-sm" 
-					placeholder="이메일 주소 (abc@abc.com)" 
-					name="memail" id="memail" pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" value="${mvo.memail }" />
-					<div id="memailchkres" name="memailchkres"></div>
-				</td> 
-				<td>
-					<button type="button" class="btn btn-default btn-sm" id="memailchk"> 중복체크	</button>
-				</td> 
-			</tr>
-			
-			<tr> 
-				<th>휴대전화번호</th>
-				<td>
-					<input class="form-control input-sm" name="mtel" placeholder=" -  없이 작성해주세요" pattern="[0-9]{10,11}" value="${mvo.mtel}">
-				</td> 
-				<td></td>
-			</tr>
-			
-			<tr> 
-				<th>주소</th>   
-				<td>
-					<div class="input-group" style="width: 100%">
-						<input id="post" name="mpost" class="form-control input-sm" type="text" placeholder="우편번호(검색)" value="${mvo.mpost }" readonly="readonly"/>
-						<span class="input-group-btn">
-							<button type="button" class="btn btn-default btn-sm" onclick="execDaumPostcode()">우편번호</button>
-						</span>
-					</div>
-				</td> 
-				<td></td> 
-			</tr>
-			<tr> 
-				<th></th> 
-				<td>
-					<input class="form-control input-sm" type="text" id="roadAddress" name="mroad" placeholder="도로명 주소" value="${mvo.mroad }" readonly="readonly"/>
-				</td> 
-			</tr>
-			<tr> 
-				<th></th> 
-				<c:if test="${mvo.mjibun != null }">
-					<td>
-						<input class="form-control input-sm" type="text" id="jibunAddress" name="mjibun" placeholder="지번 주소" value="${mvo.mjibun }" readonly="readonly"/>
-						<span id="guide" style="color:#999"></span>
-					</td> 
-				</c:if>
-				
-				<c:if test="${mvo.mjibun == null }">
-					<td>
-						<input class="form-control input-sm" type="text" id="jibunAddress" name="mjibun" placeholder="지번 주소" readonly="readonly"/>
-						<span id="guide" style="color:#999"></span>
-					</td> 
-				</c:if>
-			</tr>
-			
-			<tr> 
-				<th>프로필 인사말</th>   
-				<td>
-					<input id="mintro" name="mintro" class="form-control input-sm" type="text" placeholder="프로필 인사말" value="${mvo.mintro }" />
-				</td> 
-				<td>
-				</td> 
-			</tr>
-			
-		</table> 
-
-		<table><tr height="30px"><td></td></tr></table>
-		<button type="submit" class="btn btn-success btn-sm">　수　　정　</button>
-		<button type="button" class="btn btn-success btn-sm" onclick="goUrl('selectoneMember')">　취　　소　</button>
+<table id="formtable">
+<!-- <tr> <th></th> <td></td> </tr> -->
+	<tr>
+		<th>아이디</th>
+		<td>
+			<input type="text" class="form-control input-sm" placeholder="아이디" name="mid" value="${mvo.mid }" readonly="readonly"/>
+		</td> 
+		<td rowspan="3">
+			<div id="imgimg"></div>
+		</td> 
+	</tr>
+	
+	
+	<tr>
+		<th>프로필 사진</th>
+		<td>
+			<div class="input-group">
+				<input type="text" class="form-control input-sm" placeholder="프로필 사진" name="mimg" value="${mvo.mimg }" readonly="readonly" >
+				<span class="input-group-btn">
+					<span class="btn btn-success btn-file btn-sm">
+                    	<span class="glyphicon glyphicon-folder-open"></span>
+                        &nbsp;ImageUpload<input type="file" name="mfile" id="file">
+                    </span>
+              	</span>
+	        </div>
+		</td>
+	</tr>
+	
+	<tr>
+		<th>비밀번호</th>   
+		<td> 
+			<input type="password" class="form-control input-sm" placeholder="비밀번호(8자리 이상)" name="mpwd" id="mpwd" value="${mvo.mpwd }" minlength="8" maxlength=20">
+		</td> 
+	</tr>
+	
+	<tr> 
+		<th>비밀번호 확인</th>  
+		<td>
+			<input type="password" class="form-control input-sm" placeholder="비밀번호 확인" id="mpwdchk" name="mpwdchk"/>
+			<div id="mpwdchkres"></div>
+		</td> 
+		<td></td> 
+	</tr>
+	
+	<tr>
+		<th>비밀번호 찾기 질문</th>
+		<td>
+			<input type="text" class="form-control input-sm" placeholder="비밀번호를 잊었을 때 사용할 질문을 입력해주세요" name="mpwdkey" value="${mvo.mpwdkey }">
+		</td>
+	</tr>
+	
+	<tr>
+		<th>비밀번호 찾기 답변</th>
+		<td>
+			<input type="text" class="form-control input-sm" placeholder="위 질문의 답을 입력해주세요" name="mpwdval" value="${mvo.mpwdval }">
+		</td>
+	</tr>
+	
+	<tr> 
+		<th>이름</th>
+		<td>
+			<input class="form-control input-sm" placeholder="이름" name="mname" value="${mvo.mname }" readonly="readonly" >
+		</td> 
+		<td></td> 
+	</tr>
+	
+	<tr> 
+		<th>생년월일</th>   
+		<td>
+			<input class="form-control input-sm" type="text" placeholder="생년월일 (클릭)" name="mbirth" value="${mvo.mbirth }" readonly="readonly"  />
+		</td> 
+		<td></td> 
+	</tr>
+	
+	<tr> 
+		<th>이메일</th>
+		<td>
+			<input type="email" class="form-control input-sm" 
+			placeholder="이메일 주소 (abc@abc.com)" 
+			name="memail" id="memail" pattern="^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$" value="${mvo.memail }" />
+			<div id="memailchkres" name="memailchkres"></div>
+		</td> 
+		<td>
+			<button type="button" class="btn btn-default btn-sm" id="memailchk"> 중복체크	</button>
+		</td> 
+	</tr>
+	
+	<tr> 
+		<th>휴대전화번호</th>
+		<td>
+			<input class="form-control input-sm" name="mtel" placeholder=" -  없이 작성해주세요" pattern="[0-9]{10,11}" value="${mvo.mtel}">
+		</td> 
+		<td></td>
+	</tr>
+	
+	<tr> 
+		<th>주소</th>   
+		<td>
+			<div class="input-group" style="width: 100%">
+				<input id="post" name="mpost" class="form-control input-sm" type="text" placeholder="우편번호(검색)" value="${mvo.mpost }" readonly="readonly"/>
+				<span class="input-group-btn">
+					<button type="button" class="btn btn-default btn-sm" onclick="execDaumPostcode()">우편번호</button>
+				</span>
+			</div>
+		</td> 
+		<td></td> 
+	</tr>
+	<tr> 
+		<th></th> 
+		<td>
+			<input class="form-control input-sm" type="text" id="roadAddress" name="mroad" placeholder="도로명 주소" value="${mvo.mroad }" readonly="readonly"/>
+		</td> 
+	</tr>
+	<tr> 
+		<th></th> 
+		<c:if test="${mvo.mjibun != null }">
+			<td>
+				<input class="form-control input-sm" type="text" id="jibunAddress" name="mjibun" placeholder="지번 주소" value="${mvo.mjibun }" readonly="readonly"/>
+				<span id="guide" style="color:#999"></span>
+			</td> 
+		</c:if>
 		
-		</form>
-	</div>
+		<c:if test="${mvo.mjibun == null }">
+			<td>
+				<input class="form-control input-sm" type="text" id="jibunAddress" name="mjibun" placeholder="지번 주소" readonly="readonly"/>
+				<span id="guide" style="color:#999"></span>
+			</td> 
+		</c:if>
+	</tr>
+	
+	<tr> 
+		<th>프로필 인사말</th>   
+		<td>
+			<input id="mintro" name="mintro" class="form-control input-sm" type="text" placeholder="프로필 인사말" value="${mvo.mintro }" />
+		</td> 
+		<td>
+		</td> 
+	</tr>
+	
+</table> 
+
+<table><tr height="30px"><td></td></tr></table>
+<button type="submit" class="btn btn-success btn-sm">　수　　정　</button>
+<button type="button" class="btn btn-success btn-sm" onclick="goUrl('selectoneMember')">　취　　소　</button>
+	
+	</form>
+</div>

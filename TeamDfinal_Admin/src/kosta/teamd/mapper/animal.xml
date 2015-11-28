@@ -47,4 +47,8 @@
     	select count(*) from animal
     </select>
     
+    <select id="anispectes" resultType="anvo">
+    select ANISPECIES, count(ANISPECIES) cnt from animal where anino!=0 GROUP by ANISPECIES order by 1
+    </select>
+    
     </mapper>

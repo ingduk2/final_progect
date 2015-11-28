@@ -22,6 +22,7 @@ public class MemberVO {
 	private int mrptlimit;     // 하루 신고 제한 횟수
 	private int mrpt;          // 신고당한 횟수
 	private String mfreetime;  // 제재 종료 시간
+	private int mstatus;       // 가입자의 신분(일반 회원, 직원 등)
 	private int enabled;       // 아이디 활성화 여부
 	
 	public String getMid() {
@@ -120,28 +121,20 @@ public class MemberVO {
 	public void setMfreetime(String mfreetime) {
 		this.mfreetime = mfreetime;
 	}
+	public int getMstatus() {
+		return mstatus;
+	}
+	public void setMstatus(int mstatus) {
+		this.mstatus = mstatus;
+	}
 	public int getEnabled() {
 		return enabled;
 	}
 	public void setEnabled(int enabled) {
 		this.enabled = enabled;
 	}
-	
-	// 전화번호 변환에 사용할 변수
-	private String mtelf, mtelb;
 
-	public String getMtelf() {
-		return mtelf;
-	}
-	public void setMtelf(String mtelf) {
-		this.mtelf = mtelf;
-	}
-	public String getMtelb() {
-		return mtelb;
-	}
-	public void setMtelb(String mtelb) {
-		this.mtelb = mtelb;
-	}
+	
 	
 	// 프로필 사진 파일 받을 변수
 	private MultipartFile mfile;

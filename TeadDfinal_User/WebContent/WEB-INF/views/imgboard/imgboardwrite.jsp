@@ -1,12 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!-- 
 	※ 변경 사항 ※
-	>151126
-	- 크기 분류 (소, 중, 대) 삭제
-
-
+	- 거의 새로 작성함
  -->
  
 <!-- 다음 주소 찾기 api 등록 -->
@@ -16,12 +14,6 @@
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
 <script src="//code.jquery.com/jquery-1.10.2.js"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-
-<!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
-
-<!-- 	<link rel="stylesheet"	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"> -->
-<!-- 	<script	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> -->
-<!-- 	<script	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script> -->
 
 <style>
 
@@ -65,11 +57,12 @@
 	#animalapplyform th{
 		background-color: #e0ffff
 	}
+	.ui-datepicker{z-index: 99 !important};
 	
 </style>
 
 <script>
-	//파일 업로드용 스크립트 
+	// 파일 업로드용 스크립트 
 	$(document).on('change', '.btn-file :file', function() {
 		  var input = $(this),
 		      numFiles = input.get(0).files ? input.get(0).files.length : 1,
@@ -77,244 +70,279 @@
 		  input.trigger('fileselect', [numFiles, label]);
 		});
 	
-		$(document).ready( function() {
-		    $('.btn-file :file').on('fileselect', function(event, numFiles, label) {
-		        
-		        var input = $(this).parents('.input-group').find(':text'),
-		            log = numFiles > 1 ? numFiles + ' files selected' : label;
-		        
-		        if( input.length ) {
-		            input.val(log);
-		        } else {
-		            if( log ) alert(log);
-		        }
-		        
-		    });
-		    
-		    $('#write').click(function(){
-				
-				if($('#girl').is(':checked')){
-					$('#anisex').val($('#girl').val());
-				}else if($('#boy').is(':checked')){
-					$('#anisex').val($('#boy').val());
-				}
-				
-				if($('#small').is(':checked')){
-					
-					$('#anisize').val($('#small').val());
-				}else if($('#middle').is(':checked')){
-					
-					$('#anisize').val($('#middle').val());
-				}else if($('#big').is(':checked')){
-					console.log($('#big').is(':checked'));
-					$('#anisize').val($('#big').val());
-				}
-			});
-		    
-		    
+	$(document).ready( function() {
+	    $('.btn-file :file').on('fileselect', function(event, numFiles, label) {
+	        
+	        var input = $(this).parents('.input-group').find(':text'),
+	            log = numFiles > 1 ? numFiles + ' files selected' : label;
+	        
+	        if( input.length ) {
+	            input.val(log);
+	        } else {
+	            if( log ) alert(log);
+	        }
+	    });
+	});
+		
+	// 달력 input api
+	$(function() {
+		$( "#datepicker" ).datepicker({
+			changeMonth: true,
+			changeYear: true
 		});
+		// 날짜 형식 yyyy-mm-dd로 변경
+		$( "#datepicker" ).datepicker({
+			dateFormat: "yy-mm-dd"
+		});
+		// 날짜 형식 getter
+		var dateFormat = $( "#datepicker" ).datepicker( "option", "dateFormat" );
+		// 날짜 형식 setter
+		$( "#datepicker" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
 		
-		// 달력 input api
-		$(function() {
-			$( "#datepicker" ).datepicker({
-				changeMonth: true,
-				changeYear: true
-			});
-			// 날짜 형식 yyyy-mm-dd로 변경
-			$( "#datepicker" ).datepicker({
-				dateFormat: "yy-mm-dd"
-			});
-			// 날짜 형식 getter
-			var dateFormat = $( "#datepicker" ).datepicker( "option", "dateFormat" );
-			// 날짜 형식 setter
-			$( "#datepicker" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
-			
-			// 년도 기간 getter
-			var yearRange = $( "#datepicker" ).datepicker( "option", "yearRange" );
-			// 년도 기간 setter (50년 전 ~ 현재)
-			$( "#datepicker" ).datepicker( "option", "yearRange", "-50:c" );
-		});   //생년월일 가져오는 function
-		
-		
-		//품종 - 대분류, 소분류 종류 배열에 처넣처넣
-		var kindv=new Array(new Array("--선택--"),
-				  new Array("--선택--", "요크셔테리어", "푸들", "허스키", "말라뮤트", "비글", "말티즈", "시츄", "진돗개", "세퍼트", "퍼그", "베들링턴테리어","보더콜리", "웰시코기", "코카스파니엘", "아프간하운드", "시바이누", "바셋하운드", "비숑프리제", "제페니즈첸", "블러드하운드", "포메라이언", "빠삐용", "보스턴테리어", "치와와", "차우차우", "샤페이"),
-				  new Array("--선택--", "페르시안", "익스트림", "페르시안핀칠라", "히말라얀", "터키쉬앙고라", "러시안블루", "스콜티쉬폴드", "코리안숏헤어", "아메리칸숏헤어", "스핑크스", "렉돌", "노르웨이숲", "엔죠틱", "버만", "브리티쉬숏헤어", "봄베이", "메인쿤", "라가머핀", "발리네즈", "샴", "먼치킨","아비시니안", "뱅갈"),
-				  new Array("--선택--", "고슴도치", "토끼", "새", "거북이", "페릿", "원숭이", "사막여우", "햄스터", "기니피그", "미니피그", "기타")
-		);
-		var temp;
-		var oSelect="";
-		
-		function getKind(item){
-			temp=document.getElementById("smallkind");
-			var subCnt=temp.options.length;
-			console.log(subCnt);
- 			console.log(kindv[item].length);  //선택한 애들 뽑아내봅시다.
-			
-			//초기화
-			for (var i = (subCnt-1); i > 0 ; i--) {
-				temp.options[i]=null;
-			}
-			
-			for(var j=0; j < kindv[item].length; j++){
-				oSelect=kindv[item][j];
-				temp.options[j]=new Option(oSelect, oSelect);
-			}
-			
-		};
-		window.onload=function(){
-			document.getElementById("bigkind").onchange=function(){
-				getKind(this.options.selectedIndex);
-			};
-		};
-		
-		// 다음 주소 찾기 api
-		function execDaumPostcode() {   
-			new daum.Postcode(
-					{
-						oncomplete : function(data) {
-							var addr = '';
-	
-							// 도/시
-							if (data.sido !== '') {
-								addr = data.sido;
-							}
-							// 시/군/구
-							if (data.sigungu !== '' && /[시|군|구]$/g.test(data.sigungu)) {
-								addr += ' ' + data.sigungu;
-							}
-							// 동
-							if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
-								addr += ' ' + data.bname;
-							}
+		// 년도 기간 getter
+		var yearRange = $( "#datepicker" ).datepicker( "option", "yearRange" );
+		// 년도 기간 setter (50년 전 ~ 현재)
+		$( "#datepicker" ).datepicker( "option", "yearRange", "-50:c" );
+	});   //생년월일 가져오는 function
 
-							document.getElementById('region').value = addr;
+	// 다음 주소 찾기 api
+	function execDaumPostcode() {   
+		new daum.Postcode(
+				{
+					oncomplete : function(data) {
+						var addr = '';
+
+						// 도/시
+						if (data.sido !== '') {
+							addr = data.sido;
 						}
-					}).open();
-		} // 다음에서 라이브러리를 가져오기 위함.
+						// 시/군/구
+						if (data.sigungu !== '' && /[시|군|구]$/g.test(data.sigungu)) {
+							addr += ' ' + data.sigungu;
+						}
+						// 동
+						if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
+							addr += ' ' + data.bname;
+						}
+
+						document.getElementById('region').value = addr;
+					}
+				}).open();
+	} // 다음에서 라이브러리를 가져오기 위함.
+	
+	
+	//------------------------------------------------------------------------------------------------
+	//품종 - 대분류, 소분류 종류 배열에 처넣처넣
+	var kindv=new Array(new Array("--선택--"),
+			  new Array("--선택--", "요크셔테리어", "푸들", "허스키", "말라뮤트", "비글", "말티즈", "시츄", "진돗개", "세퍼트", "퍼그", "베들링턴테리어","보더콜리", "웰시코기", "코카스파니엘", "아프간하운드", "시바이누", "바셋하운드", "비숑프리제", "제페니즈첸", "블러드하운드", "포메라이언", "빠삐용", "보스턴테리어", "치와와", "차우차우", "샤페이"),
+			  new Array("--선택--", "페르시안", "익스트림", "페르시안핀칠라", "히말라얀", "터키쉬앙고라", "러시안블루", "스콜티쉬폴드", "코리안숏헤어", "아메리칸숏헤어", "스핑크스", "렉돌", "노르웨이숲", "엔죠틱", "버만", "브리티쉬숏헤어", "봄베이", "메인쿤", "라가머핀", "발리네즈", "샴", "먼치킨","아비시니안", "뱅갈"),
+			  new Array("--선택--", "고슴도치", "토끼", "새", "거북이", "페릿", "원숭이", "사막여우", "햄스터", "기니피그", "미니피그", "기타")
+	);
+	var temp;
+	var oSelect="";
+	
+	function getKind(item){
+		temp=document.getElementById("smallkind");
+		var subCnt=temp.options.length;
+		console.log(subCnt);
+			console.log(kindv[item].length);  //선택한 애들 뽑아내봅시다.
 		
+		//초기화
+		for (var i = (subCnt-1); i > 0 ; i--) {
+			temp.options[i]=null;
+		}
+		
+		for(var j=0; j < kindv[item].length; j++){
+			oSelect=kindv[item][j];
+			temp.options[j]=new Option(oSelect, oSelect);
+		}
+		
+	};
+	window.onload=function(){
+		document.getElementById("bigkind").onchange=function(){
+			getKind(this.options.selectedIndex);
+		};
+	};
+	//------------------------------------------------------------------------------------------------
+	
 </script>
 
 
+
 <div>
-	<form action="insertAnimal" method="post" enctype="multipart/form-data">
-		<h1>이미지게시판<small>실종신고,발견신고 etc</small></h1>
-	
-		<table>
-			<tr height="30px"><!-- 높이 조절용 칸 떼우기 --><td></td></tr>
-		</table>
+
+	<!-- 공간 띄우기 용 -->
+	<table><tr height="50px"><td></td></tr></table>
+
+	<form action="insertImgBoard" method="post" enctype="multipart/form-data">
 			
 		<table width="500px">				
+			<tr> <th colspan="2">　</th> </tr>	
 			
 			<tr>	
-				<th width="80px">title</th>	
+				<th width="60px">제목</th>	
 				<td align="left">
 					<input class="form-control input-sm" name="btitle" placeholder="제목을 입력하세요">
 				</td>
 			</tr>
 			
 			<tr>
-				<th>이미지</th>
+				<th>사진</th>
 				<td>
-		            <div class="input-group">
-		                <input type="text" class="form-control input-sm" placeholder="Try selecting one file" readonly>
-		                <span class="input-group-btn">
-		                    <span class="btn btn-success btn-file btn-sm">
-		                    <span class="glyphicon glyphicon-folder-open"></span>
-		                       &nbsp;ImageUpload<input name="maniimg" type="file" multiple="multiple">
-		                    </span>
-		                </span>
-		            </div>
+					<div class="input-group">
+						<input type="text" class="form-control input-sm" placeholder="업로드 할 파일을 선택하세요" readonly>
+						<span class="input-group-btn">
+							<span class="btn btn-success btn-file btn-sm">
+								<span class="glyphicon glyphicon-folder-open"></span>
+								&nbsp;ImageUpload<input name="maniimg" type="file" multiple="multiple">
+							</span>
+						</span>
+					</div>
 				</td>
 			</tr>
 			
-			<tr> 
-				<th>정보입력</th> 
+			<tr>
+				<th colspan="2">　</th>
+			</tr>
+			
+			<tr>
+				<th>정보</th>
+				
 				<td align="left">
 					<table id="animalapplyform">
+					
+						<c:if test="${bcode != 4}">
+							<tr>
+								<th>분류</th>
+								<td colspan="3">
+									<select class="form-control input-sm" name="anistate" id="anistate">
+										<option value="">-- 선택 --</option>
+										<option value="4">목격 했어요</option>
+										<option value="5">개인적으로 보호 중이에요</option>
+									</select>
+								</td>
+							</tr>
+						</c:if>
+						<c:if test="${bcode == 4}">
+							<tr>
+								<th>분류</th>
+								<td colspan="3">
+									<input type="text" class="form-control input-sm" 
+										   id="anistate" value="찾아주세요" readonly="readonly">
+									<input type="hidden" name="anistate" value="1">
+								</td>
+							</tr>
+						</c:if>
+					
 						<tr> 
-							<th style="width: 60px">대분류</th>
-							<td>
+							<th style="width: 60px">동물</th>
+							<td style="width: 160px">
 		      					<select name="anispecies" id="bigkind" class="form-control input-sm">
 									<option>-- 선택 --</option>
 								    <option value="dog">강아지</option>
 								    <option value="cat">고양이</option>
 								    <option value="etc">기타</option>
 								</select>
-							</td> 
-						</tr>
-						<tr> 
-							<th>소분류</th>
-							<td>
+							</td>
+							
+							<th style="width: 60px">품종</th>
+							<td style="width: 160px">
 		      					<select name="anibreed" id="smallkind" class="form-control input-sm">
 									<option>-- 선택 --</option>
 								</select>
-							</td> 
+							</td>
 						</tr>
+						
 						<tr> 
 							<th>이름</th>
-							<td>
-								<input type="text" name="aniname" class="form-control input-sm" placeholder="이름" />
+							<td colspan="3">
+								<input type="text" name="aniname" class="form-control input-sm" placeholder="동물의 이름을 입력해주세요" />
 							</td> 
 						</tr>
 
 						<tr> 
-							<th>성별</th>
-							<td>
-							<input type="hidden" name="anisex" id="anisex"/>
-								<label class="radio-inline">
-				     				<input name="gender" type="radio" id="girl" value="남아">남아
-				    			</label>
-				   				<label class="radio-inline">
-				      				<input name="gender" type="radio" id="boy" value="여아">여아
-				   				</label>
-							</td> 
+							<th style="width: 60px">성별</th>
+							<td style="width: 160px">
+								<select name="anisex" class="form-control input-sm">
+									<option>-- 선택 --</option>
+									<option value="남아">남아</option>
+									<option value="여아">여아</option>
+								</select>
+							</td>
+							
+							<th style="width: 60px">나이</th>
+							<td style="width: 160px">
+								<input type="number" name="aniage" class="form-control input-sm" placeholder="나이를 입력해주세요" />
+							</td>
 						</tr>
 						
 						<tr> 
-							<th>나이</th>
-							<td>
-								<input type="number" name="aniage" class="form-control input-sm" placeholder="나이" />
-							</td> 
+							<th style="width: 60px">몸무게</th>
+							<td style="width: 160px">
+								<input type="number" name="aniweight" class="form-control input-sm" placeholder="몸무게를 입력해주세요"/>
+							</td>
+							
+							<th style="width: 60px">날짜</th>
+							<td style="width: 160px">
+								<c:if test="${bcode != 4}">
+									<input class="form-control input-sm" type="text" placeholder="목격, 보호 날짜(선택)"
+										   id="datepicker" name="anidate" readonly="readonly"  />
+								</c:if>
+								<c:if test="${bcode == 4}">
+									<input class="form-control input-sm" type="text" placeholder="잃어버린 날짜(선택)"
+										   id="datepicker" name="anidate" readonly="readonly"  />
+								</c:if>
+							</td>
 						</tr>
 						
-						<tr> 
-							<th>몸무게</th>
-							<td>
-								<input type="number" name="aniweight" class="form-control input-sm" placeholder="Kg"/>
-							</td> 
-						</tr>
-						<tr> 
-							<th>특징</th>
-							<td>
-								<div class="form-group">
-     									<textarea class="form-control" name="anifeature" placeholder="잃어버린 유기 동물의 특징을 입력해주세요."></textarea>
-   								</div>
-							</td> 
-						</tr>
 						<tr> 
 							<th>지역</th>
-							<td>
+							<td colspan="3">
 								<div class="input-group" style="width: 100%">
-									<input id="region" name="aniregion" class="form-control input-sm" type="text" placeholder="지역 (검색)" readonly="readonly"/>
+									<c:if test="${bcode != 4}">
+										<input id="region" name="aniregion" class="form-control input-sm"
+											   type="text" placeholder="목격, 보호중인 지역 (검색)" readonly="readonly"/>
+									</c:if>
+									<c:if test="${bcode == 4}">
+										<input id="region" name="aniregion" class="form-control input-sm"
+											   type="text" placeholder="잃어버린 지역 (검색)" readonly="readonly"/>
+									</c:if>
+									
 									<span class="input-group-btn">
 										<button type="button" class="btn btn-default btn-sm" onclick="execDaumPostcode()">　검　　색　</button>
 									</span>
 								</div>
 							</td> 
 						</tr>
+						
+						<c:if test="${bcode == 4}">
+							<tr>
+								<th>사례금</th>
+								<td colspan="3">
+									<input type="number" class="form-control input-sm" name="anireward"
+										   placeholder="사례할 금액을 입력해주세요" min="0" step="10000" />
+								</td>
+							</tr>
+						</c:if>
+						<c:if test="${bcode != 4}">
+							<input type="hidden" name="anireward" value="0">
+						</c:if>
+						
 						<tr> 
-							<th>날짜</th>
-							<td>
-								<input class="form-control input-sm" type="text" placeholder="날짜(선택)" id="datepicker" name="anidate" readonly="readonly"  />
+							<th>특징</th>
+							<td colspan="3">
+								<div class="form-group">
+     									<textarea class="form-control" name="anifeature" rows="3" placeholder="동물의 특징을 입력해주세요"></textarea>
+   								</div>
 							</td> 
 						</tr>
+						
 					</table>
 				</td> 
 			</tr>
 			
-			<tr>	
-				<th colspan="2">Content</th>		
+			<tr>
+				<th colspan="2">　</th>
 			</tr>
 			
 			<tr>	
@@ -325,13 +353,13 @@
 
 		</table>				
 
-		<input type="hidden" name="mid" value="${pageContext.request.userPrincipal.name}"/>
-		<input type="hidden" name="bcode" value="5"/>
-		<input type="hidden" name="bip" value="<%=request.getRemoteAddr() %>">
+		<input type="hidden" name="bcode" value="${bcode}">
+		<input type="hidden" name="mid" value="${pageContext.request.userPrincipal.name}">
+		<input type="hidden" name="bip" value="<%= request.getRemoteAddr() %>">
 
 		<table><tr height="30px"><!-- 높이 조절용 칸 떼우기 --><td></td></tr></table>
-		<button type="submit" class="btn btn-success btn-sm" id="write">　글 작 성　</button>
-		<button type="button" class="btn btn-success btn-sm">　취　　소　</button>
+		<button type="submit" class="btn btn-success btn-sm">　완　　료　</button>
+		<button type="button" class="btn btn-success btn-sm" onclick="">　취　　소　</button>
 		
 	</form>
 </div>
