@@ -229,7 +229,7 @@
 								<td colspan="3">
 									<input type="text" class="form-control input-sm" 
 										   id="anistate" value="찾아주세요" readonly="readonly">
-									<input type="hidden" name="anistate" value="1">
+									<input type="hidden" name="anistate" value="3">
 								</td>
 							</tr>
 						</c:if>
@@ -272,14 +272,16 @@
 							
 							<th style="width: 60px">나이</th>
 							<td style="width: 160px">
-								<input type="number" name="aniage" class="form-control input-sm" placeholder="나이를 입력해주세요" />
+								<input type="number" name="aniage" class="form-control input-sm"
+									   placeholder="나이를 입력해주세요" min="0" />
 							</td>
 						</tr>
 						
 						<tr> 
 							<th style="width: 60px">몸무게</th>
 							<td style="width: 160px">
-								<input type="number" name="aniweight" class="form-control input-sm" placeholder="몸무게를 입력해주세요"/>
+								<input type="number" name="aniweight" class="form-control input-sm"
+									   placeholder="몸무게를 입력해주세요" min="0" />
 							</td>
 							
 							<th style="width: 60px">날짜</th>

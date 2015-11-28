@@ -78,4 +78,7 @@ public class ImgBoardController {
 		return new ModelAndView("index");
 	}
 	
+	// 이미지 게시판 리스트 불러오기
+	
+	
 }
