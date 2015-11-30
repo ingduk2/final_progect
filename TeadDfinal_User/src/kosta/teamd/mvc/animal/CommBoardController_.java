@@ -26,6 +26,7 @@ public class CommBoardController_ {
 		System.out.println("bno(comm) : " + bno);
 		mav.addObject("bno", bno);
 		mav.addObject("anino", anino);
+		
 		return mav;
 	}
 	

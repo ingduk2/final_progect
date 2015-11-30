@@ -16,22 +16,41 @@
     </insert>
 
 
-    
-    <select id="imglist" resultType="abvo" >
-     select a.anino anino, a.aniimg aniimg, a.anispecies anispecies, 
+    <!-- 검색 + 페이징 -->
+    <select id="imglist" resultType="abvo" parameterType="abvo" >
+     	select * from (select rownum r_num, aaa.* from (
+		select a.anino anino, a.aniimg aniimg, a.anispecies anispecies, 
      a.anibreed anibreed, a.aniname aniname, a.aniage aniage, a.anisex anisex,
      a.aniregion aniregion, to_char(a.anidate,'yy-mm-dd') anidate, b.btitle btitle,  b.bno bno,
-     b.mid mid, b.bhit bhit, b.bdate bdate  from animal a, board b where a.anino = b.anino and a.anino!=0
-     order by anino desc
+     b.mid mid, b.bhit bhit, b.bdate bdate  from animal a, board b where a.anino = b.anino and a.anino!=0 and bcode=#{bcode}
+     <if test="searchType != null">
+			<choose>
+				<when test="searchType == 1">
+					and a.anispecies like '%' || #{searchValue} || '%'
+					<!-- and (r_num between #{start} and #{end} ) -->
+				</when>
+				<when test="searchType == 2">
+					and a.anibreed like '%' || #{searchValue} || '%'
+					<!-- and (r_num between #{start} and #{end} ) -->
+				</when>
+				<when test="searchType == 3">
+					and a.aniregion like '%' || #{searchValue} || '%' 
+					<!-- and (r_num between #{start} and #{end} ) -->
+				</when>
+			</choose>		
+	</if>
+		order by a.anino desc
+		) aaa )
+		where r_num between #{start} and #{end}
      <!-- 다이나믹 쿼리 ... -->  
     </select>
     
     
     <select id="imgdetail" resultType="abvo" parameterType="int">
     select a.anino anino, a.aniimg aniimg, a.anispecies anispecies, 
-     a.anibreed anibreed, a.aniname aniname, a.aniage aniage, a.anisex anisex, a.anisize anisize,
+     a.anibreed anibreed, a.aniname aniname, a.aniage aniage, a.anisex anisex, 
      a.aniregion aniregion, a.anifeature anifeature, to_char(a.anidate,'yy-mm-dd') anidate, b.btitle btitle, 
-     b.bno bno, b.mid mid, b.bcontent bcontent,b.brpt brpt ,b.bhit bhit, b.bdate bdate  from animal a, board b where a.anino=#{anino} and b.anino=#{anino}
+     b.bcode bcode, b.bno bno, b.mid mid, b.bcontent bcontent,b.brpt brpt ,b.bhit bhit, b.bdate bdate  from animal a, board b where a.anino=#{anino} and b.anino=#{anino}
     </select>
     
     
@@ -44,8 +63,24 @@
     </update>
     
     
-    <select id="imgcnt" resultType="int">
-    	select count(*) from animal
+    <select id="imgcnt" resultType="int" parameterType="abvo">
+    	select count(*) from animal a, board b where a.anino=b.anino and b.bcode=#{bcode}
+    	<if test="searchType != null">
+		
+			<choose>
+				<when test="searchType == 1">
+					and a.anispecies like '%' || #{searchValue} || '%' 
+				</when>
+				<when test="searchType == 2">
+					and a.anibreed like '%' || #{searchValue} || '%' 
+				</when>
+				<when test="searchType == 3">
+					and a.aniregion like '%' || #{searchValue} || '%'
+				</when>
+				
+			</choose>		
+		
+	</if>
     </select>
     
     

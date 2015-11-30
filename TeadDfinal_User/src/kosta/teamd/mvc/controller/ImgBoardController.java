@@ -75,7 +75,7 @@ public class ImgBoardController {
 		
 		ibinsert.imgBoardInsert(bvo, anivo);
 		
-		return new ModelAndView("index");
+		return new ModelAndView("redirect:/selectallAnimal?bcode="+bvo.getBcode()+"&nowPage=1&searchType=");
 	}
 	
 	// 이미지 게시판 리스트 불러오기

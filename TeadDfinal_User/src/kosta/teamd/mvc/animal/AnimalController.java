@@ -44,6 +44,7 @@ public class AnimalController {
 	private Paging page;
 	
 	
+	
 	// 이미지게시판 쓰기폼
 	@RequestMapping(value="/formAnimal")
 	public String formAnimal(){
@@ -109,21 +110,81 @@ public class AnimalController {
 //	        }
 //	     
 		
-		ModelAndView mav = new ModelAndView("redirect:/selectallAnimal");
+		ModelAndView mav = new ModelAndView("redirect:/selectallAnimal?nowPage=1&searchType=");
     return mav;
 	}
 	
 	@RequestMapping(value="/selectallAnimal")
-	public ModelAndView selectallAnimal(@RequestParam(name="nowPage", defaultValue="1") int nowPage){
-		List<AniBoardVO> alist = adao.getImgList();
+	public ModelAndView selectallAnimal(AniBoardVO abvo ,int nowPage){
+		
+		int numPerPage=9;
+		int numPerBlock=5;
+		//bcode 로 쿼리 추가해야함.
+		
+		System.out.println(abvo.getSearchType());
+		
+		String url="selectallAnimal";
+		StringBuffer param=new StringBuffer();
+		if(abvo.getSearchType().equals("")){
+			//null
+			param.append("&bcode=").append(abvo.getBcode());
+			param.append("&searchType=");
+			
+		}else{
+			//search
+//			String[] temp=abvo.getSearchType().split(",");
+//			
+//			try {
+//				abvo.setSearchType(temp[1]);
+//				System.out.println("searchType : "+temp[1]);
+//			} catch (Exception e) {
+//				// TODO: handle exception
+//				e.printStackTrace();
+//			}
+			
+			param.append("&bcode=").append(abvo.getBcode());
+			param.append("&searchType=");
+			param.append(abvo.getSearchType()).append("&");
+			param.append("searchValue=").append(abvo.getSearchValue());
+		}
+		System.out.println("1:"+abvo.getSearchType());
+		System.out.println("2:"+abvo.getSearchValue());
+		System.out.println("3:"+abvo.getBcode());
+		int total=adao.imgCnt(abvo);
+		System.out.println("Total: "+total);
+		
+		page.Paging_D(total, nowPage, numPerPage, numPerBlock, url, param.toString());
+		
+		
+		String pagingCode=page.getPagingCode();
+		System.out.println(pagingCode);
+		
+		System.out.println("-----------------");
+		
+		int start=(nowPage-1)* numPerPage+1;
+		int end=start+ numPerPage-1;
+		System.out.println("Start : "+start);
+		System.out.println("End : " + end);
+		System.out.println(abvo.getSearchType());
+		System.out.println(abvo.getSearchValue());
+		abvo.setStart(start);
+		abvo.setEnd(end);
+		//////
+		List<AniBoardVO> alist = adao.getImgList(abvo);
 		ModelAndView mav = new ModelAndView("imgboard/imgboardlist");
 		mav.addObject("alist", alist);
 		mav.addObject("size",alist.size());
-		int total = adao.imgCnt();
-		System.out.println(total);
-		String url = "selectallAnimal";
-		String pagecode = page.Paging(total, nowPage, 5, 5, url);
-		mav.addObject("page", pagecode);
+		mav.addObject("pagingCode", pagingCode);
+		mav.addObject("bcode", abvo.getBcode());
+		
+		
+	
+		
+//		int total = adao.imgCnt();
+//		System.out.println(total);
+//		String url = "selectallAnimal";
+//		String pagecode = page.Paging(total, nowPage, 5, 5, url);
+		
 		return mav;
 	}
 	
@@ -132,6 +193,7 @@ public class AnimalController {
 		// 조회수 
 		bdao.hitBoard(bno);
 		AniBoardVO avo = adao.imgDetail(anino);
+		
 		ModelAndView mav = new ModelAndView("imgboard/imgboarddetail");
 		mav.addObject("avo", avo);
 		List<CommBoardVO> cbvo = cbdao.commList(bno);
@@ -141,10 +203,18 @@ public class AnimalController {
 	
 	
 	@RequestMapping(value="/deleteAnimal")
-	public ModelAndView deleteAnimal(int anino){
+	public ModelAndView deleteAnimal(int anino,int bcode){
 		System.out.println(anino);
 		abi.delete(anino);
-		return new ModelAndView("redirect:/selectallAnimal");
+		//게시판도 삭제
+		//댓글도 삭제
+		
+		ModelAndView mav= new ModelAndView("redirect:/selectallAnimal");
+		mav.addObject("bcode",bcode);
+		mav.addObject("nowPage",1);
+		mav.addObject("searchType","");
+		return mav;
+		
 	}
 	
 	
