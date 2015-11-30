@@ -21,6 +21,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kosta.teamd.mvc.dao.BoardDao;
 import kosta.teamd.mvc.dao.CommBoardDao;
+import kosta.teamd.mvc.inter.BoardDeleteInter;
+import kosta.teamd.mvc.service.Paging;
 import kosta.teamd.vo.BoardVO;
 import kosta.teamd.vo.CommBoardVO;
 import kosta.teamd.vo.MemberVO;
@@ -32,6 +34,9 @@ public class BoardController {
 	private BoardDao bdao;
 	@Autowired
 	private CommBoardDao cbdao;
+	
+	@Autowired
+	private Paging page;
 	
 	@RequestMapping(value="formBoard")
 	public ModelAndView formBoard(String bcode){
@@ -71,14 +76,66 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="/selectallBoard")
-	public ModelAndView selectallBoard(BoardVO bvo) {
+	public ModelAndView selectallBoard(BoardVO bvo, int nowPage) {
 		System.out.println("getBcode "+bvo.getBcode());
 		System.out.println("getSearchType "+bvo.getSearchType());
 		System.out.println("getSearchValue "+bvo.getSearchValue());
+		
+		 
+		
+		//paging
+		int numPerPage=10;
+		int numPerBlock=5;
+		
+		String url="selectallBoard";
+		StringBuffer param=new StringBuffer();
+		if(bvo.getSearchType().equals("")){
+			//null
+			param.append("&bcode=").append(bvo.getBcode());
+			param.append("&searchType=");
+			
+		}else{
+			//search
+//			String[] temp=abvo.getSearchType().split(",");
+//			
+//			try {
+//				abvo.setSearchType(temp[1]);
+//				System.out.println("searchType : "+temp[1]);
+//			} catch (Exception e) {
+//				// TODO: handle exception
+//				e.printStackTrace();
+//			}
+			
+			param.append("&bcode=").append(bvo.getBcode());
+			param.append("&searchType=");
+			param.append(bvo.getSearchType()).append("&");
+			param.append("searchValue=").append(bvo.getSearchValue());
+		}
+		System.out.println("1:"+bvo.getSearchType());
+		System.out.println("2:"+bvo.getSearchValue());
+		System.out.println("3:"+bvo.getBcode());
+		int total=bdao.boardCnt(bvo);
+		System.out.println("Total: "+total);
+		
+		page.Paging_D(total, nowPage, numPerPage, numPerBlock, url, param.toString());
+		String pagingCode=page.getPagingCode();
+		System.out.println(pagingCode);
+		System.out.println("-----------------");
+		int start=(nowPage-1)* numPerPage+1;
+		int end=start+ numPerPage-1;
+		System.out.println("Start : "+start);
+		System.out.println("End : " + end);
+		System.out.println(bvo.getSearchType());
+		System.out.println(bvo.getSearchValue());
+		bvo.setStart(start);
+		bvo.setEnd(end);
+		
+		
+		
 		List<BoardVO> list=bdao.listBoard(bvo);
 		ModelAndView mav=new ModelAndView("board/boardlist");
-		
 		mav.addObject("list", list);
+		mav.addObject("pagingCode", pagingCode);
 		mav.addObject("bcode", bvo.getBcode());
 		return mav;
 	}
@@ -110,10 +167,15 @@ public class BoardController {
 		return mav;
 	}
 	
+	@Autowired
+	private BoardDeleteInter bdelete;
+	
 	@RequestMapping(value="/deleteBoard")
-	public ModelAndView deleteBoard(int bno, int bcode){
-		bdao.deleteBoard(bno);
-		return new ModelAndView("redirect:/selectallBoard?bcode="+bcode);
+	public ModelAndView deleteBoard(int bno, int bcode) throws Exception{
+		
+		bdelete.boardDelete(bno);
+		
+		return new ModelAndView("redirect:/selectallBoard?bcode="+bcode+"&nowPage=1&searchType=");
 	}
 	
 	@RequestMapping(value="/updateformBoard")

@@ -134,7 +134,7 @@ public class MemberController {
 		
 		System.out.println("Log: [" + mid.getName() + "] 탈퇴");
 		
-		return new ModelAndView("index");
+		return new ModelAndView("redirect:/j_spring_security_logout");
 	}
 	
 	// -- 회원 정보 수정 --
@@ -179,7 +179,7 @@ public class MemberController {
 		
 		mupdate.memberUpdate(mvo);
 		
-		System.out.println("Log: [" + mvo.getMid() + "] 정보 수정");
+//		System.out.println("Log: [" + mvo.getMid() + "] 정보 수정");
 		
 		return new ModelAndView("redirect:/selectoneMember");
 	}
@@ -197,7 +197,7 @@ public class MemberController {
 		ModelAndView mav = new ModelAndView("member/userinfo");
 		mav.addObject("mvo", mvo);
 		
-		System.out.println("Log: [" + mid.getName() + "] 정보 검색");
+//		System.out.println("Log: [" + mid.getName() + "] 정보 검색");
 		
 		return mav;
 	}

@@ -19,8 +19,10 @@ public class PageViewController {
 	@RequestMapping(value={"/", "/index"})
 	public ModelAndView fromIndex(BoardVO bvo){
 		List<BoardVO> minilist=bdao.mainMiniBoard(bvo);
+		List<BoardVO> minilist2=bdao.mainMiniBoard2(bvo);
 		ModelAndView mav=new ModelAndView("index");
 		mav.addObject("minilist", minilist);
+		mav.addObject("minilist2", minilist2);
 		return mav;
 	}
 	

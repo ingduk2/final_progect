@@ -9,17 +9,16 @@
 	
 		table th {
 		font-weight: bold;
-		color: black;
-		background-color: #90ee90;
-		opacity: 0.4;
 		font: bold;
 		text-align: center;
 		border-bottom: 1px solid #f0fff0;
 		width: 150px;
+		color: gray;
+		background-color:hsla(120,100%,75%,0.3);
 	}
 	/* CSS used here will be applied after bootstrap.css */
 	/* bootstrap Navigation Overriding */
-	.navbar {
+/* 	.navbar {
 		background: #FFFFFF;
 	}
 	.navbar .navbar-center {
@@ -35,103 +34,79 @@
 	.footer_text {
 		margin: 20px 0;
 		color: #777;
-	}
+	} */
 	
 	/* 이미지용 Css */
 	/* 메뉴바용스타일 */
-	#menubar{
-		background-image: url('img/mypagemenu.png');
-		background-repeat:no-repeat;
-		height: 400px;
-		text-align: left;
-	/* 	 -webkit-text-stroke: 1px black; */
-		 -webkit-text-fill-color: white;	
-	}
-	.list-group-item-success{
-		background-color: transparent;
-	/* 	font-weight:bold;  */
-		font-size: 15px
-	}
-	#aa{
-		color : white;
-		padding-top: 140px;
-		margin-left: 50px;	
-	}
-	.list-group-item{
-		border: 1px solid transparent;
-		width: 150px
-	}
 	a:link {
 	    text-decoration: none;
 	}
-	#id{
-		height: 100px;
-		width: 100px;
+	
+		#memberinfomenubar{
+		position: fixed; position: absolute; 
+/*  		z-index: -1;  */
+		overflow: hidden;
+		left: 0px;
+		top: 160px;
+		margin: 0;
+		padding: 0
 	}
-	.list-group>li>a{
-		color: white;
+	.imgsize{
+		width:100px;
+		height:105px;
+		padding-bottom: 10px
 	}
-	.panel{
-		width: 450px
-	}
-	.panel-heading{
-		height: 130px;
-	}
-	.panel-default>.panel-heading, .panel-footer{
-		background-color: white;
-	}
-	.panel-body{
-		padding: 3px;
-		background-color: #E0EEEE
+	.involved{
+		width: 50%;
+		margin: auto;
+/* 		border: 1px solid red;  */
 	}
 </style>
 
-<div id="bg">
 
-<!--MenuBar_회원정보보기/수정/탈퇴/내가쓴글-->
-	<div id="menubar">
-	  <div id="aa">
-		<ul class="list-group">
-		  <li class="list-group-item list-group-item-success">
-		  	<span class="glyphicon glyphicon-info-sign"></span><a href="selectoneMember"> 정보 보기</a>
-		  </li>
-		  <li class="list-group-item list-group-item-success">
-		  	<span class="glyphicon glyphicon-cog"></span><a href="updateformMember"> 정보 수정</a>
-		  </li>
-		  	
-		  <li class="list-group-item list-group-item-success">
-		  	<span class="glyphicon glyphicon-user"></span><a href="selectAllMyActivity"> 나의 활동</a>
-		  </li>
-		  <li class="list-group-item list-group-item-success">
-		  	<span class="glyphicon glyphicon-trash"></span><a href="formWithdrawal"> 탈 　　퇴</a>
-		  </li>
-		</ul>
-	  </div>
-	</div>
+<div id="memberinfomenubar"> <!-- memberpage : userinfo/userupdate/myactivity/withdrawal.jsp에 사용할 submenu -->
+<table style="margin-left: 130px;">
+	<tr>
+		<td><!-- 정보보기 -->
+			<a href="selectoneMember"><img class="imgsize" src="img/test/myinfo.png"/></a>
+		</td>  
+	</tr>
+	<tr><!-- 정보수정 -->
+		<td><a href="updateformMember"><img class="imgsize" src="img/test/infoupdate.png"/></a></td>  
+	</tr>
+	<tr><!-- 나의 활동 -->
+		<td><a href="#"><img class="imgsize" src="img/test/involved.png"/></a></td>  
+	</tr>
+	<tr><!-- 탈퇴 -->
+		<td><a href="formWithdrawal"><img class="imgsize" src="img/test/withdrawal.png"/></a></td>
+	</tr>
+</table> 
+</div>
 
 
 
+<div class="involved" >
 	<!-- 공간 띄우기 용 -->
 	<table><tr height="50px"><td></td></tr></table>
 	
-	<table>
-		<thead style="font-weight:bold; color:black;">
+	<table style="width: 100%">
+		<thead>
 			<tr id="title"> <td colspan="6">내 글 모음</td> </tr>
 			<tr> <td colspan="5">　</td> </tr>
-			<tr id="title"> <td colspan="3" width="300px">제목</td><td width="180px">작성자</td><td width="100px">작성일</td><td>조회</td> </tr>
+			<tr id="title"> <td colspan="3">제목</td><td>작성자</td><td>작성일</td><td>조회</td> </tr>
 		</thead>
 		
 		<tbody id="tbodycss">
 		
 			<c:forEach var="mine" items="${mine}">
 				<tr>
-					<td width="30px">${mine.bno}</td>
+					<td>${mine.bno}</td>
 					
 					<c:if test="${mine.bcode==2 }">
-						<td width="30px">자유</td>
+						<td>자유</td>
 					</c:if>
 					<c:if test="${mine.bcode==3 }">
-						<td width="30px">질문</td>
+						<td>질문</td>
 					</c:if>
 					
 					<td style="text-align: left; padding-left: 20px">
