@@ -1,5 +1,7 @@
 package kosta.teamd.mvc.controller;
 
+import java.security.Principal;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,9 +18,11 @@ public class CommBoardController {
 	private CommBoardDao cbdao;
 	
 	@RequestMapping(value="/insertComm", method=RequestMethod.POST)
-	public ModelAndView insertComm(CommBoardVO cbvo, String orimid){
+	public ModelAndView insertComm(CommBoardVO cbvo, String orimid, Principal prcp){
 		System.out.println(cbvo.getBno()+"이당당당");
 		ModelAndView mav=new ModelAndView("redirect:/selectoneBoard?bno="+cbvo.getBno()+"&mid="+orimid);
+		
+		cbvo.setMid(prcp.getName());
 		cbdao.insertCommBoard(cbvo);
 		return mav;
 	}

@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <style>
 	.subimgmenuborder{
@@ -79,6 +79,18 @@
 		var specs = "left=10,top=10,width=697,height=546, location=no, realzable=no, scrollbars=no";
 		window.open("popup", "popup", specs);
 	}
+	function popup2(){
+		var specs = "left=10,top=10,width=697,height=515, location=no, realzable=no, scrollbars=no";
+		window.open("popup2", "popup", specs);
+	}
+	function popup3(){
+		var specs = "left=10,top=10,width=697,height=470, location=no, realzable=no, scrollbars=no";
+		window.open("popup3", "popup", specs);
+	}
+	function popup4(){
+		var specs = "left=10,top=10,width=697,height=510, location=no, realzable=no, scrollbars=no";
+		window.open("popup4", "popup", specs);
+	}
 </script>
 
 
@@ -93,13 +105,13 @@
 			</td>  
 		</tr>
 		<tr>
-			<td><a href="#"><img src="img/test/research02.png"/></a></td>  
+			<td><a href="#" onclick="popup2()"><img src="img/test/research02.png"/></a></td>  
 		</tr>
 		<tr>
-			<td><a href="#"><img src="img/test/research01.png" height="95px"/></a></td>  
+			<td><a href="#" onclick="popup3()"><img src="img/test/research01.png" height="95px"/></a></td>  
 		</tr>
 		<tr>
-			<td><a href="#"><img src="img/test/research04.png"/></a></td>
+			<td><a href="#" onclick="popup4()"><img src="img/test/research04.png"/></a></td>
 		</tr>
 	</table> 
 	</div>
@@ -166,7 +178,7 @@
 		<div class="subimgmenuborder">
 		<span class="label label-success">발견신고</span>
 		<div class="panel panel-default">
-			<div id="myCarousel" class="carousel slide text-center" data-ride="carousel">
+			<div id="myCarousel2" class="carousel slide text-center" data-ride="carousel">
 			    <!-- Indicators -->
 			    <ol class="carousel-indicators">
 			      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -202,11 +214,11 @@
 			    </div>
 			    
 		        <!-- Left and right controls -->
-			    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+			    <a class="left carousel-control" href="#myCarousel2" role="button" data-slide="prev">
 			      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
 			      <span class="sr-only">Previous</span>
 			    </a>
-			    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+			    <a class="right carousel-control" href="#myCarousel2" role="button" data-slide="next">
 			      <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
 			      <span class="sr-only">Next</span>
 			    </a>
@@ -225,12 +237,24 @@
 		  					<tr>
 		  						<th>
 		  							공지사항
-		  							<span id="secondlabel1" class="label label-default">▷More..</span>
+		  							<a href="selectallBoard?bcode=1">
+		  								<span id="secondlabel1" class="label label-default">▷More..</span>
+		  							</a>
 		  						</th>
 		  					</tr>
 		  				</thead>
-		  				<tbody>
-		  					<tr>
+		  				<tbody><!--miniboard -->   <!-- http://localhost/TeadDfinal_User/selectoneBoard?bno=96&mid=winni -->
+		  					<c:forEach var="minilist" items="${minilist}">
+		  						<tr>
+		  							<td>
+		  								<a href="selectoneBoard?bno=${minilist.bno}&mid=${minilist.mid}">
+		  									${minilist.btitle}.....(${minilist.bdate})
+		  								</a>
+		  							</td>
+		  						</tr>
+		  					</c:forEach>
+		  				
+		  					<!-- <tr>
 		  						<td>제1회 동물사랑협회라는 말을쓰고..(2015-11-25)</td>
 		  					</tr>
 		  					<tr>
@@ -238,7 +262,7 @@
 		  					</tr>
 		  					<tr>
 		  						<td>너무 졸려서 죽겠다 기절할거같다..(2015-11-25)</td>
-		  					</tr>
+		  					</tr> -->
 		  				</tbody>
 		  			</table>
 		  		</div>

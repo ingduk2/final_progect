@@ -1,6 +1,5 @@
 package kosta.teamd.mvc.dao;
 
-import java.security.Principal;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -100,6 +99,17 @@ public class BoardDao {
 		// 제한 초기화 
 		public void resetLimit(){
 			template.update("board.resetlimit");
+		}
+		
+		// 해당 회원이 작성한, 해당 게시판의 마지막 글 (방금 쓴 글)의 글 번호 추출
+		public String selectBno(BoardVO bvo) {
+			return template.selectOne("board.selectBno", bvo);
+		}
+		
+		
+		//main에 나올 mini board
+		public List<BoardVO> mainMiniBoard(BoardVO bvo){
+			return template.selectList("board.mainminiboard", bvo);
 		}
 		
 		

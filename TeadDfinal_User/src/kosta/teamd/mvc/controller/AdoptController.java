@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
+import kosta.teamd.mvc.dao.AdoptApplyDao;
 import kosta.teamd.mvc.dao.MemberDao;
 import kosta.teamd.vo.AdoptApplyVO;
 import kosta.teamd.vo.MemberVO;
@@ -19,6 +20,8 @@ public class AdoptController {
 	
 	@Autowired
 	private MemberDao mdao;
+	@Autowired
+	private AdoptApplyDao adadao;
 
 	// 입양 신청 페이지 연결
 	@RequestMapping(value="/adoptquspage")
@@ -224,7 +227,7 @@ public class AdoptController {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
 		int thisyear = Integer.parseInt(sdf.format(new Date()));
 		
-		int age = thisyear - bornyear;
+		int age = thisyear - bornyear+1;
 		
 		if (age < 20) {
 			bool = false;
@@ -277,7 +280,7 @@ public class AdoptController {
 			// ModelAndView 생성 및 입양 신청에 조건이 되지 않아 실패했다는 메세지(?) 이미지(?) 뿌려주는 페이지로 연결
 			System.out.println("신청 실패");
 		}
-		
+		adadao.insertAdopt(aavo);
 		return null;
 	}
 }

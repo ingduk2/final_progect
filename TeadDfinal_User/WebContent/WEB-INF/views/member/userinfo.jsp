@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
-	
+
+<!-- 
+	※ 변경 사항 ※
+	- 상단에 공간 띄우기 추가
+ -->
+
 <style>
 	table th {
 		font-weight: bold;
@@ -95,17 +100,18 @@ a:link {
 		  </li>
 		  	
 		  <li class="list-group-item list-group-item-success">
-		  	<span class="glyphicon glyphicon-user"></span><a href="#"> 나의 활동</a>
+		  	<span class="glyphicon glyphicon-user"></span><a href="selectAllMyActivity"> 나의 활동</a>
 		  </li>
 		  <li class="list-group-item list-group-item-success">
-		  	<span class="glyphicon glyphicon-trash"></span><a href="deleteMember"> 탈 　　퇴</a>
+		  	<span class="glyphicon glyphicon-trash"></span><a href="formWithdrawal"> 탈 　　퇴</a>
 		  </li>
 		</ul>
 	  </div>
 	</div>
 
-		<h1>회원 정보</h1>
-		<table><tr height="30px"><!-- 높이 조절용 칸 떼우기 --><td></td></tr></table>
+	
+	<!-- 공간 띄우기 용 -->
+	<table><tr height="50px"><td></td></tr></table>
 		
 	<div class="row">
 	<div class="col-md-4"><!-- 위치조정용 --></div>

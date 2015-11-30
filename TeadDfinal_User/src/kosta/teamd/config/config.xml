@@ -22,5 +22,10 @@
 		<typeAlias type="kosta.teamd.vo.volFkVO" alias="fkvo"/>
 		<typeAlias type="kosta.teamd.vo.CenterVO" alias="cvo"/>
 		<typeAlias type="kosta.teamd.vo.ChartVO" alias="chvo"/>
+		
+		<!-- 입양 -->
+		<typeAlias type="kosta.teamd.vo.AdoptApplyVO" alias="adavo"/>
+		
+		
   	</typeAliases>
   </configuration>

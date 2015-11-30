@@ -20,6 +20,22 @@ public class AnimalVO {
 	private String aniimg;      // 동물 사진 파일 이름
 	private MultipartFile maniimg; //이미지 업로드용
 	
+	//추가 내용 --
+	private int anireward; //사례금
+	private int anistate;; //동물 상태
+	
+	public int getAnireward() {
+		return anireward;
+	}
+	public void setAnireward(int anireward) {
+		this.anireward = anireward;
+	}
+	public int getAnistate() {
+		return anistate;
+	}
+	public void setAnistate(int anistate) {
+		this.anistate = anistate;
+	}
 	public MultipartFile getManiimg() {
 		return maniimg;
 	}
