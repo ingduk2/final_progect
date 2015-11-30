@@ -236,3 +236,21 @@ create sequence adopt_seq
 increment by 1
 start with 1;
 
+
+
+
+--내용 자리 추가시 .... 표시 함수--- content 타입은 상황봐서 변경... 
+create or replace function subrpad(content clob)
+return varchar2
+is 
+  v_subpad clob;
+  BEGIN
+  if(length(content)>35)
+  then
+  v_subpad:=RPAD(substr(content,1,35), 80, '.');
+    return v_subpad;
+  else
+    v_subpad:=content;
+    return v_subpad;
+  end if;
+  end;

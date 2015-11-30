@@ -24,8 +24,10 @@ public class AnimalDao{
 	}
 	
 	//  이미지게시판 리스트 출력
+
 	public List<AniBoardVO> getImgList(AniBoardVO abvo){
 		return ss.selectList("animal.imglist", abvo);
+
 	}
 	
 	// 이미지게시판 상세보기 출력

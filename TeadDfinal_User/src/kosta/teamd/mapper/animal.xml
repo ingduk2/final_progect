@@ -4,6 +4,7 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     <mapper namespace="animal">
     
+    
     <insert id="imgins" parameterType="anivo">
      insert into animal 
      values(animal_seq.nextVal, #{anispecies}, #{anibreed}, #{aniname}, #{aniage},

@@ -235,10 +235,3 @@ function geoFindMe() {
 	</form>
 	
 </div>
-
-
-
-
-
-</body>
-</html>
