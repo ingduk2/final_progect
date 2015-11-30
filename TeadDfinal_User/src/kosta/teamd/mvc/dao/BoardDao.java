@@ -128,6 +128,10 @@ public class BoardDao {
 		}
 		
 		
+		public int boardCnt(BoardVO bvo){
+			return template.selectOne("board.boardcnt",bvo);
+		}
+		
 		
 	
 } //end BoardDao

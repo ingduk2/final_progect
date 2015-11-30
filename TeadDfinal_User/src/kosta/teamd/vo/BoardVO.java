@@ -25,8 +25,22 @@ public class BoardVO {
 	
 	private String searchType; //검색타입
 	private String searchValue; //검색값
+	private int start;
+	private int end;
 	
 
+	public int getStart() {
+		return start;
+	}
+	public void setStart(int start) {
+		this.start = start;
+	}
+	public int getEnd() {
+		return end;
+	}
+	public void setEnd(int end) {
+		this.end = end;
+	}
 	public int getBcode() {
 		return bcode;
 	}

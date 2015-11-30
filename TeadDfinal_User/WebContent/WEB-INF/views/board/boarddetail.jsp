@@ -183,6 +183,6 @@ table th {
 	<button type="button" class="btn btn-success btn-sm" onclick="location='deleteBoard?bno=${bvo.bno}&bcode=${bvo.bcode}'">　삭　　제　</button>
 </c:if>
 <a href="${reply}" type="button" class="btn btn-success btn-sm">　답　　변　</a>
-<button type="button" class="btn btn-success btn-sm" onclick="location='selectallBoard?bcode=${bvo.bcode}'">　목　　록　</button>
+<button type="button" class="btn btn-success btn-sm" onclick="location='selectallBoard?bcode=${bvo.bcode}&nowPage=1&searchType='">　목　　록　</button>
 
 </div>

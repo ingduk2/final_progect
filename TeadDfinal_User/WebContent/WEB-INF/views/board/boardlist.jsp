@@ -80,10 +80,10 @@
 	
 	</table>
 	
-	<form action="" method="post">
+	<form action="selectallBoard" method="post">
 	<table><!-- 넘버링이랑, 검색, 글쓰기버튼,  --> 
 		<thead> 
-			<tr> <td colspan="5"> <!-- 페이징작업부분입니다. --> Numbering  </td> </tr>
+			<tr> <td colspan="5"> <!-- 페이징작업부분입니다. --> ${pagingCode }  </td> </tr>
 		</thead>
 		<tbody>
 			<tr>  
@@ -96,6 +96,8 @@
 				      </select>&nbsp;
 				</td>
 				<td>&nbsp;
+					<input type="hidden" name="bcode" value="${bcode }">
+					<input type="hidden" name="nowPage" value="1">
 					<input class="form-control input-sm" type="text" name="searchValue" />&nbsp;
 				</td>
 				<td>&nbsp;

@@ -14,6 +14,11 @@ public class AniBoardVO {
 	private String anifeature;  // 특징
 	private String aniregion;   // (실종, 발견)지역
 	private String anidate;     // (실종, 발견)날짜
+	
+	
+	private int anireward;          // 사례금
+	private int anistate;           // 동물 등록 상태(실종, 발견, 개인 보호)
+	
 	private String aniimg;      // 동물 사진 파일 이름
 	private MultipartFile maniimg; //이미지 업로드용
 	
@@ -32,6 +37,46 @@ public class AniBoardVO {
 	private String bfile;     // 첨부 파일 이름
 	private int brpt;         // 신고당한 횟수
 	
+	//페이징 , 검색
+	private String searchType, searchValue;
+	private int start, end;
+	
+	public String getSearchType() {
+		return searchType;
+	}
+	public void setSearchType(String searchType) {
+		this.searchType = searchType;
+	}
+	public String getSearchValue() {
+		return searchValue;
+	}
+	public void setSearchValue(String searchValue) {
+		this.searchValue = searchValue;
+	}
+	public int getStart() {
+		return start;
+	}
+	public void setStart(int start) {
+		this.start = start;
+	}
+	public int getEnd() {
+		return end;
+	}
+	public void setEnd(int end) {
+		this.end = end;
+	}
+	public int getAnireward() {
+		return anireward;
+	}
+	public void setAnireward(int anireward) {
+		this.anireward = anireward;
+	}
+	public int getAnistate() {
+		return anistate;
+	}
+	public void setAnistate(int anistate) {
+		this.anistate = anistate;
+	}
 	
 	public int getBrpt() {
 		return brpt;

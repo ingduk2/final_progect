@@ -91,7 +91,7 @@ a:FOCUS, a:HOVER {
 					<ul class="nav nav-tabs">
 						<li><a class="dropdown-toggle" href="index">Home</a></li>
 						
-						<li><a class="dropdown-toggle" href="selectallAnimal">찾아주세요</a></li>
+						<li><a class="dropdown-toggle" href="selectallAnimal?bcode=4&nowPage=1&searchType=">찾아주세요</a></li>
 						
 						<li><a class="dropdown-toggle" href="#">잡았다요놈</a></li>
 						
@@ -105,7 +105,7 @@ a:FOCUS, a:HOVER {
 						
 						<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">　정보마당　<span class="caret"><!--화살표--></span></a>
 							<ul class="dropdown-menu">
-								<li><a href="selectallBoard?bcode=1">공지사항</a></li>
+								<li><a href="selectallBoard?bcode=1&nowPage=1&searchType=">공지사항</a></li>
 								<li><a href="#">자주 묻는 질문</a></li>
 						    	<li><a href="selectallCenter">동물 보호 센터</a></li>
 						    	<li><a href="formChart?year=2012">통계 자료</a></li>
@@ -116,8 +116,8 @@ a:FOCUS, a:HOVER {
 								
 						<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">　커뮤니티　<span class="caret"><!--화살표--></span></a>
 							<ul class="dropdown-menu">
-						    	<li><a href="selectallBoard?bcode=2">자유 게시판</a></li>
-						    	<li><a href="selectallBoard?bcode=3">질문 게시판</a></li>
+						    	<li><a href="selectallBoard?bcode=2&nowPage=1&searchType=">자유 게시판</a></li>
+						    	<li><a href="selectallBoard?bcode=3&nowPage=1&searchType=">질문 게시판</a></li>
 							</ul>
 						</li>
 
