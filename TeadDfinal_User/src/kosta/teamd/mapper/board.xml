@@ -34,7 +34,8 @@
     
     <select id="getlist" resultType="bvo" parameterType="bvo">
     	select  
-    	bcode, boricode, bno, subrpad(btitle) as btitle, mid, substr(bcontent, 1, 30) as bcontent, to_char(bdate, 'yyyy/mm/dd') as	bdate,
+<!--     	bcode, boricode, bno, subrpad(btitle) as btitle, mid, substr(bcontent, 1, 30) as bcontent, to_char(bdate, 'yyyy/mm/dd') as	bdate, -->
+		bcode, boricode, bno, rpad(btitle) as btitle, mid, substr(bcontent, 1, 30) as bcontent, to_char(bdate, 'yyyy/mm/dd') as	bdate,
     	bhit, anino, bref, bseq, blvl, bip, bfile, brpt  
     	from (select rownum r_num, a.* from (
 		select bcode, boricode, bno, btitle, mid, bcontent, to_char(bdate, 'yyyy/mm/dd') as	bdate,
