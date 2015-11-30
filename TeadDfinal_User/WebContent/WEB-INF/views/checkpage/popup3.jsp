@@ -97,23 +97,24 @@
 	   *2015년 서울시 12곳에서 조사한 결과로 추정한 서울의 길고양이 개체수는 최대 20만마리다<p>
 	   <font size="3px">&nbsp;현재의 캣맘 활동이 고양이와 사람의 공존에 어떤 영향을 미친다고 생각하십니까? </font>
 	   <p><p><p>
-	   
+	   <form method="post" action="survey2">
 	    <div class="radio">
-	      <label><input type="radio" name="optradio">긍정적 영향</label>
+	      <label><input type="radio" name="optradio" value="1">긍정적 영향</label>
 	    </div>
 	    <div class="radio">
-	      <label><input type="radio" name="optradio">부정적 영향</label>
+	      <label><input type="radio" name="optradio" value="2">부정적 영향</label>
 	    </div>
 	    <div class="radio">
-	      <label><input type="radio" name="optradio">아 몰랑</label>
+	      <label><input type="radio" name="optradio" value="3">모른다</label>
 	    </div>
 	    
 	    <span style="color: red">
-	    	<strong>※ 본 설문조사는 로그인이 필요없는 열린방식으로 진행하고,<br>
-	    	동일IP에서 중복투표를 방지하여 유의성을 제고합니다.</strong> 
+	    	<strong>※ 본 설문조사는 로그인이 필요없는 열린방식으로 진행하고</br>
+	    	동일IP에서 중복투표를 방지하여 유의성을 제고합니다.
+	    	</strong> 
 	    </span>
-	    <button type="button" class="btn btn-default btn-sm" style="margin-bottom: -15px; margin-left: 90%">투표하기</button>
-	    
+	    <button type="submit" class="btn btn-default btn-sm" style="margin-bottom: -15px; margin-left: 90%" onclose="">투표하기</button>
+	   </form>   
 	 </div>
 </div>
 </body>

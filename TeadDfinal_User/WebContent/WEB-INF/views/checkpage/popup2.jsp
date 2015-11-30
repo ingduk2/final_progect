@@ -97,24 +97,28 @@
 <p>
 	   <font size="3px">&nbsp;현재 시행되고 있는 멸종위기동물 자진신고제는, 자진신고를 한 사람에 한해서는 법적인 처벌을 면제해주고 있습니다. 귀하께서는 이에 대해 어떻게 생각하십니까?</font>
 	   <p><p><p>
-	   
+	   <form method="post" action="survey1">
 	    <div class="radio">
-	      <label><input type="radio" name="optradio">현행대로 유지되어야 한다</label>
+	      <label><input type="radio" name="optradio" value="1">현행대로 유지되어야 한다</label>
 	    </div>
 	    <div class="radio">
-	      <label><input type="radio" name="optradio">변화가 필요하다</label>
+	      <label><input type="radio" name="optradio" value="2">변화가 필요하다</label>
 	    </div>
 	    <div class="radio">
-	      <label><input type="radio" name="optradio">잘 모르겠다.</label>
+	      <label><input type="radio" name="optradio" value="3">잘 모르겠다.</label>
 	    </div>
 	    
 	    <span style="color: red">
-	    	<strong>※ 본 설문조사는 로그인이 필요없는 열린방식으로 진행하고,<br>
-	    	동일IP에서 중복투표를 방지하여 유의성을 제고합니다.</strong> 
+	    	<strong>※ 본 설문조사는 로그인이 필요없는 열린방식으로 진행하고</br>
+	    	동일IP에서 중복투표를 방지하여 유의성을 제고합니다.
+	    	</strong> 
 	    </span>
-	    <button type="button" class="btn btn-default btn-sm" style="margin-bottom: -15px; margin-left: 90%">투표하기</button>
-	    
+	    <button type="submit" class="btn btn-default btn-sm" style="margin-bottom: -15px; margin-left: 90%" onclose="">투표하기</button>
+	
+	  
+	    </form>  
 	 </div>
 </div>
 </body>
 </html>
+	

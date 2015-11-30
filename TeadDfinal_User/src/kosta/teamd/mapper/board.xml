@@ -192,6 +192,11 @@
 		from board where <![CDATA[rownum<=3]]> and bcode=1 order by bno desc
 	</select>
 	
+	<!-- 아이피  체크 -->
+    	<select id="bipCntCheck" parameterType="String" resultType="int">
+    		select count(*) cnt from board where bip=#{bip}
+    	</select>
+	
 
 
     </mapper>

@@ -1,3 +1,5 @@
+
+
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
 <html>
@@ -92,23 +94,26 @@
 	   ('14년 유기동물 : 8만여 마리, 처리비 104억원 사용)<p>
 	   <font size="3px">&nbsp;현재는 반려견 소유자 선택사항이지만 유기견 발생 방지 등 동물등록제 실효성 제고를 위해 내장형으로 일원화하는 방안을 검토 중입니다. 귀하께서는 이에 대해 어떻게 생각하십니까?</font>
 	   <p><p><p>
-	   
+	   <form method="post" action="survey">
 	    <div class="radio">
-	      <label><input type="radio" name="optradio">내장형 일원화가 바람직하다.</label>
+	      <label><input type="radio" name="optradio" value="1" >내장형 일원화가 바람직하다</label>
 	    </div>
 	    <div class="radio">
-	      <label><input type="radio" name="optradio">현행 선택방식 유지가 바람직하다</label>
+	      <label><input type="radio" name="optradio" value="2">현행 선택방식 유지가 바람직하다</label>
 	    </div>
 	    <div class="radio">
-	      <label><input type="radio" name="optradio">잘 모르겠다.</label>
+	      <label><input type="radio" name="optradio" value="3">잘 모르겠다</label>
 	    </div>
 	    
 	    <span style="color: red">
-	    	<strong>※ 본 설문조사는 로그인이 필요없는 열린방식으로 진행하고,<br>
-	    	동일IP에서 중복투표를 방지하여 유의성을 제고합니다.</strong> 
+	    	<strong>※ 본 설문조사는 로그인이 필요없는 열린방식으로 진행하고</br>
+	    	동일IP에서 중복투표를 방지하여 유의성을 제고합니다.
+	    	</strong> 
 	    </span>
-	    <button type="button" class="btn btn-default btn-sm" style="margin-bottom: -15px; margin-left: 90%">투표하기</button>
-	    
+	    <button type="submit" class="btn btn-default btn-sm" style="margin-bottom: -15px; margin-left: 90%" onclose="" id="bipchk">투표하기</button>
+	   <div id="bipchkres"></div>
+	   </form>  
+	   
 	 </div>
 </div>
 </body>

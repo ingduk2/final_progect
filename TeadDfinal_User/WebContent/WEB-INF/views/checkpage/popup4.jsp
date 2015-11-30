@@ -92,23 +92,24 @@
 	   <p>
 	   <font size="3px">&nbsp;. 현재 서울에만 20만 마리의 길고양이가 있는 것으로 추정됩니다. 중성화 수술 비용도 마리당 14만 원 정도로 적지 않은데요. 늘어나는 길고양이, 어떻게 해결해야 할까요?</font>
 	   <p><p><p>
-	   
+	   <form method="post" action="survey3">
 	    <div class="radio">
-	      <label><input type="radio" name="optradio">일정 개체수를 넘어설 경우 포획해서 안락사시킨다</label>
+	      <label><input type="radio" name="optradio" value="1">일정 개체수를 넘어설 경우 포획해서 안락사시킨다</label>
 	    </div>
 	    <div class="radio">
-	      <label><input type="radio" name="optradio">중성화 수술을 통해 장기적으로 개체수를 조절한다</label>
+	      <label><input type="radio" name="optradio" value="2">중성화 수술을 통해 장기적으로 개체수를 조절한다</label>
 	    </div>
 	    <div class="radio">
-	      <label><input type="radio" name="optradio">기타</label>
+	      <label><input type="radio" name="optradio" value="3">기타</label>
 	    </div>
 	    
 	    <span style="color: red">
-	    	<strong>※ 본 설문조사는 로그인이 필요없는 열린방식으로 진행하고,<br>
-	    	동일IP에서 중복투표를 방지하여 유의성을 제고합니다.</strong> 
+	    	<strong>※ 본 설문조사는 로그인이 필요없는 열린방식으로 진행하고</br>
+	    	동일IP에서 중복투표를 방지하여 유의성을 제고합니다.
+	    	</strong> 
 	    </span>
-	    <button type="button" class="btn btn-default btn-sm" style="margin-bottom: -15px; margin-left: 90%">투표하기</button>
-	    
+	    <button type="submit" class="btn btn-default btn-sm" style="margin-bottom: -15px; margin-left: 90%" onclose="">투표하기</button>
+	     </form>  
 	 </div>
 </div>
 </body>
