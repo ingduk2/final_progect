@@ -12,11 +12,14 @@ public class AnimalVO {
 	private String aniname;     // 이름
 	private int aniage;         // 나이
 	private String anisex;      // 성별 _ 남아, 여아
-	private String anisize;     // 크기 분류 _ 소, 중, 대
+	//private String anisize;     // 크기 분류 _ 소, 중, 대
 	private int aniweight;      // 몸무게
 	private String anifeature;  // 특징
 	private String aniregion;   // (실종, 발견)지역
 	private String anidate;     // (실종, 발견)날짜
+	
+	private int anireward;
+	private int anistate;
 	private String aniimg;      // 동물 사진 파일 이름
 	private MultipartFile maniimg; //이미지 업로드용
 	
@@ -62,11 +65,18 @@ public class AnimalVO {
 	public void setAnisex(String anisex) {
 		this.anisex = anisex;
 	}
-	public String getAnisize() {
-		return anisize;
+	
+	public int getAnireward() {
+		return anireward;
 	}
-	public void setAnisize(String anisize) {
-		this.anisize = anisize;
+	public void setAnireward(int anireward) {
+		this.anireward = anireward;
+	}
+	public int getAnistate() {
+		return anistate;
+	}
+	public void setAnistate(int anistate) {
+		this.anistate = anistate;
 	}
 	public int getAniweight() {
 		return aniweight;
