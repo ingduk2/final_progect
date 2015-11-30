@@ -119,7 +119,7 @@
 	</div>
 
 	<div id="imgtest">
-		<a href="#"><img src="img/gobtn.png" style="margin-top:190px;  margin-right: 250px;"></a><!-- 바로가기버튼입니다 -->
+		<a href="#"><img src="img/gobtn.png" style="margin-top:192px;  margin-right: 250px;"></a><!-- 바로가기버튼입니다 -->
 	</div>
 	
 	<div style="margin: auto; width: 50%">

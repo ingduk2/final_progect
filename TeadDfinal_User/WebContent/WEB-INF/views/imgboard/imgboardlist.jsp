@@ -50,6 +50,7 @@
 		white-space: nowrap;
 		font-size: 12px;
 	}
+
 	
 </style>
 
