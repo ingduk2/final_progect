@@ -44,6 +44,11 @@
 		margin-bottom: 1px
 	}
 </style>
+<script>
+	function fin() {
+		window.close();
+	}
+</script>
 </head>
 <body>
 <div id="allbg">
@@ -54,9 +59,6 @@
 	  TNR(Trap-Neuter-Release) 이란 길고양이를 포획한 후 중성화 수술을 시켜 포획한 장소에 다시 방사하는 것으로, 인도적인 차원에서 길고양이의 개체 수를 조절할 수 있는 방법이다</font>
 	   <table class="table">
 	   	<tr>
-<!-- 	   		<td>구분</td><td>내장형</td><td>외장형, 인식표형</td> -->
-	   	</tr>
-	   	<tr>
 	   		<td>장점</td>
 	   		<td>
 	   			<ul>
@@ -65,12 +67,6 @@
 	   				<li>적절한 길고양이의 개체수 유지는 쥐의 과도한 번식도 예방한다</li>
 	   			</ul>
 	   		</td>
-<!-- 	   		<td> -->
-<!-- 	   			<ul> -->
-<!-- 	   				<li>부작용 없음</li> -->
-<!-- 	   				<li>처치 간단</li> -->
-<!-- 	   			</ul> -->
-<!-- 	   		</td> -->
 	   	</tr>
 	   	<tr>
 	   		<td>단점</td>
@@ -80,12 +76,6 @@
 	   				<li>인위적인 개체수 조절은 생태계 교란을 야기한다</li>
 	   			</ul>
 	   		</td>
-<!-- 	   		<td> -->
-<!-- 	   			<ul> -->
-<!-- 	   				<li>의도적, 우발적 파손 용이</li> -->
-<!-- 	   				<li>제거 후 유기 시 소유자 확인 불가</li> -->
-<!-- 	   			</ul> -->
-<!-- 	   		</td> -->
 	   	</tr>
 	   </table>
 	   
@@ -107,7 +97,7 @@
 	    	<strong>※ 본 설문조사는 로그인이 필요없는 열린방식으로 진행하고,<br>
 	    	동일IP에서 중복투표를 방지하여 유의성을 제고합니다.</strong> 
 	    </span>
-	    <button type="button" class="btn btn-default btn-sm" style="margin-bottom: -15px; margin-left: 90%">투표하기</button>
+	    <button type="button" onclick="fin()" class="btn btn-default btn-sm" style="margin-bottom: -15px; margin-left: 90%">투표하기</button>
 	    
 	 </div>
 </div>

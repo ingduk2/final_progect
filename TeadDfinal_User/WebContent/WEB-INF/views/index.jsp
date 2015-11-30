@@ -65,9 +65,11 @@
 	}
 	#imgtest{
 		background-image: url("img/mainimg.png");
-		width: 600px;
+		width: 50%;
 		height: 250px;
-		background-repeat: repeat-x;
+		background-repeat: no-repeat;
+		margin: auto;
+		background-position: center center;
 	}
 	.label-info{
 		background-color: #C8E798;
@@ -88,24 +90,24 @@
 		window.open("popup3", "popup", specs);
 	}
 	function popup4(){
-		var specs = "left=10,top=10,width=697,height=510, location=no, realzable=no, scrollbars=no";
+		var specs = "left=10,top=10,width=697, height=515, location=no, realzable=no, scrollbars=no";
 		window.open("popup4", "popup", specs);
 	}
 </script>
 
 
-<div class="body">
+<div class="body" style="width: 100%">
 
 	<div id="itsfloatdiv"> <!-- 얘는 설문조사를 넣을 애다. -->
 	<span class="label label-info" style="margin-left: 100px">설문조사 참여하기</span>
 	<table style="margin-left: 100px; height: 500px">
 		<tr>
 			<td>
-				<a href="#" onclick="popup()"><img src="img/test/research03.png"/></a>
+				<a href="#" onclick="popup2()"><img src="img/test/research03.png"/></a>
 			</td>  
 		</tr>
 		<tr>
-			<td><a href="#" onclick="popup2()"><img src="img/test/research02.png"/></a></td>  
+			<td><a href="#" onclick="popup()"><img src="img/test/research02.png"/></a></td>  
 		</tr>
 		<tr>
 			<td><a href="#" onclick="popup3()"><img src="img/test/research01.png" height="95px"/></a></td>  
@@ -116,8 +118,8 @@
 	</table> 
 	</div>
 
-	<div id="imgtest" style="margin: auto; width: 50%">
-		<a href="#"><img src="img/gobtn.png" style="margin-top: 180px;  margin-right: 250px;"></a><!-- 바로가기버튼입니다 -->
+	<div id="imgtest">
+		<a href="#"><img src="img/gobtn.png" style="margin-top:190px;  margin-right: 250px;"></a><!-- 바로가기버튼입니다 -->
 	</div>
 	
 	<div style="margin: auto; width: 50%">
@@ -253,16 +255,6 @@
 		  							</td>
 		  						</tr>
 		  					</c:forEach>
-		  				
-		  					<!-- <tr>
-		  						<td>제1회 동물사랑협회라는 말을쓰고..(2015-11-25)</td>
-		  					</tr>
-		  					<tr>
-		  						<td>동물복지사랑실천은 뭔지는 모르겠네(2015-11-25)</td>
-		  					</tr>
-		  					<tr>
-		  						<td>너무 졸려서 죽겠다 기절할거같다..(2015-11-25)</td>
-		  					</tr> -->
 		  				</tbody>
 		  			</table>
 		  		</div>
@@ -277,20 +269,22 @@
 		  					<tr>
 		  						<th>
 		  							질의응답
-		  							<span  id="secondlabel2" class="label label-default">▷More..</span>
+		  							<a href="selectallBoard?bcode=3">
+		  								<span  id="secondlabel2" class="label label-default">▷More..</span>
+		  							</a>
 		  						</th>
 		  					</tr>
 		  				</thead>
 		  				<tbody>
-		  					<tr>
-		  						<td>제1회 동물사랑협회라는 말을쓰고..(2015-11-25)</td>
-		  					</tr>
-		  					<tr>
-		  						<td>동물복지사랑실천은 뭔지는 모르겠네(2015-11-25)</td>
-		  					</tr>
-		  					<tr>
-		  						<td>너무 졸려서 죽겠다 기절할거같다..(2015-11-25)</td>
-		  					</tr>
+		  					<c:forEach var="minilist2" items="${minilist2}">
+		  						<tr>
+		  							<td>
+		  								<a href="selectoneBoard?bno=${minilist2.bno}&mid=${minilist2.mid}">
+		  									${minilist2.btitle}.....(${minilist2.bdate})
+		  								</a>
+		  							</td>
+		  						</tr>
+		  					</c:forEach>
 		  				</tbody>
 		  			</table>
 		  		</div>

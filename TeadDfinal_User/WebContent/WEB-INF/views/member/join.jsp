@@ -18,13 +18,13 @@
 <style>
 	table th {
 		font-weight: bold;
-		color: black;
 		background-color: #90ee90;
-		opacity: 0.4;
 		font: bold;
 		text-align: center;
 		border-bottom: 1px solid #f0fff0;
 		width: 150px;
+		color: gray;
+		background-color:hsla(120,100%,75%,0.3);
 	}
 	#formtable{
 		height: 400px

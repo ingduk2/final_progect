@@ -1,17 +1,7 @@
 package kosta.teamd.mvc.animal;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.BufferedReader;
-import java.io.Closeable;
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.security.Principal;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,14 +18,11 @@ import kosta.teamd.mvc.dao.AnimalDao;
 import kosta.teamd.mvc.dao.BoardDao;
 import kosta.teamd.mvc.dao.CommBoardDao;
 import kosta.teamd.mvc.service.AniboardImple;
-import kosta.teamd.mvc.service.AnimalService;
 import kosta.teamd.mvc.service.Paging;
 import kosta.teamd.vo.AniBoardVO;
 import kosta.teamd.vo.AnimalVO;
 import kosta.teamd.vo.BoardVO;
 import kosta.teamd.vo.CommBoardVO;
-
-
 
 @Controller
 public class AnimalController {

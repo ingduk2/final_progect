@@ -85,9 +85,26 @@
     	delete board where bno=#{bno}
     </delete>
     
+    <!-- 게시글 삭제 시 해당 글에 달린 댓글 모두 삭제 _ FK 처리 -->
+    	<delete id="deleteAllComm" parameterType="int">
+    		delete commboard where bno=#{bno}
+    	</delete>
+    <!-- 게시글 삭제 시 해당 글에 달린 댓글 모두 삭제 _ FK 처리 -->
+    
     <update id="update" parameterType="bvo">
     	update board set btitle=#{btitle}, bcontent=#{bcontent} where bno=#{bno}
     </update>
+    
+    <!-- ====================================================================== -->
+    
+    <insert id="imgBoardInsert" parameterType="bvo">
+    	insert into board values(
+    	#{bcode}, #{bcode}, board_seq.nextVal, #{btitle}, #{mid}, #{bcontent}, 
+    	sysdate, 0, #{anino}, board_seq.nextVal, 1, #{blvl}, #{bip}, 'nofile', 0
+    	)
+    </insert>
+    
+    <!-- ====================================================================== -->
     
      <insert id="imgins" parameterType="bvo">
     	insert into board 
@@ -173,6 +190,11 @@
 		select 
 			rownum, mid, bno, substr(btitle, 1, 22) as btitle, to_char(bdate, 'yyyy/mm/dd') as bdate
 		from board where <![CDATA[rownum<=3]]> and bcode=1 order by bno desc
+	</select>
+	<select id="mainminiboard2" resultType="bvo">
+		select 
+			rownum, mid, bno, substr(btitle, 1, 22) as btitle, to_char(bdate, 'yyyy/mm/dd') as bdate
+		from board where <![CDATA[rownum<=3]]> and bcode=3 order by bno desc
 	</select>
 	
 
