@@ -240,10 +240,10 @@ start with 1;
 
 
 --내용 자리 추가시 .... 표시 함수--- content 타입은 상황봐서 변경... 
-create or replace function subrpad(content clob)
+create or replace function subrpad(content varchar2)
 return varchar2
 is 
-  v_subpad clob;
+  v_subpad varchar2;
   BEGIN
   if(length(content)>35)
   then
