@@ -22,7 +22,7 @@ $(document).ready(function(){
 		color: #8fbc8f
 	}
 /* 	tootip style */
-	#bg a:FOCUS, a:HOVER{
+	.plz>a:HOVER, .plz>td>a:focus{
 		color: green;
 	}
 	/* Hover tooltips */
@@ -92,16 +92,6 @@ $(document).ready(function(){
 
 <table style="width: 50%;">
 	<thead style="font-weight:bold; color:black;">
-		<%-- <c:if test="${bcode == 1}">
-			<tr id="title"> <td colspan="5">공지사항</td> </tr>
-		</c:if>
-		<c:if test="${bcode == 2}">
-			<tr id="title"> <td colspan="5">자유 게시판</td> </tr>
-		</c:if>
-		<c:if test="${bcode == 3}">
-			<tr id="title"> <td colspan="5">질문 게시판</td> </tr>
-		</c:if>
-		<tr> <td colspan="5">　</td> </tr> --%>
 		<tr id="title"> <td colspan="2" width="300px" style=" text-overflow: ellipsis;">제목</td><td width="180px">작성자</td><td width="100px">작성일</td><td>조회</td> </tr>
 	</thead>
 	
@@ -109,7 +99,7 @@ $(document).ready(function(){
 		<c:forEach var="list" items="${list}">
 			<tr>
 				<td width="30px">${list.bno}</td>
-				<td style="text-align: left; padding-left: 20px; text-overflow: ellipsis;">
+				<td class="plz" style="text-align: left; padding-left: 20px; text-overflow: ellipsis;">
 					<c:forEach begin="1" end="${list.blvl}">&nbsp;&nbsp;&nbsp;</c:forEach>
 					<c:if test="${list.blvl != 0}">
 						<span class="glyphicon glyphicon-arrow-right"></span>&nbsp;
