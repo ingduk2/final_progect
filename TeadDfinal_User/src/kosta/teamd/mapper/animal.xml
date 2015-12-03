@@ -9,7 +9,7 @@
      insert into animal 
      values(animal_seq.nextVal, #{anispecies}, #{anibreed}, #{aniname}, #{aniage},
      	#{anisex}, #{aniweight}, #{anifeature}, #{aniregion}, #{anidate}, #{anireward},
-     	#{anistate}, #{aniimg})
+     	#{anistate}, #{aniimg}, #{anineutral})
 	<selectKey keyProperty="anino" resultType="int" order="AFTER">
 		SELECT animal_seq.currval FROM dual
 	</selectKey>
@@ -20,8 +20,8 @@
     <select id="imglist" resultType="abvo" parameterType="abvo" >
      	select * from (select rownum r_num, aaa.* from (
 		select a.anino anino, a.aniimg aniimg, a.anispecies anispecies, 
-     a.anibreed anibreed, a.aniname aniname, a.aniage aniage, a.anisex anisex,
-     a.aniregion aniregion, to_char(a.anidate,'yy-mm-dd') anidate, b.btitle btitle,  b.bno bno,
+     a.anibreed anibreed, a.aniname aniname, a.aniage aniage, a.anisex anisex, a.anineutral anineutral,
+     a.aniregion aniregion, to_char(a.anidate,'yy-mm-dd') anidate, a.anistate anistate, a.anireward anireward, b.btitle btitle,  b.bno bno,
      b.mid mid, b.bhit bhit, b.bdate bdate  from animal a, board b where a.anino = b.anino and a.anino!=0 and bcode=#{bcode}
      <if test="searchType != null">
 			<choose>
@@ -47,10 +47,15 @@
     
     
     <select id="imgdetail" resultType="abvo" parameterType="int">
-    select a.anino anino, a.aniimg aniimg, a.anispecies anispecies, 
-     a.anibreed anibreed, a.aniname aniname, a.aniage aniage, a.anisex anisex, 
-     a.aniregion aniregion, a.anifeature anifeature, to_char(a.anidate,'yy-mm-dd') anidate, b.btitle btitle, 
-     b.bcode bcode, b.bno bno, b.mid mid, b.bcontent bcontent,b.brpt brpt ,b.bhit bhit, b.bdate bdate  from animal a, board b where a.anino=#{anino} and b.anino=#{anino}
+    	select 
+    	a.anino anino, a.anispecies anispecies, a.anibreed anibreed, a.aniname aniname, 
+    	a.aniage aniage, a.anisex anisex, a.aniweight aniweight, a.anifeature anifeature, 
+    	a.aniregion aniregion, to_char(a.anidate, 'yyyy/mm/dd') anidate, a.anireward anireward, 
+    	a.anistate anistate, a.aniimg aniimg, a.anineutral anineutral,
+    	b.btitle btitle, b.bcode bcode, b.bno bno, b.mid mid, b.bcontent bcontent, b.brpt brpt, 
+    	b.bhit bhit, to_char(b.bdate, 'yyyy/mm/dd') bdate
+    	from animal a, board b
+    	where a.anino=#{anino} and b.anino=#{anino}
     </select>
     
     
@@ -83,6 +88,19 @@
 	</if>
     </select>
     
+    <!-- =========================================================== -->
     
+    <!-- Matching -->
+    <select id="machingdata" parameterType="anivo" resultType="anivo">
+    	select  
+    	anino, anispecies, anibreed, aniname, aniage, anisex, aniweight, anifeature,
+    	aniregion, to_char(anidate, 'yyyy/mm/dd') anidate, anireward, anistate, aniimg, anineutral
+    	from animatchdata
+    	where 
+    	anispecies = #{anispecies} and aniregion = #{aniregion} and
+    	anidate > (to_date(#{anidate}, 'yy/mm/dd') - 1)
+    </select>
+    
+    <!-- =========================================================== -->
     
     </mapper>

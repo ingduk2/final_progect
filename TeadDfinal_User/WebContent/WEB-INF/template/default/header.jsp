@@ -93,11 +93,11 @@ a:FOCUS, a:HOVER {
 						
 						<li><a class="dropdown-toggle" href="selectallAnimal?bcode=4&nowPage=1&searchType=">찾아주세요</a></li>
 						
-						<li><a class="dropdown-toggle" href="#">잡았다요놈</a></li>
+						<li><a class="dropdown-toggle" href="selectallAnimal?bcode=5&nowPage=1&searchType=">잡았다요놈</a></li>
 						
 						<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">　참여하기　<span class="caret"><!--화살표--></span></a>
 							<ul class="dropdown-menu">
-						    	<li><a href="#">입양하기</a></li>
+						    	<li><a href="selectallAnimal?bcode=6&nowPage=1&searchType=">입양하기</a></li>
 						    	<li><a href="formCal">봉사하기</a></li>
 						    	<li><a href="#">설문조사</a></li>
 							</ul>
@@ -109,8 +109,6 @@ a:FOCUS, a:HOVER {
 								<li><a href="#">자주 묻는 질문</a></li>
 						    	<li><a href="selectallCenter">동물 보호 센터</a></li>
 						    	<li><a href="formChart?year=2012">통계 자료</a></li>
-						    	
-						    	<li><a href="formCenter">센터(임시)</a></li>
 							</ul>
 						</li>
 								

@@ -19,6 +19,8 @@ public class AniBoardVO {
 	private int anireward;          // 사례금
 	private int anistate;           // 동물 등록 상태(실종, 발견, 개인 보호)
 	
+	private String anineutral;      // 추가 : 중성화 여부
+	
 	private String aniimg;      // 동물 사진 파일 이름
 	private MultipartFile maniimg; //이미지 업로드용
 	
@@ -240,7 +242,10 @@ public class AniBoardVO {
 	public void setBfile(String bfile) {
 		this.bfile = bfile;
 	}
-
-
-
+	public String getAnineutral() {
+		return anineutral;
+	}
+	public void setAnineutral(String anineutral) {
+		this.anineutral = anineutral;
+	}
 }

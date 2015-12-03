@@ -60,6 +60,11 @@
 		<intercept-url pattern="/formBoard" access="User, Admin" /> <!-- 글 쓰기 폼 -->
 		<intercept-url pattern="/formReply" access="User, Admin" /> <!-- 답글 쓰기 폼 -->
 		<intercept-url pattern="/insertComm" access="User, Admin" /> <!-- 댓글 등록 -->
+		
+		<!-- 이미지 게시판 -->
+		<intercept-url pattern="/formImgBoardWrite" access="User, Admin" /> <!-- 글 쓰기 폼 -->
+		
+		
 	 	
 	 	<!-- login 처리 -->
 	 	<form-login

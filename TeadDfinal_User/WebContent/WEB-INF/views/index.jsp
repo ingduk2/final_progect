@@ -239,7 +239,7 @@
 		  					<tr>
 		  						<th>
 		  							공지사항
-		  							<a href="selectallBoard?bcode=1">
+		  							<a href="selectallBoard?bcode=1&nowPage=1&searchType=">
 		  								<span id="secondlabel1" class="label label-default">▷More..</span>
 		  							</a>
 		  						</th>
@@ -269,7 +269,7 @@
 		  					<tr>
 		  						<th>
 		  							질의응답
-		  							<a href="selectallBoard?bcode=3">
+		  							<a href="selectallBoard?bcode=3&nowPage=1&searchType=">
 		  								<span  id="secondlabel2" class="label label-default">▷More..</span>
 		  							</a>
 		  						</th>

@@ -48,6 +48,20 @@ table th {
 
 </style>
 
+<script>
+	function checksubmit() {
+		
+		if (document.commform.cbcontent.value == "") {
+			alert("내용을 입력해주세요")
+			document.commform.cbcontent.focus()
+			return false
+		}
+		
+		return true;
+	}
+
+</script>
+
 <div>		
 
 <!-- 공간 띄우기 용 -->
@@ -56,29 +70,34 @@ table th {
 <table width="50%">							
 	<tr>	
 		<th>제목</th>	
-		<td colspan="5" class="bgwhite"> 
+		<td colspan="7" class="bgwhite"> 
 			${bvo.btitle}
 		</td>					
 	</tr>
 	<tr>	
 		<th>글쓴이</th>
-		<td class="bgwhite" style="width: 220px">
+		<td class="bgwhite" style="width: 190px">
 			${bvo.mid}
 		</td>	
 		<th>작성일</th>	
-		<td class="bgwhite">
+		<td class="bgwhite" style="width: 190px">
 			${bvo.bdate}
 		</td>	
 		<th>조회수</th>	
-		<td class="bgwhite">
+		<td class="bgwhite" style="width: 50px">
 			${bvo.bhit }
+		</td>
+		
+		<th>신고수</th>	
+		<td class="bgwhite" style="width: 50px">
+			${bvo.brpt }
 		</td>	
 	</tr>
 	<tr>	
-		<th colspan="6">내용</th>						
+		<th colspan="8">내용</th>						
 	</tr>
 	<tr><!--수정 후에 height="200px" 지워야합니다.-->
-		<td colspan="6" class="bgwhite" >
+		<td colspan="8" class="bgwhite" >
 		<!-- 다운로드용 버튼 -->
 			<div style="vertical-align: top; float: right; padding-right: 15px; padding: 5px">
 				<c:if test="${bvo.bfile != null}">
@@ -121,13 +140,15 @@ table th {
 	<!-- 댓글 입력  -->
 	<tr>
 		<th>Comment</th>
-		<td colspan="6">
+		<td colspan="8">
 	    	<div class="input-group col-xs-12">
-		    	<form action="insertComm" method="post" >
+		    	<form action="insertComm" method="post"
+		    		  name="commform" onsubmit="return checksubmit()">
 		    	
 		    	<input type="hidden" name="bno" value="${bvo.bno}">
 		    	<input type="hidden" name="cbip" value="<%= request.getRemoteAddr() %>">
 		    	<input type="hidden" name="orimid" value="${bvo.mid}">
+		    	<input type="hidden" name="nowPage" value="${nowPage}">
 		    	
 		    	<div class="input-group" style="width: 100%">
 		        	<input name="cbcontent" type="text" class="form-control input-sm " placeholder="Your comments">
@@ -145,7 +166,7 @@ table th {
 	<!--  댓글 출력 -->
 	<tr>
 		<th><span class="glyphicon glyphicon-user"></span></th>
-		<td colspan="6">
+		<td colspan="8">
 			<table width="100%">
 				<tr> <th style="border-left: 1px solid #f0fff0;">ID</th> <th  class="reply">Comments</th> <th>Date</th> <th style="width: 15px; font-size: 10px;"></th	> </tr>
 				<!-- 댓글 부분 이곳에서 반복처리하면 됩니다. 시작 -->
@@ -157,7 +178,7 @@ table th {
 						</td>
 						<td>${list.cbdate}</td>
 						<td>
-							<a type="button" href="deleteComm?cbno=${list.cbno}&bno=${list.bno}&mid=${bvo.mid}">삭제</a>
+							<a type="button" href="deleteComm?cbno=${list.cbno}&bno=${list.bno}&mid=${bvo.mid}&nowPage=${nowPage}">삭제</a>
 						</td> 
 					</tr>
 				</c:forEach>
@@ -175,14 +196,21 @@ table th {
 		
 		<c:param name="bno" value="${bvo.bno}" />
 		<c:param name="mid" value="${bvo.mid}" />
+		
+		<c:param name="nowPage" value="${nowPage}" />
 	</c:url>
 
 <table><tr height="30px"><!-- 높이 조절용 칸 떼우기 --><td></td></tr></table>
 <c:if test="${pageContext.request.userPrincipal.name == bvo.mid}">
-	<button type="button" class="btn btn-success btn-sm" onclick="location='updateformBoard?bno=${bvo.bno}'">　수　　정　</button>
+	<button type="button" class="btn btn-success btn-sm" onclick="location='updateformBoard?bno=${bvo.bno}&nowPage=${nowPage}'">　수　　정　</button>
 	<button type="button" class="btn btn-success btn-sm" onclick="location='deleteBoard?bno=${bvo.bno}&bcode=${bvo.bcode}'">　삭　　제　</button>
 </c:if>
 <a href="${reply}" type="button" class="btn btn-success btn-sm">　답　　변　</a>
-<button type="button" class="btn btn-success btn-sm" onclick="location='selectallBoard?bcode=${bvo.bcode}&nowPage=1&searchType='">　목　　록　</button>
+
+<c:if test="${pageContext.request.userPrincipal.name != null}">
+	<button type="button" class="btn btn-success btn-sm" id="reportBtn">　신　　고　 </button>
+</c:if>
+
+<button type="button" class="btn btn-success btn-sm" onclick="location='selectallBoard?bcode=${bvo.bcode}&nowPage=${nowPage}&searchType='">　목　　록　</button>
 
 </div>

@@ -13,18 +13,24 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import kosta.teamd.mvc.inter.ImgBoardInsertInter;
+import kosta.teamd.mvc.service.Paging;
 import kosta.teamd.vo.AnimalVO;
 import kosta.teamd.vo.BoardVO;
+import kosta.teamd.vo.ImgBoardVO;
 
 @Controller
 public class ImgBoardController {
 
+	@Autowired
+	private Paging page;
+	
 	// -- 이미지 게시판 쓰기 폼 연결 --
 	@RequestMapping(value="/formImgBoardWrite")
-	public ModelAndView formImgBoardWrite(String bcode) {
+	public ModelAndView formImgBoardWrite(String bcode, String nowPage) {
 		
 		ModelAndView mav = new ModelAndView("imgboard/imgboardwrite");
 		mav.addObject("bcode", bcode);
+		mav.addObject("nowPage", nowPage);
 		
 		return mav;
 	}
@@ -73,12 +79,20 @@ public class ImgBoardController {
 			anivo.setAniimg("puppydefault.png");
 		}
 		
+		// anistate 4, 5인 경우, 모든 정보 기입 안한경우 디폴트 처리
+//		if (anivo.getAnistate() == 4 || anivo.getAnistate() == 5) {
+//			if (anivo.getAnisex().equals("모름")) {
+//				System.out.println("전: " + anivo.getAnisex());
+//				anivo.setAnisex(" ");
+//				System.out.println("후: " + anivo.getAnisex());
+//			}
+//			
+//		}
+		
 		ibinsert.imgBoardInsert(bvo, anivo);
 		
 		return new ModelAndView("redirect:/selectallAnimal?bcode="+bvo.getBcode()+"&nowPage=1&searchType=");
 	}
 	
-	// 이미지 게시판 리스트 불러오기
-	
-	
+	// -- 이미지 게시판 리스트 불러오기 --
 }

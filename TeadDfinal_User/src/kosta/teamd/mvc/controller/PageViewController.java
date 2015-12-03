@@ -17,10 +17,14 @@ public class PageViewController {
 	private BoardDao bdao;
 	
 	@RequestMapping(value={"/", "/index"})
-	public ModelAndView fromIndex(BoardVO bvo){
-		List<BoardVO> minilist=bdao.mainMiniBoard(bvo);
-		List<BoardVO> minilist2=bdao.mainMiniBoard2(bvo);
+	public ModelAndView fromIndex(){
+		System.out.println("lol1");
+		List<BoardVO> minilist=bdao.mainMiniBoard();
+		System.out.println(minilist.size());
+		List<BoardVO> minilist2=bdao.mainMiniBoard2();
+		System.out.println(minilist2.size());
 		ModelAndView mav=new ModelAndView("index");
+		System.out.println("lol2");
 		mav.addObject("minilist", minilist);
 		mav.addObject("minilist2", minilist2);
 		return mav;
