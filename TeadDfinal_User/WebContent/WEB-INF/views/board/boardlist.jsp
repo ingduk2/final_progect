@@ -22,7 +22,7 @@ $(document).ready(function(){
 		color: #8fbc8f
 	}
 /* 	tootip style */
-	#bg a:FOCUS, a:HOVER{
+	.plz>a:HOVER, .plz>td>a:focus{
 		color: green;
 	}
 	/* Hover tooltips */
@@ -99,7 +99,7 @@ $(document).ready(function(){
 		<c:forEach var="list" items="${list}">
 			<tr>
 				<td width="30px">${list.bno}</td>
-				<td style="text-align: left; padding-left: 20px; text-overflow: ellipsis;">
+				<td class="plz" style="text-align: left; padding-left: 20px; text-overflow: ellipsis;">
 					<c:forEach begin="1" end="${list.blvl}">&nbsp;&nbsp;&nbsp;</c:forEach>
 					<c:if test="${list.blvl != 0}">
 						<span class="glyphicon glyphicon-arrow-right"></span>&nbsp;

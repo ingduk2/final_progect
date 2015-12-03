@@ -28,6 +28,7 @@
 }
 .nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus{
 	border: 1px solid white;
+	font-weight: bold;
 }
 a:FOCUS, a:HOVER {
 	color: white;
@@ -40,6 +41,7 @@ a:FOCUS, a:HOVER {
 }
 .dropdown-menu{
 	background-color: #c1ffc1;
+	color: white;
 	border: 1px solid transparent;
 	border: 1px solid transparent;
 }
@@ -50,9 +52,13 @@ a:FOCUS, a:HOVER {
 .nav-tabs>li.active>a, .nav-tabs>li.active>a:hover, .nav-tabs>li.active>a:focus{
 	background-color: transparent;
 }
+.nav>a:FOCUS, a:HOVER{
+	color: white;
+}
+
 </style>
 
-<div id="bg">
+<!-- <div id="bg"> -->
 	<div id="header">
 			
 		<table height="165px"> 
@@ -129,4 +135,4 @@ a:FOCUS, a:HOVER {
 		</table>
 		
 	</div>
-</div>
+<!-- </div> -->
