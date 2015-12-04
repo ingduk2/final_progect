@@ -76,22 +76,22 @@
 	}
 </style>
 
-<script> //팝업을 만들자 쉬댕
+<script> //팝업
 	function popup(){
 		var specs = "left=10,top=10,width=697,height=546, location=no, realzable=no, scrollbars=no";
-		window.open("popup", "popup", specs);
+		window.open("popup?num=1", "popup", specs);
 	}
 	function popup2(){
 		var specs = "left=10,top=10,width=697,height=515, location=no, realzable=no, scrollbars=no";
-		window.open("popup2", "popup", specs);
+		window.open("popup2?num=2", "popup", specs);
 	}
 	function popup3(){
 		var specs = "left=10,top=10,width=697,height=470, location=no, realzable=no, scrollbars=no";
-		window.open("popup3", "popup", specs);
+		window.open("popup3?num=3", "popup", specs);
 	}
 	function popup4(){
 		var specs = "left=10,top=10,width=697, height=515, location=no, realzable=no, scrollbars=no";
-		window.open("popup4", "popup", specs);
+		window.open("popup4?num=4", "popup", specs);
 	}
 </script>
 
@@ -103,11 +103,11 @@
 	<table style="margin-left: 100px; height: 500px">
 		<tr>
 			<td>
-				<a href="#" onclick="popup2()"><img src="img/test/research03.png"/></a>
+				<a href="#" onclick="popup()"><img src="img/test/research03.png"/></a>
 			</td>  
 		</tr>
 		<tr>
-			<td><a href="#" onclick="popup()"><img src="img/test/research02.png"/></a></td>  
+			<td><a href="#" onclick="popup2()"><img src="img/test/research02.png"/></a></td>  
 		</tr>
 		<tr>
 			<td><a href="#" onclick="popup3()"><img src="img/test/research01.png" height="95px"/></a></td>  
@@ -119,7 +119,7 @@
 	</div>
 
 	<div id="imgtest">
-		<a href="#"><img src="img/gobtn.png" style="margin-top:190px;  margin-right: 250px;"></a><!-- 바로가기버튼입니다 -->
+		<a href="#"><img src="img/gobtn.png" style="margin-top:192px;  margin-right: 250px;"></a><!-- 바로가기버튼입니다 -->
 	</div>
 	
 	<div style="margin: auto; width: 50%">
@@ -239,7 +239,7 @@
 		  					<tr>
 		  						<th>
 		  							공지사항
-		  							<a href="selectallBoard?bcode=1">
+		  							<a href="selectallBoard?bcode=1&nowPage=1&searchType=">
 		  								<span id="secondlabel1" class="label label-default">▷More..</span>
 		  							</a>
 		  						</th>
@@ -269,7 +269,7 @@
 		  					<tr>
 		  						<th>
 		  							질의응답
-		  							<a href="selectallBoard?bcode=3">
+		  							<a href="selectallBoard?bcode=3&nowPage=1&searchType=">
 		  								<span  id="secondlabel2" class="label label-default">▷More..</span>
 		  							</a>
 		  						</th>

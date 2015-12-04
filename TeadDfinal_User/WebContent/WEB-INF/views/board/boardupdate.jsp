@@ -66,6 +66,17 @@ table th {
 		        
 		    });
 		});
+		
+		function checksubmit() {
+			
+			if (document.boardupdateform.btitle.value == "") {
+				alert("제목을 입력해주세요")
+				document.boardupdateform.btitle.focus()
+				return false
+			}
+			
+			return true;
+		}
 </script>
 
 <div>
@@ -73,11 +84,13 @@ table th {
 <!-- 공간 띄우기 용 -->
 <table><tr height="50px"><td></td></tr></table>
 	
-<form action="updateBoard" method="post">
+<form action="updateBoard" method="post"
+	  name="boardupdateform" onsubmit="return checksubmit()">
 	
 	
 <input type="hidden" name="bno" value="${bvo.bno}">
-<input type="hidden" name="mid" value="${bvo.mid }">	
+<input type="hidden" name="mid" value="${bvo.mid }">
+<input type="hidden" name="nowPage" value="${nowPage}">	
 <table width="500px">	
 	<tr> <th colspan="2">　</th> </tr>			
 	<tr>	
@@ -116,7 +129,7 @@ table th {
 	
 <table><tr height="30px"><!-- 높이 조절용 칸 떼우기 --><td></td></tr></table>
 <button type="submit" class="btn btn-success btn-sm">　완　　료　</button>
-<button type="button" class="btn btn-success btn-sm" onclick="location='selectoneBoard?bno=${bvo.bno}&mid=${bvo.mid}'">　취　　소　</button>
+<button type="button" class="btn btn-success btn-sm" onclick="location='selectoneBoard?bno=${bvo.bno}&mid=${bvo.mid}&nowPage=${nowPage}'">　취　　소　</button>
 
 </form>		
 

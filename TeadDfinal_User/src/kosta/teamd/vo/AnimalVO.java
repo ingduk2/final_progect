@@ -20,6 +20,7 @@ public class AnimalVO {
 	private String aniimg;          // 동물 사진 파일 이름
 	private MultipartFile maniimg;  // 이미지 업로드용
 
+	private String anineutral;      // 중성화 여부_추가
 
 	public int getAnino() {
 		return anino;
@@ -104,5 +105,12 @@ public class AnimalVO {
 	}
 	public void setManiimg(MultipartFile maniimg) {
 		this.maniimg = maniimg;
+	}
+
+	public String getAnineutral() {
+		return anineutral;
+	}
+	public void setAnineutral(String anineutral) {
+		this.anineutral = anineutral;
 	}
 }

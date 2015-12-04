@@ -16,25 +16,6 @@
 		color: gray;
 		background-color:hsla(120,100%,75%,0.3);
 	}
-	/* CSS used here will be applied after bootstrap.css */
-	/* bootstrap Navigation Overriding */
-/* 	.navbar {
-		background: #FFFFFF;
-	}
-	.navbar .navbar-center {
-		display: inline-block;
-		float: none;
-		vertical-align: top;
-		text-align: center;
-	}
-	#page_footer {
-		height: 60px;
-		background: #f5f5f5;
-	}
-	.footer_text {
-		margin: 20px 0;
-		color: #777;
-	} */
 	
 	/* 이미지용 Css */
 	/* 메뉴바용스타일 */
@@ -61,7 +42,12 @@
 		margin: auto;
 /* 		border: 1px solid red;  */
 	}
+	
+/* 	title style */
+	.titlename{width: 50%; margin: auto; margin-top: 50px}
+	#titlename{text-align: left; margin-bottom: 0px; margin-left: 8px; color: #27592F}
 </style>
+
 
 
 <div id="memberinfomenubar"> <!-- memberpage : userinfo/userupdate/myactivity/withdrawal.jsp에 사용할 submenu -->
@@ -83,16 +69,16 @@
 </table> 
 </div>
 
+<div class="titlename">
+	<h2 id="titlename">■ 내가 쓴 글 보기</h2>
+<hr style="margin-top: 3px">
+</div>
 
 
 <div class="involved" >
-	<!-- 공간 띄우기 용 -->
-	<table><tr height="50px"><td></td></tr></table>
 	
 	<table style="width: 100%">
 		<thead>
-			<tr id="title"> <td colspan="6">내 글 모음</td> </tr>
-			<tr> <td colspan="5">　</td> </tr>
 			<tr id="title"> <td colspan="3">제목</td><td>작성자</td><td>작성일</td><td>조회</td> </tr>
 		</thead>
 		

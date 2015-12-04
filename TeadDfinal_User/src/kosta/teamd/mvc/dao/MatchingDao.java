@@ -7,18 +7,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import kosta.teamd.vo.AnimalVO;
-import kosta.teamd.vo.ImgBoardVO;
 
 @Repository
-public class ImgBoardDao {
+public class MatchingDao {
 
 	@Autowired
 	private SqlSessionTemplate template;
 	
-	// 동물 정보 등록
-	public void animalInsert(AnimalVO anivo) {
-		template.insert("imgboard.animalInsert", anivo);
+	// 1차 _ 동물, 지역, 날짜 _ 리스트 
+	public List<AnimalVO> machingdata(AnimalVO anivo) {
+		return template.selectList("animal.machingdata", anivo);
 	}
-	
-	// 이미지 게시판 리스트 호출
 }

@@ -10,10 +10,18 @@
 	- bcode에 따라 어디 게시판인지 출력하도록 함
  -->
 
+
+<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();   
+});
+</script>
+
 <style>
 	.glyphicon {
 		color: #8fbc8f
 	}
+
 	
 		#itsfloatdiv{
 		position: fixed; position: absolute; 
@@ -24,6 +32,62 @@
 		margin: 0;
 		padding: 0
 	}
+
+/* 	tootip style */
+	.plz>a:HOVER, .plz>td>a:focus{
+		color: green;
+	}
+	/* Hover tooltips */
+	.field-tip {
+	    position:relative;
+	    cursor:help;
+	}
+	    .field-tip .tip-content {
+        position:absolute;
+        top:-10px; /* - top padding */
+        right:9999px;
+        width:200px;
+        margin-right:-220px; /* width + left/right padding */
+        padding:10px;
+        color:#fff;
+        background:#89D495;
+        -webkit-box-shadow:2px 2px 5px #aaa;
+           -moz-box-shadow:2px 2px 5px #aaa;
+                box-shadow:2px 2px 5px #aaa;
+        opacity:0;
+        -webkit-transition:opacity 250ms ease-out;
+           -moz-transition:opacity 250ms ease-out;
+            -ms-transition:opacity 250ms ease-out;
+             -o-transition:opacity 250ms ease-out;
+                transition:opacity 250ms ease-out;
+    }
+        /* <http://css-tricks.com/snippets/css/css-triangle/> */
+        .field-tip .tip-content:before {
+            content:' '; /* Must have content to display */
+            position:absolute;
+            top:50%;
+            left:-16px; /* 2 x border width */
+            width:0;
+            height:0;
+            margin-top:-8px; /* - border width */
+            border:8px solid transparent;
+            border-right-color:#89D495;
+        }
+        .field-tip:hover .tip-content {
+            right:-20px;
+            opacity:1;
+        }
+/* title style */
+.titlename{width: 50%; margin: auto;}
+#titlename{text-align: left; margin-bottom: 0px; margin-left: 8px; color: #27592F}
+/* contents style */
+/* #contents { 
+   width: 200px; 
+   white-space: nowrap; 
+   overflow: hidden; 
+   text-overflow: ellipsis; 
+ }  */
+
 </style>
 
 <script>
@@ -92,36 +156,33 @@ function send(){ //서버로 데이터를 전송하는 메서드
 <!-- 공간 띄우기 용 -->
 <table><tr height="50px"><td></td></tr></table>
 
-<!-- <table id="table-pagination" data-toggle="table" data-pagination="true"> -->
-<table>
+<div class="titlename">
+	<h3 id="titlename">
+		<c:if test="${bcode==1}">▣ 공지사항</c:if>
+		<c:if test="${bcode==2}">▣ 자유 게시판</c:if>
+		<c:if test="${bcode==3}">▣ 질문 게시판</c:if>
+	</h3>
+<hr style="margin-top: 3px">
+</div>
+
+<table style="width: 50%;">
 	<thead style="font-weight:bold; color:black;">
-
-		<c:if test="${bcode == 1}">
-			<tr id="title"> <td colspan="5">공지사항</td> </tr>
-		</c:if>
-		<c:if test="${bcode == 2}">
-			<tr id="title"> <td colspan="5">자유 게시판</td> </tr>
-		</c:if>
-		<c:if test="${bcode == 3}">
-			<tr id="title"> <td colspan="5">질문 게시판</td> </tr>
-		</c:if>
-		<tr> <td colspan="5">　</td> </tr>
-		<tr id="title"> <td colspan="2" width="300px">제목</td><td width="180px">작성자</td><td width="100px">작성일</td><td>조회</td> </tr>
-
+		<tr id="title"> <td colspan="2" width="300px" style=" text-overflow: ellipsis;">제목</td><td width="180px">작성자</td><td width="100px">작성일</td><td>조회</td> </tr>
 	</thead>
 	
 	<tbody id="tbodycss">
-	
 		<c:forEach var="list" items="${list}">
 			<tr>
 				<td width="30px">${list.bno}</td>
-				<td style="text-align: left; padding-left: 20px">
+				<td class="plz" style="text-align: left; padding-left: 20px; text-overflow: ellipsis;">
 					<c:forEach begin="1" end="${list.blvl}">&nbsp;&nbsp;&nbsp;</c:forEach>
 					<c:if test="${list.blvl != 0}">
 						<span class="glyphicon glyphicon-arrow-right"></span>&nbsp;
 					</c:if>
-					<a href="selectoneBoard?bno=${list.bno}&mid=${list.mid}">
-						${list.btitle}
+					<a href="selectoneBoard?bno=${list.bno}&mid=${list.mid}&nowPage=${nowPage}">
+						<span class="field-tip">${list.btitle}
+							<span class="tip-content" style="z-index: 99;">${list.bcontent}...</span>
+						</span>
 					</a>
 				</td>
 				<td>${list.mid}</td>
@@ -132,22 +193,19 @@ function send(){ //서버로 데이터를 전송하는 메서드
 	</tbody>
 	
 	
-	
-	
 	<tfoot>
+		<tr><td>　</td></tr>
 		<tr> 
-			<td colspan="3"></td>  
-			<td colspan="2"> 
-			
+			<td colspan="5"> 
 				<!-- 공지사항 게시판에서는 글쓰기 버튼 안보이게 -->
 				<c:if test="${bcode != 1}">
-					<button type="submit" onclick="location='formBoard?bcode=${bcode}'" class="btn btn-success btn-sm">
-						&nbsp;&nbsp;글 쓰 기&nbsp;&nbsp;
+					<button type="submit" onclick="location='formBoard?bcode=${bcode}&nowPage=${nowPage}'" class="btn btn-success btn-sm">
+						&nbsp;&nbsp;글 등 록&nbsp;&nbsp;
 					</button>
 				</c:if>
-				 
 			</td> 
 		</tr>
+		<tr><td>　</td></tr>
 	</tfoot>
 	
 	</table>
@@ -168,7 +226,7 @@ function send(){ //서버로 데이터를 전송하는 메서드
 				      </select>&nbsp;
 				</td>
 				<td>&nbsp;
-					<input type="hidden" name="bcode" value="${bcode }">
+					<input type="hidden" name="bcode" value="${bcode}">
 					<input type="hidden" name="nowPage" value="1">
 					<input class="form-control input-sm" type="text" name="searchValue" />&nbsp;
 				</td>

@@ -18,9 +18,9 @@ public class CommBoardController {
 	private CommBoardDao cbdao;
 	
 	@RequestMapping(value="/insertComm", method=RequestMethod.POST)
-	public ModelAndView insertComm(CommBoardVO cbvo, String orimid, Principal prcp){
+	public ModelAndView insertComm(CommBoardVO cbvo, String orimid, String nowPage, Principal prcp){
 		System.out.println(cbvo.getBno()+"이당당당");
-		ModelAndView mav=new ModelAndView("redirect:/selectoneBoard?bno="+cbvo.getBno()+"&mid="+orimid);
+		ModelAndView mav=new ModelAndView("redirect:/selectoneBoard?bno="+cbvo.getBno()+"&mid="+orimid+"&nowPage="+nowPage);
 		
 		cbvo.setMid(prcp.getName());
 		cbdao.insertCommBoard(cbvo);
@@ -28,9 +28,9 @@ public class CommBoardController {
 	}
 	
 	@RequestMapping(value="deleteComm")
-	public ModelAndView deleteComm(int cbno, int bno, String mid){
+	public ModelAndView deleteComm(int cbno, int bno, String mid, String nowPage){
 		cbdao.deleteComm(cbno);
-		return new ModelAndView("redirect:/selectoneBoard?bno="+bno+"&mid="+mid);
+		return new ModelAndView("redirect:/selectoneBoard?bno="+bno+"&mid="+mid+"&nowPage="+nowPage);
 	}
 	
 }

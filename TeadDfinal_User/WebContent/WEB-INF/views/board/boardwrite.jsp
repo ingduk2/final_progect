@@ -65,6 +65,17 @@ table th {
 	        }
 	    });
 	});
+	
+	function checksubmit() {
+		
+		if (document.boardwriteform.btitle.value == "") {
+			alert("제목을 입력해주세요")
+			document.boardwriteform.btitle.focus()
+			return false
+		}
+		
+		return true;
+	}
 		
 </script>
 
@@ -73,11 +84,13 @@ table th {
 <!-- 공간 띄우기 용 -->
 <table><tr height="50px"><td></td></tr></table>
 	
-<form action="insertBoard" method="post" enctype="multipart/form-data">
+<form action="insertBoard" method="post" enctype="multipart/form-data"
+	  name="boardwriteform" onsubmit="return checksubmit()">
 	
 	<input type="hidden" name="bcode" value="${bcode}">
 	<input type="hidden" name="mid" value="${pageContext.request.userPrincipal.name}">
 	<input type="hidden" name="bip" value="<%= request.getRemoteAddr() %>">
+	<input type="hidden" name="nowPage" value="1">
 	
 	<table width="500px">
 		<tr> <th colspan="2">　</th> </tr>			
@@ -116,7 +129,7 @@ table th {
 
 	<table><tr height="30px"><!-- 높이 조절용 칸 떼우기 --><td></td></tr></table>
 	<button type="submit" class="btn btn-success btn-sm">　완　　료　</button>
-	<button type="button" class="btn btn-success btn-sm" onclick="location='selectallBoard?bcode=${bcode}'">　취　　소　</button>
+	<button type="button" class="btn btn-success btn-sm" onclick="location='selectallBoard?bcode=${bcode}&nowPage=${nowPage}&searchType='">　취　　소　</button>
 
 </form>
 	

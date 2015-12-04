@@ -4,6 +4,8 @@
 -- 최종 업데이트 : 15/11/19 _ 봉사 , 센터 일단 추가함.
 -- 최종 업데이트 : 15/11/27 _ 동물 테이블 : 크기 컬럼 삭제, 사례금 컬럼 추가, 현재 상태 컬럼 추가, 더미 데이터 추가
 --                       회원 테이블 : 신분 컬럼 추가, 관리자 데이터 추가
+-- 최종 업데이트 : 15/12/03 _ 동물 테이블 : 중성화 컬럼 추가, 성별 CK 삭제
+--                       animatchdata view 추가
 
 -- -----------------------------------------------------------------------------
 
@@ -48,7 +50,7 @@ create table memroles
 (
 mid varchar2(20) constraint memroles_mid_nn not null,        -- 01.회원 아이디
 role varchar2(20) constraint memroles_role_nn not null,      -- 02.회원 등급
--- role: User-일반 회원 / Restrict-제재 회원 / Admin-관리자 / employee-직원
+-- role: User-일반 회원 / Restrict-제재 회원 / Admin-관리자 / Employee-직원
 constraint memroles_mid_role_pk primary key(mid, role)
 );
 
@@ -80,8 +82,7 @@ anireward number,                                            -- 11.사례금
 anistate number,                                             -- 12.현재 상태(실종,보호,입양대기,입양완료 등)
 -- anistate: (admin용)0-보호중 / 1-입양대기 / 2-입양완료
 --           (일반 회원용)3-실종 / 4-발견 / 5-개인 보호중
-aniimg varchar2(50),                                         -- 13.동물 사진 파일 이름
-constraint animal_anisex_ck check(anisex='남아' or anisex='여아')
+aniimg varchar2(50)                                          -- 13.동물 사진 파일 이름
 );
 
 -- 동물 테이블 / 동물 등록 번호 시퀀스 생성
@@ -93,9 +94,18 @@ start with 1;
 insert into animal(anino) values(0);
 commit;
 
--- 일반 게시판 용 더미 데이터 anino 0 등록
-insert into animal(anino) values(0);
+-- 동물 테이블 / 중성화 컬럼 추가
+alter table animal add anineutral varchar2(10);              -- 14.중성화 여부
 commit;
+
+-- -----------------------------------------------------------------------------
+
+-- 매칭용 view(animatchdata) 생성 _ anistate 0, 1, 4, 5(입양 완료, 실종 제외), read only
+create view animatchdata as 
+select * 
+from animal 
+where anistate='0' or anistate='1' or anistate='4' or anistate='5'
+with read only;
 
 -- -----------------------------------------------------------------------------
 
@@ -240,10 +250,10 @@ start with 1;
 
 
 --내용 자리 추가시 .... 표시 함수--- content 타입은 상황봐서 변경... 
-create or replace function subrpad(content clob)
+create or replace function subrpad(content varchar2)
 return varchar2
 is 
-  v_subpad clob;
+  v_subpad varchar2;
   BEGIN
   if(length(content)>35)
   then

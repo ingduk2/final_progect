@@ -5,13 +5,7 @@
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 
-<script> 
-// 	$(function() {
-// 		$('#sel1').change(function() {
-// 			alert($(this).val());
-// 		});
-// 	});
- </script>
+
 
 <script>
 var socket=null;
@@ -20,8 +14,6 @@ var code="";
 $(function() {
 	id=$('#cid').val();
 	code=$('#ccode').val();
-
-
 
 var url="ws://localhost:8080/TeadDfinal_User/chatting?id="+id+"&code="+code;
 function connect() {
@@ -64,10 +56,8 @@ function send(){ //서버로 데이터를 전송하는 메서드
 
 
 <style>
-
 	#itsfloatdiv{
 		position: fixed; position: absolute; 
-/* 		z-index: -1; */
 		overflow: hidden;
 		left: 0px;
 		top: 160px;
@@ -146,9 +136,41 @@ function send(){ //서버로 데이터를 전송하는 메서드
 				<c:if test="${not doneLoop}">
 	
 					<div class="col-md-4">
-						<h5 class="tag">
-							<span class="label label-warning">얌마!</span>
-						</h5>
+					
+						<c:if test="${bcode == 6}">
+							<c:if test="${alist[i].anistate == 0}">
+								<h5 class="tag">
+									<span class="label label-warning">보호중</span>
+								</h5>
+							</c:if>
+							<c:if test="${alist[i].anistate == 1}">
+								<h5 class="tag">
+									<span class="label label-warning">입양 대기</span>
+								</h5>
+							</c:if>
+							<c:if test="${alist[i].anistate == 2}">
+								<h5 class="tag">
+									<span class="label label-warning">입양 완료</span>
+								</h5>
+							</c:if>
+						</c:if>
+						<c:if test="${bcode != 6}">
+							<c:if test="${alist[i].anistate == 3}">
+								<h5 class="tag">
+									<span class="label label-warning">실종</span>
+								</h5>
+							</c:if>
+							<c:if test="${alist[i].anistate == 4}">
+								<h5 class="tag">
+									<span class="label label-warning">목격</span>
+								</h5>
+							</c:if>
+							<c:if test="${alist[i].anistate == 5}">
+								<h5 class="tag">
+									<span class="label label-warning">개인 보호</span>
+								</h5>
+							</c:if>
+						</c:if>
 					
 						<a href="selectoneAnimal?anino=${alist[i].anino}&bno=${alist[i].bno}" class="thumnail nounderline">
 							<img src="img/${alist[i].aniimg}" class="img">
@@ -159,14 +181,19 @@ function send(){ //서버로 데이터를 전송하는 메서드
 								<th class="content">${alist[i].btitle}</th>
 							</tr>
 							<tr>
-								<th class="content">${alist[i].anispecies}</th>
+								<th class="content">${alist[i].anispecies}&nbsp;&nbsp;/&nbsp;&nbsp;${alist[i].anibreed}</th>
 							</tr>
 							<tr>
-								<th class="content">${alist[i].anibreed}</th>
+								<th class="content">지역 : ${alist[i].aniregion}</th>
 							</tr>
 							<tr>
-								<th class="content">${alist[i].aniregion}</th>
+								<th class="content">날짜 : ${alist[i].anidate}</th>
 							</tr>
+							<c:if test="${alist[i].anistate == 3}">
+								<tr>
+									<th class="content">사례 : ${alist[i].anireward} 원</th>
+								</tr>
+							</c:if>
 						</table>
 					</div>
 					
@@ -180,9 +207,41 @@ function send(){ //서버로 데이터를 전송하는 메서드
 				<c:if test="${not doneLoop}">
 	
 					<div class="col-md-4">
-						<h5 class="tag">
-							<span class="label label-warning">얌마!</span>
-						</h5>
+						
+						<c:if test="${bcode == 6}">
+							<c:if test="${alist[i+1].anistate == 0}">
+								<h5 class="tag">
+									<span class="label label-warning">보호중</span>
+								</h5>
+							</c:if>
+							<c:if test="${alist[i+1].anistate == 1}">
+								<h5 class="tag">
+									<span class="label label-warning">입양 대기</span>
+								</h5>
+							</c:if>
+							<c:if test="${alist[i+1].anistate == 2}">
+								<h5 class="tag">
+									<span class="label label-warning">입양 완료</span>
+								</h5>
+							</c:if>
+						</c:if>
+						<c:if test="${bcode != 6}">
+							<c:if test="${alist[i+1].anistate == 3}">
+								<h5 class="tag">
+									<span class="label label-warning">실종</span>
+								</h5>
+							</c:if>
+							<c:if test="${alist[i+1].anistate == 4}">
+								<h5 class="tag">
+									<span class="label label-warning">목격</span>
+								</h5>
+							</c:if>
+							<c:if test="${alist[i+1].anistate == 5}">
+								<h5 class="tag">
+									<span class="label label-warning">개인 보호</span>
+								</h5>
+							</c:if>
+						</c:if>
 					
 						<a href="selectoneAnimal?anino=${alist[i+1].anino}&bno=${alist[i+1].bno}" class="thumnail nounderline">
 							<img src="img/${alist[i+1].aniimg}" class="img">
@@ -193,14 +252,19 @@ function send(){ //서버로 데이터를 전송하는 메서드
 								<th class="content">${alist[i+1].btitle}</th>
 							</tr>
 							<tr>
-								<th class="content">${alist[i+1].anispecies}</th>
+								<th class="content">${alist[i+1].anispecies}&nbsp;&nbsp;/&nbsp;&nbsp;${alist[i+1].anibreed}</th>
 							</tr>
 							<tr>
-								<th class="content">${alist[i+1].anibreed}</th>
+								<th class="content">지역 : ${alist[i+1].aniregion}</th>
 							</tr>
 							<tr>
-								<th class="content">${alist[i+1].aniregion}</th>
+								<th class="content">날짜 : ${alist[i+1].anidate}</th>
 							</tr>
+							<c:if test="${alist[i+1].anistate == 3}">
+								<tr>
+									<th class="content">사례 : ${alist[i+1].anireward} 원</th>
+								</tr>
+							</c:if>
 						</table>
 					</div>
 					
@@ -214,9 +278,41 @@ function send(){ //서버로 데이터를 전송하는 메서드
 				<c:if test="${not doneLoop}">
 	
 					<div class="col-md-4">
-						<h5 class="tag">
-							<span class="label label-warning">얌마!</span>
-						</h5>
+						
+						<c:if test="${bcode == 6}">
+							<c:if test="${alist[i+2].anistate == 0}">
+								<h5 class="tag">
+									<span class="label label-warning">보호중</span>
+								</h5>
+							</c:if>
+							<c:if test="${alist[i+2].anistate == 1}">
+								<h5 class="tag">
+									<span class="label label-warning">입양 대기</span>
+								</h5>
+							</c:if>
+							<c:if test="${alist[i+2].anistate == 2}">
+								<h5 class="tag">
+									<span class="label label-warning">입양 완료</span>
+								</h5>
+							</c:if>
+						</c:if>
+						<c:if test="${bcode != 6}">
+							<c:if test="${alist[i+2].anistate == 3}">
+								<h5 class="tag">
+									<span class="label label-warning">실종</span>
+								</h5>
+							</c:if>
+							<c:if test="${alist[i+2].anistate == 4}">
+								<h5 class="tag">
+									<span class="label label-warning">목격</span>
+								</h5>
+							</c:if>
+							<c:if test="${alist[i+2].anistate == 5}">
+								<h5 class="tag">
+									<span class="label label-warning">개인 보호</span>
+								</h5>
+							</c:if>
+						</c:if>
 					
 						<a href="selectoneAnimal?anino=${alist[i+2].anino}&bno=${alist[i+2].bno}" class="thumnail nounderline">
 							<img src="img/${alist[i+2].aniimg}" class="img">
@@ -227,14 +323,19 @@ function send(){ //서버로 데이터를 전송하는 메서드
 								<th class="content">${alist[i+2].btitle}</th>
 							</tr>
 							<tr>
-								<th class="content">${alist[i+2].anispecies}</th>
+								<th class="content">${alist[i+2].anispecies}&nbsp;&nbsp;/&nbsp;&nbsp;${alist[i+2].anibreed}</th>
 							</tr>
 							<tr>
-								<th class="content">${alist[i+2].anibreed}</th>
+								<th class="content">지역 : ${alist[i+2].aniregion}</th>
 							</tr>
 							<tr>
-								<th class="content">${alist[i+2].aniregion}</th>
+								<th class="content">날짜 : ${alist[i+2].anidate}</th>
 							</tr>
+							<c:if test="${alist[i+2].anistate == 3}">
+								<tr>
+									<th class="content">사례 : ${alist[i+2].anireward} 원</th>
+								</tr>
+							</c:if>
 						</table>
 					</div>
 					
@@ -244,24 +345,29 @@ function send(){ //서버로 데이터를 전송하는 메서드
 				</c:if>
 			</div>
 			
+			<!-- 공간 띄우기 용 -->
+			<table><tr><td>　</td></tr></table>
+			
 		</c:forEach>
 	</c:if>
 
-	<!-- 여기부터 무언가 더... -->
-	<!-- 행과 행 사이 띄우기... -->
-	<!-- 일반 게시판 처럼 위에 꾸미기? -->
-	<input type="hidden" name="bcode" value="${bcode }"> 
+<%-- 	<input type="hidden" name="bcode" value="${bcode }">  --%>
 	<div class="numbering">
-	<br><button type="button" class="btn btn-success btn-sm" onclick="location='formImgBoardWrite?bcode=${bcode}'">　글 등록　</button><br><br>
+	<br>
+	<!-- 입양신청에서는 글쓰기 안보이게 -->
+	<c:if test="${bcode != 6}">
+		<button type="button" class="btn btn-success btn-sm" onclick="location='formImgBoardWrite?bcode=${bcode}'">　글 등 록　</button>
+	</c:if>
+	<br><br>
 	
 	<form action="selectallAnimal" method="post">
 	<table><!-- 넘버링이랑, 검색, 글쓰기버튼,  --> 
 		<thead>
 		<tr>
-		<td>
-			<span class="glyphicon glyphicon-circle-arrow-left"></span>
+		<td colspan="5">
+<!-- 			<span class="glyphicon glyphicon-circle-arrow-left"></span> -->
 			${pagingCode}
-			<span class="glyphicon glyphicon-circle-arrow-right"></span>
+<!-- 			<span class="glyphicon glyphicon-circle-arrow-right"></span> -->
 		</td>
 		</tr>
 		</thead>
@@ -270,8 +376,8 @@ function send(){ //서버로 데이터를 전송하는 메서드
 				<td> &nbsp;
 						<!--  다이나믹쿼리로 검색기능 추가할 부분 -->
 				      <select name="searchType" class="form-control input-sm" id="sel1">
-					        <option value="1">대분류</option>
-					        <option value="2">소분류</option>
+					        <option value="1">동물</option>
+					        <option value="2">품종</option>
 					        <option value="3">지역</option>
 				      </select>&nbsp;
 				</td>
@@ -292,16 +398,3 @@ function send(){ //서버로 데이터를 전송하는 메서드
 	
 	</div>
 </div>
-
-
-<!-- 		<div class="numbering"> -->
-<%-- 		<td>${page}</td> --%>
-<!-- 			<br><button type="button" class="btn btn-success btn-sm" onclick="location='formAnimal'">　등 록　</button><br><br> -->
-<!--  			<input type="button" value="click" onclick="goUrl('aniboardwrite')"/><br> -->
-<!--  			<span class="glyphicon glyphicon-circle-arrow-left"></span> -->
-<!--  				<s:property value="pagingCode" escape="false"/> -->
-<!--  			<span class="glyphicon glyphicon-circle-arrow-right"></span> -->
-			
-<!-- 		</div> -->
-		
-<!-- 	</div> -->
