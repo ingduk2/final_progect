@@ -14,7 +14,79 @@
 	.glyphicon {
 		color: #8fbc8f
 	}
+	
+		#itsfloatdiv{
+		position: fixed; position: absolute; 
+/* 		z-index: -1; */
+		overflow: hidden;
+		left: 0px;
+		top: 160px;
+		margin: 0;
+		padding: 0
+	}
 </style>
+
+<script>
+var socket=null;
+var id="";
+var code="";
+$(function() {
+	id=$('#cid').val();
+	code=$('#ccode').val();
+
+
+
+var url="ws://localhost:8080/TeadDfinal_User/chatting?id="+id+"&code="+code;
+function connect() {
+	if(socket==null){
+		socket = new WebSocket(url); //afterconnection
+		socket.onopen = function () {
+			// 서버에 접속한 후 이벤트 정의
+		};
+		socket.onmessage = function (message) {
+			$("#contents").append(message.data+"<br/>")
+			// 서버에서 Session.send를 이용해서 메시지 전송할 때 수신 이벤트 정의
+		};
+		socket.onclose = function (event) {
+			// 서버에서 접속 종료한 후 이벤트 정의
+		};
+	}else{
+		alert("이미 접속중입니다");
+	}
+}
+
+function disconnect() {
+	socket.close();
+	socket = null;
+}
+connect();
+
+});
+
+function send(){ //서버로 데이터를 전송하는 메서드
+	if(socket!=null){
+		socket.send($("#message").val());
+		$("#message").val("");
+	}else{
+		alert("접속중이 아닙니다");
+	}
+}
+</script>
+
+<c:if test="${bcode!=1 }">
+<div id="itsfloatdiv">
+
+<input type="hidden" id="cid" value="${pageContext.request.userPrincipal.name}">
+<input type="hidden" id="ccode" value="board/${bcode }">
+	<div id="contents"></div>
+<br>
+<a href="javascript:disconnect();">퇴장</a>
+<br>
+<a href="javascript:connect();">재접속</a>
+<br>
+<input type="text" id="message"><a href="javascript:send();">전송</a>
+</div>
+</c:if>
 
 <div id="bg">
 <!-- 공간 띄우기 용 -->
