@@ -2,6 +2,8 @@ package kosta.teamd.mvc.animal;
 
 import java.io.File;
 import java.io.IOException;
+import java.security.Principal;
+import java.util.LinkedList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -189,15 +191,67 @@ public class AnimalController {
 	}
 	
 	@RequestMapping(value="/selectoneAnimal")
-	public ModelAndView selectoneAnimal(int anino, int bno){
-		// 조회수 
-		bdao.hitBoard(bno);
-		AniBoardVO avo = adao.imgDetail(anino);
+//	public ModelAndView selectoneAnimal(int anino, int bno, String mid, Principal prcp){
+	public ModelAndView selectoneAnimal(AniBoardVO abvo, Principal prcp){
+		
+//		AniBoardVO[] match = abvo.getMatchres();
+//		System.out.println("Log anino: " + abvo.getAnino());
+//		System.out.println("Log bno: " + abvo.getBno());
+//		System.out.println("Log mid: " + abvo.getMid());
+//		System.out.println("Log switch: " + abvo.getMatchswitch());
+//		if (abvo.getMatchswitch() == 1) {
+//			System.out.println("올? 매치스위치가 1이군요?");
+//			System.out.println("asdfasdf "+match.length);
+//			for (int i=0; i<match.length; i++) {
+//				System.out.println("Log["+i+"] anino: "+match[i].getAnino());
+//			}
+//		}
+		
+		if (prcp != null) {
+			
+//			if (!prcp.getName().equals(mid)) {
+			if (!prcp.getName().equals(abvo.getMid())) {
+				//hit
+//				bdao.hitBoard(bno);
+				bdao.hitBoard(abvo.getBno());
+			}
+		}
+		else {
+//			bdao.hitBoard(bno);
+			bdao.hitBoard(abvo.getBno());
+		}
+		
+//		AniBoardVO avo = adao.imgDetail(anino);
+		AniBoardVO avo = adao.imgDetail(abvo.getAnino());
 		
 		ModelAndView mav = new ModelAndView("imgboard/imgboarddetail");
 		mav.addObject("avo", avo);
-		List<CommBoardVO> cbvo = cbdao.commList(bno);
+//		List<CommBoardVO> cbvo = cbdao.commList(bno);
+		List<CommBoardVO> cbvo = cbdao.commList(abvo.getBno());
 		mav.addObject("cbvo", cbvo);
+		
+//		if (abvo.getMatchswitch() == 1) {
+//			mav.addObject("matchres", abvo.getMatchres());
+//			mav.addObject("matchswitch", abvo.getMatchswitch());
+//		}
+		
+		// ====================================================== 씨발 내가 병신이라 그런거지 어쩔수 있나
+		
+		System.out.println(abvo.getFirst());
+		System.out.println(abvo.getSecond());
+		System.out.println(abvo.getThird());
+		if(abvo.getMatchswitch() == 1) {
+			List<AniBoardVO> ssibal = new LinkedList<>();
+			ssibal.add(0, adao.imgDetail(abvo.getFirst()));
+			ssibal.add(1, adao.imgDetail(abvo.getSecond()));
+			ssibal.add(2, adao.imgDetail(abvo.getThird()));
+		
+			mav.addObject("top", ssibal);
+			mav.addObject("matchswitch", abvo.getMatchswitch());
+		}
+		
+		// ====================================================== 씨발 내가 병신이라 그런거지 어쩔수 있나
+		
 		return mav;
 	}
 	

@@ -103,7 +103,7 @@
 							</c:if>
 						</c:if>
 					
-						<a href="selectoneAnimal?anino=${alist[i].anino}&bno=${alist[i].bno}" class="thumnail nounderline">
+						<a href="selectoneAnimal?anino=${alist[i].anino}&bno=${alist[i].bno}&mid=${alist[i].mid}" class="thumnail nounderline">
 							<img src="img/${alist[i].aniimg}" class="img">
 						</a>
 						
@@ -174,7 +174,7 @@
 							</c:if>
 						</c:if>
 					
-						<a href="selectoneAnimal?anino=${alist[i+1].anino}&bno=${alist[i+1].bno}" class="thumnail nounderline">
+						<a href="selectoneAnimal?anino=${alist[i+1].anino}&bno=${alist[i+1].bno}&mid=${alist[i+1].mid}" class="thumnail nounderline">
 							<img src="img/${alist[i+1].aniimg}" class="img">
 						</a>
 						
@@ -245,7 +245,7 @@
 							</c:if>
 						</c:if>
 					
-						<a href="selectoneAnimal?anino=${alist[i+2].anino}&bno=${alist[i+2].bno}" class="thumnail nounderline">
+						<a href="selectoneAnimal?anino=${alist[i+2].anino}&bno=${alist[i+2].bno}&mid=${alist[i].mid}" class="thumnail nounderline">
 							<img src="img/${alist[i+2].aniimg}" class="img">
 						</a>
 						

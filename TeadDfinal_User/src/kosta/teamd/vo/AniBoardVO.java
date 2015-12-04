@@ -1,5 +1,7 @@
 package kosta.teamd.vo;
 
+import java.util.List;
+
 import org.springframework.web.multipart.MultipartFile;
 
 public class AniBoardVO {
@@ -43,6 +45,49 @@ public class AniBoardVO {
 	private String searchType, searchValue;
 	private int start, end;
 	
+	// 매칭 결과 목록
+//	private AniBoardVO[] matchres;
+	private int matchswitch;
+	
+	// ====================================================== 씨발 내가 병신이라 그런거지 어쩔수 있나
+	private int first, second, third;
+
+	public int getFirst() {
+		return first;
+	}
+	public void setFirst(int first) {
+		this.first = first;
+	}
+	public int getSecond() {
+		return second;
+	}
+	public void setSecond(int second) {
+		this.second = second;
+	}
+	public int getThird() {
+		return third;
+	}
+	public void setThird(int third) {
+		this.third = third;
+	}
+	
+	// ====================================================== 씨발 내가 병신이라 그런거지 어쩔수 있나
+	
+	
+
+	//	public AniBoardVO[] getMatchres() {
+//		return matchres;
+//	}
+//	public void setMatchres(AniBoardVO[] matchres) {
+//		this.matchres = matchres;
+//	}
+	public int getMatchswitch() {
+		return matchswitch;
+	}
+	public void setMatchswitch(int matchswitch) {
+		this.matchswitch = matchswitch;
+	}
+
 	public String getSearchType() {
 		return searchType;
 	}
