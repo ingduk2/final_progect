@@ -113,14 +113,15 @@
 			<td colspan="8"><br>
 			
 				<!-- img/a.PNG가 이미지 뿌려주는 곳 -->
-				<a href="#" class="green-tooltip" data-toggle="tooltip" data-placement="top" title="자세한 정보를 보려면 사진 아래 버튼을 클릭해주세요!">
+				<a href="#" class="green-tooltip" data-toggle="tooltip" data-placement="top" title="위치를 확인하려면 아래 '위치확인' 버튼을 클릭해주세요!">
 					<img src="img/${avo.aniimg}" class="img-rounded" alt="NOT available" width="70%">
 				</a>
 				
 				<br /><br />
 				
 				<!--애기설명start-->
-				<div id="demo" class="collapse alert alert-success"><br>
+<!-- 				<div id="demo" class="collapse alert alert-success"><br> -->
+				<div id="" class="alert alert-success"><br>
 					<!--이름, 품종, 나이, 성별, 크기, 몸무게, 특징, 지역, 날짜-->
 					  <ul class="list-group">
 					    <li class="list-group-item">
@@ -146,6 +147,10 @@
 					    <li class="list-group-item">
 					    	<span class="glyphicon glyphicon-apple"></span>
 					    	<label>지　역:　</label>${avo.aniregion}<!-- 지역 -->
+							<button type="button" class="btn btn-success btn-xs" data-toggle="collapse" data-target="#demo">
+								<span class="glyphicon glyphicon-zoom-in"></span>&nbsp;위치확인
+							</button>					    	
+					    	<div id="demo" class="collapse" style="margin-left: 10%">지도를 가지고 와야한다 지도를!!<!-- 지도 --></div>
 					    </li>
 					    
 					    <li class="list-group-item">
@@ -186,9 +191,6 @@
 					  </c:if>
 					  
 				</div><p>
-				<button type="button" class="btn btn-success btn-sm" data-toggle="collapse" data-target="#demo">
-					<span class="glyphicon glyphicon-zoom-in"></span>&nbsp;ClickHere
-				</button>
 				<!--애기설명End-->
 			</td>
 		</tr>

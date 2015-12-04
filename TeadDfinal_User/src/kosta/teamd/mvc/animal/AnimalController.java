@@ -217,7 +217,7 @@ public class AnimalController {
 		
 	}
 	
-	
+	//////수정
 	//이미지폼 실행
 	@RequestMapping(value="/updateformAnimal")
 	public ModelAndView updateformAnimal(int anino){
@@ -227,7 +227,7 @@ public class AnimalController {
 		return mav;
 	}
 	
-	
+	/////수장
 	//이미지 업로드 실행 
 	@RequestMapping(value="/updateAnimal", method=RequestMethod.POST)
 	public ModelAndView updateAnimal(AnimalVO avo,  BoardVO bvo,HttpServletRequest request){

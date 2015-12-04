@@ -180,23 +180,10 @@
     	update member set mrptlimit=3 where mrptlimit between 0 and 2
     </update>
 
-
-	<!-- main에 나올 list -->
-	<select id="mainminiboard" resultType="bvo">
-		select 
-			rownum, mid, bno, substr(btitle, 1, 22) as btitle, to_char(bdate, 'yyyy/mm/dd') as bdate
-		from board where <![CDATA[rownum<=3]]> and bcode=1 order by bno desc
-	</select>
-	<select id="mainminiboard2" resultType="bvo">
-		select 
-			rownum, mid, bno, substr(btitle, 1, 22) as btitle, to_char(bdate, 'yyyy/mm/dd') as bdate
-		from board where <![CDATA[rownum<=3]]> and bcode=3 order by bno desc
-	</select>
 	
 	<select id="boardcnt" resultType="int" parameterType="bvo">
 		select count(*) from board where bcode=#{bcode}
 		<if test="searchType != null">
-		
 			<choose>
 				<when test="searchType == 1">
 					and btitle like '%' || #{searchValue} || '%' 
@@ -209,8 +196,36 @@
 				</when>
 				
 			</choose>		
-		
 	</if>
 	</select>
-
+	
+	
+		<!-- main에 나올 list/maxreward -->
+	<select id="mainminiboard" resultType="bvo">
+		select 
+			rownum, mid, bno, substr(btitle, 1, 22) as btitle, to_char(bdate, 'yyyy/mm/dd') as bdate
+		from board where <![CDATA[rownum<=3]]> and bcode=1 order by bno desc
+	</select>
+	<select id="mainminiboard2" resultType="bvo">
+		select 
+			rownum, mid, bno, substr(btitle, 1, 22) as btitle, to_char(bdate, 'yyyy/mm/dd') as bdate
+		from board where <![CDATA[rownum<=3]]> and bcode=3 order by bno desc
+	</select>
+	
+<!-- 	<select id="maxrewardanimal" resultType="abvo">
+		select * from animal where anireward=(select max(anireward) from animal)		
+	</select> -->
+	
+	<select id="mainminiimgboard1" resultType="abvo">
+      select a.anino anino, a.aniimg aniimg, b.bno bno, b.bcode bcode 
+      from animal a, board b where a.anino=b.anino and aniimg is not null and bcode=4
+	</select>
+	<select id="mainminiimgboard2" resultType="abvo">
+      select a.anino anino, a.aniimg aniimg, b.bno bno, b.bcode bcode 
+      from animal a, board b where a.anino=b.anino and aniimg is not null and bcode=5
+	</select>
+	
+	
+	
+	
     </mapper>

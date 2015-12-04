@@ -193,6 +193,14 @@
     <version>1.1</version>
     <scope>runtime</scope>
 </dependency>
+
+	<!-- spring web socket.. -->
+	<dependency>
+	<groupId>org.springframework</groupId>
+	<artifactId>spring-websocket</artifactId>
+	<version>4.2.2.RELEASE</version>
+</dependency>
+
   </dependencies>  
 
 </project>

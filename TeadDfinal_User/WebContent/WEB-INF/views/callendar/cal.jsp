@@ -68,56 +68,34 @@ function callendar(){
 		$('#calendar').fullCalendar({
 					
 					//lang: currentLangCode,
-					dragable : false, //드래그앤 드랍 옵션
+					//dragable : false, //드래그앤 드랍 옵션
+					
 					timeFormat : 'hh:mm', //시간 포멧
 					// lang: 'ko',  //언어타입
 					header : {
 						left : 'prev,next today',
 						center : 'title',
-						right : 'month,agendaWeek,agendaDay'
+						right : 'month'
 					},
 					
 					
+					disableDragging: false,
+					defaultView : 'month',//기본 뷰 - 옵션   //첫 페이지 기본 뷰 옵션
+					editable : false, //에디터 가능 옵션
+					selectable : true,
+					selectHelper : true,
+					eventLimit : true,
+					
 					// 클릭이벤트 - 삭제
 					//관리자용+사용자용
+					
 					eventClick : function(calEvent, jsEvent, view) {
 						
 						var username=$('#name').val();
 						alert("username -- "+username);
-						
-						if(username=='admin'){
-							
-							
-							var r = confirm("Delete " + calEvent.title + ":"
-									+ calEvent._id);//삭제 안내말
-							
-							
-							
-							if (r === true) {//확인 버튼
-								
-								//삭제 ajax
-								 $.ajax({
-								        url: "deleteCal", //"testAjax.jsp", 
-								        type: "POST",
-								        data: { //파라미터로 q
-							                 //volunteertitle : calEvent.title,
-							                 seq : calEvent.title.split(".")[0]
-							                 //title start end 
-							              },
-								        success: function(msg) { //데이터 받는 부분.response 
-								     		alert(msg);
-								        },
-								        error: function(a, b) {
-								            alert("Request: " + JSON.stringify(a));
-								        }
-								    });
-								
-								
-								$('#calendar').fullCalendar('removeEvents',
-										calEvent._id);
-							}
+						var eve=$(this);
 						//사용자 나중에 분리할것임
-						}else{
+						//}else{
 							//신청했는지 아닌지 구분 한 후에 자바에서 구분하자.
 							$.ajax({
 								        url: "insertdeleteCal", //"testAjax.jsp", 
@@ -131,11 +109,12 @@ function callendar(){
 								        success: function(msg) { //데이터 받는 부분.response 
 								     		alert("--"+msg+"--");
 								        	if(msg=='delete'){
-								        		alert("detetetete");
+								        		alert(msg);
 								 
-								        		$(this).css('background-color', 'green');
+								        		eve.css('background-color', 'green');
 								        	}else{
-								        		$(this).css('background-color', 'red');
+								        		alert(msg);
+								        		eve.css('background-color', 'red');
 								        	}
 								        
 								        },
@@ -146,8 +125,8 @@ function callendar(){
 							
 							
 							
-							$(this).css('background-color', 'red');
-						}
+// 							$(this).css('background-color', 'red');
+						//}
 						
 						
 					},
@@ -162,59 +141,48 @@ function callendar(){
 					//사용자 색 바꾸기.
 // 					 eventClick: function(calEvent, jsEvent, view) {
 
-// 					        alert('Event: ' + calEvent.title);
-// 					        alert('Coordinates: ' + jsEvent.pageX + ',' + jsEvent.pageY);
-// 					        alert('View: ' + view.name);
-
-// 					        // change the border color just for fun
-// 					        $(this).css('background-color', 'red');
-
 // 					    },
 					
 					
-					//관리자 기능.
-					//인서트
-					defaultView : 'month',//기본 뷰 - 옵션   //첫 페이지 기본 뷰 옵션
-					editable : false, //에디터 가능 옵션
-					selectable : true,
-					selectHelper : true,
-					select : function(start, end, event) {// 캘린더 셀렉트 된 값을 컬럼에 표시...
+				
+					
+// 					select : function(start, end, event) {// 캘린더 셀렉트 된 값을 컬럼에 표시...
 
-						var title = prompt('Event Title:'); //값 입력.
-						var eventData;
-// 						alert("selected from: " + start.format() + ", to: "
-// 								+ end.format()); 
-						 $.ajax({
-				              url: "insertCal", //"testAjax.jsp", 
-				              type: "POST",
-				              data: { //파라미터로 q
+// 						var title = prompt('Event Title:'); //값 입력.
+// 						var eventData;
+// // 						alert("selected from: " + start.format() + ", to: "
+// // 								+ end.format()); 
+// 						 $.ajax({
+// 				              url: "insertCal", //"testAjax.jsp", 
+// 				              type: "POST",
+// 				              data: { //파라미터로 q
 				            	  
-				                  volunteertitle : title,
-				                  volunteerstart : start.format(),
-				                  volunteerend : end.format()
-				                 //title start end 
-				              },
-				              dataType: "html",
-				              success: function(msg) { //데이터 받는 부분.response
-				                  alert(msg);
-				                  if (title) {
-										eventData = {
-											title : msg+'.'+title,
-											start : start,
-											end : end,
-											backgroundColor : 'green'
-										};
+// 				                  volunteertitle : title,
+// 				                  volunteerstart : start.format(),
+// 				                  volunteerend : end.format()
+// 				                 //title start end 
+// 				              },
+// 				              dataType: "html",
+// 				              success: function(msg) { //데이터 받는 부분.response
+// 				                  alert(msg);
+// 				                  if (title) {
+// 										eventData = {
+// 											title : msg+'.'+title,
+// 											start : start,
+// 											end : end,
+// 											backgroundColor : 'green'
+// 										};
 
-										$('#calendar').fullCalendar('renderEvent',
-												eventData, true); // stick? = true
-									}
-				              },
-				              error: function(a, b) {
-				                  alert("Request: " + JSON.stringify(a));
-				              }
-				          });
-						 $('#calendar').fullCalendar('unselect');
-					},
+// 										$('#calendar').fullCalendar('renderEvent',
+// 												eventData, true); // stick? = true
+// 									}
+// 				              },
+// 				              error: function(a, b) {
+// 				                  alert("Request: " + JSON.stringify(a));
+// 				              }
+// 				          });
+// 						 $('#calendar').fullCalendar('unselect');
+// 					},
 					
 //					날짜 클릭
 // 					dayClick: function(date, jsEvent, view) {
@@ -232,8 +200,7 @@ function callendar(){
 					
 					//둘다 필요한 부분.
 					//처음에 디비에서 끌어오는 부분
-				    editable : true,
-					eventLimit : true,
+				   
 					//load 하는 부분 ! , db에서 읽어오면 된다.
 // 					events : [
 // 					{

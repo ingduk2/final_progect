@@ -6,6 +6,7 @@
 	<definition name="defaultTemplate" template="/WEB-INF/template/default/template.jsp">
 		<put-attribute name="header" value="/WEB-INF/template/default/header.jsp"/>
 		<put-attribute name="menu" value="/WEB-INF/template/default/menu.jsp"/>
+		<put-attribute name="sidemenu" value="/WEB-INF/template/default/sidemenu.jsp"/><!-- side menu(둥둥떠다니는애) -->
 		<put-attribute name="footer" value="/WEB-INF/template/default/footer.jsp"/>
 	</definition>
 	
@@ -35,9 +36,16 @@
 		<put-attribute name="body" value="/WEB-INF/views/etc/{1}.jsp"/>
 	</definition>
 	
+	<!-- news -->
+	<definition name="news/*" extends="defaultTemplate">
+		<put-attribute name="body" value="/WEB-INF/views/news/{1}.jsp"/>
+	</definition>
+	
 	<!-- 입양 신청 폴더 연결 -->
 	<definition name="adopt/*" extends="defaultTemplate">
 		<put-attribute name="body" value="/WEB-INF/views/adopt/{1}.jsp"/>
 	</definition>
+	
+
 	
 </tiles-definitions>
