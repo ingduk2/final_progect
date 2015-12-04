@@ -19,7 +19,7 @@
 	}
 	#title{
 		background-color: #90ee90	;
-		opacity: 0.4;
+		background-color:hsla(120,100%,75%,0.3);
 		font: bold;
 	}
 	#header{

@@ -23,10 +23,19 @@
 		<typeAlias type="kosta.teamd.vo.CenterVO" alias="cvo"/>
 		<typeAlias type="kosta.teamd.vo.ChartVO" alias="chvo"/>
 		
-		<typeAlias type="kosta.teamd.vo.SurveyVO" alias="svo"/>
-		<typeAlias type="kosta.teamd.vo.Survey1VO" alias="svo1"/>
-		<typeAlias type="kosta.teamd.vo.Survey2VO" alias="svo2"/>
-		<typeAlias type="kosta.teamd.vo.Survey3VO" alias="svo3"/>
+<!-- 설문조사 -->
+		<typeAlias type="kosta.teamd.vo.SurveyVO" alias="survo"/>
+		<typeAlias type="kosta.teamd.vo.SurveyLogVO" alias="slogvo"/>
+<!-- 		<typeAlias type="kosta.teamd.vo.Survey1VO" alias="svo1"/> -->
+<!-- 		<typeAlias type="kosta.teamd.vo.Survey2VO" alias="svo2"/> -->
+<!-- 		<typeAlias type="kosta.teamd.vo.Survey3VO" alias="svo3"/> -->
+
+		<!-- 입양 -->
+		<typeAlias type="kosta.teamd.vo.AdoptApplyVO" alias="adavo"/>
+		
+		
+		
+
 		
   	</typeAliases>
   </configuration>

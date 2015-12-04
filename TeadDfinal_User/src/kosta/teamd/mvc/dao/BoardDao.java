@@ -120,10 +120,17 @@ public class BoardDao {
 		
 		
 		//main에 나올 mini board
-		public List<BoardVO> mainMiniBoard(BoardVO bvo){
-			return template.selectList("board.mainminiboard", bvo);
+		public List<BoardVO> mainMiniBoard(){
+			return template.selectList("board.mainminiboard");
+		}
+		public List<BoardVO> mainMiniBoard2(){
+			return template.selectList("board.mainminiboard2");
 		}
 		
+		
+		public int boardCnt(BoardVO bvo){
+			return template.selectOne("board.boardcnt",bvo);
+		}
 		
 		
 	

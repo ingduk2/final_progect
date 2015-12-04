@@ -177,12 +177,12 @@ table th {
 		<c:param name="mid" value="${bvo.mid}" />
 	</c:url>
 
-<table><tr height="30px"><!-- 높이 조절용 칸 떼우기 --><td></td></tr></table>
+<table><tr height="30px"><!-- 높이 조절용 칸 띄우기 --><td></td></tr></table>
 <c:if test="${pageContext.request.userPrincipal.name == bvo.mid}">
 	<button type="button" class="btn btn-success btn-sm" onclick="location='updateformBoard?bno=${bvo.bno}'">　수　　정　</button>
 	<button type="button" class="btn btn-success btn-sm" onclick="location='deleteBoard?bno=${bvo.bno}&bcode=${bvo.bcode}'">　삭　　제　</button>
 </c:if>
 <a href="${reply}" type="button" class="btn btn-success btn-sm">　답　　변　</a>
-<button type="button" class="btn btn-success btn-sm" onclick="location='selectallBoard?bcode=${bvo.bcode}'">　목　　록　</button>
+<button type="button" class="btn btn-success btn-sm" onclick="location='selectallBoard?bcode=${bvo.bcode}&nowPage=1&searchType='">　목　　록　</button>
 
 </div>

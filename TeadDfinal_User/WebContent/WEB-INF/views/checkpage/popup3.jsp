@@ -44,6 +44,11 @@
 		margin-bottom: 1px
 	}
 </style>
+<script>
+	function fin() {
+		window.close();
+	}
+</script>
 </head>
 <body>
 <div id="allbg">
@@ -54,67 +59,47 @@
 	   캣맘은 길고양이에게 정기적으로 물과 먹이를 주거나 자발적으로 보호활동을 하는 사람을 뜻한다
 	   </font>
 	   <table class="table">
-<!-- 	   	<tr> -->
-<!-- 	   		<td>구분</td><td>내장형</td><td>외장형, 인식표형</td> -->
-<!-- 	   	</tr> -->
 	   	<tr>
-<!-- 	   		<td>장점</td> -->
-<!-- 	   		<td> -->
-<!-- 	   			<ul> -->
-<!-- 	   				<li>유실시 귀가율 향상</li> -->
-<!-- 	   				<li>소유권 증명 용이</li> -->
-<!-- 	   				<li>유기견 발생 방지</li> -->
-<!-- 	   			</ul> -->
-<!-- 	   		</td> -->
-<!-- 	   		<td> -->
-<!-- 	   			<ul> -->
-<!-- 	   				<li>부작용 없음</li> -->
-<!-- 	   				<li>처치 간단</li> -->
-<!-- 	   			</ul> -->
-<!-- 	   		</td> -->
-<!-- 	   	</tr> -->
-<!-- 	   	<tr> -->
-<!-- 	   		<td>단점</td> -->
-<!-- 	   		<td> -->
-<!-- 	   			<ul> -->
-<!-- 	   				<li>외과적 주사 시술 및 부작용</li> -->
-<!-- 	   				<li>18만건 시술 중 14건 (0.01%)</li> -->
-<!-- 	   			</ul> -->
-<!-- 	   		</td> -->
-<!-- 	   		<td> -->
-<!-- 	   			<ul> -->
-<!-- 	   				<li>의도적, 우발적 파손 용이</li> -->
-<!-- 	   				<li>제거 후 유기 시 소유자 확인 불가</li> -->
-<!-- 	   			</ul> -->
-<!-- 	   		</td> -->
-		<td>서울시가 동물보호와 공원 환경 청결 유지, 중성화수술을 통한 길고양이 증가 억제를 위해 ‘길고양이 급식소’ 27개를 공원 4개에 설치한다.
-                  급식소의 전반적인 운영과 시민자원봉사자 교육, 중성화수술 지원은 동물관련 시민단체가 맡고, 먹이주기와 급식소 청소 등 실질적인 관리는 ‘캣맘’들이 중심이 된 시민자원봉사자가 담당한다.
-                  시는 길고양이 급식소 설치를 통해 길고양이들에게 먹이를 주고 중성화수술도 지원해 2016년 상반기까지 공원 내 길고양이 중성화율을 70% 이상 높인다는 계획이다
-        </td>
+			<td>서울시가 동물보호와 공원 환경 청결 유지, 중성화수술을 통한 길고양이 증가 억제를 위해 ‘길고양이 급식소’ 27개를 공원 4개에 설치한다.
+	                  급식소의 전반적인 운영과 시민자원봉사자 교육, 중성화수술 지원은 동물관련 시민단체가 맡고, 먹이주기와 급식소 청소 등 실질적인 관리는 ‘캣맘’들이 중심이 된 시민자원봉사자가 담당한다.
+	                  시는 길고양이 급식소 설치를 통해 길고양이들에게 먹이를 주고 중성화수술도 지원해 2016년 상반기까지 공원 내 길고양이 중성화율을 70% 이상 높인다는 계획이다
+	        </td>
 	   	</tr>
 	   </table>
 	   
 	   *2015년 서울시 12곳에서 조사한 결과로 추정한 서울의 길고양이 개체수는 최대 20만마리다<p>
-	   <font size="3px">&nbsp;현재의 캣맘 활동이 고양이와 사람의 공존에 어떤 영향을 미친다고 생각하십니까? </font>
+	   <font size="3px">&nbsp;${v.sub } </font>
 	   <p><p><p>
-	   <form method="post" action="survey2">
-	    <div class="radio">
-	      <label><input type="radio" name="optradio" value="1">긍정적 영향</label>
-	    </div>
-	    <div class="radio">
-	      <label><input type="radio" name="optradio" value="2">부정적 영향</label>
-	    </div>
-	    <div class="radio">
-	      <label><input type="radio" name="optradio" value="3">모른다</label>
-	    </div>
+	   <form method="post" action="surveyUpdate">
+	   <input type="hidden" name="num" value="${v.num }"> 
+	 
+		<ul>
+		<li><input type="radio" name="surveychk" value="1">${v.sub1 }</li>
+		<li><input type="radio" name="surveychk" value="2">${v.sub2 }</li>
+		<li><input type="radio" name="surveychk" value="3">${v.sub3 }</li>
+		</ul>
+<!-- 	    <div class="radio"> -->
+<!-- 	      <label><input type="radio" name="optradio" value="1">긍정적 영향</label> -->
+<!-- 	    </div> -->
+<!-- 	    <div class="radio"> -->
+<!-- 	      <label><input type="radio" name="optradio" value="2">부정적 영향</label> -->
+<!-- 	    </div> -->
+<!-- 	    <div class="radio"> -->
+<!-- 	      <label><input type="radio" name="optradio" value="3">모른다</label> -->
+<!-- 	    </div> -->
 	    
 	    <span style="color: red">
 	    	<strong>※ 본 설문조사는 로그인이 필요없는 열린방식으로 진행하고</br>
 	    	동일IP에서 중복투표를 방지하여 유의성을 제고합니다.
 	    	</strong> 
 	    </span>
+
 	    <button type="submit" class="btn btn-default btn-sm" style="margin-bottom: -15px; margin-left: 90%" onclose="">투표하기</button>
 	   </form>   
+
+<!-- 	    <button type="button" onclick="fin()" class="btn btn-default btn-sm" style="margin-bottom: -15px; margin-left: 90%">투표하기</button> -->
+	    
+
 	 </div>
 </div>
 </body>

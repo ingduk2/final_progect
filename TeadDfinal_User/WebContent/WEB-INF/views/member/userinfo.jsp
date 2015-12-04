@@ -8,13 +8,12 @@
 <style>
 	table th {
 		font-weight: bold;
-		color: black;
-		background-color: #90ee90;
-		opacity: 0.4;
 		font: bold;
 		text-align: center;
 		border-bottom: 1px solid #f0fff0;
 		width: 150px;
+		color: gray;
+		background-color:hsla(120,100%,75%,0.3);
 	}
 	/* CSS used here will be applied after bootstrap.css */
 	/* bootstrap Navigation Overriding */
@@ -51,11 +50,6 @@
 /* 	font-weight:bold;  */
 	font-size: 15px
 }
-#aa{
-	color : white;
-	padding-top: 140px;
-	margin-left: 50px;	
-}
 .list-group-item{
 	border: 1px solid transparent;
 	width: 150px
@@ -83,13 +77,51 @@ a:link {
 	padding: 3px;
 	background-color: #E0EEEE
 }
-
+	#memberinfomenubar{
+		position: fixed; position: absolute; 
+/*  		z-index: -1;  */
+		overflow: hidden;
+		left: 0px;
+		top: 160px;
+		margin: 0;
+		padding: 0
+	}
+	.imgsize{
+		width:100px;
+		height:105px;
+		padding-bottom: 10px
+	}
 
 </style>
 
-<div>
+
+<div id="memberinfomenubar"> <!-- memberpage : userinfo/userupdate/myactivity/withdrawal.jsp에 사용할 submenu -->
+<table style="margin-left: 130px;">
+	<tr>
+		<td><!-- 정보보기 -->
+			<a href="#"><img class="imgsize" src="img/test/myinfo.png"/></a>
+		</td>  
+	</tr>
+	<tr><!-- 정보수정 -->
+		<td><a href="updateformMember"><img class="imgsize" src="img/test/infoupdate.png"/></a></td>  
+	</tr>
+	<tr><!-- 나의 활동 -->
+		<td><a href="selectAllMyActivity"><img class="imgsize" src="img/test/involved.png"/></a></td>  
+	</tr>
+	<tr><!-- 탈퇴 -->
+		<td><a href="formWithdrawal"><img class="imgsize" src="img/test/withdrawal.png"/></a></td>
+	</tr>
+</table> 
+</div>
+
+
+
+
+
+
+
 			<!--MenuBar_회원정보보기/수정/탈퇴/내가쓴글-->
-	<div id="menubar">
+<!-- 	<div id="menubar">
 	  <div id="aa">
 		<ul class="list-group">
 		  <li class="list-group-item list-group-item-success">
@@ -107,13 +139,14 @@ a:link {
 		  </li>
 		</ul>
 	  </div>
-	</div>
+	</div> -->
 
 	
 	<!-- 공간 띄우기 용 -->
 	<table><tr height="50px"><td></td></tr></table>
 		
-	<div class="row">
+		
+		
 	<div class="col-md-4"><!-- 위치조정용 --></div>
 	<div class="col-md-6">
 	  <div class="panel panel-default">
@@ -138,8 +171,5 @@ a:link {
 	  </div>
 	</div>
 	<div class="col-md-3"><!-- 위치조정용 --></div>
-	</div>	
-		
 
 		<table><tr height="30px"><td></td></tr></table>
-	</div>

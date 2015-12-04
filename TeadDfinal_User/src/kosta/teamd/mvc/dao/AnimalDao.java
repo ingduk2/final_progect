@@ -24,8 +24,8 @@ public class AnimalDao{
 	}
 	
 	//  이미지게시판 리스트 출력
-	public List<AnimalVO> getImgList(){
-		return ss.selectList("animal.imglist");
+	public List<AniBoardVO> getImgList(AniBoardVO abvo){
+		return ss.selectList("animal.imglist", abvo);
 	}
 	
 	// 이미지게시판 상세보기 출력
@@ -44,8 +44,8 @@ public class AnimalDao{
 	}
 	
 	//서치값이랑 합쳐야함.
-	public int imgCnt(){
-	  return ss.selectOne("animal.imgcnt");
+	public int imgCnt(AniBoardVO abvo){
+	  return ss.selectOne("animal.imgcnt", abvo);
 	}
 
 	

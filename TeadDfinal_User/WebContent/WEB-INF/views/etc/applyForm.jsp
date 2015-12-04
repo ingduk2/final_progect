@@ -32,52 +32,52 @@
 	
 	function checksubmit() {
 		if(document.checkall.optradio1.value==""){
-			alert("Please fill the all forms")
+			alert("Please fill out the form")
 			document.checkall.optradio1.focus()
 			return false
 		}
 		if(document.checkall.optradio2.value==""){
-			alert("Please fill the all forms")
+			alert("Please fill out the form")
 			document.checkall.optradio2.focus()
 			return false
 		}
 		if(document.checkall.homeshape.value==""){
-			alert("Please fill the all forms")
+			alert("Please fill out the form")
 			document.checkall.homeshape.focus()
 			return false
 		}
 		if(document.checkall.income.value==""){
-			alert("Please fill the all forms")
+			alert("Please fill out the form")
 			document.checkall.income.focus()
 			return false
 		}
 		if(document.checkall.stayhour.value==""){
-			alert("Please fill the all forms")
+			alert("Please fill out the form")
 			document.checkall.stayhour.focus()
 			return false
 		}
 		if(document.checkall.optradio3.value==""){
-			alert("Please fill the all forms")
+			alert("Please fill out the form")
 			document.checkall.optradio3.focus()
 			return false
 		}
 		if(document.checkall.optradio4.value==""){
-			alert("Please fill the all forms")
+			alert("Please fill out the form")
 			document.checkall.optradio4.focus()
 			return false
 		}
 		if(document.checkall.optradio5.value==""){
-			alert("Please fill the all forms")
+			alert("Please fill out the form")
 			document.checkall.optradio5.focus()
 			return false
 		}
 		if(document.checkall.optradio6.value==""){
-			alert("Please fill the all forms")
+			alert("Please fill out the form")
 			document.checkall.optradio6.focus()
 			return false
 		}
 		if(document.checkall.optradio7.value==""){
-			alert("Please fill the all forms")
+			alert("Please fill out the form")
 			document.checkall.optradio7.focus()
 			return false
 		}
@@ -103,7 +103,7 @@
 	     		<input type="radio" name="optradio1" data-toggle="collapse" data-target="#collapseOne">yes
 	    	</label>
 	   		<label class="radio-inline">
-	      		<input type="radio" name="optradio1" data-toggle="collapse" data-target="#collapseOne" id="inexperience">nope
+	      		<input type="radio" name="optradio1" data-toggle="collapse" data-target="#collapseOne" id="inexperience">no
 	   		</label>
 	   		<div id="collapseOne" class="panel-collapse collapse">
         					<div class="panel-body">
@@ -111,7 +111,7 @@
             					<div class="col-sm-6">
       					<select class="form-control"  id="experience">
 					        <option>-- 선택 --</option>
-					        <option>현재 함께 살고있다.</option>
+					        <option>현재 함께 살고있다</option>
 					        <option>무지개다리</option>
 					        <option>유기</option>
 					        <option>파양</option>
@@ -134,7 +134,7 @@
 	     		<input type="radio" name="optradio2">yes
 	    	</label>
 	   		<label class="radio-inline">
-	      		<input type="radio" name="optradio2">nope
+	      		<input type="radio" name="optradio2">no
 	   		</label>
 		</td>  
 	</tr>
@@ -177,7 +177,7 @@
 	
 	<tr> 
 		<th>5</th>
-		<td align="left">　하룻동안 집에 사람이 없는 시간입니까?</td>  
+		<td align="left">　하룻동안 집에 사람이 없는 시간이 몇시간입니까?</td>  
 	</tr>
 	<tr> 
 		<th></th> 
@@ -201,7 +201,7 @@
 	     		<input type="radio" name="optradio3" data-toggle="collapse" data-target="#collapseTwo">yes
 	    	</label>
 	   		<label class="radio-inline">
-	      		<input type="radio" name="optradio3" data-toggle="collapse" data-target="#collapseTwo" id="notmove">nope
+	      		<input type="radio" name="optradio3" data-toggle="collapse" data-target="#collapseTwo" id="notmove">no
 	   		</label>
 	   		<div id="collapseTwo" class="panel-collapse collapse">
         					<div class="panel-body">
@@ -216,7 +216,7 @@
 	
 	<tr> 
 		<th>7</th>
-		<td align="left">　유기동물을 위한 봉사활동에 참여하신 경험이 있으십니까?</td>  
+		<td align="left">　유기동물 관련 봉사활동에 참여하신 경험이 있으십니까?</td>  
 	</tr>
 	<tr> 
 		<th></th> 
@@ -225,14 +225,14 @@
 	     		<input type="radio" name="optradio4">yes
 	    	</label>
 	   		<label class="radio-inline">
-	      		<input type="radio" name="optradio4">nope
+	      		<input type="radio" name="optradio4">no
 	   		</label>
 		</td>  
 	</tr>
 	
 	<tr> 
 		<th>8</th>
-		<td align="left">　입양 후 아이의 모습을 주기적으로 전해주실수 있으십니까?</td>  
+		<td align="left">　입양 후 입양동물의 모습을 주기적으로 전해주실수 있으십니까?</td>  
 	</tr>
 	<tr> 
 		<th></th> 
@@ -241,7 +241,7 @@
 	     		<input type="radio" name="optradio5">yes
 	    	</label>
 	   		<label class="radio-inline">
-	      		<input type="radio" name="optradio5">nope
+	      		<input type="radio" name="optradio5">no
 	   		</label>
 		</td>  
 	</tr>
@@ -257,7 +257,7 @@
 	     		<input type="radio" name="optradio6">yes
 	    	</label>
 	   		<label class="radio-inline">
-	      		<input type="radio" name="optradio6">nope
+	      		<input type="radio" name="optradio6">no
 	   		</label>&nbsp;&nbsp;
 	   		<!-- 동물등록제 설명 start-->
 	   		 <button type="button" class="btn btn-success btn-xs" data-toggle="collapse" data-target="#demo">
@@ -282,13 +282,13 @@
 	     		<input type="radio" name="optradio7">yes
 	    	</label>
 	   		<label class="radio-inline">
-	      		<input type="radio" name="optradio7">nope
+	      		<input type="radio" name="optradio7">no
 	   		</label>
 		</td>  
 	</tr>
 </table>
 	
-<table><tr height="30px"><!-- 높이 조절용 칸 떼우기 --><td></td></tr></table>
+<table><tr height="30px"><!-- 높이 조절용 칸 띄우기 --><td></td></tr></table>
 <button type="button" class="btn btn-success btn-sm">　취　　소　</button>
 <button type="submit" class="btn btn-success btn-sm">　입양신청　</button>
 </div>

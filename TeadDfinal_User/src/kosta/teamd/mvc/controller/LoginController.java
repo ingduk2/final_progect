@@ -40,8 +40,8 @@ public class LoginController {
 	private MemRolesSelectInter mrselect;
 	
 	@RequestMapping(value="/mfreetimecheck")
-	public String selectoneFreeTime(Principal mid) throws Exception {
-		
+	public ModelAndView selectoneFreeTime(Principal mid) throws Exception {
+		System.out.println("mfreetomecheck");
 		String freetime = mdao.selectFreetime(mid.getName());
 		MemRolesVO mrvo = mrselect.memrolesSelect(mid.getName());
 		
@@ -60,7 +60,7 @@ public class LoginController {
 			}
 		}
 		
-		return "index";
+		return new ModelAndView("redirect:/index");
 	}
 	
 	// -- 아이디 찾기 --
