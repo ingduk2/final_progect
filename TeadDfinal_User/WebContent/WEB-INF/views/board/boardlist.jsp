@@ -22,6 +22,17 @@ $(document).ready(function(){
 		color: #8fbc8f
 	}
 	/* 	tootip style */
+		#itsfloatdiv{
+		position: fixed; position: absolute; 
+/* 		z-index: -1; */
+		overflow: hidden;
+		left: 0px;
+		top: 160px;
+		margin: 0;
+		padding: 0
+	}
+
+/* 	tootip style */
 	.plz>a:HOVER, .plz>td>a:focus{
 		color: green;
 	}
@@ -68,15 +79,7 @@ $(document).ready(function(){
 /* title style */
 .titlename{width: 50%; margin: auto;}
 #titlename{text-align: left; margin-bottom: 0px; margin-left: 8px; color: #27592F}
-		#itsfloatdiv{
-		position: fixed; position: absolute; 
-/* 		z-index: -1; */
-		overflow: hidden;
-		left: 0px;
-		top: 160px;
-		margin: 0;
-		padding: 0
-	}
+
 </style>
 
 <script>

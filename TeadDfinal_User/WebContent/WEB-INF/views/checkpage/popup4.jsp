@@ -53,52 +53,66 @@
 <body>
 <div id="allbg">
 	<div class="jumbotron">
-	   <h3>TNR<small>여러분의 소중한 의견을 기다립니다.</small></h3>
-	   <hr>
-	   <font size="3px">&nbsp;
-	  TNR(Trap-Neuter-Release) 이란 길고양이를 포획한 후 중성화 수술을 시켜 포획한 장소에 다시 방사하는 것으로, 인도적인 차원에서 길고양이의 개체 수를 조절할 수 있는 방법이다</font>
-	   <table class="table">
-	   	<tr>
-	   		<td>장점</td>
-	   		<td>
-	   			<ul>
-	   				<li>중성화가 된 길고양이는 발정음 소리를 내지 않아 소음이 줄어든다</li>
-	   				<li>타지역 고양이의 유입을 막아준다</li>
-	   				<li>적절한 길고양이의 개체수 유지는 쥐의 과도한 번식도 예방한다</li>
-	   			</ul>
-	   		</td>
-	   	</tr>
-	   	<tr>
-	   		<td>단점</td>
-	   		<td>
-	   			<ul>
-	   				<li>중성화 수술 비용이 마리당 14만원이 발생한다</li>
-	   				<li>인위적인 개체수 조절은 생태계 교란을 야기한다</li>
-	   			</ul>
-	   		</td>
-	   	</tr>
-	   </table>
+<!-- 	   <h3>TNR<small>여러분의 소중한 의견을 기다립니다.</small></h3> -->
+<!-- 	   <hr> -->
+<!-- 	   <font size="3px">&nbsp; -->
+<!-- 	  TNR(Trap-Neuter-Release) 이란 길고양이를 포획한 후 중성화 수술을 시켜 포획한 장소에 다시 방사하는 것으로, 인도적인 차원에서 길고양이의 개체 수를 조절할 수 있는 방법이다</font> -->
+<!-- 	   <table class="table"> -->
+<!-- 	   	<tr> -->
+<!-- 	   		<td>장점</td> -->
+<!-- 	   		<td> -->
+<!-- 	   			<ul> -->
+<!-- 	   				<li>중성화가 된 길고양이는 발정음 소리를 내지 않아 소음이 줄어든다</li> -->
+<!-- 	   				<li>타지역 고양이의 유입을 막아준다</li> -->
+<!-- 	   				<li>적절한 길고양이의 개체수 유지는 쥐의 과도한 번식도 예방한다</li> -->
+<!-- 	   			</ul> -->
+<!-- 	   		</td> -->
+<!-- 	   	</tr> -->
+<!-- 	   	<tr> -->
+<!-- 	   		<td>단점</td> -->
+<!-- 	   		<td> -->
+<!-- 	   			<ul> -->
+<!-- 	   				<li>중성화 수술 비용이 마리당 14만원이 발생한다</li> -->
+<!-- 	   				<li>인위적인 개체수 조절은 생태계 교란을 야기한다</li> -->
+<!-- 	   			</ul> -->
+<!-- 	   		</td> -->
+<!-- 	   	</tr> -->
+<!-- 	   </table> -->
 	   
-	   <p>
-	   <font size="3px">&nbsp;. 현재 서울에만 20만 마리의 길고양이가 있는 것으로 추정됩니다. 중성화 수술 비용도 마리당 14만 원 정도로 적지 않은데요. 늘어나는 길고양이, 어떻게 해결해야 할까요?</font>
+<!-- 	   <p> -->
+		${v.content }
+	   <font size="3px">&nbsp;${v.sub }</font>
 	   <p><p><p>
-	   
-	    <div class="radio">
-	      <label><input type="radio" name="optradio">일정 개체수를 넘어설 경우 포획해서 안락사시킨다</label>
-	    </div>
-	    <div class="radio">
-	      <label><input type="radio" name="optradio">중성화 수술을 통해 장기적으로 개체수를 조절한다</label>
-	    </div>
-	    <div class="radio">
-	      <label><input type="radio" name="optradio">기타</label>
-	    </div>
+	   <form method="post" action="surveyUpdate">
+	   <input type="hidden" name="num" value="${v.num }"> 
+	 
+		<ul>
+		<li><input type="radio" name="surveychk" value="1">${v.sub1 }</li>
+		<li><input type="radio" name="surveychk" value="2">${v.sub2 }</li>
+		<li><input type="radio" name="surveychk" value="3">${v.sub3 }</li>
+		</ul>
+<!-- 	    <div class="radio"> -->
+<!-- 	      <label><input type="radio" name="optradio" value="1">일정 개체수를 넘어설 경우 포획해서 안락사시킨다</label> -->
+<!-- 	    </div> -->
+<!-- 	    <div class="radio"> -->
+<!-- 	      <label><input type="radio" name="optradio" value="2">중성화 수술을 통해 장기적으로 개체수를 조절한다</label> -->
+<!-- 	    </div> -->
+<!-- 	    <div class="radio"> -->
+<!-- 	      <label><input type="radio" name="optradio" value="3">기타</label> -->
+<!-- 	    </div> -->
 	    
 	    <span style="color: red">
-	    	<strong>※ 본 설문조사는 로그인이 필요없는 열린방식으로 진행하고,<br>
-	    	동일IP에서 중복투표를 방지하여 유의성을 제고합니다.</strong> 
+	    	<strong>※ 본 설문조사는 로그인이 필요없는 열린방식으로 진행하고</br>
+	    	동일IP에서 중복투표를 방지하여 유의성을 제고합니다.
+	    	</strong> 
 	    </span>
-	    <button type="button" onclick="fin()" class="btn btn-default btn-sm" style="margin-bottom: -15px; margin-left: 90%">투표하기</button>
+
+	    <button type="submit" class="btn btn-default btn-sm" style="margin-bottom: -15px; margin-left: 90%" onclose="">투표하기</button>
+	     </form>  
+
+<!-- 	    <button type="button" onclick="fin()" class="btn btn-default btn-sm" style="margin-bottom: -15px; margin-left: 90%">투표하기</button> -->
 	    
+
 	 </div>
 </div>
 </body>

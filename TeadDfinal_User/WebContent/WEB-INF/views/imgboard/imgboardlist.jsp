@@ -8,19 +8,14 @@
 
 
 <script>
-
-
 var socket=null;
 var id="";
 var code="";
 $(function() {
 	id=$('#cid').val();
 	code=$('#ccode').val();
-
-	var url="ws://localhost:8080/TeadDfinal_User/chatting?id="+id+"&code="+code;
-
-	
-	function connect() {
+var url="ws://localhost:8080/TeadDfinal_User/chatting?id="+id+"&code="+code;
+function connect() {
 	if(socket==null){
 		socket = new WebSocket(url); //afterconnection
 		socket.onopen = function () {
@@ -37,16 +32,12 @@ $(function() {
 		alert("이미 접속중입니다");
 	}
 }
-
 function disconnect() {
 	socket.close();
 	socket = null;
 }
-
 connect();
-
 });
-
 function send(){ //서버로 데이터를 전송하는 메서드
 	if(socket!=null){
 		socket.send($("#message").val());
@@ -55,23 +46,19 @@ function send(){ //서버로 데이터를 전송하는 메서드
 		alert("접속중이 아닙니다");
 	}
 }
-
 </script>
 
 
 
 <style>
-
 	#itsfloatdiv{
 		position: fixed; position: absolute; 
-/* 		z-index: -1; */
 		overflow: hidden;
 		left: 0px;
 		top: 160px;
 		margin: 0;
 		padding: 0
 	}
-
 	a.thumbnail:focus, a.thumbnail:hover {
 		color: #90ee90
 	}
@@ -84,7 +71,6 @@ function send(){ //서버로 데이터를 전송하는 메서드
  	.numbering{ 
   		clear: both; 
  	}  
-
 	.tag {
 		text-align: left;
 		padding-left: 10px;
@@ -179,7 +165,7 @@ function send(){ //서버로 데이터를 전송하는 메서드
 							</c:if>
 						</c:if>
 					
-						<a href="selectoneAnimal?anino=${alist[i].anino}&bno=${alist[i].bno}" class="thumnail nounderline">
+						<a href="selectoneAnimal?anino=${alist[i].anino}&bno=${alist[i].bno}&mid=${alist[i].mid}" class="thumnail nounderline">
 							<img src="img/${alist[i].aniimg}" class="img">
 						</a>
 						
@@ -250,7 +236,7 @@ function send(){ //서버로 데이터를 전송하는 메서드
 							</c:if>
 						</c:if>
 					
-						<a href="selectoneAnimal?anino=${alist[i+1].anino}&bno=${alist[i+1].bno}" class="thumnail nounderline">
+						<a href="selectoneAnimal?anino=${alist[i+1].anino}&bno=${alist[i+1].bno}&mid=${alist[i+1].mid}" class="thumnail nounderline">
 							<img src="img/${alist[i+1].aniimg}" class="img">
 						</a>
 						
@@ -321,7 +307,7 @@ function send(){ //서버로 데이터를 전송하는 메서드
 							</c:if>
 						</c:if>
 					
-						<a href="selectoneAnimal?anino=${alist[i+2].anino}&bno=${alist[i+2].bno}" class="thumnail nounderline">
+						<a href="selectoneAnimal?anino=${alist[i+2].anino}&bno=${alist[i+2].bno}&mid=${alist[i].mid}" class="thumnail nounderline">
 							<img src="img/${alist[i+2].aniimg}" class="img">
 						</a>
 						

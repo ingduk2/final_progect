@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>TeamD</title>
+<title>Ctrl+SAVE</title>
 	<!-- Css  -->
 	<link rel="stylesheet" type="text/css" href="resources/default.css">
 <!-- 	<link rel="stylesheet" type="text/css" href="resources/bootstrap-table.min.css"> 민영 css-->

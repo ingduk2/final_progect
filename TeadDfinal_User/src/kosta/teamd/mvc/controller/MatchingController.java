@@ -2,8 +2,13 @@ package kosta.teamd.mvc.controller;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -12,7 +17,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import kosta.teamd.mvc.dao.AnimalDao;
 import kosta.teamd.mvc.dao.MatchingDao;
+import kosta.teamd.vo.AniBoardVO;
 import kosta.teamd.vo.AnimalVO;
 
 @Controller
@@ -20,9 +27,11 @@ public class MatchingController {
 	
 	@Autowired
 	private MatchingDao mcdao;
+	@Autowired
+	private AnimalDao anidao;
 
 	@RequestMapping(value="/matchingAnimal")
-	public ModelAndView matchingAnimal(AnimalVO anivo) throws ParseException {
+	public ModelAndView matchingAnimal(AnimalVO anivo, int bno, String mid) throws ParseException {
 
 		// 동물 종, 지역, 날짜로 걸러낸 1차 리스트 생성
 		List<AnimalVO> matchlist = mcdao.machingdata(anivo);
@@ -137,12 +146,96 @@ public class MatchingController {
 			cntres.put(matchlist.get(i).getAnino(), count);
 		}
 		
-		// ==============================
+		// ============================== 출력 테스트
 		for (Map.Entry<Integer, Double> e : cntres.entrySet()) {
 			System.out.println("Anino : " + e.getKey() + " / Count" + e.getValue());
 		}
-		
 		// ==============================
-		return null;
+		
+		// value를 기준으로, cntres 정렬
+		List<Map.Entry<Integer, Double>> sortlist = 
+				new ArrayList<Map.Entry<Integer, Double>>(cntres.entrySet());
+		
+		Collections.sort(sortlist, new Comparator<Map.Entry<Integer, Double>>() {
+			
+			public int compare(Map.Entry<Integer, Double> map1, 
+								  Map.Entry<Integer, Double> map2) {
+				
+				if (map1.getValue() == map2.getValue()) {
+					return map1.getKey().compareTo(map2.getKey());
+				}
+				else {
+					return map2.getValue().compareTo(map1.getValue());
+				}
+			}
+		});
+		
+		// 정렬된 결과 순서 보장을 위해 LinkedHashMap에 저장
+		LinkedHashMap<Integer, Double> cntsortres = new LinkedHashMap<>();
+		
+		for (Map.Entry<Integer, Double> e : sortlist) {
+			cntsortres.put(e.getKey(), e.getValue());
+		}
+		
+		// ============================== 출력 테스트
+		System.out.println();
+		for (Map.Entry<Integer, Double> e : cntsortres.entrySet()) {
+			System.out.println("Anino : " + e.getKey() + " / Count" + e.getValue());
+		}
+		// ==============================
+
+		// 상위 3개 결과 추출
+//		List<AniBoardVO> matchres = new LinkedList<>();
+		AniBoardVO[] matchres = new AniBoardVO[3];
+		
+//		for (int i=0; i<3; i++) {
+//			matchres.add(i, anidao.imgDetail(sortlist.get(i).getKey()));
+//		}
+		for (int i=0; i<3; i++) {
+			matchres[i] = anidao.imgDetail(sortlist.get(i).getKey());
+		}
+		
+		// ============================== 출력 테스트
+//		System.out.println();
+//		System.out.println("size: " + matchres.size());
+//		for (int i=0; i<matchres.size(); i++) {
+//			System.out.println(i+" : "+matchres.get(i).getAnino());
+//		}
+		System.out.println();
+		System.out.println("size: " + matchres.length);
+		for (int i=0; i<matchres.length; i++) {
+			System.out.println(i+" : "+matchres[i].getAnino());
+		}
+		// ==============================
+		
+		// 매칭 결과 출력 스위치 켬
+		int matchswitch = 1;
+		
+		// 결과 전달 _ 상위 3개 결과 목록
+		ModelAndView mav = new ModelAndView("redirect:/selectoneAnimal");
+//		mav.addObject("matchres", matchres);
+		mav.addObject("matchswitch", matchswitch);
+		mav.addObject("anino", anivo.getAnino());
+		mav.addObject("bno", bno);
+		mav.addObject("mid", mid);
+		
+		// ============================== 출력 테스트
+		System.out.println();
+		System.out.println(anivo.getAnino());
+		System.out.println(bno);
+		System.out.println(mid);
+		System.out.println(matchswitch);
+		// ==============================
+		
+		// ====================================================== 씨발 내가 병신이라 그런거지 어쩔수 있나
+		int first = sortlist.get(0).getKey();
+		int second = sortlist.get(1).getKey();
+		int third = sortlist.get(2).getKey();
+		mav.addObject("first", first);
+		mav.addObject("second", second);
+		mav.addObject("third", third);
+		// ====================================================== 씨발 내가 병신이라 그런거지 어쩔수 있나
+		
+		return mav;
 	}
 }

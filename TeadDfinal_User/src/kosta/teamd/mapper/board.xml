@@ -181,6 +181,13 @@
     </update>
 
 	
+
+	<!-- 아이피  체크 -->
+    	<select id="bipCntCheck" parameterType="String" resultType="int">
+    		select count(*) cnt from board where bip=#{bip}
+    	</select>
+	
+
 	<select id="boardcnt" resultType="int" parameterType="bvo">
 		select count(*) from board where bcode=#{bcode}
 		<if test="searchType != null">
@@ -224,8 +231,6 @@
       select a.anino anino, a.aniimg aniimg, b.bno bno, b.bcode bcode 
       from animal a, board b where a.anino=b.anino and aniimg is not null and bcode=5
 	</select>
-	
-	
 	
 	
     </mapper>

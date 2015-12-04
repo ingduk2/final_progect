@@ -9,13 +9,17 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kosta.teamd.mvc.dao.BoardDao;
 import kosta.teamd.vo.AniBoardVO;
+import kosta.teamd.mvc.dao.SurveyDao;
 import kosta.teamd.vo.BoardVO;
+import kosta.teamd.vo.SurveyVO;
 
 @Controller
 public class PageViewController {
 
 	@Autowired
 	private BoardDao bdao;
+	@Autowired
+	private SurveyDao sdao;
 	
 	@RequestMapping(value={"/", "/index"})
 	public ModelAndView fromIndex(){
@@ -51,20 +55,36 @@ public class PageViewController {
 	
 	//popup용 페이지들
 	@RequestMapping(value="/popup")
-	public String popup(){
-		return "checkpage/popup";
+//	public String popup(){ //원래는 요 모양인데  모델엔뷰로 바뀜
+	public ModelAndView popup(int num){
+		ModelAndView mav = new ModelAndView("checkpage/popup");
+		System.out.println("num : "+num);
+		SurveyVO v= sdao.getDetail(num);
+		System.out.println("v :"+v.getSub());
+		mav.addObject("v", v);
+		return mav;
 	}
 	@RequestMapping(value="/popup2")
-	public String popup2(){
-		return "checkpage/popup2";
+	public ModelAndView popup2(int num){
+		ModelAndView mav = new ModelAndView("checkpage/popup2");
+		SurveyVO v= sdao.getDetail(num);
+		mav.addObject("v",v);
+		return mav;
 	}
 	@RequestMapping(value="/popup3")
-	public String popup3(){
-		return "checkpage/popup3";
+	public ModelAndView popup3(int num){
+		ModelAndView mav = new ModelAndView("checkpage/popup3");
+		SurveyVO v = sdao.getDetail(num);
+		mav.addObject("v",v);
+		return mav;
 	}
 	@RequestMapping(value="/popup4")
-	public String popup4(){
-		return "checkpage/popup4";
+	public ModelAndView popup4(int num){
+		ModelAndView mav = new ModelAndView("checkpage/popup4");
+		SurveyVO v = sdao.getDetail(num);
+		mav.addObject("v",v);
+		return mav;
+		
 	}
 	
 }

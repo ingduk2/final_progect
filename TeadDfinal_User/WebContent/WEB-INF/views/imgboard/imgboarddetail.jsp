@@ -33,6 +33,51 @@
 	.tooltip-inner{
 		color:green;
 	}
+	
+	
+	/*============================================*/
+	a.thumbnail:focus, a.thumbnail:hover {
+		color: #90ee90
+	}
+	a.nounderline {
+		text-decoration: none; 
+	} 
+	a.thumbnail.active, a.thumbnail:focus, a.thumbnail:hover{
+		border-color:#EDEDED
+	}
+ 	.numbering{ 
+  		clear: both; 
+ 	}  
+
+	.tag {
+		text-align: left;
+		padding-left: 10px;
+	}
+	.img {
+		width: 180px; 
+		height: 180px;
+	}
+	.container {
+		width: 180px;
+		table-layout: fixed;
+	}
+	.content{
+		width: 100%; 
+		padding-top: 5px; 
+		padding-left: 10px;
+		padding-right: 10px;
+		overflow: hidden;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		font-size: 12px;
+		opacity:1;
+/* 		여기서 바꾸면 변경될거야 */
+		background-color: transparent;
+		text-align: left;
+		
+	}
+	
+	/*============================================*/
 
 </style>
 
@@ -124,26 +169,74 @@
 				<div id="" class="alert alert-success"><br>
 					<!--이름, 품종, 나이, 성별, 크기, 몸무게, 특징, 지역, 날짜-->
 					  <ul class="list-group">
-					    <li class="list-group-item">
-					    	<span class="glyphicon glyphicon-gift"></span>
+					  	
+					  	<li class="list-group-item">
+					    	<span class="glyphicon glyphicon-apple"></span>
 					    	<label>이　름:　</label>${avo.aniname}<!-- 이름이름넣어주세요 -->
 					    </li>
+					    
 					    <li class="list-group-item">
 					    	<span class="glyphicon glyphicon-apple"></span>
-					    	<label>품　종:　</label>${avo.anibreed}<!-- 품종 -->
+					    	<label>품　종:　</label>${avo.anispecies}　/　${avo.anibreed}<!-- 품종 -->
 					    </li>
-					    <li class="list-group-item">
+					    
+					    <c:if test="${avo.anisex == '모름'}">
+						    <li class="list-group-item">
+						    	<span class="glyphicon glyphicon-apple"></span>
+						    	<label>성　별:　</label><!-- 성별 -->
+						    </li>
+					    </c:if>
+					    <c:if test="${avo.anisex != '모름'}">
+						    <li class="list-group-item">
+						    	<span class="glyphicon glyphicon-apple"></span>
+						    	<label>성　별:　</label>${avo.anisex}<!-- 성별 -->
+						    </li>
+					    </c:if>
+					    
+					    <c:if test="${avo.anineutral == '모름'}">
+						    <li class="list-group-item">
+						    	<span class="glyphicon glyphicon-apple"></span>
+						    	<label>중성화:　</label><!-- 성별 -->
+						    </li>
+					    </c:if>
+					    <c:if test="${avo.anineutral != '모름'}">
+						    <li class="list-group-item">
+						    	<span class="glyphicon glyphicon-apple"></span>
+						    	<label>중성화:　</label>${avo.anineutral}<!-- 성별 -->
+						    </li>
+					    </c:if>
+					    
+					    <c:if test="${avo.aniage == 0}">
+						    <li class="list-group-item">
+						    	<span class="glyphicon glyphicon-apple"></span>
+						    	<label>나　이:　</label><!-- 성별 -->
+						    </li>
+					    </c:if>
+					    <c:if test="${avo.aniage != 0}">
+						    <li class="list-group-item">
+						    	<span class="glyphicon glyphicon-apple"></span>
+						    	<label>나　이:　</label>${avo.aniage} 살<!-- 성별 -->
+						    </li>
+					    </c:if>
+					    
+					    <c:if test="${avo.aniweight == 0}">
+						    <li class="list-group-item">
+						    	<span class="glyphicon glyphicon-apple"></span>
+						    	<label>몸무게:　</label><!-- 성별 -->
+						    </li>
+					    </c:if>
+					    <c:if test="${avo.aniweight != 0}">
+						    <li class="list-group-item">
+						    	<span class="glyphicon glyphicon-apple"></span>
+						    	<label>몸무게:　</label>${avo.aniweight} kg<!-- 성별 -->
+						    </li>
+					    </c:if>
+					    
+						<li class="list-group-item">
 					    	<span class="glyphicon glyphicon-apple"></span>
-					    	<label>나　이:　</label>${avo.aniage}<!-- 나이 -->
+					    	<label>날　짜:　</label>${avo.anidate}<!-- 날짜 -->
 					    </li>
-					    <li class="list-group-item">
-					    	<span class="glyphicon glyphicon-apple"></span>
-					    	<label>성　별:　</label>${avo.anisex}<!-- 성별 -->
-					    </li>
-					    <li class="list-group-item">
-					    	<span class="glyphicon glyphicon-apple"></span>
-					    	<label>특　징:　</label>${avo.anifeature}<!-- 특징 -->
-					    </li>
+					    
 					    <li class="list-group-item">
 					    	<span class="glyphicon glyphicon-apple"></span>
 					    	<label>지　역:　</label>${avo.aniregion}<!-- 지역 -->
@@ -155,8 +248,15 @@
 					    
 					    <li class="list-group-item">
 					    	<span class="glyphicon glyphicon-apple"></span>
-					    	<label>날　짜:　</label>${avo.anidate}<!-- 날짜 -->
+					    	<label>특　징:　</label>${avo.anifeature}<!-- 특징 -->
 					    </li>
+					    
+					    <c:if test="${avo.anistate == 3}">
+						    <li class="list-group-item">
+						    	<span class="glyphicon glyphicon-apple"></span>
+						    	<label>사례금:　</label>${avo.anireward} 원<!-- 특징 -->
+						    </li>
+					    </c:if>
 					    
 					  </ul> 
 					  
@@ -179,13 +279,16 @@
 					  	  	<c:param name="aniimg" value="${avo.aniimg}" />
 					  	  	<c:param name="anineutral" value="${avo.anineutral}" />
 					  	  	
+					  	  	<c:param name="bno" value="${avo.bno}" />
+					  	  	<c:param name="mid" value="${avo.mid}" />
+					  	  	
 					  	  </c:url>
 					  
 						  <div style="text-align: center; margin-top: 20px;">
-						  	<!-- 매칭이다 매칭!! -->
+						  <!-- 매칭이다 매칭!! -->
 						  	<a href="${matching}" type="button" class="btn btn-success btn-sm" style="width: 100px;"> 유사 정보 매칭 </a>
 						  	&nbsp;&nbsp;&nbsp;
-						  	<!-- poi를 적용시켜 연결시키자! -->
+						  <!-- poi를 적용시켜 연결시키자! -->
 						  	<button type="button" class="btn btn-success btn-sm" style="width: 100px;"> 전단지 출력 </button>
 						  </div>
 					  </c:if>
@@ -194,81 +297,162 @@
 				<!--애기설명End-->
 			</td>
 		</tr>
+		
+		
+		
+		<!-- ========================================================================================= -->
+		
+		<c:if test="${matchswitch == 1}">
+		<tr>
+			<td colspan="8">
+<!--  			<td colspan="8" style="border: 1px solid blue"> -->
+				<div class="col-md-12 center" style="width: 100%">
+<!--  				<div class="col-md-12 center" style="border: 1px solid red; width: 100%"> -->
+					<div class="col-md-4">
+						<a href="selectoneAnimal?anino=${top[0].anino}&bno=${top[0].bno}&mid=${top[0].mid}" class="thumnail nounderline">
+							<img src="img/${top[0].aniimg}" class="img">
+						</a>
+						
+						<table class="container">
+							<tr>
+								<th class="content">${top[0].btitle}</th>
+							</tr>
+							<tr>
+								<th class="content">${top[0].anispecies}&nbsp;&nbsp;/&nbsp;&nbsp;${top[0].anibreed}</th>
+							</tr>
+							<tr>
+								<th class="content">지역 : ${top[0].aniregion}</th>
+							</tr>
+							<tr>
+								<th class="content">날짜 : ${top[0].anidate}</th>
+							</tr>
+						</table>
+					</div>
+					<div class="col-md-4">
+						<a href="selectoneAnimal?anino=${top[1].anino}&bno=${top[1].bno}&mid=${top[1].mid}" class="thumnail nounderline">
+							<img src="img/${top[1].aniimg}" class="img">
+						</a>
+						
+						<table class="container">
+							<tr>
+								<th class="content">${top[1].btitle}</th>
+							</tr>
+							<tr>
+								<th class="content">${top[1].anispecies}&nbsp;&nbsp;/&nbsp;&nbsp;${top[1].anibreed}</th>
+							</tr>
+							<tr>
+								<th class="content">지역 : ${top[1].aniregion}</th>
+							</tr>
+							<tr>
+								<th class="content">날짜 : ${top[1].anidate}</th>
+							</tr>
+						</table>
+					</div>
+					<div class="col-md-4">
+						<a href="selectoneAnimal?anino=${top[2].anino}&bno=${top[2].bno}&mid=${top[2].mid}" class="thumnail nounderline">
+							<img src="img/${top[2].aniimg}" class="img">
+						</a>
+						
+						<table class="container">
+							<tr>
+								<th class="content">${top[2].btitle}</th>
+							</tr>
+							<tr>
+								<th class="content">${top[2].anispecies}&nbsp;&nbsp;/&nbsp;&nbsp;${top[2].anibreed}</th>
+							</tr>
+							<tr>
+								<th class="content">지역 : ${top[2].aniregion}</th>
+							</tr>
+							<tr>
+								<th class="content">날짜 : ${top[2].anidate}</th>
+							</tr>
+						</table>
+					</div>
+				</div>
+			</td>
+		</tr>
+		</c:if>
+		
+		<tr><td>　</td></tr>
+		<!-- ========================================================================================= -->
+		
+		
 			
-			<tr height="300px">	<!-- 내용 들어가면 height="500px" 빼줘야함 -->
-				<td colspan="8" class="bgwhite">
-					<textarea rows="15" style="width: 100%" readonly="readonly">${avo.bcontent}</textarea>
-				</td>						
-			</tr>
-			<!-- 댓글 입력  -->
-			
-			
-			<tr>
-			
-				<th>Comments</th>
-				<td colspan="8">
-					<form method="post" action="commInsert">
-				    	<div class="input-group col-xs-12">
-				    		<input type="hidden" name="mid" id="mid" value="${pageContext.request.userPrincipal.name}"/>
-				    		<input type="hidden" name="bno" id="bno" value="${avo.bno}"/>
-				    		<input type="hidden" name="anino" id="anino" value="${avo.anino}"/>
-				    		<input type="hidden" name="cbip" value="<%=request.getRemoteAddr() %>">
-				        	<input type="text" name="cbcontent" class="form-control input-sm " placeholder="Your comments" required="required">
-				            	<span class="input-group-btn">
+		<!-- 내용 (들어가면 height="500px" 빼줘야함) -->
+		<tr height="300px">
+			<td colspan="8" class="bgwhite">
+				<textarea rows="15" style="width: 100%" readonly="readonly">${avo.bcontent}</textarea>
+			</td>						
+		</tr>
+	
+		<!-- 댓글 입력  -->
+		<tr>
+		
+			<th>Comments</th>
+			<td colspan="8">
+				<form method="post" action="commInsert">
+			    	<div class="input-group col-xs-12">
+			    		<input type="hidden" name="mid" id="mid" value="${pageContext.request.userPrincipal.name}"/>
+			    		<input type="hidden" name="bno" id="bno" value="${avo.bno}"/>
+			    		<input type="hidden" name="anino" id="anino" value="${avo.anino}"/>
+			    		<input type="hidden" name="cbip" value="<%=request.getRemoteAddr() %>">
+			        	<input type="text" name="cbcontent" class="form-control input-sm " placeholder="Your comments" required="required">
+			            	<span class="input-group-btn">
 <!-- 				            	 <span class="btn btn-success btn-sm">&nbsp; -->
-				                    <button type="submit" value="ADD" class="btn btn-success btn-sm">&nbsp;
-				                    	<span class="glyphicon glyphicon-plus-sign"></span>&nbsp;Add
-				                    </button>
+			                    <button type="submit" value="ADD" class="btn btn-success btn-sm">&nbsp;
+			                    	<span class="glyphicon glyphicon-plus-sign"></span>&nbsp;Add
+			                    </button>
 <!-- 				                     </span> -->
-				                </span>
-				        </div>		
-				    </form>			
-				</td>
-				
-			</tr>
+			                </span>
+			        </div>		
+			    </form>			
+			</td>
 			
-			<!--  댓글 출력 -->
-			<tr>
-				<th><span class="glyphicon glyphicon-user"></span></th>
-				<td colspan="8">
-					<table width="100%">
-						<tr> <th style="border-left: 1px solid #f0fff0;">ID</th> <th  class="reply">Comment</th> <th>Date</th><th>삭제</th> </tr>
-						<!-- 댓글 부분 이곳에서 반복처리하면 됩니다. 시작 -->
-						
-			<%-- 			 <s:iterator value="list"> <!-- 갑가져오기 -->
-			 <tr> <td width="30px"><s:property value="bno"/></td><td><a href="bdetail?bno=${bno}"><s:property value="btitle"/></a></td>
-			 <td><s:property value="mid"/></td><td><s:property value="bdate"/></td>
-			 <td><s:property value="bhit"/></td> </tr>
-			 </s:iterator> --%>
-						
-						<c:forEach var="cbvo" items="${cbvo }">
-						<tr> 
-							<td>${cbvo.mid }</td>
-							<td class="reply">
-								${cbvo.cbcontent }
-								<!-- Comment내용이나오겠지,아마도! -->
-							</td>
-							<td>${cbvo.cbdate }</td> 
-																				<!-- 수정해야지 함. -->
-							<td><input type="button" value="삭제" onclick="location='commDelete?cbno=${cbvo.cbno}&anino=${avo.anino}&bno=${avo.bno }'"></td>
-						</tr>
-						</c:forEach>
-						<!-- 끝 -->
-					</table>					
-				</td>
-			</tr>
-		</table>								
+		</tr>
+			
+		<!--  댓글 출력 -->
+		<tr>
+			<th><span class="glyphicon glyphicon-user"></span></th>
+			<td colspan="8">
+				<table width="100%">
+					<tr> <th style="border-left: 1px solid #f0fff0;">ID</th> <th  class="reply">Comment</th> <th>Date</th><th>삭제</th> </tr>
+					<!-- 댓글 부분 이곳에서 반복처리하면 됩니다. 시작 -->
+					
+		<%-- 			 <s:iterator value="list"> <!-- 갑가져오기 -->
+		 <tr> <td width="30px"><s:property value="bno"/></td><td><a href="bdetail?bno=${bno}"><s:property value="btitle"/></a></td>
+		 <td><s:property value="mid"/></td><td><s:property value="bdate"/></td>
+		 <td><s:property value="bhit"/></td> </tr>
+		 </s:iterator> --%>
+					
+					<c:forEach var="cbvo" items="${cbvo }">
+					<tr> 
+						<td>${cbvo.mid }</td>
+						<td class="reply">
+							${cbvo.cbcontent }
+							<!-- Comment내용이나오겠지,아마도! -->
+						</td>
+						<td>${cbvo.cbdate }</td> 
+																			<!-- 수정해야지 함. -->
+						<td><input type="button" value="삭제" onclick="location='commDelete?cbno=${cbvo.cbno}&anino=${avo.anino}&bno=${avo.bno }'"></td>
+					</tr>
+					</c:forEach>
+					<!-- 끝 -->
+				</table>					
+			</td>
+		</tr>
+	</table>								
 		
-		<table><tr height="30px"><!-- 높이 조절용 칸 떼우기 --><td></td></tr></table>
-		
-		<c:if test="${pageContext.request.userPrincipal.name == avo.mid}">
-			<button type="button" class="btn btn-success btn-sm" onclick="location='updateformAnimal?anino=${avo.anino}'">　수　　정　</button>
-			<button type="button" class="btn btn-success btn-sm" onclick="location='deleteAnimal?anino=${avo.anino}&nowPage=1&searchtype=&bcode=${avo.bcode }'">　삭　　제　</button>
-		</c:if>
-		
-		<c:if test="${pageContext.request.userPrincipal.name != null}">
-			<button type="button" class="btn btn-success btn-sm" id="reportBtn">　신　　고　 </button>
-		</c:if>
-		
-		<button type="button" class="btn btn-success btn-sm" onclick="location='selectallAnimal?bcode=${avo.bcode}&nowPage=1&searchType='">　목　　록　</button>
-	</div>		
+	<table><tr height="30px"><!-- 높이 조절용 칸 떼우기 --><td></td></tr></table>
+	
+	<c:if test="${pageContext.request.userPrincipal.name == avo.mid}">
+		<button type="button" class="btn btn-success btn-sm" onclick="location='updateformAnimal?anino=${avo.anino}'">　수　　정　</button>
+		<button type="button" class="btn btn-success btn-sm" onclick="location='deleteAnimal?anino=${avo.anino}&nowPage=1&searchtype=&bcode=${avo.bcode }'">　삭　　제　</button>
+	</c:if>
+	
+	<c:if test="${pageContext.request.userPrincipal.name != null}">
+		<button type="button" class="btn btn-success btn-sm" id="reportBtn">　신　　고　 </button>
+	</c:if>
+	
+	<button type="button" class="btn btn-success btn-sm" onclick="location='selectallAnimal?bcode=${avo.bcode}&nowPage=1&searchType='">　목　　록　</button>
+	
+</div>		

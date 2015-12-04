@@ -44,7 +44,7 @@
 	}
 	
 /* 	title style */
-	.titlename{width: 50%; margin: auto; margin-top: 50px}
+	.titlename{width: 50%; margin: auto; margin-top: 70px}
 	#titlename{text-align: left; margin-bottom: 0px; margin-left: 8px; color: #27592F}
 </style>
 
@@ -75,7 +75,7 @@ $(document).ready(function(){
 </div>
 
 <div class="titlename">
-	<h2 id="titlename">■ 내가 쓴 글 보기</h2>
+	<h3 id="titlename">▣ 내가 쓴 글</h3>
 <hr style="margin-top: 3px">
 </div>
 
