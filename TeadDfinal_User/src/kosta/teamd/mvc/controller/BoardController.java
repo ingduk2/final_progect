@@ -38,15 +38,17 @@ public class BoardController {
 	@Autowired
 	private Paging page;
 	
-	@RequestMapping(value="formBoard")
-	public ModelAndView formBoard(String bcode){
+	@RequestMapping(value="/formBoard")
+	public ModelAndView formBoard(String bcode, String nowPage){
 		ModelAndView mav=new ModelAndView("board/boardwrite");
 		mav.addObject("bcode", bcode);
+		mav.addObject("nowPage", nowPage);
+		System.out.println("nowPage="+nowPage);
 		return mav;
 	}
 	
 	@RequestMapping(value="/insertBoard", method=RequestMethod.POST)
-	public ModelAndView insertBoard(BoardVO bvo, HttpServletRequest request) {
+	public ModelAndView insertBoard(BoardVO bvo, String nowPage, HttpServletRequest request) {
 		
 		HttpSession session=request.getSession();
 		String r_path=session.getServletContext().getRealPath("/");
@@ -70,7 +72,7 @@ public class BoardController {
 		
 		String bno = bdao.selectBno(bvo);
 		
-		ModelAndView mav=new ModelAndView("redirect:/selectoneBoard?bno="+bno+"&mid="+bvo.getMid());
+		ModelAndView mav=new ModelAndView("redirect:/selectoneBoard?bno="+bno+"&mid="+bvo.getMid()+"&nowPage="+nowPage);
 
 		return mav;
 	}
@@ -137,11 +139,12 @@ public class BoardController {
 		mav.addObject("list", list);
 		mav.addObject("pagingCode", pagingCode);
 		mav.addObject("bcode", bvo.getBcode());
+		mav.addObject("nowPage", nowPage);
 		return mav;
 	}
 	
 	@RequestMapping(value="/selectoneBoard")
-	public ModelAndView selectoneBoard(int bno, String mid, Principal prcp){
+	public ModelAndView selectoneBoard(int bno, String mid, String nowPage, Principal prcp){
 		
 		if (prcp != null) {
 			
@@ -163,6 +166,7 @@ public class BoardController {
 		mav.addObject("bvo", bvo);
 		mav.addObject("list", list);
 		mav.addObject("namecard", mvo);
+		mav.addObject("nowPage", nowPage);
 		
 		return mav;
 	}
@@ -179,17 +183,18 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value="/updateformBoard")
-	public ModelAndView updateformBoard(int bno){
+	public ModelAndView updateformBoard(int bno, String nowPage){
 		BoardVO bvo=bdao.updateFormBoard(bno);
 		ModelAndView mav=new ModelAndView("board/boardupdate");
 		mav.addObject("bvo", bvo);
+		mav.addObject("nowPage", nowPage);
 		return mav;
 	}
 	@RequestMapping(value="updateBoard", method=RequestMethod.POST)
-	public ModelAndView updateBoard(BoardVO bvo){
+	public ModelAndView updateBoard(BoardVO bvo, String nowPage){
 		System.out.println(bvo.getBtitle());
 		bdao.updateBoard(bvo);
-		ModelAndView mav=new ModelAndView("redirect:/selectoneBoard?bno="+String.valueOf(bvo.getBno())+"&mid="+bvo.getMid());
+		ModelAndView mav=new ModelAndView("redirect:/selectoneBoard?bno="+String.valueOf(bvo.getBno())+"&mid="+bvo.getMid()+"&nowPage="+nowPage);
 		return mav;
 	}
 	
@@ -225,19 +230,20 @@ public class BoardController {
 	
 	
 	@RequestMapping(value="/formReply")
-	public ModelAndView formReply(BoardVO bvo){
+	public ModelAndView formReply(BoardVO bvo, String nowPage){
 		System.out.println("Bref "+bvo.getBref());
 		System.out.println("Bseq "+bvo.getBseq());
 		System.out.println("Blvl "+bvo.getBlvl());
 		System.out.println("Bcode "+bvo.getBcode());
 		ModelAndView mav=new ModelAndView("board/boardreply");
 		mav.addObject("reply", bvo);
+		mav.addObject("nowPage", nowPage);
 		return mav;
 	}
 	
 	
 	@RequestMapping(value="/insertReply", method=RequestMethod.POST)
-	public ModelAndView insertReply(BoardVO bvo, HttpServletRequest request){
+	public ModelAndView insertReply(BoardVO bvo, String nowPage, HttpServletRequest request){
 		
 		HttpSession session=request.getSession();
 		String r_path=session.getServletContext().getRealPath("/");
@@ -261,10 +267,11 @@ public class BoardController {
 		
 		String bno = bdao.selectBno(bvo);
 		
-		ModelAndView mav=new ModelAndView("redirect:/selectoneBoard?bno="+bno+"&mid="+bvo.getMid());
+		ModelAndView mav=new ModelAndView("redirect:/selectoneBoard?bno="+bno+"&mid="+bvo.getMid()+"&nowPage="+nowPage);
 		
 		return mav;
 	}
 	
+	// -- 게시글 및 글 작성자 신고 카운트 --
 	
 }

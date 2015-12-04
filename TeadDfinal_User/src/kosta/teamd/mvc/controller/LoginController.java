@@ -45,7 +45,7 @@ public class LoginController {
 		String freetime = mdao.selectFreetime(mid.getName());
 		MemRolesVO mrvo = mrselect.memrolesSelect(mid.getName());
 		
-		if (mrvo.getRole().equals("Criminal")) {
+		if (mrvo.getRole().equals("Restrict")) {
 			
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmm");
 			String now = sdf.format(new Date());

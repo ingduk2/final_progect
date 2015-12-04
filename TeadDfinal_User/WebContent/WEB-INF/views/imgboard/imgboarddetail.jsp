@@ -14,8 +14,7 @@
 		width: 45px;
 	}
 	.bgwhite{
-		background-color: white;
-		opacity: 0.6;
+		background: rgba(255,255,255,0.8);
 	}
 	.reply{
 		border-left: 1px solid #f0fff0;
@@ -69,93 +68,134 @@
 	
 </script>
 
-	<div>		
-		<img src="img/boarddetail.png" width="200px">
+
+
+<div>		
+
+	<!-- 공간 띄우기 용 -->
+	<table><tr height="50px"><td></td></tr></table>
+	
+
+	<table style="border:1px ; width: 50%"> 
+<%-- 		<tr><td colspan="4" style="margin-right: 0px;"><input type="button" id="rpt" value="신고하기" /></td><td><label>신고수 : </label></td><td><label id="rptchk">${avo.brpt}</label></td></tr> --%>
 		
-<!-- 		<table width="50%" border="1px">							 -->
+		<tr>	
+			<th>제목</th>	
+			<td colspan="7" class="bgwhite"> 
+				${avo.btitle }
+			</td>					
+		</tr>
+		
+		<tr>	
+			<th>글쓴이</th>
+			<td class="bgwhite" style="width: 190px">
+				${avo.mid}
+			</td>	
+			<th>작성일</th>	
+			<td class="bgwhite" style="width: 190px">
+				${avo.bdate }
+			</td>	
+			<th>조회수</th>	
+			<td class="bgwhite" style="width: 50px">
+				${avo.bhit}
+			</td>
+			<th>신고수</th>	
+			<td class="bgwhite" style="width: 50px">
+				${avo.brpt }
+			</td>	
+		</tr>
 
-	<!-- 임시로 설정  수정..................-->
-	
-	<!-- 임시로 설정  수정..................-->
-	
-
-		<table style="border:1px ; width: 500px"> 
-		<tr><td colspan="4" style="margin-right: 0px;"><input type="button" id="rpt" value="신고하기" /></td><td><label>신고수 : </label></td><td><label id="rptchk">${avo.brpt}</label></td></tr>
-			<tr>	
-				<th>제목</th>	
-				<td colspan="5" class="bgwhite"> 
-					${avo.btitle }
-				</td>					
-			</tr>
-			<tr>	
-				<th>글쓴이</th>
-				<td class="bgwhite" >${avo.mid}</td>	
-				<th>작성일</th>	
-				<td class="bgwhite">${avo.bdate }</td>	
-				<th>조회수</th>	
-				<td class="bgwhite">${avo.bhit}<!--hit--></td>	
-			</tr>
-			<tr>	
-				<th colspan="6">${avo.anifeature}</th>						
-			</tr>
+		<tr>	
+			<th colspan="8">　</th>						
+		</tr>
 			
-			<tr>
-				<td colspan="6"><br>
+		<tr>
+			<td colspan="8"><br>
+			
+				<!-- img/a.PNG가 이미지 뿌려주는 곳 -->
+				<a href="#" class="green-tooltip" data-toggle="tooltip" data-placement="top" title="자세한 정보를 보려면 사진 아래 버튼을 클릭해주세요!">
+					<img src="img/${avo.aniimg}" class="img-rounded" alt="NOT available" width="70%">
+				</a>
 				
-					<!-- img/a.PNG가 이미지 뿌려주는 곳 -->
-					<a href="#" class="green-tooltip" data-toggle="tooltip" data-placement="top" title="자세한 정보를 보려면 사진 아래 버튼을 클릭해주세요!">
-						<img src="upload/${avo.aniimg}" class="img-rounded" alt="NOT available" width="304" height="236">
-					</a>
-					
-					<!--애기설명start-->
-					<div id="demo" class="collapse alert alert-success"><br>
-						<!--이름, 품종, 나이, 성별, 크기, 몸무게, 특징, 지역, 날짜-->
-						  <ul class="list-group">
-						    <li class="list-group-item">
-						    	<span class="glyphicon glyphicon-gift"></span>
-						    	<label>이 름: </label>${avo.aniname}<!-- 이름이름넣어주세요 -->
-						    </li>
-						    <li class="list-group-item">
-						    	<span class="glyphicon glyphicon-apple"></span>
-						    	<label>품 종: </label>${avo.anibreed}<!-- 품종 -->
-						    </li>
-						    <li class="list-group-item">
-						    	<span class="glyphicon glyphicon-apple"></span>
-						    	<label>나 이: </label>${avo.aniage}<!-- 나이 -->
-						    </li>
-						    <li class="list-group-item">
-						    	<span class="glyphicon glyphicon-apple"></span>
-						    	<label>성 별: </label>${avo.anisex}<!-- 성별 -->
-						    </li>
-						    <li class="list-group-item">
-						    	<span class="glyphicon glyphicon-apple"></span>
-						    	<label>크 기: </label>${avo.anisize}<!-- 크기 -->
-						    </li>
-						    <li class="list-group-item">
-						    	<span class="glyphicon glyphicon-apple"></span>
-						    	<label>특 징: </label>${avo.anifeature}<!-- 특징 -->
-						    </li>
-						    <li class="list-group-item">
-						    	<span class="glyphicon glyphicon-apple"></span>
-						    	<label>지 역: </label>${avo.aniregion}<!-- 지역 -->
-						    </li>
-						    <li class="list-group-item">
-						    	<span class="glyphicon glyphicon-apple"></span>
-						    	<label>실종일자: </label>${avo.anidate}<!-- 날짜 -->
-						    </li>
-						  </ul> 
-					</div><p>
-					<button type="button" class="btn btn-success btn-xs" data-toggle="collapse" data-target="#demo">
-						<span class="glyphicon glyphicon-zoom-in"></span>&nbsp;ClickHere
-					</button>
-					<!--애기설명End-->
-				</td>
-			</tr>
+				<br /><br />
+				
+				<!--애기설명start-->
+				<div id="demo" class="collapse alert alert-success"><br>
+					<!--이름, 품종, 나이, 성별, 크기, 몸무게, 특징, 지역, 날짜-->
+					  <ul class="list-group">
+					    <li class="list-group-item">
+					    	<span class="glyphicon glyphicon-gift"></span>
+					    	<label>이　름:　</label>${avo.aniname}<!-- 이름이름넣어주세요 -->
+					    </li>
+					    <li class="list-group-item">
+					    	<span class="glyphicon glyphicon-apple"></span>
+					    	<label>품　종:　</label>${avo.anibreed}<!-- 품종 -->
+					    </li>
+					    <li class="list-group-item">
+					    	<span class="glyphicon glyphicon-apple"></span>
+					    	<label>나　이:　</label>${avo.aniage}<!-- 나이 -->
+					    </li>
+					    <li class="list-group-item">
+					    	<span class="glyphicon glyphicon-apple"></span>
+					    	<label>성　별:　</label>${avo.anisex}<!-- 성별 -->
+					    </li>
+					    <li class="list-group-item">
+					    	<span class="glyphicon glyphicon-apple"></span>
+					    	<label>특　징:　</label>${avo.anifeature}<!-- 특징 -->
+					    </li>
+					    <li class="list-group-item">
+					    	<span class="glyphicon glyphicon-apple"></span>
+					    	<label>지　역:　</label>${avo.aniregion}<!-- 지역 -->
+					    </li>
+					    
+					    <li class="list-group-item">
+					    	<span class="glyphicon glyphicon-apple"></span>
+					    	<label>날　짜:　</label>${avo.anidate}<!-- 날짜 -->
+					    </li>
+					    
+					  </ul> 
+					  
+					  <c:if test="${pageContext.request.userPrincipal.name == avo.mid and avo.anistate == 3}">
+					  
+					  	  <c:url var="matching" value="/matchingAnimal">
+					  	  	
+					  	  	<c:param name="anino" value="${avo.anino}" />
+					  	  	<c:param name="anispecies" value="${avo.anispecies}" />
+					  	  	<c:param name="anibreed" value="${avo.anibreed}" />
+					  	  	<c:param name="aniname" value="${avo.aniname}" />
+					  	  	<c:param name="aniage" value="${avo.aniage}" />
+					  	  	<c:param name="anisex" value="${avo.anisex}" />
+					  	  	<c:param name="aniweight" value="${avo.aniweight}" />
+					  	  	<c:param name="anifeature" value="${avo.anifeature}" />
+					  	  	<c:param name="aniregion" value="${avo.aniregion}" />
+					  	  	<c:param name="anidate" value="${avo.anidate}" />
+					  	  	<c:param name="anireward" value="${avo.anireward}" />
+					  	  	<c:param name="anistate" value="${avo.anistate}" />
+					  	  	<c:param name="aniimg" value="${avo.aniimg}" />
+					  	  	<c:param name="anineutral" value="${avo.anineutral}" />
+					  	  	
+					  	  </c:url>
+					  
+						  <div style="text-align: center; margin-top: 20px;">
+						  	<!-- 매칭이다 매칭!! -->
+						  	<a href="${matching}" type="button" class="btn btn-success btn-sm" style="width: 100px;"> 유사 정보 매칭 </a>
+						  	&nbsp;&nbsp;&nbsp;
+						  	<!-- poi를 적용시켜 연결시키자! -->
+						  	<button type="button" class="btn btn-success btn-sm" style="width: 100px;"> 전단지 출력 </button>
+						  </div>
+					  </c:if>
+					  
+				</div><p>
+				<button type="button" class="btn btn-success btn-sm" data-toggle="collapse" data-target="#demo">
+					<span class="glyphicon glyphicon-zoom-in"></span>&nbsp;ClickHere
+				</button>
+				<!--애기설명End-->
+			</td>
+		</tr>
 			
 			<tr height="300px">	<!-- 내용 들어가면 height="500px" 빼줘야함 -->
-				<td colspan="6" class="bgwhite"><textarea rows="15" cols="6">
-					${avo.bcontent}
-				</textarea>
+				<td colspan="8" class="bgwhite">
+					<textarea rows="15" style="width: 100%" readonly="readonly">${avo.bcontent}</textarea>
 				</td>						
 			</tr>
 			<!-- 댓글 입력  -->
@@ -164,11 +204,10 @@
 			<tr>
 			
 				<th>Comments</th>
-				<td colspan="6">
+				<td colspan="8">
 					<form method="post" action="commInsert">
 				    	<div class="input-group col-xs-12">
-<%-- 				    		<input type="hidden" name="mid" value="${sessionScope['loginid']}"/> --%>
-				    		<input type="text" name="mid" id="mid" value="${pageContext.request.userPrincipal.name}"/>
+				    		<input type="hidden" name="mid" id="mid" value="${pageContext.request.userPrincipal.name}"/>
 				    		<input type="hidden" name="bno" id="bno" value="${avo.bno}"/>
 				    		<input type="hidden" name="anino" id="anino" value="${avo.anino}"/>
 				    		<input type="hidden" name="cbip" value="<%=request.getRemoteAddr() %>">
@@ -189,7 +228,7 @@
 			<!--  댓글 출력 -->
 			<tr>
 				<th><span class="glyphicon glyphicon-user"></span></th>
-				<td colspan="6">
+				<td colspan="8">
 					<table width="100%">
 						<tr> <th style="border-left: 1px solid #f0fff0;">ID</th> <th  class="reply">Comment</th> <th>Date</th><th>삭제</th> </tr>
 						<!-- 댓글 부분 이곳에서 반복처리하면 됩니다. 시작 -->
@@ -219,7 +258,15 @@
 		</table>								
 		
 		<table><tr height="30px"><!-- 높이 조절용 칸 떼우기 --><td></td></tr></table>
-		<button type="button" class="btn btn-success btn-sm" onclick="location='updateformAnimal?anino=${avo.anino}'">　수　　정　</button>
-		<button type="button" class="btn btn-success btn-sm" onclick="location='deleteAnimal?anino=${avo.anino}&nowPage=1&searchtype=&bcode=${avo.bcode }'">　삭　　제　</button>
+		
+		<c:if test="${pageContext.request.userPrincipal.name == avo.mid}">
+			<button type="button" class="btn btn-success btn-sm" onclick="location='updateformAnimal?anino=${avo.anino}'">　수　　정　</button>
+			<button type="button" class="btn btn-success btn-sm" onclick="location='deleteAnimal?anino=${avo.anino}&nowPage=1&searchtype=&bcode=${avo.bcode }'">　삭　　제　</button>
+		</c:if>
+		
+		<c:if test="${pageContext.request.userPrincipal.name != null}">
+			<button type="button" class="btn btn-success btn-sm" id="reportBtn">　신　　고　 </button>
+		</c:if>
+		
 		<button type="button" class="btn btn-success btn-sm" onclick="location='selectallAnimal?bcode=${avo.bcode}&nowPage=1&searchType='">　목　　록　</button>
 	</div>		
