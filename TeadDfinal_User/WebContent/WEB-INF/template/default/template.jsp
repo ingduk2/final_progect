@@ -76,7 +76,7 @@ var stmnTimer;
 		<img id="wantedbaby" src="img/a.PNG"><p>
 		<strong>1,000,000￦</strong>
 	</div>
-	<p><img src="img/tabmenu_news.png">
+	<p><a href="news?num=1"><img src="img/tabmenu_news.png"></a>
 	<p><a href="http://edu2.kvma.or.kr/"><img src="img/tabmenu_camera.png" width="80px"></a>
 </div>
 

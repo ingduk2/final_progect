@@ -10,6 +10,7 @@ import kosta.teamd.vo.VapplyVO;
 
 @Repository
 public class VapplyDao {
+	
 	@Autowired
 	private SqlSessionTemplate template;
 	

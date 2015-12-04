@@ -200,7 +200,7 @@ table th {
 		<c:param name="nowPage" value="${nowPage}" />
 	</c:url>
 
-<table><tr height="30px"><!-- ³ôÀÌ Á¶Àý¿ë Ä­ ¶¼¿ì±â --><td></td></tr></table>
+<table><tr height="30px"><!-- ³ôÀÌ Á¶Àý¿ë Ä­ ¶ç¿ì±â --><td></td></tr></table>
 <c:if test="${pageContext.request.userPrincipal.name == bvo.mid}">
 	<button type="button" class="btn btn-success btn-sm" onclick="location='updateformBoard?bno=${bvo.bno}&nowPage=${nowPage}'">¡¡¼ö¡¡¡¡Á¤¡¡</button>
 	<button type="button" class="btn btn-success btn-sm" onclick="location='deleteBoard?bno=${bvo.bno}&bcode=${bvo.bcode}'">¡¡»è¡¡¡¡Á¦¡¡</button>
