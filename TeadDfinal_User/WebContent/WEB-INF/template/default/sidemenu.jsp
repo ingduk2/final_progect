@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <script type="text/javascript">
 var stmnLEFT = 10; // 오른쪽 여백 
@@ -22,7 +22,7 @@ var stmnTimer;
   stmnTimer = setTimeout("RefreshStaticMenu();", stmnActivateSpeed); 
   } 
  function InitializeStaticMenu() {
-  document.getElementById('staticmenu').style.right = stmnLEFT + 'px';  //ó���� �����ʿ� ��ġ. left�� �ٲ㵵.
+  document.getElementById('staticmenu').style.right = stmnLEFT + 'px';
   document.getElementById('staticmenu').style.top = document.body.scrollTop + stmnBASE + 'px'; 
   RefreshStaticMenu();
   }
