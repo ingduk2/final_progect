@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import kosta.teamd.vo.AniBoardVO;
 import kosta.teamd.vo.BoardVO;
 import kosta.teamd.vo.MemberVO;
 
@@ -119,6 +120,12 @@ public class BoardDao {
 		}
 		
 		
+		public int boardCnt(BoardVO bvo){
+			return template.selectOne("board.boardcnt",bvo);
+		}
+		
+		
+		
 		//main에 나올 mini board
 		public List<BoardVO> mainMiniBoard(){
 			return template.selectList("board.mainminiboard");
@@ -126,11 +133,18 @@ public class BoardDao {
 		public List<BoardVO> mainMiniBoard2(){
 			return template.selectList("board.mainminiboard2");
 		}
-		
-		
-		public int boardCnt(BoardVO bvo){
-			return template.selectOne("board.boardcnt",bvo);
+/*		public AniBoardVO maxreward(){
+			return template.selectOne("board.maxrewardanimal");
+		}*/
+		public List<AniBoardVO> mainMiniImgBoard1(){
+			return template.selectList("board.mainminiimgboard1");
 		}
+		public List<AniBoardVO> mainMiniImgBoard2(){
+			return template.selectList("board.mainminiimgboard2");
+		}
+		
+		
+
 		
 		
 	

@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import kosta.teamd.mvc.dao.BoardDao;
+import kosta.teamd.vo.AniBoardVO;
 import kosta.teamd.mvc.dao.SurveyDao;
 import kosta.teamd.vo.BoardVO;
 import kosta.teamd.vo.SurveyVO;
@@ -22,17 +23,29 @@ public class PageViewController {
 	
 	@RequestMapping(value={"/", "/index"})
 	public ModelAndView fromIndex(){
-		System.out.println("lol1");
+		
 		List<BoardVO> minilist=bdao.mainMiniBoard();
-		System.out.println(minilist.size());
 		List<BoardVO> minilist2=bdao.mainMiniBoard2();
-		System.out.println(minilist2.size());
+		
+//		AniBoardVO maxreward=bdao.maxreward();
+		
+		List<AniBoardVO> mainminiimgboard1=bdao.mainMiniImgBoard1();
+		List<AniBoardVO> mainminiimgboard2=bdao.mainMiniImgBoard2();
+		
 		ModelAndView mav=new ModelAndView("index");
-		System.out.println("lol2");
+		
 		mav.addObject("minilist", minilist);
 		mav.addObject("minilist2", minilist2);
+		
+//		mav.addObject("maxreward", maxreward);
+		
+		mav.addObject("mainminiimgboard1", mainminiimgboard1);
+		mav.addObject("mainminiimgboard2", mainminiimgboard2);
+		
 		return mav;
 	}
+	
+	
 	
 	// 디나이 페이지
 	@RequestMapping(value="/denied")

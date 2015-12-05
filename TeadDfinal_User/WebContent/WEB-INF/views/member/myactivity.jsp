@@ -48,23 +48,28 @@
 	#titlename{text-align: left; margin-bottom: 0px; margin-left: 8px; color: #27592F}
 </style>
 
+<script>
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();   
+});
+</script>
 
 
 <div id="memberinfomenubar"> <!-- memberpage : userinfo/userupdate/myactivity/withdrawal.jsp에 사용할 submenu -->
 <table style="margin-left: 130px;">
 	<tr>
 		<td><!-- 정보보기 -->
-			<a href="selectoneMember"><img class="imgsize" src="img/test/myinfo.png"/></a>
+			<a href="selectoneMember" data-toggle="tooltip" data-placement="top" title="정보보기"><img class="imgsize" src="img/test/myinfo.png"/></a>
 		</td>  
 	</tr>
 	<tr><!-- 정보수정 -->
-		<td><a href="updateformMember"><img class="imgsize" src="img/test/infoupdate.png"/></a></td>  
+		<td><a href="updateformMember" data-toggle="tooltip" data-placement="top" title="정보수정"><img class="imgsize" src="img/test/infoupdate.png"/></a></td>  
 	</tr>
 	<tr><!-- 나의 활동 -->
-		<td><a href="#"><img class="imgsize" src="img/test/involved.png"/></a></td>  
+		<td><a href="#" data-toggle="tooltip" data-placement="top" title="나의 활동"><img class="imgsize" src="img/test/involved.png"/></a></td>  
 	</tr>
 	<tr><!-- 탈퇴 -->
-		<td><a href="formWithdrawal"><img class="imgsize" src="img/test/withdrawal.png"/></a></td>
+		<td><a href="formWithdrawal" data-toggle="tooltip" data-placement="top" title="회원탈퇴"><img class="imgsize" src="img/test/withdrawal.png"/></a></td>
 	</tr>
 </table> 
 </div>

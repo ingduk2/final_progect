@@ -14,8 +14,7 @@ var code="";
 $(function() {
 	id=$('#cid').val();
 	code=$('#ccode').val();
-
-var url="ws://localhost:8080/TeadDfinal_User/chatting?id="+id+"&code="+code;
+var url="ws://localhost/TeadDfinal_User/chatting?id="+id+"&code="+code;
 function connect() {
 	if(socket==null){
 		socket = new WebSocket(url); //afterconnection
@@ -33,16 +32,12 @@ function connect() {
 		alert("이미 접속중입니다");
 	}
 }
-
 function disconnect() {
 	socket.close();
 	socket = null;
 }
-
 connect();
-
 });
-
 function send(){ //서버로 데이터를 전송하는 메서드
 	if(socket!=null){
 		socket.send($("#message").val());
@@ -64,7 +59,6 @@ function send(){ //서버로 데이터를 전송하는 메서드
 		margin: 0;
 		padding: 0
 	}
-
 	a.thumbnail:focus, a.thumbnail:hover {
 		color: #90ee90
 	}
@@ -77,7 +71,6 @@ function send(){ //서버로 데이터를 전송하는 메서드
  	.numbering{ 
   		clear: both; 
  	}  
-
 	.tag {
 		text-align: left;
 		padding-left: 10px;

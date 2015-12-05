@@ -119,7 +119,16 @@
 	</div>
 
 	<div id="imgtest">
-		<a href="#"><img src="img/gobtn.png" style="margin-top:192px;  margin-right: 250px;"></a><!-- 바로가기버튼입니다 -->
+		<c:if test="${pageContext.request.userPrincipal.name == null}">
+			<a href="login">
+				<img src="img/gobtn.png" style="margin-top:192px;  margin-right: 250px;">
+			</a><!-- 바로가기버튼입니다 -->
+		</c:if>
+		<c:if test="${pageContext.request.userPrincipal.name != null}">
+			<a href="selectallAnimal?bcode=6&nowPage=1&searchType=">
+				<img src="img/gobtn.png" style="margin-top:192px;  margin-right: 250px;">
+			</a><!-- 바로가기버튼입니다 -->
+		</c:if>
 	</div>
 	
 	<div style="margin: auto; width: 50%">
@@ -139,27 +148,24 @@
 			    </ol>
 
 				<div class="carousel-inner" role="listbox">
-				<!--
-				  <div class="item">
-					  <div class="panel-body">이 부분이 반복되면 됩니다.</div>
-			      </div> 
-			    -->
+			    
+			    <div class="item active"> <!-- style active class 때문에 첫번째 사진은 List로 넘어가게 했습니다ㅠㅠ 죄송해요 -->
+					  <div class="panel-body">
+						  <a href="selectallAnimal?bcode=4&nowPage=1&searchType=">
+						  	<img src="img/test/a2.png">
+						  </a>
+					  </div>
+			    </div>
 				
-			      <div class="item active">
-					  <div class="panel-body"><a href="#"><img src="img/test/a1.png"></a></div>
-			      </div>
-			      <div class="item">
-					  <div class="panel-body"><a href="#"><img src="img/test/a2.png"></a></div>
-			      </div>
-			      <div class="item">
-					  <div class="panel-body"><a href="#"><img src="img/test/a3.png"></a></div>
-			      </div>
-			      <div class="item">
-					  <div class="panel-body"><a href="#"><img src="img/test/a4.png"></a></div>
-			      </div>
-			      <div class="item">
-					  <div class="panel-body"><a href="#"><img src="img/test/a5.png"></a></div>
-			      </div>
+				  <c:forEach var="mainminiimgboard1" items="${mainminiimgboard1}">
+				      <div class="item">
+						  <div class="panel-body">
+						  	<a href="selectoneAnimal?anino=${mainminiimgboard1.anino}&bno=${mainminiimgboard1.bno}">
+						  		<img src="img/${mainminiimgboard1.aniimg}" height="122px">
+						  	</a>
+						  </div>
+				      </div>
+			      </c:forEach>
 			      
 			    </div>
 			    
@@ -191,13 +197,26 @@
 			    </ol>
 
 				<div class="carousel-inner" role="listbox">
-				<!--
-				  <div class="item">
-					  <div class="panel-body">이 부분이 반복되면 됩니다.</div>
-			      </div> 
-			    -->
 				
-			      <div class="item active">
+			    <div class="item active"> <!-- style active class 때문에 첫번째 사진은 List로 넘어가게 했습니다ㅠㅠ 죄송해요 -->
+					  <div class="panel-body">
+						  <a href="selectallAnimal?bcode=5&nowPage=1&searchType=">
+						  	<img src="img/test/b4.png">
+						  </a>
+					  </div>
+			    </div>
+				
+				  <c:forEach var="mainminiimgboard2" items="${mainminiimgboard2}">
+				      <div class="item">
+						  <div class="panel-body">
+						  	<a href="selectoneAnimal?anino=${mainminiimgboard2.anino}&bno=${mainminiimgboard2.bno}">
+						  		<img src="img/${mainminiimgboard2.aniimg}" height="122px">
+						  	</a>
+						  </div>
+				      </div>
+			      </c:forEach>
+				
+<!-- 			      <div class="item active">
 					  <div class="panel-body"><a href="#"><img src="img/test/b1.png"></a></div>
 			      </div>
 			      <div class="item">
@@ -211,7 +230,7 @@
 			      </div>
 			      <div class="item">
 					  <div class="panel-body"><a href="#"><img src="img/test/b5.png"></a></div>
-			      </div>
+			      </div> -->
 			      
 			    </div>
 			    

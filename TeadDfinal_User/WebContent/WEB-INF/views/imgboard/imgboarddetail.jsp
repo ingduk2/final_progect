@@ -124,10 +124,15 @@
 	<table style="border:1px ; width: 50%"> 
 <%-- 		<tr><td colspan="4" style="margin-right: 0px;"><input type="button" id="rpt" value="신고하기" /></td><td><label>신고수 : </label></td><td><label id="rptchk">${avo.brpt}</label></td></tr> --%>
 		
+		
 		<tr>	
 			<th>제목</th>	
 			<td colspan="7" class="bgwhite"> 
+				<%-- <c:if test="${cntchk == 616098}">
+					하하하하하하하하하하하하하하하하
+				</c:if> --%>
 				${avo.btitle }
+				${cntchk}
 			</td>					
 		</tr>
 		
@@ -158,14 +163,15 @@
 			<td colspan="8"><br>
 			
 				<!-- img/a.PNG가 이미지 뿌려주는 곳 -->
-				<a href="#" class="green-tooltip" data-toggle="tooltip" data-placement="top" title="자세한 정보를 보려면 사진 아래 버튼을 클릭해주세요!">
+				<a href="#" class="green-tooltip" data-toggle="tooltip" data-placement="top" title="위치를 확인하려면 아래 '위치확인' 버튼을 클릭해주세요!">
 					<img src="img/${avo.aniimg}" class="img-rounded" alt="NOT available" width="70%">
 				</a>
 				
 				<br /><br />
 				
 				<!--애기설명start-->
-				<div id="demo" class="collapse alert alert-success"><br>
+<!-- 				<div id="demo" class="collapse alert alert-success"><br> -->
+				<div id="" class="alert alert-success"><br>
 					<!--이름, 품종, 나이, 성별, 크기, 몸무게, 특징, 지역, 날짜-->
 					  <ul class="list-group">
 					  	
@@ -239,6 +245,10 @@
 					    <li class="list-group-item">
 					    	<span class="glyphicon glyphicon-apple"></span>
 					    	<label>지　역:　</label>${avo.aniregion}<!-- 지역 -->
+							<button type="button" class="btn btn-success btn-xs" data-toggle="collapse" data-target="#demo">
+								<span class="glyphicon glyphicon-zoom-in"></span>&nbsp;위치확인
+							</button>					    	
+					    	<div id="demo" class="collapse" style="margin-left: 10%">지도를 가지고 와야한다 지도를!!<!-- 지도 --></div>
 					    </li>
 					    
 					    <li class="list-group-item">
@@ -254,6 +264,8 @@
 					    </c:if>
 					    
 					  </ul> 
+					  
+					  
 					  
 					  <c:if test="${pageContext.request.userPrincipal.name == avo.mid and avo.anistate == 3}">
 					  
@@ -282,16 +294,26 @@
 						  <div style="text-align: center; margin-top: 20px;">
 						  <!-- 매칭이다 매칭!! -->
 						  	<a href="${matching}" type="button" class="btn btn-success btn-sm" style="width: 100px;"> 유사 정보 매칭 </a>
-						  	&nbsp;&nbsp;&nbsp;
+<!-- 						  	&nbsp;&nbsp;&nbsp; -->
 						  <!-- poi를 적용시켜 연결시키자! -->
-						  	<button type="button" class="btn btn-success btn-sm" style="width: 100px;"> 전단지 출력 </button>
+<!-- 						  	<button type="button" class="btn btn-success btn-sm" style="width: 100px;"> 전단지 출력 </button> -->
 						  </div>
 					  </c:if>
 					  
+					  
+					  
+					  <c:if test="${avo.bcode == 6 and avo.anistate == 1}">
+					  	<c:url var="adoptapply" value="/adoptquspage">
+					  		<c:param name="anino" value="${avo.anino}" />
+					  	</c:url>
+					  	
+					  	<div style="text-align: center; margin-top: 20px;">
+						  <!-- 입양 신청 버튼 -->
+						  	<a href="${adoptapply}" type="button" class="btn btn-success btn-sm" style="width: 100px;">　입양 신청　</a>
+						</div>
+					  </c:if>
+					  
 				</div><p>
-				<button type="button" class="btn btn-success btn-sm" data-toggle="collapse" data-target="#demo">
-					<span class="glyphicon glyphicon-zoom-in"></span>&nbsp;ClickHere
-				</button>
 				<!--애기설명End-->
 			</td>
 		</tr>

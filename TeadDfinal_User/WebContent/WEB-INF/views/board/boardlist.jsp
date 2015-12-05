@@ -21,8 +21,7 @@ $(document).ready(function(){
 	.glyphicon {
 		color: #8fbc8f
 	}
-
-	
+	/* 	tootip style */
 		#itsfloatdiv{
 		position: fixed; position: absolute; 
 /* 		z-index: -1; */
@@ -80,13 +79,6 @@ $(document).ready(function(){
 /* title style */
 .titlename{width: 50%; margin: auto;}
 #titlename{text-align: left; margin-bottom: 0px; margin-left: 8px; color: #27592F}
-/* contents style */
-/* #contents { 
-   width: 200px; 
-   white-space: nowrap; 
-   overflow: hidden; 
-   text-overflow: ellipsis; 
- }  */
 
 </style>
 
@@ -100,7 +92,7 @@ $(function() {
 
 
 
-var url="ws://localhost:8080/TeadDfinal_User/chatting?id="+id+"&code="+code;
+var url="ws://localhost/TeadDfinal_User/chatting?id="+id+"&code="+code;
 function connect() {
 	if(socket==null){
 		socket = new WebSocket(url); //afterconnection

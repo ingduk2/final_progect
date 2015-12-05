@@ -1,6 +1,10 @@
 eclipse.preferences.version=1
 <<<<<<< HEAD
+encoding//WebContent/WEB-INF/template/default/sidemenu.jsp=UTF-8
+=======
+<<<<<<< HEAD
 =======
 encoding//src/kosta/teamd/mvc/service/Paging.java=UTF-8
+>>>>>>> refs/remotes/origin/master
 >>>>>>> refs/remotes/origin/master
 encoding/<project>=UTF-8

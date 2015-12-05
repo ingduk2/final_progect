@@ -6,6 +6,7 @@
 --                       회원 테이블 : 신분 컬럼 추가, 관리자 데이터 추가
 -- 최종 업데이트 : 15/12/03 _ 동물 테이블 : 중성화 컬럼 추가, 성별 CK 삭제
 --                       animatchdata view 추가
+-- 최종 업데이트 : 15/12/05 _ 입양 신청 테이블, 시퀀스 추가
 
 -- -----------------------------------------------------------------------------
 
@@ -220,14 +221,14 @@ end;
 select new_line(bcontent) from board;
 
 
---------입양신청 임시------
+-------- 입양 신청 ------
 create table adoptapply(
-adopno number constraint adoptapply_adoptno_pk primary key,
+adoptno number constraint adoptapply_adoptno_pk primary key,
 mid varchar2(20),
 anino number,
-eid varchar2(20),
-memage varchar2(20),
 score number,
+eid varchar2(20),
+mage varchar2(50),
 qus1 varchar2(50),
 qus1sup1 varchar2(50),
 qus2 varchar2(50),
@@ -242,7 +243,7 @@ qus8 varchar2(50),
 qus9 varchar2(50),
 qus10 varchar2(50));
 
-create sequence adopt_seq
+create sequence adoptapply_seq
 increment by 1
 start with 1;
 

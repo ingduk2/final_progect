@@ -30,8 +30,8 @@
 <!-- 		<typeAlias type="kosta.teamd.vo.Survey2VO" alias="svo2"/> -->
 <!-- 		<typeAlias type="kosta.teamd.vo.Survey3VO" alias="svo3"/> -->
 
-		<!-- 입양 -->
-		<typeAlias type="kosta.teamd.vo.AdoptApplyVO" alias="adavo"/>
+		
+		<typeAlias type="kosta.teamd.vo.AdoptApplyVO" alias="adavo"/>   <!-- 입양 -->
 		
 		
 		

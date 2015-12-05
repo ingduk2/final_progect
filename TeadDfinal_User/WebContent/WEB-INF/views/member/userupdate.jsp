@@ -405,6 +405,14 @@ $(function() {
 	}
 	// 모든 양식 제대로 기입했을 때만 진행할 수 있도록 체크하는 함수
 
+	
+	
+	//tooltip
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();   
+});
+	
+	
 </script>
 
 
@@ -412,17 +420,17 @@ $(function() {
 <table style="margin-left: 130px;">
 	<tr>
 		<td><!-- 정보보기 -->
-			<a href="selectoneMember"><img class="imgsize" src="img/test/myinfo.png"/></a>
+			<a href="selectoneMember" data-toggle="tooltip" data-placement="top" title="정보보기"><img class="imgsize" src="img/test/myinfo.png"/></a>
 		</td>  
 	</tr>
 	<tr><!-- 정보수정 -->
-		<td><a href="#"><img class="imgsize" src="img/test/infoupdate.png"/></a></td>  
+		<td><a href="#" data-toggle="tooltip" data-placement="top" title="정보수정"><img class="imgsize" src="img/test/infoupdate.png"/></a></td>  
 	</tr>
 	<tr><!-- 나의 활동 -->
-		<td><a href="selectAllMyActivity"><img class="imgsize" src="img/test/involved.png"/></a></td>  
+		<td><a href="selectAllMyActivity" data-toggle="tooltip" data-placement="top" title="나의 활동"><img class="imgsize" src="img/test/involved.png"/></a></td>  
 	</tr>
 	<tr><!-- 탈퇴 -->
-		<td><a href="formWithdrawal"><img class="imgsize" src="img/test/withdrawal.png"/></a></td>
+		<td><a href="formWithdrawal" data-toggle="tooltip" data-placement="top" title="회원탈퇴"><img class="imgsize" src="img/test/withdrawal.png"/></a></td>
 	</tr>
 </table> 
 </div>
