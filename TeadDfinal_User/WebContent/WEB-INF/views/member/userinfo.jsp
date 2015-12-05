@@ -110,7 +110,7 @@ $(document).ready(function(){
 		<td><a href="updateformMember" data-toggle="tooltip" data-placement="bottom" title="정보수정"><img class="imgsize" src="img/test/infoupdate.png"/></a></td>  
 	</tr>
 	<tr><!-- 나의 활동 -->
-		<td><a href="selectAllMyActivity" data-toggle="tooltip" data-placement="bottom" title="내 활동 모아보기"><img class="imgsize" src="img/test/involved.png"/></a></td>  
+		<td><a href="selectAllMyActivity" data-toggle="tooltip" data-placement="bottom" title="내 글 모아보기"><img class="imgsize" src="img/test/involved.png"/></a></td>  
 	</tr>
 	<tr><!-- 탈퇴 -->
 		<td><a href="formWithdrawal" data-toggle="tooltip" data-placement="bottom" title="회원탈퇴"><img class="imgsize" src="img/test/withdrawal.png"/></a></td>

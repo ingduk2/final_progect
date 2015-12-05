@@ -4,6 +4,8 @@ import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,10 +25,45 @@ public class AdoptController {
 	@Autowired
 	private AdoptApplyDao adadao;
 
-	// 입양 신청 페이지 연결
+	// 입양 신청 페이지 연결 및 신청 여부 체크
 	@RequestMapping(value="/adoptquspage")
-	public String adoptapplyView() {
-		return "adopt/adoptapply";
+	public ModelAndView adoptapplyView(int anino, Principal prcp, HttpServletRequest req) {
+		
+		System.out.println("Log : 입양 신청 페이지 연결 및 신쳥 여부 체크 시작");
+		
+		AdoptApplyVO adavo = new AdoptApplyVO();
+		adavo.setAnino(anino);
+		adavo.setMid(prcp.getName());
+		
+		ModelAndView mav = new ModelAndView();
+		
+		int cnt = adadao.selectCntCheck(adavo);
+		
+		if (cnt > 0) {
+			
+			System.out.println("Log : 이미 입양 신청 했음");
+			
+			String back = req.getHeader("referer").substring(32);
+			mav.setViewName("redirect:" + back);
+			
+			int cntchk = 616098;
+			mav.addObject("cntchk", cntchk);
+			
+			System.out.println("Log : 입양 신청 페이지 연결 및 신쳥 여부 체크 끝");
+			
+			return mav;
+		}
+		else {
+			
+			System.out.println("Log : 입양 신청 페이지로 이동");
+		
+			mav.setViewName("adopt/adoptapply");
+			mav.addObject("anino", anino);
+			
+			System.out.println("Log : 입양 신청 페이지 연결 및 신쳥 여부 체크 끝");
+			
+			return mav;
+		}
 	}
 	
 	// 입양 신청서 답변 점수화 및 DB 저장
@@ -234,19 +271,19 @@ public class AdoptController {
 		}
 		else if (age >= 20 && age < 25) {
 			score += 0;
-			aavo.setMemage("나이: 20~25");
+			aavo.setMage("나이: 20~25");
 		}
 		else if (age >= 25 && age < 30) {
 			score += 1;
-			aavo.setMemage("나이: 25~30");
+			aavo.setMage("나이: 25~30");
 		}
 		else if (age >= 30 && age < 35) {
 			score += 2;
-			aavo.setMemage("나이: 30~35");
+			aavo.setMage("나이: 30~35");
 		}
 		else {
 			score += 3;
-			aavo.setMemage("나이: 35이상");
+			aavo.setMage("나이: 35이상");
 		}
 		// 입양 신청자 정보에서 생년월일 통해 나이대 점수화 추가 --------------------------------------------------END
 		
@@ -254,12 +291,11 @@ public class AdoptController {
 			aavo.setMid(prcp.getName()); // vo에 입양 신청자 아이디 추가
 			aavo.setScore(score); // vo에 점수 추가
 			
-			// ModelAndView 생성 및 성공했다는 메세지(?) 이미지(?) 뿌려주는 페이지로 연결
-			// dao, db 등 연결
-			
 			// 테스트 ----------------------------------------------------------------
+			System.out.println("신청 성공");
 			System.out.println("신청자: "+aavo.getMid());
 			System.out.println("점수: "+aavo.getScore());
+			System.out.println("동물 번호: "+aavo.getAnino());
 			System.out.println("Q1: "+aavo.getQus1());
 			System.out.println("Q1-1: "+aavo.getQus1sup1());
 			System.out.println("Q2: "+aavo.getQus2());
@@ -273,14 +309,49 @@ public class AdoptController {
 			System.out.println("Q8: "+aavo.getQus8());
 			System.out.println("Q9: "+aavo.getQus9());
 			System.out.println("Q10: "+aavo.getQus10());
-			System.out.println("나이대: "+aavo.getMemage());
+			System.out.println("나이대: "+aavo.getMage());
 			System.out.println();
+			// 테스트 ----------------------------------------------------------------
+			
+			adadao.insertAdoptApply(aavo);
+			
+			ModelAndView mav = new ModelAndView("redirect:/adoptSuccess");
+			mav.addObject("mid", prcp.getName());
+			
+			return mav;
 		}
 		else {
 			// ModelAndView 생성 및 입양 신청에 조건이 되지 않아 실패했다는 메세지(?) 이미지(?) 뿌려주는 페이지로 연결
 			System.out.println("신청 실패");
+			
+			ModelAndView mav = new ModelAndView("redirect:/adoptFail");
+			mav.addObject("mid", prcp.getName());
+			
+			return mav;
 		}
-		adadao.insertAdopt(aavo);
-		return null;
+	}
+	
+	// 입양 신청 결과 페이지 (성공)
+	@RequestMapping(value="/adoptSuccess")
+	public ModelAndView adoptSuccess(String mid) {
+		String msg = " 님, 감사합니다. 입양 신청이 성공적으로 신청됐습니다.<br/>곧 담당 직원을 통해 연락드리겠습니다.";
+		
+		ModelAndView mav = new ModelAndView("adopt/adoptres");
+		mav.addObject("mid", mid);
+		mav.addObject("msg", msg);
+		
+		return mav;
+	}
+	
+	// 입양 신청 결과 페이지 (실패)
+	@RequestMapping(value="/adoptFail")
+	public ModelAndView adoptFail(String mid) {
+		String msg = " 님, 죄송합니다.<br/>자격 요건 미달로 입양 신청에 실패했습니다.";
+		
+		ModelAndView mav = new ModelAndView("adopt/adoptres");
+		mav.addObject("mid", mid);
+		mav.addObject("msg", msg);
+		
+		return mav;
 	}
 }

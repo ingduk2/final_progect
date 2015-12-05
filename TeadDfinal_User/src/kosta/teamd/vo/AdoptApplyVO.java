@@ -2,24 +2,16 @@ package kosta.teamd.vo;
 
 public class AdoptApplyVO {
 
-	// 신청자 아이디, 신청 동물 번호, 담당자 사원 아이디
-	private int adoptno;
+	private int adoptno, anino, score;
+	private String mid, eid;
+	private String mage, qus1, qus2, qus3, qus4, qus5, qus6, qus7, qus8, qus9, qus10;
+	private String qus1sup1, qus2sup1, qus6sup1;
+
 	public int getAdoptno() {
 		return adoptno;
 	}
 	public void setAdoptno(int adoptno) {
 		this.adoptno = adoptno;
-	}
-
-	private String mid;
-	private int anino;
-	private String eid;
-	
-	public String getMid() {
-		return mid;
-	}
-	public void setMid(String mid) {
-		this.mid = mid;
 	}
 	public int getAnino() {
 		return anino;
@@ -27,34 +19,30 @@ public class AdoptApplyVO {
 	public void setAnino(int anino) {
 		this.anino = anino;
 	}
-	public String getEid() {
-		return eid;
-	}
-	public void setEid(String eid) {
-		this.eid = eid;
-	}
-
-	// 신청자 나이대, 신청 점수
-	private String memage;
-	private int score;
-	
-	public String getMemage() {
-		return memage;
-	}
-	public void setMemage(String memage) {
-		this.memage = memage;
-	}
 	public int getScore() {
 		return score;
 	}
 	public void setScore(int score) {
 		this.score = score;
 	}
-
-	// 입양 신청 시, 각 질문에 대한 답변
-	private String qus1, qus2, qus3, qus4, qus5, qus6, qus7, qus8, qus9, qus10;
-	private String qus1sup1, qus2sup1, qus6sup1;
-
+	public String getMid() {
+		return mid;
+	}
+	public void setMid(String mid) {
+		this.mid = mid;
+	}
+	public String getEid() {
+		return eid;
+	}
+	public void setEid(String eid) {
+		this.eid = eid;
+	}
+	public String getMage() {
+		return mage;
+	}
+	public void setMage(String mage) {
+		this.mage = mage;
+	}
 	public String getQus1() {
 		return qus1;
 	}
