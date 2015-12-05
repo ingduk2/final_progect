@@ -82,8 +82,10 @@ $.ajax({
 			//alert(item.title);
 			print +="<h1>["+item.title+"]</h1><p> name:"+item.latlng+"</p>";
 			
-			var split=item.latlng.split(',');
-			item.latlng=new daum.maps.LatLng(split[0],split[1]);
+			var xy=item.latlng.split(',');
+			alert(xy[0]);
+			alert(xy[1]);
+			item.latlng=new daum.maps.LatLng(xy[0],xy[1]);
 			
 		});
 		
