@@ -142,6 +142,9 @@ public class BoardDao {
 		public List<AniBoardVO> mainMiniImgBoard2(){
 			return template.selectList("board.mainminiimgboard2");
 		}
+		public AniBoardVO randomreward(){
+			return template.selectOne("board.randomreward");
+		}
 		
 		
 
