@@ -219,17 +219,20 @@
 		from board where <![CDATA[rownum<=3]]> and bcode=3 order by bno desc
 	</select>
 	
-<!-- 	<select id="maxrewardanimal" resultType="abvo">
-		select * from animal where anireward=(select max(anireward) from animal)		
-	</select> -->
-	
 	<select id="mainminiimgboard1" resultType="abvo">
       select a.anino anino, a.aniimg aniimg, b.bno bno, b.bcode bcode 
-      from animal a, board b where a.anino=b.anino and aniimg is not null and bcode=4
+      from animal a, board b where a.anino=b.anino and aniimg is not null and bcode=4 and <![CDATA[rownum<=5]]> order by a.anino desc
 	</select>
 	<select id="mainminiimgboard2" resultType="abvo">
       select a.anino anino, a.aniimg aniimg, b.bno bno, b.bcode bcode 
-      from animal a, board b where a.anino=b.anino and aniimg is not null and bcode=5
+      from animal a, board b where a.anino=b.anino and aniimg is not null and bcode=5 and <![CDATA[rownum<=5]]> order by a.anino desc
+	</select>
+	
+	<select id="randomreward" resultType="abvo">
+		select * from 
+		(select a.anino as anino, b.bno as bno, b.mid as mid, a.aniimg as aniimg, a.anireward as anireward from animal a, board b 
+		where a.anino=b.anino and aniimg is not null and a.anino!=0 and b.bcode=4 order by dbms_random.value)
+		where rownum=1
 	</select>
 	
 	
