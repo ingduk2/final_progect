@@ -77,7 +77,13 @@
 		text-align: left;
 		
 	}
-	.col-md-4 {
+	.col-md-4{
+		border-radius:15px;
+		margin: 10px;
+		width: 210px;
+		padding-top: 15px;
+		padding-bottom: 10px;
+ 		background-color: rgba(255, 255, 255, 0.8);
  		margin-top: 15px;
  		margin-bottom: 15px;
 	}
