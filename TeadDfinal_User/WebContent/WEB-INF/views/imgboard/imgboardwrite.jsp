@@ -245,6 +245,11 @@
 			document.imgboardwriteform.btitle.focus()
 			return false
 		}
+		if (document.imgboardwriteform.maniimg.value == "") {
+			alert("사진을 등록해주세요")
+			document.imgboardwriteform.maniimg.focus()
+			return false
+		}
 		if (document.imgboardwriteform.anistate.value == "0") {
 			alert("분류를 선택해주세요")
 			document.imgboardwriteform.anistate.focus()

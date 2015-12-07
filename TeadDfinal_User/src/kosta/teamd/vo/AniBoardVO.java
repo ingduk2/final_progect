@@ -45,9 +45,17 @@ public class AniBoardVO {
 	private String searchType, searchValue;
 	private int start, end;
 	
-	// 매칭 결과 목록
+	// 매칭 결과
 //	private AniBoardVO[] matchres;
 	private int matchswitch;
+	private String matchmsg;
+	
+	public String getMatchmsg() {
+		return matchmsg;
+	}
+	public void setMatchmsg(String matchmsg) {
+		this.matchmsg = matchmsg;
+	}
 	
 	// ====================================================== 씨발 내가 병신이라 그런거지 어쩔수 있나
 	private int first, second, third;
