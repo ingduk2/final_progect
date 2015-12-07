@@ -585,7 +585,9 @@
 						</td>
 						<td>${cbvo.cbdate }</td> 
 																			<!-- 수정해야지 함. -->
-						<td><input type="button" value="삭제" onclick="location='commDelete?cbno=${cbvo.cbno}&anino=${avo.anino}&bno=${avo.bno }'"></td>
+						<td><%-- <input type="button" value="삭제" onclick="location='commDelete?cbno=${cbvo.cbno}&anino=${avo.anino}&bno=${avo.bno }'"> --%>
+							<a type="button" href="commDelete?cbno=${cbvo.cbno}&anino=${avo.anino}&bno=${avo.bno}">삭제</a>
+						</td>
 					</tr>
 					</c:forEach>
 					<!-- 끝 -->

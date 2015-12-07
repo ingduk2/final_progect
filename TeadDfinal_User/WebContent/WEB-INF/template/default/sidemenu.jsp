@@ -34,6 +34,7 @@ var stmnTimer;
      success: function(msg) { //데이터 받는 부분.response
      	var reward=JSON.parse(msg);
      	
+     	
 /*      	alert(reward[0].anino);
      	alert(reward[0].bno);
      	alert(reward[0].mid);
@@ -43,15 +44,10 @@ var stmnTimer;
      	$('#wantedbaby').attr("src", "img/"+reward[0].aniimg);
 //      	selectoneAnimal?anino=81&bno=221&mid=1111
      	$('#link').prop('href', "selectoneAnimal?anino="+reward[0].anino+"&bno="+reward[0].bno+"&mid="+reward[0].mid);
-     },
-     error: function(a, b) {
-         alert("Request: " + JSON.stringify(a));
-         alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
      }
-
 });
  
-</script>
+</script>	
 
 <style type="text/css">
 #staticmenu { margin: 0pt; padding: 0pt;  position: absolute; right: 0px; top: 0px;}

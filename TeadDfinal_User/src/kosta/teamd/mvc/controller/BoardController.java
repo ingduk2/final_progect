@@ -68,11 +68,12 @@ public class BoardController {
 		}
 		
 		bvo.setBfile(originalFile);
-		bdao.insertBoard(bvo);
+		int a=bdao.insertBoard(bvo);
 		
-		String bno = bdao.selectBno(bvo);
+//		String bno = bdao.selectBno(bvo);
 		
-		ModelAndView mav=new ModelAndView("redirect:/selectoneBoard?bno="+bno+"&mid="+bvo.getMid()+"&nowPage="+nowPage);
+		
+		ModelAndView mav=new ModelAndView("redirect:/selectoneBoard?bno="+a+"&mid="+bvo.getMid()+"&nowPage="+nowPage);
 
 		return mav;
 	}
@@ -190,9 +191,10 @@ public class BoardController {
 		mav.addObject("nowPage", nowPage);
 		return mav;
 	}
-	@RequestMapping(value="updateBoard", method=RequestMethod.POST)
+	@RequestMapping(value="/updateBoard", method=RequestMethod.POST)
 	public ModelAndView updateBoard(BoardVO bvo, String nowPage){
 		System.out.println(bvo.getBtitle());
+		System.out.println("log ex");
 		bdao.updateBoard(bvo);
 		ModelAndView mav=new ModelAndView("redirect:/selectoneBoard?bno="+String.valueOf(bvo.getBno())+"&mid="+bvo.getMid()+"&nowPage="+nowPage);
 		return mav;

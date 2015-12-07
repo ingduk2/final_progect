@@ -16,8 +16,10 @@ public class BoardDao {
 	@Autowired
 	private SqlSessionTemplate template;
 	
-	public void insertBoard(BoardVO bvo){
+	public int insertBoard(BoardVO bvo){
 		template.insert("board.insert", bvo);
+		int a=bvo.getBno();
+		return a;
 	}
 	public List<BoardVO> listBoard(BoardVO bvo){
 		return template.selectList("board.getlist", bvo);

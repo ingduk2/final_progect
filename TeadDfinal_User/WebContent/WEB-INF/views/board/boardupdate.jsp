@@ -84,13 +84,13 @@ table th {
 <!-- 공간 띄우기 용 -->
 <table><tr height="50px"><td></td></tr></table>
 	
-<form action="updateBoard" method="post"
-	  name="boardupdateform" onsubmit="return checksubmit()">
+<form action="updateBoard" method="post" name="boardupdateform" onsubmit="return checksubmit()" enctype="multipart/form-data">
 	
 	
 <input type="hidden" name="bno" value="${bvo.bno}">
 <input type="hidden" name="mid" value="${bvo.mid }">
 <input type="hidden" name="nowPage" value="${nowPage}">	
+
 <table width="500px">	
 	<tr> <th colspan="2">　</th> </tr>			
 	<tr>	
