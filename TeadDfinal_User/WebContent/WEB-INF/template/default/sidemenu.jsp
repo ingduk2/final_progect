@@ -32,9 +32,7 @@ var stmnTimer;
      url: "randomreward", //"testAjax.jsp", 
      type: "get",
      success: function(msg) { //데이터 받는 부분.response
-//     	alert(msg);
      	var reward=JSON.parse(msg);
-//      	alert(reward);
      	
 /*      	alert(reward[0].anino);
      	alert(reward[0].bno);

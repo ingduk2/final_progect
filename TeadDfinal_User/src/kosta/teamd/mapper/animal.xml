@@ -64,7 +64,10 @@
     </delete>
     
     <update id="imgupdate" parameterType="anivo">
-		update animal set aniimg=#{aniimg} where anino=#{anino}
+	 update animal set 
+		aniimg=#{aniimg}, anispecies=#{anispecies}, anibreed=#{anibreed}, aniname=#{aniname}, aniage=#{aniage},	anisex=#{anisex},
+		aniweight=#{aniweight},	anifeature=#{anifeature}, aniregion=#{aniregion}, anidate=#{anidate}, anireward=#{anireward}, anistate=#{anistate}
+	 where anino=#{anino}
     </update>
     
     

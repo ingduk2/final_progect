@@ -63,7 +63,7 @@ public class AnimalController {
 		//이미지 저장폴더 이름
 		
 		//img가 있어서 upload로 바꿈
-		String img_path = "\\upload\\";
+		String img_path = "\\img\\";
 
 		// 이미지 전체경로를 저장하기 위해 버퍼를 생성
 		StringBuffer path = new StringBuffer();
@@ -278,10 +278,11 @@ public class AnimalController {
 	/////수장
 	//이미지 업로드 실행 
 	@RequestMapping(value="/updateAnimal", method=RequestMethod.POST)
-	public ModelAndView updateAnimal(AnimalVO avo,  BoardVO bvo,HttpServletRequest request){
+	public ModelAndView updateAnimal(AnimalVO avo,  BoardVO bvo, HttpServletRequest request){
+		
 		HttpSession session = request.getSession();
 		String r_path = session.getServletContext().getRealPath("/");
-		String img_path = "\\upload\\";
+		String img_path = "\\img\\";
 		String ofile = avo.getManiimg().getOriginalFilename();
 		StringBuffer path = new StringBuffer();
 		path.append(r_path).append(img_path).append(ofile);

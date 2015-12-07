@@ -60,8 +60,8 @@ table th {
 		return true;
 	}
 	
-$(document).ready(function(){
-	    $("#reportBtn").click(function(){
+	$(document).ready(function(){
+  $('#reportBtn').click(function(){
 			$.ajax({
 				url: "updateRptAnimal",
 				type: "post",
@@ -82,8 +82,8 @@ $(document).ready(function(){
 					}
 				}
 			});
-		});
-
+		  });
+	});
 </script>
 
 <div>		

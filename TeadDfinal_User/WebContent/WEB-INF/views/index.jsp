@@ -149,14 +149,6 @@
 
 				<div class="carousel-inner" role="listbox">
 			    
-<!-- 			    <div class="item active"> style active class 때문에 첫번째 사진은 List로 넘어가게 했습니다ㅠㅠ 죄송해요
-					  <div class="panel-body">
-						  <a href="selectallAnimal?bcode=4&nowPage=1&searchType=">
-						  	<img src="img/test/a2.png">
-						  </a>
-					  </div>
-			    </div> -->
-			    
 			    <c:forEach var="mainminiimgboard1" items="${mainminiimgboard1}" varStatus="status">
 			    	<c:if test="${status.count==1}">
 				  		<div class="item active">
