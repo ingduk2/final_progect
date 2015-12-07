@@ -237,9 +237,9 @@ public class AnimalController {
 		
 		// ====================================================== 씨발 내가 병신이라 그런거지 어쩔수 있나
 		
-		System.out.println(abvo.getFirst());
+/*		System.out.println(abvo.getFirst());
 		System.out.println(abvo.getSecond());
-		System.out.println(abvo.getThird());
+		System.out.println(abvo.getThird());*/
 		if(abvo.getMatchswitch() == 1) {
 			List<AniBoardVO> ssibal = new LinkedList<>();
 			ssibal.add(0, adao.imgDetail(abvo.getFirst()));

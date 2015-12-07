@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
 
+<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=cafcd4fae4be10d7ffdde1bc7cadf004&libraries=services"></script>
+
 <style>
 
 	table th {
@@ -83,6 +85,10 @@
 
 <script> //image mouse over script
 	$(document).ready(function(){
+		
+// 		$('#map').empty();
+		
+		
 	    $('[data-toggle="tooltip"]').tooltip();   
 	   
 	    $("#reportBtn").click(function(){
@@ -108,8 +114,80 @@
 				}
 			});
 		});
-	});
+	    
+	    $('#showmap').click(function() {
+// 			$('#map').show();
+
+	        var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+		    mapOption = {
+		        center: new daum.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+		        level: 3 // 지도의 확대 레벨
+		    };  
+
+		// 지도를 생성합니다    
+		var map = new daum.maps.Map(mapContainer, mapOption); 
+
+
+		// 주소-좌표 변환 객체를 생성합니다
+		var geocoder = new daum.maps.services.Geocoder();
+		
+		
+		// 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
+		var mapTypeControl = new daum.maps.MapTypeControl();
+
+		// 지도에 컨트롤을 추가해야 지도위에 표시됩니다
+		// daum.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
+		map.addControl(mapTypeControl, daum.maps.ControlPosition.TOPRIGHT);
+
+		// 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
+		var zoomControl = new daum.maps.ZoomControl();
+		map.addControl(zoomControl, daum.maps.ControlPosition.RIGHT);
+		
+		
+		var addr=$('#addr').val();
+		// 주소로 좌표를 검색합니다
+		geocoder.addr2coord(addr, function(status, result) {
+
+		    // 정상적으로 검색이 완료됐으면 
+		     if (status === daum.maps.services.Status.OK) {
+
+		        var coords = new daum.maps.LatLng(result.addr[0].lat, result.addr[0].lng);
+		        
+		        mapContainer.style.display="block";
+		        map.relayout();
+		        
+		        map.setCenter(coords);  //가운데로!
+		        
+		      //지도에 표시할 원을 생성합니다
+		        var circle = new daum.maps.Circle({
+		            center : new daum.maps.LatLng(result.addr[0].lat, result.addr[0].lng),  // 원의 중심좌표 입니다 
+		            radius: 120, // 미터 단위의 원의 반지름입니다 
+		            strokeWeight: 5, // 선의 두께입니다 
+		            strokeColor: '#41DA41', // 선의 색깔입니다
+		            strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+		            strokeStyle: 'dashed', // 선의 스타일 입니다
+		            fillColor: '#f5fffa', // 채우기 색깔입니다
+		            fillOpacity: 0.7  // 채우기 불투명도 입니다   
+		        }); 
+
+		        // 지도에 원을 표시합니다 
+		        circle.setMap(map); 
+		        
+				
+		        // 결과값으로 받은 위치를 마커로 표시합니다
+		        var marker = new daum.maps.Marker({
+		            map: map,
+		            position: coords
+		        });
+
+		    } 
+		    
+		}); 
+		});
+	    
+		});
 	
+    
 </script>
 
 
@@ -167,6 +245,7 @@
 				</a>
 				
 				<br /><br />
+				
 				
 				<!--애기설명start-->
 <!-- 				<div id="demo" class="collapse alert alert-success"><br> -->
@@ -244,10 +323,13 @@
 					    <li class="list-group-item">
 					    	<span class="glyphicon glyphicon-apple"></span>
 					    	<label>지　역:　</label>${avo.aniregion}<!-- 지역 -->
-							<button type="button" class="btn btn-success btn-xs" data-toggle="collapse" data-target="#demo">
+					    	<input type="hidden" value="${avo.aniregion}" id="addr">
+							<button id="showmap" type="button" class="btn btn-success btn-xs" data-toggle="collapse" data-target="#demo"><!-- data-toggle="collapse" data-target="#demo" -->
 								<span class="glyphicon glyphicon-zoom-in"></span>&nbsp;위치확인
 							</button>					    	
-					    	<div id="demo" class="collapse" style="margin-left: 10%">지도를 가지고 와야한다 지도를!!<!-- 지도 --></div>
+					    	<div id="demo" class="collapse" style="margin-left: 10%">
+					    		<div id="map" style="width:575px;height:350px;"></div>
+					    	</div>
 					    </li>
 					    
 					    <li class="list-group-item">
