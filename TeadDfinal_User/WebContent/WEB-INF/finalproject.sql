@@ -265,3 +265,20 @@ is
     return v_subpad;
   end if;
   end;
+  
+ -------------------------------------
+ --제목 21번자리 자르기---
+ create or replace function subtitle(content clob)
+return varchar2
+is 
+  v_subpad clob;
+  BEGIN
+  if(length(content)>21)
+  then
+  v_subpad:=substr(content,1,21)||'...';
+    return v_subpad;
+  else
+    v_subpad:=content;
+    return v_subpad;
+  end if;
+  end;

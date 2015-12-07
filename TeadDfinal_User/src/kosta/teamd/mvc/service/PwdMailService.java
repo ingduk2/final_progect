@@ -25,21 +25,20 @@ public class PwdMailService {
 	
 	
 	
-	//메일 보내기  메소드
+	//메일 보내기  
 	public void loginMail(String mid, String email) throws AddressException, MessagingException{
 		MimeMessage message = mailSender.createMimeMessage();
-		String adEmail = "ggamagu100@gmail.com";
-		String subject = "비밀번호 변경 안내 이메일 입니다.";
+		String adEmail = "ggamagu100@gmail.com";// 관리자 메일 
+		String subject = "비밀번호 변경 안내 이메일 입니다.";  // 메일 제목
 		StringBuffer sendpwd = new StringBuffer();
 		System.out.println(adEmail);
 		System.out.println(subject);
-		Random rpwd = new Random();
-		int pass = 0;
-		int passA = 0;
+		Random rpwd = new Random(); //자바 랜덤
+		int pass = 0; // 숫자
+		int passA = 0; // 알파벳 소문자
 		System.out.println("랜덤수");
-		
 		for(int i =0; i<=6; i++){
-		pass = rpwd.nextInt(9)+49;
+		pass = rpwd.nextInt(9)+49;   
 		passA =rpwd.nextInt(25)+98;
 		sendpwd.append((char)pass).append((char)passA);
 		}
@@ -47,15 +46,15 @@ public class PwdMailService {
 		System.out.println(pass);
 		StringBuffer sb = new StringBuffer();
 		sb.append(mid).append("님 ").append("변경된 비밀번호는 ").append(sendpwd.toString()).append("입니다.");
-		sb.append("변경된 비밀번호로 접속해 주세요!");
-		message.setFrom(new InternetAddress(adEmail));
-		message.addRecipient(RecipientType.TO, new InternetAddress(email));
-		message.setSubject(subject);
-		message.setText(sb.toString(),"utf-8");
-		mailSender.send(message);
+		sb.append("변경된 비밀번호로 접속해 주세요!"); // 메일 내용.. 
+		message.setFrom(new InternetAddress(adEmail)); // 보내는 메일  메세지에 저장
+		message.addRecipient(RecipientType.TO, new InternetAddress(email)); // 받는 메일 메세지에 저장
+		message.setSubject(subject); //메일 제목 메세지에 저장
+		message.setText(sb.toString(),"utf-8");  //메일 내용  저장
+		mailSender.send(message);  //메일 보낼 내용을 담은... 메세지를 mailsender로 전송
 		MemberVO mvo = new MemberVO();
 		mvo.setMid(mid); mvo.setMpwd(sendpwd.toString());;
-		mdao.updatePwd(mvo);
+		mdao.updatePwd(mvo); // 변경된 비밀번호 db에 저장
 		System.out.println("비밀번호 변경 완료.!!");
 	}
 
