@@ -27,7 +27,7 @@ public class AdoptController {
 
 	// 입양 신청 페이지 연결 및 신청 여부 체크
 	@RequestMapping(value="/adoptquspage")
-	public ModelAndView adoptapplyView(int anino, Principal prcp, HttpServletRequest req) {
+	public ModelAndView adoptapplyView(int anino, Principal prcp) {
 		
 		System.out.println("Log : 입양 신청 페이지 연결 및 신쳥 여부 체크 시작");
 		
@@ -41,13 +41,11 @@ public class AdoptController {
 		
 		if (cnt > 0) {
 			
-			System.out.println("Log : 이미 입양 신청 했음");
+			String msg = " 님, 감사합니다.<br/>이미 해당 아이의 입양에 신청하셨습니다.<br/>잠시 후 메인 페이지로 이동합니다.";
 			
-			String back = req.getHeader("referer").substring(32);
-			mav.setViewName("redirect:" + back);
-			
-			int cntchk = 616098;
-			mav.addObject("cntchk", cntchk);
+			mav.setViewName("redirect:/adoptRes");
+			mav.addObject("mid", prcp.getName());
+			mav.addObject("msg", msg);
 			
 			System.out.println("Log : 입양 신청 페이지 연결 및 신쳥 여부 체크 끝");
 			
@@ -315,8 +313,11 @@ public class AdoptController {
 			
 			adadao.insertAdoptApply(aavo);
 			
-			ModelAndView mav = new ModelAndView("redirect:/adoptSuccess");
+			String msg = " 님, 감사합니다. 입양 신청이 성공적으로 신청됐습니다.<br/>곧 담당 직원을 통해 연락드리겠습니다.<br/>잠시 후 메인 페이지로 이동합니다.";
+			
+			ModelAndView mav = new ModelAndView("redirect:/adoptRes");
 			mav.addObject("mid", prcp.getName());
+			mav.addObject("msg", msg);
 			
 			return mav;
 		}
@@ -324,29 +325,19 @@ public class AdoptController {
 			// ModelAndView 생성 및 입양 신청에 조건이 되지 않아 실패했다는 메세지(?) 이미지(?) 뿌려주는 페이지로 연결
 			System.out.println("신청 실패");
 			
-			ModelAndView mav = new ModelAndView("redirect:/adoptFail");
+			String msg = " 님, 죄송합니다.<br/>자격 요건 미달로 입양 신청에 실패했습니다.<br/>잠시 후 메인 페이지로 이동합니다.";
+			
+			ModelAndView mav = new ModelAndView("redirect:/adoptRes");
 			mav.addObject("mid", prcp.getName());
+			mav.addObject("msg", msg);
 			
 			return mav;
 		}
 	}
 	
-	// 입양 신청 결과 페이지 (성공)
-	@RequestMapping(value="/adoptSuccess")
-	public ModelAndView adoptSuccess(String mid) {
-		String msg = " 님, 감사합니다. 입양 신청이 성공적으로 신청됐습니다.<br/>곧 담당 직원을 통해 연락드리겠습니다.";
-		
-		ModelAndView mav = new ModelAndView("adopt/adoptres");
-		mav.addObject("mid", mid);
-		mav.addObject("msg", msg);
-		
-		return mav;
-	}
-	
-	// 입양 신청 결과 페이지 (실패)
-	@RequestMapping(value="/adoptFail")
-	public ModelAndView adoptFail(String mid) {
-		String msg = " 님, 죄송합니다.<br/>자격 요건 미달로 입양 신청에 실패했습니다.";
+	// 입양 신청 결과 페이지 연결
+	@RequestMapping(value="/adoptRes")
+	public ModelAndView adoptSuccess(String mid, String msg) {
 		
 		ModelAndView mav = new ModelAndView("adopt/adoptres");
 		mav.addObject("mid", mid);

@@ -73,10 +73,13 @@
 		white-space: nowrap;
 		font-size: 12px;
 		opacity:1;
-/* 		여기서 바꾸면 변경될거야 */
 		background-color: transparent;
 		text-align: left;
 		
+	}
+	.col-md-4 {
+ 		margin-top: 15px;
+ 		margin-bottom: 15px;
 	}
 	
 	/*============================================*/
@@ -205,11 +208,7 @@
 		<tr>	
 			<th>제목</th>	
 			<td colspan="7" class="bgwhite"> 
-				<%-- <c:if test="${cntchk == 616098}">
-					하하하하하하하하하하하하하하하하
-				</c:if> --%>
 				${avo.btitle }
-				${cntchk}
 			</td>					
 		</tr>
 		
@@ -240,7 +239,7 @@
 			<td colspan="8"><br>
 			
 				<!-- img/a.PNG가 이미지 뿌려주는 곳 -->
-				<a href="#" class="green-tooltip" data-toggle="tooltip" data-placement="top" title="위치를 확인하려면 아래 '위치확인' 버튼을 클릭해주세요!">
+				<a href="#" class="green-tooltip" data-toggle="tooltip" data-placement="top" title="위치를 확인하려면 아래 '위치 확인' 버튼을 클릭해주세요!">
 					<img src="img/${avo.aniimg}" class="img-rounded" alt="NOT available" width="70%">
 				</a>
 				
@@ -325,7 +324,7 @@
 					    	<label>지　역:　</label>${avo.aniregion}<!-- 지역 -->
 					    	<input type="hidden" value="${avo.aniregion}" id="addr">
 							<button id="showmap" type="button" class="btn btn-success btn-xs" data-toggle="collapse" data-target="#demo"><!-- data-toggle="collapse" data-target="#demo" -->
-								<span class="glyphicon glyphicon-zoom-in"></span>&nbsp;위치확인
+								<span class="glyphicon glyphicon-zoom-in"></span>&nbsp;위치 확인
 							</button>					    	
 					    	<div id="demo" class="collapse" style="margin-left: 10%">
 					    		<div id="map" style="width:575px;height:350px;"></div>
@@ -403,75 +402,121 @@
 		
 		<!-- ========================================================================================= -->
 		
-		<c:if test="${matchswitch == 1}">
-		<tr>
-			<td colspan="8">
-<!--  			<td colspan="8" style="border: 1px solid blue"> -->
-				<div class="col-md-12 center" style="width: 100%">
-<!--  				<div class="col-md-12 center" style="border: 1px solid red; width: 100%"> -->
-					<div class="col-md-4">
-						<a href="selectoneAnimal?anino=${top[0].anino}&bno=${top[0].bno}&mid=${top[0].mid}" class="thumnail nounderline">
-							<img src="img/${top[0].aniimg}" class="img">
-						</a>
+		<c:if test="${avo.matchswitch == 1}">
+			<tr>
+				<th colspan="8" style="opacity:1;">${avo.matchmsg}</th>
+			</tr>
+			
+			<tr>
+				<td colspan="8">
+					<div class="col-md-12 center" style="width: 100%;">
+					
+						<c:if test="${size != 0}">
+							<c:set var="doneLoop" value="false" />
+							
+							<c:forEach var="i" begin="0" end="2" step="3">
+							
+								<div>
+									<c:if test="${not doneLoop}">
+									
+										<div class="col-md-4">
+											<a href="selectoneAnimal?anino=${top[i].anino}&bno=${top[i].bno}&mid=${top[i].mid}" class="thumnail nounderline">
+												<img src="img/${top[i].aniimg}" class="img">
+											</a>
+											
+											<table class="container">
+												<tr>
+													<th class="content">${top[i].btitle}</th>
+												</tr>
+												<tr>
+													<th class="content">${top[i].anispecies}&nbsp;&nbsp;/&nbsp;&nbsp;${top[i].anibreed}</th>
+												</tr>
+												<tr>
+													<th class="content">지역 : ${top[i].aniregion}</th>
+												</tr>
+												<tr>
+													<th class="content">날짜 : ${top[i].anidate}</th>
+												</tr>
+											</table>
+										</div>
+										
+										<c:if test="${i == (size-1)}">
+											<c:set var="doneLoop" value="true" />
+										</c:if>
+										
+									</c:if>
+									
+									<c:if test="${not doneLoop}">
+										
+										<div class="col-md-4">
+											<a href="selectoneAnimal?anino=${top[i+1].anino}&bno=${top[i+1].bno}&mid=${top[i+1].mid}" class="thumnail nounderline">
+												<img src="img/${top[i+1].aniimg}" class="img">
+											</a>
+											
+											<table class="container">
+												<tr>
+													<th class="content">${top[i+1].btitle}</th>
+												</tr>
+												<tr>
+													<th class="content">${top[i+1].anispecies}&nbsp;&nbsp;/&nbsp;&nbsp;${top[i+1].anibreed}</th>
+												</tr>
+												<tr>
+													<th class="content">지역 : ${top[i+1].aniregion}</th>
+												</tr>
+												<tr>
+													<th class="content">날짜 : ${top[i+1].anidate}</th>
+												</tr>
+											</table>
+										</div>
+										
+										<c:if test="${i+1 == (size-1)}">
+											<c:set var="doneLoop" value="true" />
+										</c:if>
+										
+									</c:if>	
+									
+									<c:if test="${not doneLoop}">
+										
+										<div class="col-md-4">
+											<a href="selectoneAnimal?anino=${top[i+2].anino}&bno=${top[i+2].bno}&mid=${top[i+2].mid}" class="thumnail nounderline">
+												<img src="img/${top[i+2].aniimg}" class="img">
+											</a>
+											
+											<table class="container">
+												<tr>
+													<th class="content">${top[i+2].btitle}</th>
+												</tr>
+												<tr>
+													<th class="content">${top[i+2].anispecies}&nbsp;&nbsp;/&nbsp;&nbsp;${top[i+2].anibreed}</th>
+												</tr>
+												<tr>
+													<th class="content">지역 : ${top[i+2].aniregion}</th>
+												</tr>
+												<tr>
+													<th class="content">날짜 : ${top[i+2].anidate}</th>
+												</tr>
+											</table>
+										</div>
+										
+										<c:if test="${i+2 == (size-1)}">
+											<c:set var="doneLoop" value="true" />
+										</c:if>
+										
+									</c:if>
+								</div>
+								
+							</c:forEach>
+						</c:if>
 						
-						<table class="container">
-							<tr>
-								<th class="content">${top[0].btitle}</th>
-							</tr>
-							<tr>
-								<th class="content">${top[0].anispecies}&nbsp;&nbsp;/&nbsp;&nbsp;${top[0].anibreed}</th>
-							</tr>
-							<tr>
-								<th class="content">지역 : ${top[0].aniregion}</th>
-							</tr>
-							<tr>
-								<th class="content">날짜 : ${top[0].anidate}</th>
-							</tr>
-						</table>
 					</div>
-					<div class="col-md-4">
-						<a href="selectoneAnimal?anino=${top[1].anino}&bno=${top[1].bno}&mid=${top[1].mid}" class="thumnail nounderline">
-							<img src="img/${top[1].aniimg}" class="img">
-						</a>
-						
-						<table class="container">
-							<tr>
-								<th class="content">${top[1].btitle}</th>
-							</tr>
-							<tr>
-								<th class="content">${top[1].anispecies}&nbsp;&nbsp;/&nbsp;&nbsp;${top[1].anibreed}</th>
-							</tr>
-							<tr>
-								<th class="content">지역 : ${top[1].aniregion}</th>
-							</tr>
-							<tr>
-								<th class="content">날짜 : ${top[1].anidate}</th>
-							</tr>
-						</table>
-					</div>
-					<div class="col-md-4">
-						<a href="selectoneAnimal?anino=${top[2].anino}&bno=${top[2].bno}&mid=${top[2].mid}" class="thumnail nounderline">
-							<img src="img/${top[2].aniimg}" class="img">
-						</a>
-						
-						<table class="container">
-							<tr>
-								<th class="content">${top[2].btitle}</th>
-							</tr>
-							<tr>
-								<th class="content">${top[2].anispecies}&nbsp;&nbsp;/&nbsp;&nbsp;${top[2].anibreed}</th>
-							</tr>
-							<tr>
-								<th class="content">지역 : ${top[2].aniregion}</th>
-							</tr>
-							<tr>
-								<th class="content">날짜 : ${top[2].anidate}</th>
-							</tr>
-						</table>
-					</div>
-				</div>
-			</td>
-		</tr>
+				</td>
+			</tr>
+		</c:if>
+		
+		<c:if test="${avo.matchswitch == 313048}">
+			<tr>
+				<th colspan="8" style="opacity:1;">${avo.matchmsg}</th>
+			</tr>
 		</c:if>
 		
 		<tr><td>　</td></tr>

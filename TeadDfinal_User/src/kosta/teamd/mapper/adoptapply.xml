@@ -7,7 +7,7 @@
     
     	<insert id="insertAdoptApply" parameterType="adavo">
     		insert into adoptapply values(
-    		adoptapply_seq.nextVal, #{mid}, #{anino}, #{score}, '직원 배정', #{mage},
+    		adoptapply_seq.nextVal, #{mid}, #{anino}, #{score}, '직원 배정 예정', #{mage},
     		#{qus1}, #{qus1sup1}, #{qus2}, #{qus2sup1}, #{qus3}, #{qus4}, #{qus5}, 
     		#{qus6}, #{qus6sup1}, #{qus7}, #{qus8}, #{qus9}, #{qus10}
     		)
