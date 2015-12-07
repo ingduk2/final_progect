@@ -3,22 +3,32 @@ package kosta.teamd.mvc.controller;
 import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Random;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.AddressException;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMessage.RecipientType;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import kosta.teamd.mvc.dao.MemberDao;
 import kosta.teamd.mvc.inter.MemRolesSelectInter;
+import kosta.teamd.mvc.service.PwdMailService;
 import kosta.teamd.vo.MemRolesVO;
 import kosta.teamd.vo.MemberVO;
 
 @Controller
 public class LoginController {
 	
+	@Autowired
+	private PwdMailService pms;
 	@Autowired
 	private MemberDao mdao;
 
@@ -127,7 +137,7 @@ public class LoginController {
 	
 	//비밀번호 찾기
 	@RequestMapping(value="/findmpwd")
-	public ModelAndView selectonePwd(MemberVO mvo) {
+	public ModelAndView selectonePwd(MemberVO mvo) throws AddressException, MessagingException {
 		
 		String result = "";
 		
@@ -149,7 +159,10 @@ public class LoginController {
 			}
 			else {
 				System.out.println("Log: 비밀번호 [" + mpwd + "]");
-				
+				System.out.println("유저 아이디: " + mvo.getMid());
+				String mid = mvo.getMid();
+				String memail = mvo.getMemail();
+				pms.loginMail(mid, memail);
 				result = "가입하신 이메일 주소로 비밀번호를 보내드렸습니다.";
 			}
 		}

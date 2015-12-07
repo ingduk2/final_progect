@@ -59,11 +59,35 @@ table th {
 		
 		return true;
 	}
-
+	
+	$(document).ready(function(){
+  $('#reportBtn').click(function(){
+			$.ajax({
+				url: "updateRptAnimal",
+				type: "post",
+				data:{
+					bno:$("#bno").val(),
+					mid:$("#mid").val(),
+					rpt:$("#rpt").html()
+				}, 
+				success : function(rpt){
+					if(rpt==$("#rpt").html()){
+						$("#rpt").html();
+						alert("금일 신고수가 초과하였습니다");
+					}else if($("#rpt").html()>=15){
+							alert("게시물이 삭제됩니다.")
+						location.href='selectallBoard?bcode=${bvo.bcode}&nowPage=${nowPage}&searchType=';
+					}else{
+					$("#rpt").html(rpt);
+					}
+				}
+			});
+		  });
+	});
 </script>
 
 <div>		
-
+<input type="hidden" id="mid" value="${pageContext.request.userPrincipal.name}"/>
 <!-- 공간 띄우기 용 -->
 <table><tr height="50px"><td></td></tr></table>
 	
@@ -89,7 +113,7 @@ table th {
 		</td>
 		
 		<th>신고수</th>	
-		<td class="bgwhite" style="width: 50px">
+		<td class="bgwhite" style="width: 50px" id="rpt">
 			${bvo.brpt }
 		</td>	
 	</tr>
@@ -145,7 +169,7 @@ table th {
 		    	<form action="insertComm" method="post"
 		    		  name="commform" onsubmit="return checksubmit()">
 		    	
-		    	<input type="hidden" name="bno" value="${bvo.bno}">
+		    	<input type="hidden" name="bno"  id ="bno" value="${bvo.bno}">
 		    	<input type="hidden" name="cbip" value="<%= request.getRemoteAddr() %>">
 		    	<input type="hidden" name="orimid" value="${bvo.mid}">
 		    	<input type="hidden" name="nowPage" value="${nowPage}">
