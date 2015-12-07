@@ -104,7 +104,7 @@ public class PageViewController {
 		jo.put("anireward", reward.getAnireward());
 		ja.add(jo);
 		
-		System.out.println(ja);
+//		System.out.println(ja);
 		
 		mav.addObject("reward", ja);
 		return mav;

@@ -174,7 +174,7 @@
 	<!-- °ø°£ ¶ç¿ì±â ¿ë -->
 	<table><tr height="50px"><td></td></tr></table>
 
-	<form action="" method="post" enctype="multipart/form-data">
+	<form action="updateAnimal" method="post" enctype="multipart/form-data">
 			
 		<table width="500px">				
 			<tr> <th colspan="2">¡¡</th> </tr>	
@@ -362,6 +362,8 @@
 		<input type="hidden" name="bcode" value="${avo.bcode}">
 		<input type="hidden" name="mid" value="${pageContext.request.userPrincipal.name}">
 		<input type="hidden" name="bip" value="<%= request.getRemoteAddr() %>">
+		<input type="hidden" name="anino" value="${avo.anino}">
+		<input type="hidden" name="bno" value="${avo.bno}">
 
 		<table><tr height="30px"><!-- ³ôÀÌ Á¶Àý¿ë Ä­ ¶¼¿ì±â --><td></td></tr></table>
 		<button type="submit" class="btn btn-success btn-sm">¡¡¿Ï¡¡¡¡·á¡¡</button>

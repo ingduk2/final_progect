@@ -231,7 +231,7 @@
 	<select id="randomreward" resultType="abvo">
 		select * from 
 		(select a.anino as anino, b.bno as bno, b.mid as mid, a.aniimg as aniimg, a.anireward as anireward from animal a, board b 
-		where a.anino=b.anino and aniimg is not null and a.anino!=0 and b.bcode=4 order by dbms_random.value)
+		where a.anino=b.anino and anireward is not null and aniimg is not null and a.anino!=0 and b.bcode=4 order by dbms_random.value)
 		where rownum=1
 	</select>
 	
