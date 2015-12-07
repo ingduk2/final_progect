@@ -97,15 +97,24 @@ public class PageViewController {
 		
 		JSONArray ja=new JSONArray();
 		JSONObject jo=new JSONObject();
-		jo.put("anino", reward.getAnino());
-		jo.put("bno", reward.getBno());
-		jo.put("mid", reward.getMid());
-		jo.put("aniimg", reward.getAniimg());
-		jo.put("anireward", reward.getAnireward());
-		ja.add(jo);
 		
-//		System.out.println(ja);
+		try {
+			
+			jo.put("anino", reward.getAnino());
+			jo.put("bno", reward.getBno());
+			jo.put("mid", reward.getMid());
+			jo.put("aniimg", reward.getAniimg());
+			jo.put("anireward", reward.getAnireward());
+			ja.add(jo);
+			
+			
+		} catch (Exception e) {
+			
+		}
 		
+
+		
+		System.out.println(ja);
 		mav.addObject("reward", ja);
 		return mav;
 	}
