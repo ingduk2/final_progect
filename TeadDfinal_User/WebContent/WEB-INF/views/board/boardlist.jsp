@@ -92,7 +92,7 @@ $(function() {
 
 
 
-var url="ws://localhost:8080/TeadDfinal_User/chatting?id="+id+"&code="+code;
+var url="ws://localhost/TeadDfinal_User/chatting?id="+id+"&code="+code;
 function connect() {
 	if(socket==null){
 		socket = new WebSocket(url); //afterconnection

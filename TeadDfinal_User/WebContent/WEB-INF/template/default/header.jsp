@@ -103,7 +103,14 @@ a:FOCUS, a:HOVER {
 						
 						<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">　참여하기　<span class="caret"><!--화살표--></span></a>
 							<ul class="dropdown-menu">
-						    	<li><a href="selectallAnimal?bcode=6&nowPage=1&searchType=">입양하기</a></li>
+							
+								<c:if test="${pageContext.request.userPrincipal.name == null}">
+						    		<li><a href="login">입양하기</a></li>
+						    	</c:if>
+						    	<c:if test="${pageContext.request.userPrincipal.name != null}">
+						    		<li><a href="selectallAnimal?bcode=6&nowPage=1&searchType=">입양하기</a></li>
+						    	</c:if>
+						    
 						    	<li><a href="formCal">봉사하기</a></li>
 						    	<li><a href="#">설문조사</a></li>
 							</ul>
@@ -112,7 +119,7 @@ a:FOCUS, a:HOVER {
 						<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">　정보마당　<span class="caret"><!--화살표--></span></a>
 							<ul class="dropdown-menu">
 								<li><a href="selectallBoard?bcode=1&nowPage=1&searchType=">공지사항</a></li>
-								<li><a href="#">자주 묻는 질문</a></li>
+<!-- 								<li><a href="#">자주 묻는 질문</a></li> -->
 						    	<li><a href="selectallCenter">동물 보호 센터</a></li>
 						    	<li><a href="formChart?year=2012">통계 자료</a></li>
 							</ul>

@@ -119,9 +119,16 @@
 	</div>
 
 	<div id="imgtest">
-		<a href="selectallAnimal?bcode=6&nowPage=1&searchType=">
-			<img src="img/gobtn.png" style="margin-top:192px;  margin-right: 250px;">
-		</a><!-- 바로가기버튼입니다 -->
+		<c:if test="${pageContext.request.userPrincipal.name == null}">
+			<a href="login">
+				<img src="img/gobtn.png" style="margin-top:192px;  margin-right: 250px;">
+			</a><!-- 바로가기버튼입니다 -->
+		</c:if>
+		<c:if test="${pageContext.request.userPrincipal.name != null}">
+			<a href="selectallAnimal?bcode=6&nowPage=1&searchType=">
+				<img src="img/gobtn.png" style="margin-top:192px;  margin-right: 250px;">
+			</a><!-- 바로가기버튼입니다 -->
+		</c:if>
 	</div>
 	
 	<div style="margin: auto; width: 50%">
