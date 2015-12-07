@@ -301,7 +301,7 @@ public class AnimalController {
 	
 	//신고수 업데이트
 	@RequestMapping(value="/updateRptAnimal")
-	public ModelAndView updaterptAnimal(int bno, int anino ,String mid, int rpt){
+	public ModelAndView updaterptAnimal(int bno ,String mid, int rpt){
 		System.out.println("p : "+mid);
 		int cnt = bdao.cntrptLimit(mid); //3
 		System.out.println("cnt : "+ cnt);
