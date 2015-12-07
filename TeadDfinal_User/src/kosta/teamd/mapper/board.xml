@@ -34,7 +34,7 @@
     
     <select id="getlist" resultType="bvo" parameterType="bvo">
     	select 
-    	bcode, boricode, bno, btitle, mid, substr(bcontent, 1, 30) as bcontent, to_char(bdate, 'yyyy/mm/dd') as	bdate,
+    	bcode, boricode, bno, subtitle(btitle) btitle, mid, substr(bcontent, 1, 30) as bcontent, to_char(bdate, 'yyyy/mm/dd') as	bdate,
     	bhit, anino, bref, bseq, blvl, bip, bfile, brpt  
     	from (select rownum r_num, a.* from (
 		select * from board where bcode=#{bcode}

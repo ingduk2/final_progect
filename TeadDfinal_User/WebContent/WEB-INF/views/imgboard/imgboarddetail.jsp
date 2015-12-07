@@ -100,7 +100,7 @@
 		
 	    $('[data-toggle="tooltip"]').tooltip();   
 	   
-	    $("#rpt").click(function(){
+	    $("#reportBtn").click(function(){
 			$.ajax({
 				url: "updateRptAnimal",
 				type: "post",
@@ -108,18 +108,17 @@
 					bno:$("#bno").val(),
 					anino:$("#anino").val(),
 					mid:$("#mid").val(),
-					rpt:$("#rptchk").html()
+					rpt:$("#rpt").html()
 				}, 
 				success : function(rpt){
-					if(rpt==$("#rptchk").html()){
-						$("#rptchk").html();
+					if(rpt==$("#rpt").html()){
+						$("#rpt").html();
 						alert("금일 신고수가 초과하였습니다");
-						if($("#rptchk").html()>=15){
+					}else if($("#rpt").html()>=15){
 							alert("게시물이 삭제됩니다.")
-						location.href='selectallAnimal';
-						}
+						location.href='selectallAnimal?bcode=${avo.bcode}&nowPage=1&searchType=';
 					}else{
-					$("#rptchk").html(rpt);
+					$("#rpt").html(rpt);
 					}
 				}
 			});
@@ -233,7 +232,7 @@
 				${avo.bhit}
 			</td>
 			<th>신고수</th>	
-			<td class="bgwhite" style="width: 50px">
+			<td class="bgwhite" style="width: 50px" id="rpt">
 				${avo.brpt }
 			</td>	
 		</tr>

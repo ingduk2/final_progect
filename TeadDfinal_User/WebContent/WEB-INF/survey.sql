@@ -32,7 +32,9 @@ create sequence surveylo_seq
 increment by 1
 start with 1;
 
+
 commit;
+
 desc survey;
 insert into survey values(survey_seq.nextVal,
 '<h3>동물등록제<small>여러분의 소중한 의견을 기다립니다.</small></h3>

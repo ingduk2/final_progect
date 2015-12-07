@@ -108,4 +108,9 @@ public class MemberDao {
 	public List<BoardVO> selectAllMine(BoardVO bvo) {
 		return template.selectList("member.selectAllMine", bvo);
 	}
+	
+	// 이메일 비밀번호 업데이트 
+	public void updatePwd(MemberVO mvo){
+		template.update("member.pwdupdate", mvo);
+	}
 }

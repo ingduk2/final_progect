@@ -88,7 +88,7 @@ public class PageViewController {
 		return mav;
 		
 	}
-	
+
 	
 	@RequestMapping(value="/randomreward")
 	public ModelAndView randomreward(){
@@ -109,6 +109,5 @@ public class PageViewController {
 		mav.addObject("reward", ja);
 		return mav;
 	}
-	
 	
 }

@@ -137,7 +137,12 @@ $(function() {
 			dataType: "text",
 			
 			success: function(res) {
-				alert(res);
+				alert(res);	
+				$('#mpwdmid').val("");
+				$('#mpwdmemail').val("");
+				$('#mpwdmpwdval').val("");
+				$('#findPwdModal').modal('hide');
+
 			},
 			error: function(a, b) {
 				alert("Request: " + JSON.stringify(a));
