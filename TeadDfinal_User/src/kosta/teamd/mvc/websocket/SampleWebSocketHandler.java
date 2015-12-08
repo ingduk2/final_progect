@@ -14,12 +14,6 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 import kosta.teamd.vo.ChatVO;
 
-/**
- * 웹소켓 예제
- * 
- * @author tomatogun
- *
- */
 @Component("sampleWebSocketHandler")
 public class SampleWebSocketHandler extends TextWebSocketHandler {
 	private List<WebSocketSession> sessionList;
