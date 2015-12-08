@@ -51,14 +51,6 @@ function send(){ //서버로 데이터를 전송하는 메서드
 
 
 <style>
-	#itsfloatdiv{
-		position: fixed; position: absolute; 
-		overflow: hidden;
-		left: 0px;
-		top: 160px;
-		margin: 0;
-		padding: 0
-	}
 	a.thumbnail:focus, a.thumbnail:hover {
 		color: #90ee90
 	}
@@ -93,6 +85,34 @@ function send(){ //서버로 데이터를 전송하는 메서드
 		white-space: nowrap;
 		font-size: 12px;
 	}
+ 	.col-md-4{
+/*  		border: 1px solid silver;  */
+		border-radius:15px;
+		margin: 10px;
+		width: 210px;
+		padding-bottom: 5px;
+ 		background-color: rgba(255, 255, 255, 0.8);
+	}
+	.label-success{
+		background-color:#69EEA8
+	}
+	#itsfloatdiv{
+		position: fixed; position: absolute; 
+		overflow: hidden;
+		left: 0px;
+		top: 160px;
+		margin: 0;
+		padding: 0;
+		background-color: white;
+		border-radius:10px;
+		color: black;
+		width: 280px
+	}
+	.chatchat{
+			clear: both;
+			width: 100%;
+			padding: 2px
+	}
 	
 </style>
 
@@ -106,13 +126,20 @@ function send(){ //서버로 데이터를 전송하는 메서드
 
 <input type="hidden" id="cid" value="${pageContext.request.userPrincipal.name}">
 <input type="hidden" id="ccode" value="animal/${bcode }">
-	<div id="contents"></div>
-<br>
-<a href="javascript:disconnect();">퇴장</a>
-<br>
-<a href="javascript:connect();">재접속</a>
-<br>
-<input type="text" id="message"><a href="javascript:send();">전송</a>
+
+<div class="chatchat" >
+	<div class="btn-group" style="clear: both;">
+	  <a type="button" class="btn btn-success" href="javascript:disconnect();">　퇴　　　장　</a>
+	  <a type="button" class="btn btn-success" href="javascript:connect();">　재　접　속　</a>
+	</div>
+	<div id="contents"><!-- 내용이 들어간다. --></div>
+	<div class="input-group" style="width:100%;">
+		<input type="text" class="form-control input-sm" type="text" id="message"/>
+		<span class="input-group-btn">
+    		<a type="button" class="btn btn-success btn-sm" href="javascript:send();">전송</a>
+		</span>
+	</div>
+</div>
 </div>
 
 
@@ -133,34 +160,34 @@ function send(){ //서버로 데이터를 전송하는 메서드
 						<c:if test="${bcode == 6}">
 							<c:if test="${alist[i].anistate == 0}">
 								<h5 class="tag">
-									<span class="label label-warning">보호중</span>
+									<span class="label label-success">보호중</span>
 								</h5>
 							</c:if>
 							<c:if test="${alist[i].anistate == 1}">
 								<h5 class="tag">
-									<span class="label label-warning">입양 대기</span>
+									<span class="label label-success">입양 대기</span>
 								</h5>
 							</c:if>
 							<c:if test="${alist[i].anistate == 2}">
 								<h5 class="tag">
-									<span class="label label-warning">입양 완료</span>
+									<span class="label label-success">입양 완료</span>
 								</h5>
 							</c:if>
 						</c:if>
 						<c:if test="${bcode != 6}">
 							<c:if test="${alist[i].anistate == 3}">
 								<h5 class="tag">
-									<span class="label label-warning">실종</span>
+									<span class="label label-success">실종</span>
 								</h5>
 							</c:if>
 							<c:if test="${alist[i].anistate == 4}">
 								<h5 class="tag">
-									<span class="label label-warning">목격</span>
+									<span class="label label-success">목격</span>
 								</h5>
 							</c:if>
 							<c:if test="${alist[i].anistate == 5}">
 								<h5 class="tag">
-									<span class="label label-warning">개인 보호</span>
+									<span class="label label-success">개인 보호</span>
 								</h5>
 							</c:if>
 						</c:if>
@@ -204,34 +231,34 @@ function send(){ //서버로 데이터를 전송하는 메서드
 						<c:if test="${bcode == 6}">
 							<c:if test="${alist[i+1].anistate == 0}">
 								<h5 class="tag">
-									<span class="label label-warning">보호중</span>
+									<span class="label label-success">보호중</span>
 								</h5>
 							</c:if>
 							<c:if test="${alist[i+1].anistate == 1}">
 								<h5 class="tag">
-									<span class="label label-warning">입양 대기</span>
+									<span class="label label-success">입양 대기</span>
 								</h5>
 							</c:if>
 							<c:if test="${alist[i+1].anistate == 2}">
 								<h5 class="tag">
-									<span class="label label-warning">입양 완료</span>
+									<span class="label label-success">입양 완료</span>
 								</h5>
 							</c:if>
 						</c:if>
 						<c:if test="${bcode != 6}">
 							<c:if test="${alist[i+1].anistate == 3}">
 								<h5 class="tag">
-									<span class="label label-warning">실종</span>
+									<span class="label label-success">실종</span>
 								</h5>
 							</c:if>
 							<c:if test="${alist[i+1].anistate == 4}">
 								<h5 class="tag">
-									<span class="label label-warning">목격</span>
+									<span class="label label-success">목격</span>
 								</h5>
 							</c:if>
 							<c:if test="${alist[i+1].anistate == 5}">
 								<h5 class="tag">
-									<span class="label label-warning">개인 보호</span>
+									<span class="label label-success">개인 보호</span>
 								</h5>
 							</c:if>
 						</c:if>
@@ -275,34 +302,34 @@ function send(){ //서버로 데이터를 전송하는 메서드
 						<c:if test="${bcode == 6}">
 							<c:if test="${alist[i+2].anistate == 0}">
 								<h5 class="tag">
-									<span class="label label-warning">보호중</span>
+									<span class="label label-success">보호중</span>
 								</h5>
 							</c:if>
 							<c:if test="${alist[i+2].anistate == 1}">
 								<h5 class="tag">
-									<span class="label label-warning">입양 대기</span>
+									<span class="label label-success">입양 대기</span>
 								</h5>
 							</c:if>
 							<c:if test="${alist[i+2].anistate == 2}">
 								<h5 class="tag">
-									<span class="label label-warning">입양 완료</span>
+									<span class="label label-success">입양 완료</span>
 								</h5>
 							</c:if>
 						</c:if>
 						<c:if test="${bcode != 6}">
 							<c:if test="${alist[i+2].anistate == 3}">
 								<h5 class="tag">
-									<span class="label label-warning">실종</span>
+									<span class="label label-success">실종</span>
 								</h5>
 							</c:if>
 							<c:if test="${alist[i+2].anistate == 4}">
 								<h5 class="tag">
-									<span class="label label-warning">목격</span>
+									<span class="label label-success">목격</span>
 								</h5>
 							</c:if>
 							<c:if test="${alist[i+2].anistate == 5}">
 								<h5 class="tag">
-									<span class="label label-warning">개인 보호</span>
+									<span class="label label-success">개인 보호</span>
 								</h5>
 							</c:if>
 						</c:if>

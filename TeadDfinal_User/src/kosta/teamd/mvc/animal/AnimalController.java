@@ -63,7 +63,7 @@ public class AnimalController {
 		//이미지 저장폴더 이름
 		
 		//img가 있어서 upload로 바꿈
-		String img_path = "\\upload\\";
+		String img_path = "\\img\\";
 
 		// 이미지 전체경로를 저장하기 위해 버퍼를 생성
 		StringBuffer path = new StringBuffer();
@@ -191,66 +191,60 @@ public class AnimalController {
 	}
 	
 	@RequestMapping(value="/selectoneAnimal")
-//	public ModelAndView selectoneAnimal(int anino, int bno, String mid, Principal prcp){
 	public ModelAndView selectoneAnimal(AniBoardVO abvo, Principal prcp){
-		
-//		AniBoardVO[] match = abvo.getMatchres();
-//		System.out.println("Log anino: " + abvo.getAnino());
-//		System.out.println("Log bno: " + abvo.getBno());
-//		System.out.println("Log mid: " + abvo.getMid());
-//		System.out.println("Log switch: " + abvo.getMatchswitch());
-//		if (abvo.getMatchswitch() == 1) {
-//			System.out.println("올? 매치스위치가 1이군요?");
-//			System.out.println("asdfasdf "+match.length);
-//			for (int i=0; i<match.length; i++) {
-//				System.out.println("Log["+i+"] anino: "+match[i].getAnino());
-//			}
-//		}
-		
+
+		// 조회수 처리
 		if (prcp != null) {
 			
-//			if (!prcp.getName().equals(mid)) {
 			if (!prcp.getName().equals(abvo.getMid())) {
-				//hit
-//				bdao.hitBoard(bno);
 				bdao.hitBoard(abvo.getBno());
 			}
 		}
 		else {
-//			bdao.hitBoard(bno);
 			bdao.hitBoard(abvo.getBno());
 		}
 		
-//		AniBoardVO avo = adao.imgDetail(anino);
 		AniBoardVO avo = adao.imgDetail(abvo.getAnino());
 		
 		ModelAndView mav = new ModelAndView("imgboard/imgboarddetail");
-		mav.addObject("avo", avo);
-//		List<CommBoardVO> cbvo = cbdao.commList(bno);
-		List<CommBoardVO> cbvo = cbdao.commList(abvo.getBno());
-		mav.addObject("cbvo", cbvo);
 		
+		List<CommBoardVO> cbvo = cbdao.commList(abvo.getBno());
+		
+		// ====================================================== 씨발 내가 병신이라 그런거지 어쩔수 있나
+
 //		if (abvo.getMatchswitch() == 1) {
-//			mav.addObject("matchres", abvo.getMatchres());
-//			mav.addObject("matchswitch", abvo.getMatchswitch());
+//		mav.addObject("matchres", abvo.getMatchres());
+//		mav.addObject("matchswitch", abvo.getMatchswitch());
 //		}
 		
-		// ====================================================== 씨발 내가 병신이라 그런거지 어쩔수 있나
+		// 매칭 결과 전달 시작
+		avo.setMatchswitch(abvo.getMatchswitch());
 		
-		System.out.println(abvo.getFirst());
-		System.out.println(abvo.getSecond());
-		System.out.println(abvo.getThird());
 		if(abvo.getMatchswitch() == 1) {
-			List<AniBoardVO> ssibal = new LinkedList<>();
-			ssibal.add(0, adao.imgDetail(abvo.getFirst()));
-			ssibal.add(1, adao.imgDetail(abvo.getSecond()));
-			ssibal.add(2, adao.imgDetail(abvo.getThird()));
+			
+			avo.setMatchmsg("<h4>이 아이들 중에 찾으시는 아이가 있나요?</h4>");
+			
+			System.out.println("Log: First - " + abvo.getFirst());
+			System.out.println("Log: Second - " + abvo.getSecond());
+			System.out.println("Log: Third - " + abvo.getThird());
+
+			List<AniBoardVO> top = new LinkedList<>();
+			if (abvo.getFirst() != 313048) top.add(0, adao.imgDetail(abvo.getFirst()));
+			if (abvo.getSecond() != 313048) top.add(1, adao.imgDetail(abvo.getSecond()));
+			if (abvo.getThird() != 313048) top.add(2, adao.imgDetail(abvo.getThird()));
 		
-			mav.addObject("top", ssibal);
-			mav.addObject("matchswitch", abvo.getMatchswitch());
+			mav.addObject("top", top);
+			mav.addObject("size", top.size());
 		}
+		else if (abvo.getMatchswitch() == 313048) {
+			avo.setMatchmsg("<h4>죄송합니다. 매칭 정보가 없습니다.</h4>");
+		}
+		// 매칭 결과 전달 끝
 		
 		// ====================================================== 씨발 내가 병신이라 그런거지 어쩔수 있나
+		
+		mav.addObject("avo", avo);
+		mav.addObject("cbvo", cbvo);
 		
 		return mav;
 	}
@@ -284,10 +278,11 @@ public class AnimalController {
 	/////수장
 	//이미지 업로드 실행 
 	@RequestMapping(value="/updateAnimal", method=RequestMethod.POST)
-	public ModelAndView updateAnimal(AnimalVO avo,  BoardVO bvo,HttpServletRequest request){
+	public ModelAndView updateAnimal(AnimalVO avo,  BoardVO bvo, HttpServletRequest request){
+		
 		HttpSession session = request.getSession();
 		String r_path = session.getServletContext().getRealPath("/");
-		String img_path = "\\upload\\";
+		String img_path = "\\img\\";
 		String ofile = avo.getManiimg().getOriginalFilename();
 		StringBuffer path = new StringBuffer();
 		path.append(r_path).append(img_path).append(ofile);
@@ -307,7 +302,7 @@ public class AnimalController {
 	
 	//신고수 업데이트
 	@RequestMapping(value="/updateRptAnimal")
-	public ModelAndView updaterptAnimal(int bno, int anino ,String mid, int rpt){
+	public ModelAndView updaterptAnimal(int bno ,String mid, int rpt){
 		System.out.println("p : "+mid);
 		int cnt = bdao.cntrptLimit(mid); //3
 		System.out.println("cnt : "+ cnt);

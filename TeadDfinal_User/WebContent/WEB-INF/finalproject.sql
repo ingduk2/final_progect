@@ -82,7 +82,7 @@ anidate date,                                                -- 10.(실종,발�
 anireward number,                                            -- 11.사례금
 anistate number,                                             -- 12.현재 상태(실종,보호,입양대기,입양완료 등)
 -- anistate: (admin용)0-보호중 / 1-입양대기 / 2-입양완료
---           (일반 회원용)3-실종 / 4-발견 / 5-개인 보호중
+--           (일반 회원용)3-실종 / 4-목격 / 5-개인 보호중
 aniimg varchar2(50)                                          -- 13.동물 사진 파일 이름
 );
 
@@ -259,6 +259,23 @@ is
   if(length(content)>35)
   then
   v_subpad:=RPAD(substr(content,1,35), 80, '.');
+    return v_subpad;
+  else
+    v_subpad:=content;
+    return v_subpad;
+  end if;
+  end;
+  
+ -------------------------------------
+ --제목 21번자리 자르기---
+ create or replace function subtitle(content clob)
+return varchar2
+is 
+  v_subpad clob;
+  BEGIN
+  if(length(content)>21)
+  then
+  v_subpad:=substr(content,1,21)||'...';
     return v_subpad;
   else
     v_subpad:=content;

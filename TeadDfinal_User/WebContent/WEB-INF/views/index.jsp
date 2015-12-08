@@ -149,16 +149,14 @@
 
 				<div class="carousel-inner" role="listbox">
 			    
-			    <div class="item active"> <!-- style active class 때문에 첫번째 사진은 List로 넘어가게 했습니다ㅠㅠ 죄송해요 -->
-					  <div class="panel-body">
-						  <a href="selectallAnimal?bcode=4&nowPage=1&searchType=">
-						  	<img src="img/test/a2.png">
-						  </a>
-					  </div>
-			    </div>
-				
-				  <c:forEach var="mainminiimgboard1" items="${mainminiimgboard1}">
-				      <div class="item">
+			    <c:forEach var="mainminiimgboard1" items="${mainminiimgboard1}" varStatus="status">
+			    	<c:if test="${status.count==1}">
+				  		<div class="item active">
+				  	</c:if>
+				  	<c:if test="${status.count!=1}">
+				  		<div class="item">
+				  	</c:if>
+				  
 						  <div class="panel-body">
 						  	<a href="selectoneAnimal?anino=${mainminiimgboard1.anino}&bno=${mainminiimgboard1.bno}">
 						  		<img src="img/${mainminiimgboard1.aniimg}" height="122px">
@@ -187,7 +185,7 @@
 		<span class="label label-success">발견신고</span>
 		<div class="panel panel-default">
 			<div id="myCarousel2" class="carousel slide text-center" data-ride="carousel">
-			    <!-- Indicators -->
+			<!--Indicators -->
 			    <ol class="carousel-indicators">
 			      <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
 			      <li data-target="#myCarousel" data-slide-to="1"></li>
@@ -198,16 +196,15 @@
 
 				<div class="carousel-inner" role="listbox">
 				
-			    <div class="item active"> <!-- style active class 때문에 첫번째 사진은 List로 넘어가게 했습니다ㅠㅠ 죄송해요 -->
-					  <div class="panel-body">
-						  <a href="selectallAnimal?bcode=5&nowPage=1&searchType=">
-						  	<img src="img/test/b4.png">
-						  </a>
-					  </div>
-			    </div>
-				
-				  <c:forEach var="mainminiimgboard2" items="${mainminiimgboard2}">
-				      <div class="item">
+				  <c:forEach var="mainminiimgboard2" items="${mainminiimgboard2}" varStatus="status">
+				  	
+				  	<c:if test="${status.count==1}">
+				  		<div class="item active">
+				  	</c:if>
+				  	<c:if test="${status.count!=1}">
+				  		<div class="item">
+				  	</c:if>
+				  	
 						  <div class="panel-body">
 						  	<a href="selectoneAnimal?anino=${mainminiimgboard2.anino}&bno=${mainminiimgboard2.bno}">
 						  		<img src="img/${mainminiimgboard2.aniimg}" height="122px">
@@ -215,22 +212,6 @@
 						  </div>
 				      </div>
 			      </c:forEach>
-				
-<!-- 			      <div class="item active">
-					  <div class="panel-body"><a href="#"><img src="img/test/b1.png"></a></div>
-			      </div>
-			      <div class="item">
-					  <div class="panel-body"><a href="#"><img src="img/test/b2.png"></a></div>
-			      </div>
-			      <div class="item">
-					  <div class="panel-body"><a href="#"><img src="img/test/b3.png"></a></div>
-			      </div>
-			      <div class="item">
-					  <div class="panel-body"><a href="#"><img src="img/test/b4.png"></a></div>
-			      </div>
-			      <div class="item">
-					  <div class="panel-body"><a href="#"><img src="img/test/b5.png"></a></div>
-			      </div> -->
 			      
 			    </div>
 			    

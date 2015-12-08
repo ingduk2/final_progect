@@ -32,9 +32,12 @@ create sequence surveylo_seq
 increment by 1
 start with 1;
 
+
 commit;
 
+
 set define off;
+
 
 desc survey;
 insert into survey values(survey_seq.nextVal,

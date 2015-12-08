@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
 
+<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=cafcd4fae4be10d7ffdde1bc7cadf004&libraries=services"></script>
+
 <style>
 
 	table th {
@@ -71,10 +73,13 @@
 		white-space: nowrap;
 		font-size: 12px;
 		opacity:1;
-/* 		여기서 바꾸면 변경될거야 */
 		background-color: transparent;
 		text-align: left;
 		
+	}
+	.col-md-4 {
+ 		margin-top: 15px;
+ 		margin-bottom: 15px;
 	}
 	
 	/*============================================*/
@@ -83,9 +88,13 @@
 
 <script> //image mouse over script
 	$(document).ready(function(){
+		
+// 		$('#map').empty();
+		
+		
 	    $('[data-toggle="tooltip"]').tooltip();   
 	   
-	    $("#rpt").click(function(){
+	    $("#reportBtn").click(function(){
 			$.ajax({
 				url: "updateRptAnimal",
 				type: "post",
@@ -93,24 +102,95 @@
 					bno:$("#bno").val(),
 					anino:$("#anino").val(),
 					mid:$("#mid").val(),
-					rpt:$("#rptchk").html()
+					rpt:$("#rpt").html()
 				}, 
 				success : function(rpt){
-					if(rpt==$("#rptchk").html()){
-						$("#rptchk").html();
+					if(rpt==$("#rpt").html()){
+						$("#rpt").html();
 						alert("금일 신고수가 초과하였습니다");
-						if($("#rptchk").html()>=15){
+					}else if($("#rpt").html()>=15){
 							alert("게시물이 삭제됩니다.")
-						location.href='selectallAnimal';
-						}
+						location.href='selectallAnimal?bcode=${avo.bcode}&nowPage=1&searchType=';
 					}else{
-					$("#rptchk").html(rpt);
+					$("#rpt").html(rpt);
 					}
 				}
 			});
 		});
-	});
+	    
+	    $('#showmap').click(function() {
+// 			$('#map').show();
+
+	        var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
+		    mapOption = {
+		        center: new daum.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
+		        level: 3 // 지도의 확대 레벨
+		    };  
+
+		// 지도를 생성합니다    
+		var map = new daum.maps.Map(mapContainer, mapOption); 
+
+
+		// 주소-좌표 변환 객체를 생성합니다
+		var geocoder = new daum.maps.services.Geocoder();
+		
+		
+		// 일반 지도와 스카이뷰로 지도 타입을 전환할 수 있는 지도타입 컨트롤을 생성합니다
+		var mapTypeControl = new daum.maps.MapTypeControl();
+
+		// 지도에 컨트롤을 추가해야 지도위에 표시됩니다
+		// daum.maps.ControlPosition은 컨트롤이 표시될 위치를 정의하는데 TOPRIGHT는 오른쪽 위를 의미합니다
+		map.addControl(mapTypeControl, daum.maps.ControlPosition.TOPRIGHT);
+
+		// 지도 확대 축소를 제어할 수 있는  줌 컨트롤을 생성합니다
+		var zoomControl = new daum.maps.ZoomControl();
+		map.addControl(zoomControl, daum.maps.ControlPosition.RIGHT);
+		
+		
+		var addr=$('#addr').val();
+		// 주소로 좌표를 검색합니다
+		geocoder.addr2coord(addr, function(status, result) {
+
+		    // 정상적으로 검색이 완료됐으면 
+		     if (status === daum.maps.services.Status.OK) {
+
+		        var coords = new daum.maps.LatLng(result.addr[0].lat, result.addr[0].lng);
+		        
+		        mapContainer.style.display="block";
+		        map.relayout();
+		        
+		        map.setCenter(coords);  //가운데로!
+		        
+		      //지도에 표시할 원을 생성합니다
+		        var circle = new daum.maps.Circle({
+		            center : new daum.maps.LatLng(result.addr[0].lat, result.addr[0].lng),  // 원의 중심좌표 입니다 
+		            radius: 120, // 미터 단위의 원의 반지름입니다 
+		            strokeWeight: 5, // 선의 두께입니다 
+		            strokeColor: '#41DA41', // 선의 색깔입니다
+		            strokeOpacity: 1, // 선의 불투명도 입니다 1에서 0 사이의 값이며 0에 가까울수록 투명합니다
+		            strokeStyle: 'dashed', // 선의 스타일 입니다
+		            fillColor: '#f5fffa', // 채우기 색깔입니다
+		            fillOpacity: 0.7  // 채우기 불투명도 입니다   
+		        }); 
+
+		        // 지도에 원을 표시합니다 
+		        circle.setMap(map); 
+		        
+				
+		        // 결과값으로 받은 위치를 마커로 표시합니다
+		        var marker = new daum.maps.Marker({
+		            map: map,
+		            position: coords
+		        });
+
+		    } 
+		    
+		}); 
+		});
+	    
+		});
 	
+    
 </script>
 
 
@@ -128,11 +208,7 @@
 		<tr>	
 			<th>제목</th>	
 			<td colspan="7" class="bgwhite"> 
-				<%-- <c:if test="${cntchk == 616098}">
-					하하하하하하하하하하하하하하하하
-				</c:if> --%>
 				${avo.btitle }
-				${cntchk}
 			</td>					
 		</tr>
 		
@@ -150,7 +226,7 @@
 				${avo.bhit}
 			</td>
 			<th>신고수</th>	
-			<td class="bgwhite" style="width: 50px">
+			<td class="bgwhite" style="width: 50px" id="rpt">
 				${avo.brpt }
 			</td>	
 		</tr>
@@ -163,11 +239,12 @@
 			<td colspan="8"><br>
 			
 				<!-- img/a.PNG가 이미지 뿌려주는 곳 -->
-				<a href="#" class="green-tooltip" data-toggle="tooltip" data-placement="top" title="위치를 확인하려면 아래 '위치확인' 버튼을 클릭해주세요!">
+				<a href="#" class="green-tooltip" data-toggle="tooltip" data-placement="top" title="위치를 확인하려면 아래 '위치 확인' 버튼을 클릭해주세요!">
 					<img src="img/${avo.aniimg}" class="img-rounded" alt="NOT available" width="70%">
 				</a>
 				
 				<br /><br />
+				
 				
 				<!--애기설명start-->
 <!-- 				<div id="demo" class="collapse alert alert-success"><br> -->
@@ -245,10 +322,13 @@
 					    <li class="list-group-item">
 					    	<span class="glyphicon glyphicon-apple"></span>
 					    	<label>지　역:　</label>${avo.aniregion}<!-- 지역 -->
-							<button type="button" class="btn btn-success btn-xs" data-toggle="collapse" data-target="#demo">
-								<span class="glyphicon glyphicon-zoom-in"></span>&nbsp;위치확인
+					    	<input type="hidden" value="${avo.aniregion}" id="addr">
+							<button id="showmap" type="button" class="btn btn-success btn-xs" data-toggle="collapse" data-target="#demo"><!-- data-toggle="collapse" data-target="#demo" -->
+								<span class="glyphicon glyphicon-zoom-in"></span>&nbsp;위치 확인
 							</button>					    	
-					    	<div id="demo" class="collapse" style="margin-left: 10%">지도를 가지고 와야한다 지도를!!<!-- 지도 --></div>
+					    	<div id="demo" class="collapse" style="margin-left: 10%">
+					    		<div id="map" style="width:575px;height:350px;"></div>
+					    	</div>
 					    </li>
 					    
 					    <li class="list-group-item">
@@ -322,75 +402,121 @@
 		
 		<!-- ========================================================================================= -->
 		
-		<c:if test="${matchswitch == 1}">
-		<tr>
-			<td colspan="8">
-<!--  			<td colspan="8" style="border: 1px solid blue"> -->
-				<div class="col-md-12 center" style="width: 100%">
-<!--  				<div class="col-md-12 center" style="border: 1px solid red; width: 100%"> -->
-					<div class="col-md-4">
-						<a href="selectoneAnimal?anino=${top[0].anino}&bno=${top[0].bno}&mid=${top[0].mid}" class="thumnail nounderline">
-							<img src="img/${top[0].aniimg}" class="img">
-						</a>
+		<c:if test="${avo.matchswitch == 1}">
+			<tr>
+				<th colspan="8" style="opacity:1;">${avo.matchmsg}</th>
+			</tr>
+			
+			<tr>
+				<td colspan="8">
+					<div class="col-md-12 center" style="width: 100%;">
+					
+						<c:if test="${size != 0}">
+							<c:set var="doneLoop" value="false" />
+							
+							<c:forEach var="i" begin="0" end="2" step="3">
+							
+								<div>
+									<c:if test="${not doneLoop}">
+									
+										<div class="col-md-4">
+											<a href="selectoneAnimal?anino=${top[i].anino}&bno=${top[i].bno}&mid=${top[i].mid}" class="thumnail nounderline">
+												<img src="img/${top[i].aniimg}" class="img">
+											</a>
+											
+											<table class="container">
+												<tr>
+													<th class="content">${top[i].btitle}</th>
+												</tr>
+												<tr>
+													<th class="content">${top[i].anispecies}&nbsp;&nbsp;/&nbsp;&nbsp;${top[i].anibreed}</th>
+												</tr>
+												<tr>
+													<th class="content">지역 : ${top[i].aniregion}</th>
+												</tr>
+												<tr>
+													<th class="content">날짜 : ${top[i].anidate}</th>
+												</tr>
+											</table>
+										</div>
+										
+										<c:if test="${i == (size-1)}">
+											<c:set var="doneLoop" value="true" />
+										</c:if>
+										
+									</c:if>
+									
+									<c:if test="${not doneLoop}">
+										
+										<div class="col-md-4">
+											<a href="selectoneAnimal?anino=${top[i+1].anino}&bno=${top[i+1].bno}&mid=${top[i+1].mid}" class="thumnail nounderline">
+												<img src="img/${top[i+1].aniimg}" class="img">
+											</a>
+											
+											<table class="container">
+												<tr>
+													<th class="content">${top[i+1].btitle}</th>
+												</tr>
+												<tr>
+													<th class="content">${top[i+1].anispecies}&nbsp;&nbsp;/&nbsp;&nbsp;${top[i+1].anibreed}</th>
+												</tr>
+												<tr>
+													<th class="content">지역 : ${top[i+1].aniregion}</th>
+												</tr>
+												<tr>
+													<th class="content">날짜 : ${top[i+1].anidate}</th>
+												</tr>
+											</table>
+										</div>
+										
+										<c:if test="${i+1 == (size-1)}">
+											<c:set var="doneLoop" value="true" />
+										</c:if>
+										
+									</c:if>	
+									
+									<c:if test="${not doneLoop}">
+										
+										<div class="col-md-4">
+											<a href="selectoneAnimal?anino=${top[i+2].anino}&bno=${top[i+2].bno}&mid=${top[i+2].mid}" class="thumnail nounderline">
+												<img src="img/${top[i+2].aniimg}" class="img">
+											</a>
+											
+											<table class="container">
+												<tr>
+													<th class="content">${top[i+2].btitle}</th>
+												</tr>
+												<tr>
+													<th class="content">${top[i+2].anispecies}&nbsp;&nbsp;/&nbsp;&nbsp;${top[i+2].anibreed}</th>
+												</tr>
+												<tr>
+													<th class="content">지역 : ${top[i+2].aniregion}</th>
+												</tr>
+												<tr>
+													<th class="content">날짜 : ${top[i+2].anidate}</th>
+												</tr>
+											</table>
+										</div>
+										
+										<c:if test="${i+2 == (size-1)}">
+											<c:set var="doneLoop" value="true" />
+										</c:if>
+										
+									</c:if>
+								</div>
+								
+							</c:forEach>
+						</c:if>
 						
-						<table class="container">
-							<tr>
-								<th class="content">${top[0].btitle}</th>
-							</tr>
-							<tr>
-								<th class="content">${top[0].anispecies}&nbsp;&nbsp;/&nbsp;&nbsp;${top[0].anibreed}</th>
-							</tr>
-							<tr>
-								<th class="content">지역 : ${top[0].aniregion}</th>
-							</tr>
-							<tr>
-								<th class="content">날짜 : ${top[0].anidate}</th>
-							</tr>
-						</table>
 					</div>
-					<div class="col-md-4">
-						<a href="selectoneAnimal?anino=${top[1].anino}&bno=${top[1].bno}&mid=${top[1].mid}" class="thumnail nounderline">
-							<img src="img/${top[1].aniimg}" class="img">
-						</a>
-						
-						<table class="container">
-							<tr>
-								<th class="content">${top[1].btitle}</th>
-							</tr>
-							<tr>
-								<th class="content">${top[1].anispecies}&nbsp;&nbsp;/&nbsp;&nbsp;${top[1].anibreed}</th>
-							</tr>
-							<tr>
-								<th class="content">지역 : ${top[1].aniregion}</th>
-							</tr>
-							<tr>
-								<th class="content">날짜 : ${top[1].anidate}</th>
-							</tr>
-						</table>
-					</div>
-					<div class="col-md-4">
-						<a href="selectoneAnimal?anino=${top[2].anino}&bno=${top[2].bno}&mid=${top[2].mid}" class="thumnail nounderline">
-							<img src="img/${top[2].aniimg}" class="img">
-						</a>
-						
-						<table class="container">
-							<tr>
-								<th class="content">${top[2].btitle}</th>
-							</tr>
-							<tr>
-								<th class="content">${top[2].anispecies}&nbsp;&nbsp;/&nbsp;&nbsp;${top[2].anibreed}</th>
-							</tr>
-							<tr>
-								<th class="content">지역 : ${top[2].aniregion}</th>
-							</tr>
-							<tr>
-								<th class="content">날짜 : ${top[2].anidate}</th>
-							</tr>
-						</table>
-					</div>
-				</div>
-			</td>
-		</tr>
+				</td>
+			</tr>
+		</c:if>
+		
+		<c:if test="${avo.matchswitch == 313048}">
+			<tr>
+				<th colspan="8" style="opacity:1;">${avo.matchmsg}</th>
+			</tr>
 		</c:if>
 		
 		<tr><td>　</td></tr>
@@ -453,7 +579,9 @@
 						</td>
 						<td>${cbvo.cbdate }</td> 
 																			<!-- 수정해야지 함. -->
-						<td><input type="button" value="삭제" onclick="location='commDelete?cbno=${cbvo.cbno}&anino=${avo.anino}&bno=${avo.bno }'"></td>
+						<td><%-- <input type="button" value="삭제" onclick="location='commDelete?cbno=${cbvo.cbno}&anino=${avo.anino}&bno=${avo.bno }'"> --%>
+							<a type="button" href="commDelete?cbno=${cbvo.cbno}&anino=${avo.anino}&bno=${avo.bno}">삭제</a>
+						</td>
 					</tr>
 					</c:forEach>
 					<!-- 끝 -->

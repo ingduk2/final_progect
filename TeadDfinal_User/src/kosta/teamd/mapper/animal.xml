@@ -21,7 +21,7 @@
      	select * from (select rownum r_num, aaa.* from (
 		select a.anino anino, a.aniimg aniimg, a.anispecies anispecies, 
      a.anibreed anibreed, a.aniname aniname, a.aniage aniage, a.anisex anisex, a.anineutral anineutral,
-     a.aniregion aniregion, to_char(a.anidate,'yy-mm-dd') anidate, a.anistate anistate, a.anireward anireward, b.btitle btitle,  b.bno bno,
+     a.aniregion aniregion, to_char(a.anidate,'yyyy/mm/dd') anidate, a.anistate anistate, a.anireward anireward, b.btitle btitle,  b.bno bno,
      b.mid mid, b.bhit bhit, b.bdate bdate  from animal a, board b where a.anino = b.anino and a.anino!=0 and bcode=#{bcode}
      <if test="searchType != null">
 			<choose>
@@ -64,7 +64,10 @@
     </delete>
     
     <update id="imgupdate" parameterType="anivo">
-		update animal set aniimg=#{aniimg} where anino=#{anino}
+	 update animal set 
+		aniimg=#{aniimg}, anispecies=#{anispecies}, anibreed=#{anibreed}, aniname=#{aniname}, aniage=#{aniage},	anisex=#{anisex},
+		aniweight=#{aniweight},	anifeature=#{anifeature}, aniregion=#{aniregion}, anidate=#{anidate}, anireward=#{anireward}, anistate=#{anistate}
+	 where anino=#{anino}
     </update>
     
     

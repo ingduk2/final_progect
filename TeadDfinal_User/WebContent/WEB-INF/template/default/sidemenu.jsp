@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR" pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 
 <script type="text/javascript">
 var stmnLEFT = 10; // 오른쪽 여백 
@@ -22,11 +22,32 @@ var stmnTimer;
   stmnTimer = setTimeout("RefreshStaticMenu();", stmnActivateSpeed); 
   } 
  function InitializeStaticMenu() {
-  document.getElementById('staticmenu').style.right = stmnLEFT + 'px';  //ó���� �����ʿ� ��ġ. left�� �ٲ㵵.
+  document.getElementById('staticmenu').style.right = stmnLEFT + 'px';
   document.getElementById('staticmenu').style.top = document.body.scrollTop + stmnBASE + 'px'; 
   RefreshStaticMenu();
   }
-</script>
+ 
+
+ $.ajax({
+     url: "randomreward", //"testAjax.jsp", 
+     type: "get",
+     success: function(msg) { //데이터 받는 부분.response
+     	var reward=JSON.parse(msg);
+     	
+     	
+/*      	alert(reward[0].anino);
+     	alert(reward[0].bno);
+     	alert(reward[0].mid);
+     	alert(reward[0].aniimg);
+     	alert(reward[0].anireward); */
+     	$('#don').html(reward[0].anireward+"￦");
+     	$('#wantedbaby').attr("src", "img/"+reward[0].aniimg);
+//      	selectoneAnimal?anino=81&bno=221&mid=1111
+     	$('#link').prop('href', "selectoneAnimal?anino="+reward[0].anino+"&bno="+reward[0].bno+"&mid="+reward[0].mid);
+     }
+});
+ 
+</script>	
 
 <style type="text/css">
 #staticmenu { margin: 0pt; padding: 0pt;  position: absolute; right: 0px; top: 0px;}
@@ -37,7 +58,9 @@ var stmnTimer;
 }
 #wantedbaby{
 	 width: 80px;
-	 padding-top: 70px;
+/* 	 height:70px; */
+ 	 padding-top: 60px;
+ 	 max-height: 130px 
 }
 </style>
 
@@ -45,8 +68,10 @@ var stmnTimer;
 <div id="staticmenu" style="border: 1px solid red;">
 <!-- 	<img src="http://skin011.com.ne.kr/HOME/tag1/img/ani_pskippy.gif"> -->
 	<div id="wanted">
-		<img id="wantedbaby" src="img/a.PNG"><p>
-		<strong>1,000,000￦</strong>
+		<a href="#" id="link"><!-- selectoneAnimal?anino=81&bno=221&mid=1111 -->
+			<img id="wantedbaby" src="img/a.PNG"><p>
+		</a>
+		<strong id="don"></strong> 
 	</div>
 	<p><a href="news?num=1"><img src="img/tabmenu_news.png"></a>
 	<p><a href="http://edu2.kvma.or.kr/"><img src="img/tabmenu_camera.png" width="80px"></a>

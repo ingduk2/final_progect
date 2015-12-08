@@ -10,6 +10,10 @@ table th {
 }
 </style>
 
+<script>
+	setTimeout("location.href='/TeadDfinal_User/index'", 10000);
+</script>
+
 <img src="img/message_msg.png">
 
 <table>

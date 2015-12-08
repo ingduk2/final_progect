@@ -122,4 +122,11 @@
 	    	order by bno desc
     	</select>
     
+    <!-- 비밀번호 업데이트 -->
+    <update id="pwdupdate" parameterType="mvo">
+    	update member 
+    	set mpwd=#{mpwd} 
+    	where mid=#{mid}
+    </update>
+    
     </mapper>

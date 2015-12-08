@@ -12,6 +12,8 @@ import kosta.teamd.vo.AniBoardVO;
 import kosta.teamd.mvc.dao.SurveyDao;
 import kosta.teamd.vo.BoardVO;
 import kosta.teamd.vo.SurveyVO;
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 @Controller
 public class PageViewController {
@@ -85,6 +87,36 @@ public class PageViewController {
 		mav.addObject("v",v);
 		return mav;
 		
+	}
+
+	
+	@RequestMapping(value="/randomreward")
+	public ModelAndView randomreward(){
+		ModelAndView mav=new ModelAndView("/checkpage/randomreward");
+		AniBoardVO reward=bdao.randomreward();
+		
+		JSONArray ja=new JSONArray();
+		JSONObject jo=new JSONObject();
+		
+		try {
+			
+			jo.put("anino", reward.getAnino());
+			jo.put("bno", reward.getBno());
+			jo.put("mid", reward.getMid());
+			jo.put("aniimg", reward.getAniimg());
+			jo.put("anireward", reward.getAnireward());
+			ja.add(jo);
+			
+			
+		} catch (Exception e) {
+			
+		}
+		
+
+		
+		System.out.println(ja);
+		mav.addObject("reward", ja);
+		return mav;
 	}
 	
 }
