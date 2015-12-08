@@ -25,4 +25,8 @@ public class CenterDao {
 		return template.selectList("center.list",bvo);
 	}
 	
+	public int cntCenter(BoardVO bvo){
+		return template.selectOne("center.count", bvo);
+	}
+	
 }
