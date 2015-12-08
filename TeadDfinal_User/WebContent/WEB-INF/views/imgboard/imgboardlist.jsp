@@ -68,8 +68,8 @@ function send(){ //서버로 데이터를 전송하는 메서드
 		padding-left: 10px;
 	}
 	.img {
-		width: 180px; 
-		height: 180px;
+		width: 160px; 
+		height: 160px;
 	}
 	.container {
 		width: 180px;
@@ -89,7 +89,7 @@ function send(){ //서버로 데이터를 전송하는 메서드
 /*  		border: 1px solid silver;  */
 		border-radius:15px;
 		margin: 10px;
-		width: 210px;
+		width: 200px;
 		padding-bottom: 5px;
  		background-color: rgba(255, 255, 255, 0.8);
 	}
@@ -128,10 +128,14 @@ function send(){ //서버로 데이터를 전송하는 메서드
 <input type="hidden" id="ccode" value="animal/${bcode }">
 
 <div class="chatchat" >
-	<div class="btn-group" style="clear: both;">
+	<!-- <div class="btn-group" style="clear: both;">
 	  <a type="button" class="btn btn-success" href="javascript:disconnect();">　퇴　　　장　</a>
 	  <a type="button" class="btn btn-success" href="javascript:connect();">　재　접　속　</a>
+	</div> -->
+	<div style="margin-top: 5px">
+	<span class="label label-success" style="background-color: #C8E798; font-size:1em;">미니채팅</span><small>*회원분들과 대화를 나눠보세요</small>
 	</div>
+	<hr style="margin-top: 5px; margin-bottom: 3px">
 	<div id="contents"><!-- 내용이 들어간다. --></div>
 	<div class="input-group" style="width:100%;">
 		<input type="text" class="form-control input-sm" type="text" id="message"/>

@@ -45,16 +45,16 @@
 	}
 </style>
 <script>
-	function fin() {
-		window.close();
-	}
+function fin() {
+	window.close();
+}
 function checksubmit() {
-		
-		if (document.amu.surveychk.value == "") {
-			alert("질문에 답변해주세요.")
-			return false
-		}return true;
-	}
+	
+	if (document.amu.surveychk.value == "") {
+		alert("질문에 답변해주세요.")
+		return false
+	}return true;
+}
 </script>
 </head>
 <body>

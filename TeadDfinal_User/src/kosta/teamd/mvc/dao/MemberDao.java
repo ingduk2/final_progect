@@ -109,6 +109,11 @@ public class MemberDao {
 		return template.selectList("member.selectAllMine", bvo);
 	}
 	
+	// 회원 자신이 작성한 모든 글 갯수 검색
+	public int selectAllMineCnt(BoardVO bvo) {
+		return template.selectOne("member.selectAllMineCnt", bvo);
+	}
+	
 	// 이메일 비밀번호 업데이트 
 	public void updatePwd(MemberVO mvo){
 		template.update("member.pwdupdate", mvo);

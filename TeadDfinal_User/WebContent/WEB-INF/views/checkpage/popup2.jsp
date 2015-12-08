@@ -61,10 +61,7 @@ function checksubmit() {
 <body>
 <div id="allbg">
 	<div class="jumbotron">
-
-	   
-
-		${v.content }
+			${v.content }
 	   <font size="3px">&nbsp;${v.sub }</font>
 	   <p><p><p>
 	   <form method="post" action="surveyUpdate" name="amu" onsubmit="return checksubmit()">
@@ -90,4 +87,3 @@ function checksubmit() {
 </div>
 </body>
 </html>
-	

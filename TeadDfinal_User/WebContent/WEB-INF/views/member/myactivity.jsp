@@ -82,42 +82,50 @@ $(document).ready(function(){
 
 <div class="involved" >
 	
-	<table style="width: 100%">
-		<thead>
+	<table style="width: 100%;">
+		<thead style="font-weight:bold; color:black;">
 			<tr id="title"> <td colspan="3">제목</td><td>작성자</td><td>작성일</td><td>조회</td> </tr>
 		</thead>
 		
 		<tbody id="tbodycss">
-		
 			<c:forEach var="mine" items="${mine}">
 				<tr>
-					<td style="border: 1px solid red">${mine.bno}</td>
+					<td style="width: 30px;">${mine.bno}</td>
 					
 					<c:if test="${mine.bcode==2 }">
-						<td style="width: 120px; border: 1px solid red">자유 게시판</td>
+						<td style="width: 100px;">자유 게시판</td>
 					</c:if>
 					<c:if test="${mine.bcode==3 }">
-						<td style="border: 1px solid red">질문 게시판</td>
+						<td>질문 게시판</td>
 					</c:if>
 					<c:if test="${mine.bcode==4 }">
-						<td style="border: 1px solid red">찾아주세요</td>
+						<td>찾아주세요</td>
 					</c:if>
 					<c:if test="${mine.bcode==5 }">
-						<td style="border: 1px solid red">잡았다요놈</td>
+						<td>잡았다요놈</td>
 					</c:if>
 					
-					<td style="text-align: left; padding-left: 20px" style="border: 1px solid red">
+					<td style="text-align: left;">
 						<c:forEach begin="1" end="${mine.blvl}">&nbsp;&nbsp;&nbsp;</c:forEach>
 						<c:if test="${mine.blvl != 0}">
 							<span class="glyphicon glyphicon-arrow-right"></span>&nbsp;
 						</c:if>
-						<a href="selectoneBoard?bno=${mine.bno}&mid=${mine.mid}">
-							${mine.btitle}
-						</a>
+						
+						<c:if test="${mine.bcode == 2 or mine.bcode == 3}">
+							<a href="selectoneBoard?bno=${mine.bno}&mid=${mine.mid}&nowPage=1">
+								${mine.btitle}
+							</a>
+						</c:if>
+						<c:if test="${mine.bcode == 4 or mine.bcode == 5}">
+							<a href="selectoneAnimal?anino=${mine.anino}&bno=${mine.bno}&mid=${mine.mid}&nowPage=1">
+								${mine.btitle}
+							</a>
+						</c:if>
+						
 					</td>
-					<td style="border: 1px solid red">${mine.mid}</td>
-					<td style="border: 1px solid red">${mine.bdate}</td>
-					<td style="border: 1px solid red">${mine.bhit}</td>
+					<td>${mine.mid}</td>
+					<td>${mine.bdate}</td>
+					<td>${mine.bhit}</td>
 				</tr>
 			</c:forEach>
 			
@@ -134,7 +142,7 @@ $(document).ready(function(){
 	<form action="" method="post">
 		<table><!-- 넘버링이랑, 검색, 글쓰기버튼,  --> 
 			<thead> 
-				<tr> <td colspan="5"> <!-- 페이징작업부분입니다. --> Numbering  </td> </tr>
+				<tr> <td colspan="5"> <!-- 페이징작업부분입니다. --> ${paging} </td> </tr>
 			</thead>
 			<tbody>
 				<tr>  

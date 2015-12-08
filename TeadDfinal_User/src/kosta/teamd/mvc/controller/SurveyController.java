@@ -1,7 +1,5 @@
 package kosta.teamd.mvc.controller;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 
 import kosta.teamd.mvc.dao.SurveyDao;
@@ -24,16 +22,15 @@ public class SurveyController {
 	public ModelAndView surveyUpdate(SurveyVO v, HttpServletRequest request,
 			SurveyLogVO sv) {
 		String surip = request.getRemoteAddr();
-		System.out.println(v.getSub1cnt());
+//		System.out.println(v.getSub1cnt());
 		sv.setSurip(surip);
 		sv.setSno(v.getNum());
 		int check = sdao.ipCheck(sv);
 		ModelAndView mav = new ModelAndView();
 		if (check > 0) {
-			System.out.println("중복 투표는 불가합니다");
+//			System.out.println("중복 투표는 불가합니다");
 			mav.setViewName("checkpage/duplicate");// 1207
 		} else {
-			System.out.println("헤헷");
 			mav.setViewName("checkpage/surveyDone");
 			sdao.insert(sv);// 1207
 			sdao.surveyUpdate(v);

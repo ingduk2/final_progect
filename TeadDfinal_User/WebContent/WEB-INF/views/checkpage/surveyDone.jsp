@@ -3,23 +3,25 @@
 <%@ page trimDirectiveWhitespaces="true" %>
 <!DOCTYPE html>
 <html>
+<link rel="stylesheet"	href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script	src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script> 
 <style>
 body{
- background-color: #ababab;
+ background-color: #f0fff0;
 }
 </style>
 <script>
 	function fin() {
 		window.close();
 	}
-window.resizeTo(500, 400);
-
+window.resizeTo(516, 400);
 </script>
 
 
 <body>
 <div align="center">
-<h1>설문에 응해주셔서 감사합니다</h1>
+<img src="img/surveyThanku.png">
 <button type="button" onclick="fin()" class="btn btn-default btn-sm" style="margin-bottom: -15px; margin-left:10%">확인</button>
 </div>
 </body>
