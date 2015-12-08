@@ -122,13 +122,15 @@ function connect() {
 	}
 }
 
+
+connect();
+
+});
+
 function disconnect() {
 	socket.close();
 	socket = null;
 }
-connect();
-
-});
 
 function send(){ //서버로 데이터를 전송하는 메서드
 	if(socket!=null){

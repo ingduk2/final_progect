@@ -3,7 +3,24 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="surveylog">
-<insert id="insert" parameterType="slogvo">
-insert into surveylog values(surveylog_seq.nextVal, #{sno}, '', #{surdate}) )
-</insert>
+
+	<insert id="insert" parameterType="slogvo">
+		insert into surveylog values(surveylog_seq.nextVal, #{sno}, #{surip},
+		sysdate)
+	</insert>
+
+	<update id="surveylogUpdate" parameterType="slogVO">
+		update surveylog set num=#{num} where sno=#{sno} <!-- num없애고 surip추가 해보니 
+			nullPointerException 1207 -->
+	</update>
+
+	<select id="surveyDetail1" parameterType="int" resultType="slogVO">
+		select num, sno, surip, surdate from surveylog where sno=#{sno}
+	</select>
+
+	<!-- 아이피 존재유무 체크 -->
+	<select id="ipCheck" parameterType="slogVO" resultType="int">
+		select count(*) cnt from surveylog where surip=#{surip} and sno=#{sno}
+	</select>
+
 </mapper>

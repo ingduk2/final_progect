@@ -45,31 +45,35 @@
 	}
 </style>
 <script>
-	function fin() {
-		window.close();
-	}
-	function checksubmit() {
-		if(document.survey.radio.value==""){
-			alert("투표를 입력해 주세요")
-			return false
-		}
-	}
+function fin() {
+	window.close();
+}
+function checksubmit() {
+	
+	if (document.amu.surveychk.value == "") {
+		alert("질문에 답변해주세요.")
+		return false
+	}return true;
+}
 </script>
 </head>
 <body>
 <div id="allbg">
 	<div class="jumbotron">
+
+
 		${v.content }
 	   <font size="3px">&nbsp;${v.sub } </font>
 	   <p><p><p>
-	   <form onsubmit="return checksubmit()" name="survey" method="post" action="surveyUpdate">
+	   <form method="post" action="surveyUpdate" name="amu" onsubmit="return checksubmit()">
 	   <input type="hidden" name="num" value="${v.num }"> 
 	 
 		<ul>
-		<li><input id="radio" type="radio" name="surveychk" value="1">${v.sub1 }</li>
-		<li><input id="radio" type="radio" name="surveychk" value="2">${v.sub2 }</li>
-		<li><input id="radio" type="radio" name="surveychk" value="3">${v.sub3 }</li>
+		<li><input type="radio" name="surveychk" value="1">${v.sub1 }</li>
+		<li><input type="radio" name="surveychk" value="2">${v.sub2 }</li>
+		<li><input type="radio" name="surveychk" value="3">${v.sub3 }</li>
 		</ul>
+
 	    
 	    <span style="color: red">
 	    	<strong>※ 본 설문조사는 로그인이 필요없는 열린방식으로 진행하고</br>
@@ -80,7 +84,6 @@
 	    <button type="submit" class="btn btn-default btn-sm" style="margin-bottom: -15px; margin-left: 90%" onclose="">투표하기</button>
 	   </form>   
 
-<!-- 	    <button type="button" onclick="fin()" class="btn btn-default btn-sm" style="margin-bottom: -15px; margin-left: 90%">투표하기</button> -->
 	    
 
 	 </div>

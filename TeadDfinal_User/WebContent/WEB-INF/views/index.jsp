@@ -79,19 +79,19 @@
 <script> //팝업
 	function popup(){
 		var specs = "left=10,top=10,width=697,height=546, location=no, realzable=no, scrollbars=no";
-		window.open("popup?num=1", "popup", specs);
+		window.open("popup?num=61", "popup", specs);
 	}
 	function popup2(){
 		var specs = "left=10,top=10,width=697,height=515, location=no, realzable=no, scrollbars=no";
-		window.open("popup2?num=2", "popup", specs);
+		window.open("popup2?num=62", "popup", specs);
 	}
 	function popup3(){
 		var specs = "left=10,top=10,width=697,height=470, location=no, realzable=no, scrollbars=no";
-		window.open("popup3?num=3", "popup", specs);
+		window.open("popup3?num=63", "popup", specs);
 	}
 	function popup4(){
 		var specs = "left=10,top=10,width=697, height=515, location=no, realzable=no, scrollbars=no";
-		window.open("popup4?num=4", "popup", specs);
+		window.open("popup4?num=64", "popup", specs);
 	}
 </script>
 
@@ -99,7 +99,7 @@
 <div class="body" style="width: 100%">
 
 	<div id="itsfloatdiv"> <!-- 얘는 설문조사를 넣을 애다. -->
-	<span class="label label-info" style="margin-left: 100px">설문조사 참여하기</span>
+	<span class="label label-info" style="margin-left: 100px" >설문조사 참여하기</span>
 	<table style="margin-left: 100px; height: 500px">
 		<tr>
 			<td>

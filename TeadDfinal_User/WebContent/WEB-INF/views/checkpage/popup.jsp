@@ -49,19 +49,14 @@
 	function fin() {
 		window.close();
 	}
-	
-	
-	function userIp() {
-	    var xip = location.host;
-	    document.getElementById("uip").innerHTML = xip;
-	}
-	
 	function checksubmit() {
-		if(document.survey.radio.value==""){
-			alert("투표를 입력해 주세요")
+		
+		if (document.amu.surveychk.value == "") {
+			alert("질문에 답변해주세요.")
 			return false
-		}
-	}
+		}return true;
+	}	
+	
 	
 </script>
 </head>
@@ -69,19 +64,22 @@
 <div>
 <div id="allbg">
 	<div class="jumbotron">
+
+	   
+<!-- 	   ('14년 유기동물 : 8만여 마리, 처리비 104억원 사용)<p> -->
 		${v.content }
 		
 	   <font size="3px">&nbsp; ${v.sub }</font>
 	   <p><p><p>
-	   <form onsubmit="return checksubmit()" name="survey" method="post" action="surveyUpdate"> 
+	   <form method="post" action="surveyUpdate" name="amu" onsubmit="return checksubmit()"> 
 	   <input type="hidden" name="num" value="${v.num }"> 
 	 
 		<ul>
-			<li><input id="radio" type="radio" name="surveychk" value="1">${v.sub1 }</li>
-			<li><input id="radio" type="radio" name="surveychk" value="2">${v.sub2 }</li>
-			<li><input id="radio" type="radio" name="surveychk" value="3">${v.sub3 }</li>
+		<li><input type="radio" name="surveychk" value="1">${v.sub1 }</li>
+		<li><input type="radio" name="surveychk" value="2">${v.sub2 }</li>
+		<li><input type="radio" name="surveychk" value="3">${v.sub3 }</li>
 		</ul>
-		
+	
 	    <span style="color: red">
 	    	<strong>※ 본 설문조사는 로그인이 필요없는 열린방식으로 진행하고</br>
 	    	  동일IP에서 중복투표를 방지하여 유의성을 제고합니다.
