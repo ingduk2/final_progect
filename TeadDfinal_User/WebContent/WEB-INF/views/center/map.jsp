@@ -43,7 +43,7 @@ $(document).ready(function() {
 	geoFindMe();
 	 $("[id='chcxy']").click(function(){
 			var xy = $(this).next().val();
-			alert(xy);
+// 			alert(xy);
 			$.ajax({
 				url : "getcxy",
 				type : "post",
@@ -53,8 +53,8 @@ $(document).ready(function() {
 					alert(res);
 				x = res.split(",")[0];
 				y = res.split(",")[1];
-				alert(x);
-				alert(y);
+// 				alert(x);
+// 				alert(y);
 				geoFindMe();
 				}
 			});
@@ -113,8 +113,8 @@ $.ajax({
         searchType : st
       },
 	success: function(json) {
-		alert("ajax");
-		alert(json);
+// 		alert("ajax");
+// 		alert(json);
 		var data=JSON.parse(json);
 		//data=json.aa;
 		
