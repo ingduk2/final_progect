@@ -71,6 +71,29 @@
 		});
 	
 	$(document).ready( function() {
+		
+		$('#bigkind').change(function(){
+			var age;
+			alert($('#bigkind').val());
+			if($('#bigkind').val()=="강아지"){
+				age=25;
+				alert(age)
+				$('#aniage').val("");
+				 $('#aniage').attr("max", age);				
+			}else if($('#bigkind').val()=="고양이"){
+				age=20;
+				$('#aniage').val("");
+				$('#aniage').attr("max", age);
+			}else{
+				age=100
+				$('#aniage').val("");
+				$('#aniage').attr("max", age);
+			}
+		});
+		
+		
+		
+		
 	    $('.btn-file :file').on('fileselect', function(event, numFiles, label) {
 	        
 	        var input = $(this).parents('.input-group').find(':text'),
@@ -140,6 +163,8 @@
 	);
 	var temp;
 	var oSelect="";
+	
+	
 	
 	function getKind(item){
 		temp=document.getElementById("smallkind");
@@ -440,7 +465,7 @@
 						<tr>
 							<th style="width: 60px">나이</th>
 							<td style="width: 160px">
-								<input type="number" name="aniage" class="form-control input-sm"
+								<input type="number" name="aniage" class="form-control input-sm" id="aniage" 
 									   placeholder="나이를 입력해주세요" min="1" />
 							</td>
 						 
