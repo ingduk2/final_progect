@@ -14,10 +14,14 @@
 #news_page{
 	margin-top: 20px;
 }
-#test_table{
-	border: 1px solid black;
-	
+/* #test_table{
+ 	border: 1px solid red;
+} */
+.testtest>a:HOVER, .testtest>a:FOCUS{
+	color: green;
 }
+.titlename{width: 50%; margin: auto; margin-top:80px}
+#titlename{text-align: left; margin-bottom: 0px; margin-left: 8px; color: #27592F}
 
 
 </style>
@@ -48,20 +52,20 @@ $(document).ready(function(){
    
 
    output +='<div id="news_table">';
-   output += '<table id="test_table" border="1">';
+   output += '<table id="test_table">';
    output += '<tr>';
-   output += '<td >';
-   output += '제목: '+'<a href=\"'+link+'\">'+title+'</a>';
+   output += '<td class="testtest" style="background-color: #c1ffc1">';
+   output += '<a href=\"'+link+'\" target="_blank">'+title+'</a>';
    output += '</td>';
    output += '</tr>';
    output += '<tr>';
-   output += '<td>';
-   output += '내용: '+description;
+   output += '<td style="text-align: left;">';
+   output += description;
    output += '</td>';
    output += '</tr>';
    
    output += '<tr>';
-   output += '<td>';
+   output += '<td  style="text-align:right;">';
    output += '날짜: '+pubDate;
    output += '</td>';
    output += '</tr>';
@@ -142,6 +146,11 @@ $(function() {
 
 <!-- <h1>Naver Shopping</h1> -->
 <!-- <span>Category:</span><input type="text" id="category"><input type="button" value="검색" id="search"> -->
+
+<div class="titlename">
+	<h3 id="titlename">▣ '유기동물'관련 뉴스</h3>
+<hr style="margin-top: 3px">
+</div>
 
 <div id="news">
 </div>

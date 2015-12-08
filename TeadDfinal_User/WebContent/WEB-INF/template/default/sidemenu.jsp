@@ -74,5 +74,5 @@ var stmnTimer;
 		<strong id="don"></strong> 
 	</div>
 	<p><a href="news?num=1"><img src="img/tabmenu_news.png"></a>
-	<p><a href="http://edu2.kvma.or.kr/"><img src="img/tabmenu_camera.png" width="80px"></a>
+	<p><a href="http://edu2.kvma.or.kr/" target="_blank"><img src="img/tabmenu_camera.png" width="80px"></a>
 </div>
