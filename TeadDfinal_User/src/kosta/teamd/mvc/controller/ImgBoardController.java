@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import kosta.teamd.mvc.inter.ImgBoardInsertInter;
 import kosta.teamd.mvc.service.Paging;
+import kosta.teamd.vo.AniBoardVO;
 import kosta.teamd.vo.AnimalVO;
 import kosta.teamd.vo.BoardVO;
 import kosta.teamd.vo.ImgBoardVO;
@@ -89,9 +90,9 @@ public class ImgBoardController {
 //			
 //		}
 		
-		ibinsert.imgBoardInsert(bvo, anivo);
+		AniBoardVO abvo = ibinsert.imgBoardInsert(bvo, anivo);
 		
-		return new ModelAndView("redirect:/selectallAnimal?bcode="+bvo.getBcode()+"&nowPage=1&searchType=");
+		return new ModelAndView("redirect:/selectoneAnimal?bcode="+bvo.getBcode()+"&bno="+abvo.getBno()+"&anino="+abvo.getAnino()+"&mid="+bvo.getMid()+"&nowPage=1&searchType=");
 	}
 	
 	// -- 이미지 게시판 리스트 불러오기 --

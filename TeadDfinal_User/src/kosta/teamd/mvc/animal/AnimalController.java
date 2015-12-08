@@ -178,7 +178,7 @@ public class AnimalController {
 		mav.addObject("size",alist.size());
 		mav.addObject("pagingCode", pagingCode);
 		mav.addObject("bcode", abvo.getBcode());
-		
+		mav.addObject("nowPage", nowPage);
 		
 	
 		
@@ -191,7 +191,7 @@ public class AnimalController {
 	}
 	
 	@RequestMapping(value="/selectoneAnimal")
-	public ModelAndView selectoneAnimal(AniBoardVO abvo, Principal prcp){
+	public ModelAndView selectoneAnimal(AniBoardVO abvo, String nowPage, Principal prcp){
 
 		// 조회수 처리
 		if (prcp != null) {
@@ -245,13 +245,14 @@ public class AnimalController {
 		
 		mav.addObject("avo", avo);
 		mav.addObject("cbvo", cbvo);
+		mav.addObject("nowPage", nowPage);
 		
 		return mav;
 	}
 	
 	
 	@RequestMapping(value="/deleteAnimal")
-	public ModelAndView deleteAnimal(int anino,int bcode){
+	public ModelAndView deleteAnimal(int anino,int bcode, String nowPage){
 		System.out.println(anino);
 		abi.delete(anino);
 		//게시판도 삭제
@@ -259,7 +260,7 @@ public class AnimalController {
 		
 		ModelAndView mav= new ModelAndView("redirect:/selectallAnimal");
 		mav.addObject("bcode",bcode);
-		mav.addObject("nowPage",1);
+		mav.addObject("nowPage",nowPage);
 		mav.addObject("searchType","");
 		return mav;
 		
@@ -268,10 +269,11 @@ public class AnimalController {
 	//////수정
 	//이미지폼 실행
 	@RequestMapping(value="/updateformAnimal")
-	public ModelAndView updateformAnimal(int anino){
+	public ModelAndView updateformAnimal(int anino, String nowPage){
 		AniBoardVO avo = adao.imgDetail(anino);
 		ModelAndView mav = new ModelAndView("imgboard/imgupdate");
 		mav.addObject("avo", avo);
+		mav.addObject("nowPage", nowPage);
 		return mav;
 	}
 	

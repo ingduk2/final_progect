@@ -46,17 +46,19 @@ public class BoardDao {
 	public void hitBoard(int bno){
 		template.update("board.hitBoard", bno);
 	}
-	public void replyBoard(BoardVO bvo){
+	public int replyBoard(BoardVO bvo){
 		template.update("board.replyupdate", bvo);
 		template.insert("board.insertreply", bvo);
+		int a=bvo.getBno();
+		return a;
 	}
 	public MemberVO namecard(String mid){
 		return template.selectOne("board.namecard", mid);
 	}
 
 	// ====================================================
-	public void insertImgBoard(BoardVO bvo) {
-		template.insert("board.imgBoardInsert", bvo);
+	public int insertImgBoard(BoardVO bvo) {
+		return template.insert("board.imgBoardInsert", bvo);
 	}
 	// ====================================================
 	

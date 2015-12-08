@@ -91,16 +91,22 @@ $(document).ready(function(){
 		
 			<c:forEach var="mine" items="${mine}">
 				<tr>
-					<td>${mine.bno}</td>
+					<td style="border: 1px solid red">${mine.bno}</td>
 					
 					<c:if test="${mine.bcode==2 }">
-						<td>자유</td>
+						<td style="width: 120px; border: 1px solid red">자유 게시판</td>
 					</c:if>
 					<c:if test="${mine.bcode==3 }">
-						<td>질문</td>
+						<td style="border: 1px solid red">질문 게시판</td>
+					</c:if>
+					<c:if test="${mine.bcode==4 }">
+						<td style="border: 1px solid red">찾아주세요</td>
+					</c:if>
+					<c:if test="${mine.bcode==5 }">
+						<td style="border: 1px solid red">잡았다요놈</td>
 					</c:if>
 					
-					<td style="text-align: left; padding-left: 20px">
+					<td style="text-align: left; padding-left: 20px" style="border: 1px solid red">
 						<c:forEach begin="1" end="${mine.blvl}">&nbsp;&nbsp;&nbsp;</c:forEach>
 						<c:if test="${mine.blvl != 0}">
 							<span class="glyphicon glyphicon-arrow-right"></span>&nbsp;
@@ -109,9 +115,9 @@ $(document).ready(function(){
 							${mine.btitle}
 						</a>
 					</td>
-					<td>${mine.mid}</td>
-					<td>${mine.bdate}</td>
-					<td>${mine.bhit}</td>
+					<td style="border: 1px solid red">${mine.mid}</td>
+					<td style="border: 1px solid red">${mine.bdate}</td>
+					<td style="border: 1px solid red">${mine.bhit}</td>
 				</tr>
 			</c:forEach>
 			

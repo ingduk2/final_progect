@@ -265,11 +265,11 @@ public class BoardController {
 		}
 		
 		bvo.setBfile(originalFile);
-		bdao.replyBoard(bvo);
+		int a = bdao.replyBoard(bvo);
 		
-		String bno = bdao.selectBno(bvo);
+		//String bno = bdao.selectBno(bvo);
 		
-		ModelAndView mav=new ModelAndView("redirect:/selectoneBoard?bno="+bno+"&mid="+bvo.getMid()+"&nowPage="+nowPage);
+		ModelAndView mav=new ModelAndView("redirect:/selectoneBoard?bno="+a+"&mid="+bvo.getMid()+"&nowPage="+nowPage);
 		
 		return mav;
 	}
