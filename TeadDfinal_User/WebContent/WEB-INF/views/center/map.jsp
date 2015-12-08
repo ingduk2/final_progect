@@ -6,15 +6,34 @@
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=cafcd4fae4be10d7ffdde1bc7cadf004"></script>
-<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"> -->
 <style>
 	#map{
 	margin : auto;
 	width:600px;
 	height:400px;
+	margin-bottom: 10px
 	}
 	th{ 
- text-align: center;
+ 		text-align: center;
+	}
+	
+	table th {
+		font-weight: bold;
+		color: black;
+		background-color: #90ee90;
+	 	opacity: 0.4;
+		font: bold;
+		border-bottom: 1px solid #f0fff0;
+		width: 45px;
+	}
+	tbody td{
+		 border-bottom: 1px solid #f0fff0; 
+		 /* border-bottom: 1px solid silver; */ 
+	}
+	#addr{
+		text-align: left;
+		padding-left: 10px		
 	}
 </style>
 <script>
@@ -227,10 +246,10 @@ function geoFindMe() {
 			<c:forEach var="listv" items="${list }">
 				<tr>
 <%-- 					<td>${listv.cnum }</td> --%>
-					<td>${listv.cname }</td>
-					<td>${listv.caddr }</td>
+					<th>${listv.cname }</th>
+					<td id="addr">${listv.caddr }</td>
 <%-- 					<td><a id="chcxy" class="chcxy" >${listv.cxy }</a></td> --%>
-					<td><input type="button"  id="chcxy"   class="btn btn-success btn-sm" value="위치확인">
+					<td><input type="button"  id="chcxy"   class="btn btn-success btn-xs" value="위치확인">
 						<input type="hidden" id="cxyval" value="${listv.cxy }">
 					</td>
 				</tr>
@@ -239,7 +258,7 @@ function geoFindMe() {
 		<tfoot>
 		</tfoot>
 		</table>
-		<form action="selectallCenter" method="post">
+		<form action="selectallCenter" method="get">
 	<table><!-- 넘버링이랑, 검색, 글쓰기버튼,  --> 
 		<thead> 
 			<tr> <td colspan="5"> <!-- 페이징작업부분입니다. Numbering --> ${page }  </td> </tr>

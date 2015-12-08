@@ -50,6 +50,7 @@ public class Paging {
 		//이전 페이지 구하는 공식
 		//nowBlock>1 이면 이전 페이지의 링크를 구현. 인데 <a href='url?nowPage=(nowBlock -2)*numPerBlock +1'>◀</a>&nbsp;&nbsp;
 		//										  ◀&nbsp;&nbsp;
+		
 		if(nowBlock > 1){ //nowBlock 이 1보다 크다면 이전페이지의 링크를 구현
 			prev.append("<a href='").append(url);
 			prev.append("?nowPage=");
@@ -60,6 +61,7 @@ public class Paging {
 			prev.append("◀&nbsp;&nbsp;");
 		}
 		
+		if(totalRecord!=0){
 		//페이지 출력
 		for(int i=0; i<numPerBlock; i++){
 			//출력되는 페이지 값
@@ -83,7 +85,7 @@ public class Paging {
 				break;
 			}
 		}//for문 종료
-		
+		}
 		//다음 페이지를 구현: totalBlock 이 nowBlock보다 클경우 (블록보다 많아지면 넘어가게 링크.)
 		//페이지를 하나 더 만들어야 하므로 <a href='url?nowPage=nowBlock*numPerBlock+1'>▶</a>
 		if(totalBlock > nowBlock){
@@ -98,7 +100,5 @@ public class Paging {
 		pagingCode=prev.toString() + paging.toString()
 				+next.toString();
 		
-	}
-	
-	
+		}	
 }

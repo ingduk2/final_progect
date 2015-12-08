@@ -18,6 +18,7 @@ table th {
  	opacity: 0.4;
 	font: bold;
 	text-align: center;
+	/* border-bottom: 1px solid #f0fff0; */
 	border-bottom: 1px solid #f0fff0;
 	width: 45px;
 }

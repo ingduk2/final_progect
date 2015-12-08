@@ -91,6 +91,12 @@ public class CenterController {
 		page.Paging_D(total, nowPage, numPerPage, numPerBlock, url, param.toString());
 		String paging = page.getPagingCode();
 		//여기서 json으로 만들어서 보내줘얗ㄴ다
+		
+		for(CenterVO e : list){
+			System.out.println("주소 : "+e.getCaddr());
+			System.out.println("이름 : " +e.getCname());
+			System.out.println("좌표 : "+ e.getCxy());
+		}
 		mav.addObject("page", paging);
 		mav.addObject("list",list);
 		mav.addObject("sv",bvo.getSearchValue());

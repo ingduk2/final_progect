@@ -24,31 +24,30 @@
 <!-- 	</select> -->
 
 	<select id="list" parameterType="bvo" resultType="cvo">
-		select * from(select rownum rnum,a.* from
-		(select cnum, cname, caddr, cxy from center order by cname) a order by rnum)  
-    			<where>
-    				rnum between #{start} and #{end}
+		select * from(select rownum rnum, a.* from
+		(select cnum, cname, caddr, cxy from center 
     			<if test="searchType!=null">
+    			<where>
     				<choose>
     					<when test="searchType==1">
-    					and	cname like '%' || #{searchValue} || '%'
+    						cname like '%' || #{searchValue} || '%' 
     					</when>
     					<when test="searchType==2">
-    					and	caddr like '%' || #{searchValue} || '%'
+    						caddr like '%' || #{searchValue} || '%' 
     					</when>
                        <otherwise></otherwise>                           
     				</choose>
+    				</where>
     			</if>
-    			</where>
-    		
-    	
+		order by cname) a order by rnum)  
+		where rnum between #{start} and #{end}
 	</select>
 	
 	<select id="count" parameterType="bvo" resultType="int">
-		select count(*) from(select rownum rnum,a.* from
+		select count(*) cnt from(select rownum rnum,a.* from
 		(select cnum, cname, caddr, cxy from center order by cname) a order by rnum)
-		<if test="searchType!=null">
     			<where>
+    			<if test="searchType!=null">
     				<choose>
     					<when test="searchType==1">
     						cname like '%' || #{searchValue} || '%'
@@ -58,7 +57,8 @@
     					</when>
                        <otherwise></otherwise>                           
     				</choose>
+    				</if>
     			</where>
-    		</if>
+    		
 	</select>
 </mapper>
