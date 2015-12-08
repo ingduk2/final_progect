@@ -11,8 +11,8 @@
     	
     	<select id="commlist" resultType="cbvo" parameterType="int">
     		select 
-    		cbno, bno, cbcontent, mid, to_char(cbdate,'yy"년"mm"월"dd"일"') cbdate  
-    		from commboard where bno=#{bno} order by cbno desc
+    		cbno, bno, cbcontent, mid, to_char(cbdate, 'yyyy/mm/dd') cbdate  
+    		from commboard where bno=#{bno} order by cbno asc
     	</select>
     	
     	<delete id="commdelete" parameterType="int">

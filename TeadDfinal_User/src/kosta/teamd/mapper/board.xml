@@ -25,12 +25,16 @@
     	insert into board values(
     	#{bcode}, #{bcode}, board_seq.nextVal, #{btitle}, #{mid}, #{bcontent}, 
     	sysdate, 0, 0, board_seq.nextVal, 1, #{blvl}, #{bip}, #{bfile}, 0)
+    	<selectKey keyProperty="bno" resultType="int" order="AFTER">
+    		select board_seq.currval from dual
+    	</selectKey>
+    	
     </insert>
     
-    <!-- 해당 회원이 작성한, 해당 게시판의 마지막 글 (방금 쓴 글)의 글 번호 추출 -->
+<!--     해당 회원이 작성한, 해당 게시판의 마지막 글 (방금 쓴 글)의 글 번호 추출
     <select id="selectBno" parameterType="bvo" resultType="String">
     	select bno from board where mid=#{mid} and bcode=#{bcode} and rownum='1' order by bno desc
-    </select>
+    </select> -->
     
     <select id="getlist" resultType="bvo" parameterType="bvo">
     	select 
@@ -98,6 +102,9 @@
     	#{bcode}, #{bcode}, board_seq.nextVal, #{btitle}, #{mid}, #{bcontent}, 
     	sysdate, 0, #{anino}, board_seq.nextVal, 1, #{blvl}, #{bip}, 'nofile', 0
     	)
+    	<selectKey keyProperty="bno" resultType="int" order="AFTER">
+    		select board_seq.currval from dual
+    	</selectKey>
     </insert>
     
     <!-- ====================================================================== -->
@@ -125,7 +132,11 @@
     <insert id="insertreply" parameterType="bvo">
      	insert into board values(
     	#{bcode}, #{bcode}, board_seq.nextVal, #{btitle}, #{mid}, #{bcontent}, 
-    	sysdate, 0, 0, #{bref}, #{bseq}, #{blvl}, #{bip}, #{bfile}, 0)   	
+    	sysdate, 0, 0, #{bref}, #{bseq}, #{blvl}, #{bip}, #{bfile}, 0)
+    	
+    	<selectKey keyProperty="bno" resultType="int" order="AFTER">
+    		select board_seq.currval from dual
+    	</selectKey>   	
     </insert>
     
     <update id="replyupdate" parameterType="bvo">

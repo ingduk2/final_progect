@@ -63,7 +63,7 @@
 		
 		<!-- 이미지 게시판 -->
 		<intercept-url pattern="/formImgBoardWrite" access="User, Admin" /> <!-- 글 쓰기 폼 -->
-		
+		<intercept-url pattern="/commInsert" access="User, Admin" /> <!-- 댓글 등록 -->
 		
 	 	
 	 	<!-- login 처리 -->

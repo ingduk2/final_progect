@@ -529,7 +529,7 @@
 
 		<table><tr height="30px"><!-- 높이 조절용 칸 떼우기 --><td></td></tr></table>
 		<button type="submit" class="btn btn-success btn-sm">　완　　료　</button>
-		<button type="button" class="btn btn-success btn-sm" onclick="location='selectallAnimal?bcode=${bcode}'">　취　　소　</button>
+		<button type="button" class="btn btn-success btn-sm" onclick="location='selectallAnimal?bcode=${bcode}&nowPage=${nowPage}&searchType='">　취　　소　</button>
 		
 	</form>
 </div>
