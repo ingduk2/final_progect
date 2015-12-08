@@ -65,7 +65,7 @@ var stmnTimer;
 </style>
 
 
-<div id="staticmenu" style="border: 1px solid red;">
+<div id="staticmenu" >
 <!-- 	<img src="http://skin011.com.ne.kr/HOME/tag1/img/ani_pskippy.gif"> -->
 	<div id="wanted">
 		<a href="#" id="link"><!-- selectoneAnimal?anino=81&bno=221&mid=1111 -->

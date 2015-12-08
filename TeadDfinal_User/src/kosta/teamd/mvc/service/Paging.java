@@ -36,6 +36,7 @@ public class Paging {
 			//현재 페이지 값에서 페이지 제한수를 나누어서 현재 블록의 값을 구해야 한다.
 		int nowBlock=(int) Math.ceil((double)nowPage/numPerBlock); // 지금페이지/ 블록 수 현재블록의 값.
 		
+		System.out.println("nowBlock : " + nowBlock);
 		//페이징을 구하기 위한 태그공식을 저장하기 위한 자료
 			//이전 페이지를 구현
 		StringBuffer prev= new StringBuffer();
@@ -50,6 +51,7 @@ public class Paging {
 		//이전 페이지 구하는 공식
 		//nowBlock>1 이면 이전 페이지의 링크를 구현. 인데 <a href='url?nowPage=(nowBlock -2)*numPerBlock +1'>◀</a>&nbsp;&nbsp;
 		//										  ◀&nbsp;&nbsp;
+		if(totalRecord >0){
 		if(nowBlock > 1){ //nowBlock 이 1보다 크다면 이전페이지의 링크를 구현
 			prev.append("<a href='").append(url);
 			prev.append("?nowPage=");
@@ -95,10 +97,9 @@ public class Paging {
 			next.append("&nbsp;&nbsp;▶"); //이거 없애버리면 숨겨지게된다. 링크
 		}
 		//페이지가 완성 되었으면 조합된 페이지 코드에 저장
+	}
 		pagingCode=prev.toString() + paging.toString()
 				+next.toString();
 		
-	}
-	
-	
+		}	
 }
