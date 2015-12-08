@@ -71,6 +71,75 @@
 		});
 	
 	$(document).ready( function() {
+	
+	// 분류 선택	 id="anistate" value="${avo.anistate}
+	$('#anistate option').each(function(){
+		var sel = $(this).val();
+		if(sel == "${avo.anistate}"){
+			$(this).attr("selected", "selected");
+		}
+	});
+		
+	// 동물  선택
+	$('#bigkind option').each(function(){
+		var sel = $(this).val();
+		if(sel == "${avo.anispecies}"){
+			$(this).attr("selected", "selected");
+			
+			// 품종 선택  id="smallkind" value="${avo.anibreed}"
+			$('#smallkind option').each(function(){
+			var sel = $(this).val();
+			if(sel == "${avo.anibreed}"){
+				alert(sel)
+				$(this).attr("selected", "selected");
+			}
+		});
+		}
+	});
+	
+	// 성별 선택  value="${avo.anisex}" id="anisex"
+		$('#anisex option').each(function(){
+		var sel = $(this).val();
+		if(sel == "${avo.anisex}"){
+			$(this).attr("selected", "selected");
+		}
+	});
+		
+	
+		
+	// 중성화 선택
+	$('#anineutral option').each(function(){
+	    var sel = $(this).val();
+	    if(sel == "${avo.anineutral}")
+	        $(this).attr("selected", "selected");
+	});
+
+			
+		
+		
+		// 동물 종별 수명
+		$('#bigkind').change(function(){
+			var age;
+			if($('#bigkind').val()=="강아지"){
+				age=25;
+				 $('#aniage').attr("max", age);				
+			}else if($('#bigkind').val()=="고양이"){
+				age=20;
+				$('#aniage').attr("max", age);
+			}else if($('#bigkind').val()=="토끼"){
+				age=15;
+				$('#aniage').attr("max", age);
+			}
+			else if($('#bigkind').val()=="새"){
+				age=10;
+				$('#aniage').attr("max", age);
+			}else{
+				age=100;
+				$('#aniage').attr("max", age);
+			}
+		});
+		
+		
 	    $('.btn-file :file').on('fileselect', function(event, numFiles, label) {
 	        
 	        var input = $(this).parents('.input-group').find(':text'),
@@ -97,12 +166,14 @@
 		// 날짜 형식 getter
 		var dateFormat = $( "#datepicker" ).datepicker( "option", "dateFormat" );
 		// 날짜 형식 setter
-		$( "#datepicker" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
-		
+		$( "#datepicker" ).datepicker( "option", "dateFormat", "yy/mm/dd" );
+		// 날짜 기본값 
+		$( "#datepicker" ).datepicker( "setDate", "${avo.anidate}");
 		// 년도 기간 getter
 		var yearRange = $( "#datepicker" ).datepicker( "option", "yearRange" );
 		// 년도 기간 setter (50년 전 ~ 현재)
 		$( "#datepicker" ).datepicker( "option", "yearRange", "-50:c" );
+	
 	});   //생년월일 가져오는 function
 
 	// 다음 주소 찾기 api
@@ -134,9 +205,11 @@
 	//------------------------------------------------------------------------------------------------
 	//품종 - 대분류, 소분류 종류 배열에 처넣처넣
 	var kindv=new Array(new Array("-- 선택 --"),
-			  new Array("-- 선택 --", "요크셔테리어", "푸들", "허스키", "말라뮤트", "비글", "말티즈", "시츄", "진돗개", "세퍼트", "퍼그", "베들링턴테리어","보더콜리", "웰시코기", "코카스파니엘", "아프간하운드", "시바이누", "바셋하운드", "비숑프리제", "제페니즈첸", "블러드하운드", "포메라이언", "빠삐용", "보스턴테리어", "치와와", "차우차우", "샤페이", " "),
-			  new Array("-- 선택 --", "페르시안", "익스트림", "페르시안핀칠라", "히말라얀", "터키쉬앙고라", "러시안블루", "스콜티쉬폴드", "코리안숏헤어", "아메리칸숏헤어", "스핑크스", "렉돌", "노르웨이숲", "엔죠틱", "버만", "브리티쉬숏헤어", "봄베이", "메인쿤", "라가머핀", "발리네즈", "샴", "먼치킨","아비시니안", "뱅갈", " "),
-			  new Array("-- 선택 --", "고슴도치", "토끼", "새", "거북이", "페릿", "원숭이", "사막여우", "햄스터", "기니피그", "미니피그", "기타", " ")
+			  new Array("-- 선택 --", "닥스훈트", "말라뮤트", "말티즈", "바셋하운드", "보더콜리", "보스턴테리어", "비글", "비숑프리제", "빠삐용", "세퍼트", "스피츠", "시바이누", "시츄", "아프간하운드", "요크셔테리어", "웰시코기", "진돗개", "차우차우 ", "치와와", "코카스파니엘", "퍼그", "포메라이언", "푸들", "허스키", "기타", " "),
+			  new Array("-- 선택 --", "노르웨이숲", "러시안블루", "레그돌", "먼치킨", "뱅갈", "샴", "스콜티쉬폴드", "스핑크스", "아메리칸숏헤어", "이비시니안", "코리안숏헤어", "터키쉬앙고라", "페르시안", "페르시안친칠라", "기타", " "),
+			  new Array("-- 선택 --", "더치", "드워프", "라이언헤드", "렉스", "롭이어", "브라운마스카라", "블랙마스카라", "앙고라", "재페니즈화이트", "친칠라", "기타", " "),//토끼
+			  new Array("-- 선택 --", "구관조", "금강앵무", "금화조", "모란앵무", "문조", "십자매", "왕관 앵무", "잉꼬", "지빠귀", "직박구리", "찌르레기", "청휘조", "카나리아", "핀치", "기타", " "),//새
+			  new Array("-- 선택 --", "고슴도치", "거북이", "페릿", "원숭이", "사막여우", "햄스터", "기니피그", "미니피그", "기타", " ")
 	);
 	var temp;
 	var oSelect="";
@@ -396,6 +469,8 @@
 									<option value="0">-- 선택 --</option>
 								    <option value="강아지">강아지</option>
 								    <option value="고양이">고양이</option>
+								    <option value="토끼">토끼</option>
+								    <option value="새">새</option>
 								    <option value="기타">기타</option>
 								</select>
 							</td>
@@ -418,7 +493,7 @@
 						<tr> 
 							<th style="width: 60px">성별</th>
 							<td style="width: 160px">
-								<select name="anisex" class="form-control input-sm" value="${avo.anisex}">
+								<select name="anisex" class="form-control input-sm" value="${avo.anisex}" id="anisex">
 									<option value="0">-- 선택 --</option>
 									<option value="남아">남아</option>
 									<option value="여아">여아</option>
@@ -428,7 +503,7 @@
 							
 							<th style="width: 60px">중성화</th>
 							<td style="width: 160px">
-								<select name="anineutral" class="form-control input-sm" value="${avo.anineutral}">
+								<select name="anineutral" id="anineutral" class="form-control input-sm" value="${avo.anineutral}">
 									<option value="0">-- 선택 --</option>
 									<option value="o">O</option>
 									<option value="x">X</option>
@@ -440,7 +515,7 @@
 						<tr>
 							<th style="width: 60px">나이</th>
 							<td style="width: 160px">
-								<input type="number" name="aniage" class="form-control input-sm"
+								<input type="number" name="aniage" class="form-control input-sm" id="aniage"
 									   placeholder="나이를 입력해주세요" min="1" value="${avo.aniage}" />
 							</td>
 						 
@@ -460,7 +535,7 @@
 								</c:if>
 								<c:if test="${avo.bcode == 4}">
 									<input class="form-control input-sm" type="text" placeholder="잃어버린 날짜(선택)"
-										   id="datepicker" name="anidate" readonly="readonly" value="${avo.anidate}"  />
+										   id="datepicker" name="anidate" readonly="readonly"  />
 								</c:if>
 							</td>
 						</tr>
@@ -502,7 +577,7 @@
 							<th>특징</th>
 							<td colspan="3">
 								<div class="form-group">
-     									<textarea class="form-control" name="anifeature" rows="3" placeholder="동물의 특징을 입력해주세요" value="${avo.anifeature}"></textarea>
+     									<textarea class="form-control" name="anifeature" rows="3" placeholder="동물의 특징을 입력해주세요">${avo.anifeature}</textarea>
    								</div>
 							</td> 
 						</tr>
@@ -517,7 +592,7 @@
 			
 			<tr>	
 				<td colspan="2"  height="500px">
-					<textarea class="form-control" name="bcontent" rows="10" id="comment" placeholder="내용을 입력하세요" value="${avo.bcontent}"></textarea>
+					<textarea class="form-control" name="bcontent" rows="10" id="comment" placeholder="내용을 입력하세요" >${avo.bcontent}</textarea>
 				</td>		
 			</tr>
 

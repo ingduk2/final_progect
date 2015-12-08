@@ -50,7 +50,7 @@ $(document).ready(function() {
 				data : {cxy : xy
 				},
 				success : function(res){
-					alert(res);
+// 					alert(res);
 				x = res.split(",")[0];
 				y = res.split(",")[1];
 // 				alert(x);
@@ -126,8 +126,8 @@ $.ajax({
 			print +="<h1>["+item.title+"]</h1><p> name:"+item.latlng+"</p>";
 			
 			var xy=item.latlng.split(',');
-			alert(xy[0]);
-			alert(xy[1]);
+// 			alert(xy[0]);
+// 			alert(xy[1]);
 			item.latlng=new daum.maps.LatLng(xy[0],xy[1]);
 			
 		});
