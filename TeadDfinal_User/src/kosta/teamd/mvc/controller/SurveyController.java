@@ -22,7 +22,6 @@ public class SurveyController {
 	
 	@RequestMapping(value="surveyIn", method=RequestMethod.POST)
 	public ModelAndView addSurvey(SurveyVO v){
-		System.out.println("응?");
 		ModelAndView mav = new ModelAndView();
 		sdao.surveyAdd(v);
 		mav.setViewName("checkpage/surveyDone");
@@ -31,10 +30,10 @@ public class SurveyController {
 	
 	@RequestMapping(value="surveyUpdate", method=RequestMethod.POST)
 	public ModelAndView surveyUpdate(SurveyVO v){
-		System.out.println("A:__________-"+v.getNum());
+/*		System.out.println("A:__________-"+v.getNum());
 		System.out.println(v.getSurveychk());
 		System.out.println(v.getSub1cnt());
-		System.out.println("들어왔냐헤헷");
+		System.out.println("들어왔냐헤헷");*/
 		sdao.surveyUpdate(v);
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("checkpage/surveyDone"); //view 어디에 들어가게 하지...

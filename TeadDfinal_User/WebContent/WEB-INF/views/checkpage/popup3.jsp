@@ -48,47 +48,28 @@
 	function fin() {
 		window.close();
 	}
+	function checksubmit() {
+		if(document.survey.radio.value==""){
+			alert("투표를 입력해 주세요")
+			return false
+		}
+	}
 </script>
 </head>
 <body>
 <div id="allbg">
 	<div class="jumbotron">
-<!-- 	   <h3>캣맘<small>여러분의 소중한 의견을 기다립니다.</small></h3> -->
-<!-- 	   <hr> -->
-<!-- 	   <font size="3px">&nbsp; -->
-<!-- 	   캣맘은 길고양이에게 정기적으로 물과 먹이를 주거나 자발적으로 보호활동을 하는 사람을 뜻한다 -->
-<!-- 	   </font> -->
-<!-- 	   <table class="table"> -->
-<!-- 	   	<tr> -->
-<!-- 			<td>서울시가 동물보호와 공원 환경 청결 유지, 중성화수술을 통한 길고양이 증가 억제를 위해 ‘길고양이 급식소’ 27개를 공원 4개에 설치한다. -->
-<!-- 	                  급식소의 전반적인 운영과 시민자원봉사자 교육, 중성화수술 지원은 동물관련 시민단체가 맡고, 먹이주기와 급식소 청소 등 실질적인 관리는 ‘캣맘’들이 중심이 된 시민자원봉사자가 담당한다. -->
-<!-- 	                  시는 길고양이 급식소 설치를 통해 길고양이들에게 먹이를 주고 중성화수술도 지원해 2016년 상반기까지 공원 내 길고양이 중성화율을 70% 이상 높인다는 계획이다 -->
-<!-- 	        </td> -->
-<!-- 	   	</tr> -->
-<!-- 	   </table> -->
-	   
-<!-- 	   *2015년 서울시 12곳에서 조사한 결과로 추정한 서울의 길고양이 개체수는 최대 20만마리다<p> -->
-
 		${v.content }
 	   <font size="3px">&nbsp;${v.sub } </font>
 	   <p><p><p>
-	   <form method="post" action="surveyUpdate">
+	   <form onsubmit="return checksubmit()" name="survey" method="post" action="surveyUpdate">
 	   <input type="hidden" name="num" value="${v.num }"> 
 	 
 		<ul>
-		<li><input type="radio" name="surveychk" value="1">${v.sub1 }</li>
-		<li><input type="radio" name="surveychk" value="2">${v.sub2 }</li>
-		<li><input type="radio" name="surveychk" value="3">${v.sub3 }</li>
+		<li><input id="radio" type="radio" name="surveychk" value="1">${v.sub1 }</li>
+		<li><input id="radio" type="radio" name="surveychk" value="2">${v.sub2 }</li>
+		<li><input id="radio" type="radio" name="surveychk" value="3">${v.sub3 }</li>
 		</ul>
-<!-- 	    <div class="radio"> -->
-<!-- 	      <label><input type="radio" name="optradio" value="1">긍정적 영향</label> -->
-<!-- 	    </div> -->
-<!-- 	    <div class="radio"> -->
-<!-- 	      <label><input type="radio" name="optradio" value="2">부정적 영향</label> -->
-<!-- 	    </div> -->
-<!-- 	    <div class="radio"> -->
-<!-- 	      <label><input type="radio" name="optradio" value="3">모른다</label> -->
-<!-- 	    </div> -->
 	    
 	    <span style="color: red">
 	    	<strong>※ 본 설문조사는 로그인이 필요없는 열린방식으로 진행하고</br>
