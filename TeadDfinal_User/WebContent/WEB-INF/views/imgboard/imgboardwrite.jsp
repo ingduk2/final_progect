@@ -72,6 +72,7 @@
 	
 	$(document).ready( function() {
 		
+		// 동물 종별 수명
 		$('#bigkind').change(function(){
 			var age;
 			alert($('#bigkind').val());
@@ -84,15 +85,21 @@
 				age=20;
 				$('#aniage').val("");
 				$('#aniage').attr("max", age);
+			}else if($('#bigkind').val()=="토끼"){
+				age=15;
+				$('#aniage').val("");
+				$('#aniage').attr("max", age);
+			}
+			else if($('#bigkind').val()=="새"){
+				age=10;
+				$('#aniage').val("");
+				$('#aniage').attr("max", age);
 			}else{
-				age=100
+				age=100;
 				$('#aniage').val("");
 				$('#aniage').attr("max", age);
 			}
 		});
-		
-		
-		
 		
 	    $('.btn-file :file').on('fileselect', function(event, numFiles, label) {
 	        
