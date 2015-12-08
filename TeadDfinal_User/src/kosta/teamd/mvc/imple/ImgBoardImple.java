@@ -9,6 +9,7 @@ import kosta.teamd.mvc.dao.ImgBoardDao;
 import kosta.teamd.mvc.inter.ImgBoardDeleteInter;
 import kosta.teamd.mvc.inter.ImgBoardInsertInter;
 import kosta.teamd.mvc.inter.ImgBoardUpdateInter;
+import kosta.teamd.vo.AniBoardVO;
 import kosta.teamd.vo.AnimalVO;
 import kosta.teamd.vo.BoardVO;
 
@@ -23,14 +24,20 @@ public class ImgBoardImple
 	
 	@Transactional
 	@Override
-	public void imgBoardInsert(BoardVO bvo, AnimalVO anivo) throws Exception {
+	public AniBoardVO imgBoardInsert(BoardVO bvo, AnimalVO anivo) throws Exception {
 
 		ibdao.animalInsert(anivo);
 		
 		int anino = anivo.getAnino();
 		bvo.setAnino(anino);
 		
-		bdao.insertImgBoard(bvo);
+		int bno = bdao.insertImgBoard(bvo);
+		
+		AniBoardVO abvo = new AniBoardVO();
+		abvo.setAnino(anino);
+		abvo.setBno(bno);
+		
+		return abvo;
 	}
 	
 	@Override

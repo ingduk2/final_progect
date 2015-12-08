@@ -192,7 +192,7 @@ function send(){ //서버로 데이터를 전송하는 메서드
 							</c:if>
 						</c:if>
 					
-						<a href="selectoneAnimal?anino=${alist[i].anino}&bno=${alist[i].bno}&mid=${alist[i].mid}" class="thumnail nounderline">
+						<a href="selectoneAnimal?anino=${alist[i].anino}&bno=${alist[i].bno}&mid=${alist[i].mid}&nowPage=${nowPage}" class="thumnail nounderline">
 							<img src="img/${alist[i].aniimg}" class="img">
 						</a>
 						
@@ -263,7 +263,7 @@ function send(){ //서버로 데이터를 전송하는 메서드
 							</c:if>
 						</c:if>
 					
-						<a href="selectoneAnimal?anino=${alist[i+1].anino}&bno=${alist[i+1].bno}&mid=${alist[i+1].mid}" class="thumnail nounderline">
+						<a href="selectoneAnimal?anino=${alist[i+1].anino}&bno=${alist[i+1].bno}&mid=${alist[i+1].mid}&nowPage=${nowPage}" class="thumnail nounderline">
 							<img src="img/${alist[i+1].aniimg}" class="img">
 						</a>
 						
@@ -334,7 +334,7 @@ function send(){ //서버로 데이터를 전송하는 메서드
 							</c:if>
 						</c:if>
 					
-						<a href="selectoneAnimal?anino=${alist[i+2].anino}&bno=${alist[i+2].bno}&mid=${alist[i].mid}" class="thumnail nounderline">
+						<a href="selectoneAnimal?anino=${alist[i+2].anino}&bno=${alist[i+2].bno}&mid=${alist[i].mid}&nowPage=${nowPage}" class="thumnail nounderline">
 							<img src="img/${alist[i+2].aniimg}" class="img">
 						</a>
 						
@@ -376,7 +376,7 @@ function send(){ //서버로 데이터를 전송하는 메서드
 	<br>
 	<!-- 입양신청에서는 글쓰기 안보이게 -->
 	<c:if test="${bcode != 6}">
-		<button type="button" class="btn btn-success btn-sm" onclick="location='formImgBoardWrite?bcode=${bcode}'">　글 등 록　</button>
+		<button type="button" class="btn btn-success btn-sm" onclick="location='formImgBoardWrite?bcode=${bcode}&nowPage=${nowPage}'">　글 등 록　</button>
 	</c:if>
 	<br><br>
 	

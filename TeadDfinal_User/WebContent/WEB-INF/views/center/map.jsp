@@ -6,17 +6,60 @@
 <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
 <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
 <script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=cafcd4fae4be10d7ffdde1bc7cadf004"></script>
+<!-- <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"> -->
 <style>
 	#map{
 	margin : auto;
 	width:600px;
 	height:400px;
+	margin-bottom: 10px
+	}
+	th{ 
+ 		text-align: center;
+	}
+	
+	table th {
+		font-weight: bold;
+		color: black;
+		background-color: #90ee90;
+	 	opacity: 0.4;
+		font: bold;
+		border-bottom: 1px solid #f0fff0;
+		width: 45px;
+	}
+	tbody td{
+		 border-bottom: 1px solid #f0fff0; 
+		 /* border-bottom: 1px solid silver; */ 
+	}
+	#addr{
+		text-align: left;
+		padding-left: 10px		
 	}
 </style>
 <script>
+var x=null;
+var y=null;	
 $(document).ready(function() {
-	
 	geoFindMe();
+	 $("[id='chcxy']").click(function(){
+			var xy = $(this).next().val();
+// 			alert(xy);
+			$.ajax({
+				url : "getcxy",
+				type : "post",
+				data : {cxy : xy
+				},
+				success : function(res){
+					alert(res);
+				x = res.split(",")[0];
+				y = res.split(",")[1];
+// 				alert(x);
+// 				alert(y);
+				geoFindMe();
+				}
+			});
+		});
+	  
 });
 
 function loadMap(a,b){
@@ -70,8 +113,8 @@ $.ajax({
         searchType : st
       },
 	success: function(json) {
-		alert("ajax");
-		alert(json);
+// 		alert("ajax");
+// 		alert(json);
 		var data=JSON.parse(json);
 		//data=json.aa;
 		
@@ -129,7 +172,7 @@ $.ajax({
 //음 제이슨 데이터를 만들어서 !!
 	
 }
-
+	
 function geoFindMe() {
 	  var output = document.getElementById("out");
 
@@ -143,10 +186,15 @@ function geoFindMe() {
 		});
 	  
 	  function success(position) {
+		  if(x==null && y==null){
 	    var latitude  = position.coords.latitude;
 	    var longitude = position.coords.longitude;
-
-	    output.innerHTML = '<p>위도 : ' + latitude + '° <br>경도 : ' + longitude + '°</p>';
+		  }else{
+	    var latitude  = x;
+	    var longitude = y;
+		  }
+	    //위도 경도 지도 밑 표시부분 주석처리
+	    // output.innerHTML = '<p>위도 : ' + latitude + '° <br>경도 : ' + longitude + '°</p>';
 	    var a=latitude;
 	    var b=longitude;
 	    loadMap(a, b);
@@ -160,18 +208,18 @@ function geoFindMe() {
 	    output.innerHTML = "사용자의 위치를 찾을 수 없습니다.";
 	  };
 
-	  output.innerHTML = "<p>Locating…</p>";
+	  //output.innerHTML = "<p>Locating…</p>";
 
 	  navigator.geolocation.getCurrentPosition(success, error);
 	}
+	
 
-
-
+	
 </script>
 
-<input type="hidden" id="v" value="33.450705,126.570677"><%-- <input type="text" id="v" value="${json}"> --%>
-<input type="text" id="sv" value="${ sv}">
-<input type="text" id="st" value="${ st}">
+<%-- <input type="hidden" id="v" value="33.450705,126.570677"><input type="text" id="v" value="${json}"> --%>
+<input type="hidden" id="sv" value="${ sv}">
+<input type="hidden" id="st" value="${ st}">
 <!--리스트를 ${araymap} 형식으로 받아서. 하묜 안되내...
 스크립트니 ajax로 db에서 빼올지.. 데이터 만들어서 노가다로 해올지..  -->
 <div id="map"></div>
@@ -179,17 +227,17 @@ function geoFindMe() {
 <!-- <div id="res1"></div> -->
 <!-- <p><button onclick="geoFindMe()">현 위치</button></p> -->
 <div id="out"></div>
-<div>
-	<table>
+<div class=”table-responsive“>
+	<table  class=”table“ style="width: 600px">
 		<thead>
+<!-- 			<tr> -->
+<!-- 				<th colspan="5">List</th> -->
+<!-- 			</tr> -->
 			<tr>
-				<th colspan="5">List</th>
-			</tr>
-			<tr>
-				<td>번호</td>
-				<td>이름</td>
-				<td>주소</td>
-				<td>좌표</td>
+<!-- 				<th>번호</th> -->
+				<th>이름</th>
+				<th>주소</th>
+				<th>위치</th>
 				
 			</tr>
 		</thead>
@@ -197,29 +245,32 @@ function geoFindMe() {
 		<tbody>
 			<c:forEach var="listv" items="${list }">
 				<tr>
-					<td>${listv.cnum }</td>
-					<td>${listv.cname }</td>
-					<td>${listv.caddr }</td>
-					<td>${listv.cxy }</td>
+<%-- 					<td>${listv.cnum }</td> --%>
+					<th>${listv.cname }</th>
+					<td id="addr">${listv.caddr }</td>
+<%-- 					<td><a id="chcxy" class="chcxy" >${listv.cxy }</a></td> --%>
+					<td><input type="button"  id="chcxy"   class="btn btn-success btn-xs" value="위치확인">
+						<input type="hidden" id="cxyval" value="${listv.cxy }">
+					</td>
 				</tr>
 			</c:forEach>
 		</tbody>
 		<tfoot>
 		</tfoot>
 		</table>
-		<form action="" method="post">
+		<form action="selectallCenter" method="get">
 	<table><!-- 넘버링이랑, 검색, 글쓰기버튼,  --> 
 		<thead> 
-			<tr> <td colspan="5"> <!-- 페이징작업부분입니다. --> Numbering  </td> </tr>
+			<tr> <td colspan="5"> <!-- 페이징작업부분입니다. Numbering --> ${page }  </td> </tr>
 		</thead>
 		<tbody>
 			<tr>  
 				<td> &nbsp;
 						<!--  다이나믹쿼리로 검색기능 추가할 부분 -->
 				      <select name="searchType" class="form-control input-sm" id="sel1">
+				      		<option value="">-선택-</option>
 					        <option value="1">센터 이름</option>
 					        <option value="2">센터 주소</option>
-					        
 				      </select>&nbsp;
 				</td>
 				<td>&nbsp;

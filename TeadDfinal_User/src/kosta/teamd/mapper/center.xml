@@ -7,10 +7,47 @@
 		insert into center values(center_seq.nextVal,#{cname},#{caddr},#{cxy})
 	</insert>
 	
+<!-- 	<select id="list" parameterType="bvo" resultType="cvo"> -->
+<!-- 		select * from center -->
+<!-- 		<if test="searchType!=null"> -->
+<!--     			<where> -->
+<!--     				<choose> -->
+<!--     					<when test="searchType==1"> -->
+<!--     						cname like '%' || #{searchValue} || '%' -->
+<!--     					</when> -->
+<!--     					<when test="searchType==2"> -->
+<!--     						caddr like '%' || #{searchValue} || '%' -->
+<!--     					</when> -->
+<!--     				</choose> -->
+<!--     			</where> -->
+<!--     		</if> -->
+<!-- 	</select> -->
+
 	<select id="list" parameterType="bvo" resultType="cvo">
-		select * from center
-		<if test="searchType!=null">
+		select * from(select rownum rnum, a.* from
+		(select cnum, cname, caddr, cxy from center 
+    			<if test="searchType!=null">
     			<where>
+    				<choose>
+    					<when test="searchType==1">
+    						cname like '%' || #{searchValue} || '%' 
+    					</when>
+    					<when test="searchType==2">
+    						caddr like '%' || #{searchValue} || '%' 
+    					</when>
+                       <otherwise></otherwise>                           
+    				</choose>
+    				</where>
+    			</if>
+		order by cname) a order by rnum)  
+		where rnum between #{start} and #{end}
+	</select>
+	
+	<select id="count" parameterType="bvo" resultType="int">
+		select count(*) cnt from(select rownum rnum,a.* from
+		(select cnum, cname, caddr, cxy from center order by cname) a order by rnum)
+    			<where>
+    			<if test="searchType!=null">
     				<choose>
     					<when test="searchType==1">
     						cname like '%' || #{searchValue} || '%'
@@ -18,8 +55,10 @@
     					<when test="searchType==2">
     						caddr like '%' || #{searchValue} || '%'
     					</when>
+                       <otherwise></otherwise>                           
     				</choose>
+    				</if>
     			</where>
-    		</if>
+    		
 	</select>
 </mapper>

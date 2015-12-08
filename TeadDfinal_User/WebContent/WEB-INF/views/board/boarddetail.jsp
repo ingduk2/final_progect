@@ -18,6 +18,7 @@ table th {
  	opacity: 0.4;
 	font: bold;
 	text-align: center;
+	/* border-bottom: 1px solid #f0fff0; */
 	border-bottom: 1px solid #f0fff0;
 	width: 45px;
 }
@@ -201,9 +202,15 @@ table th {
 							${list.cbcontent}
 						</td>
 						<td>${list.cbdate}</td>
-						<td>
-							<a type="button" href="deleteComm?cbno=${list.cbno}&bno=${list.bno}&mid=${bvo.mid}&nowPage=${nowPage}">삭제</a>
-						</td> 
+						
+						<!-- 본인이 쓴 댓글만 지울 수 있게 수정 -->
+						<c:if test="${list.mid == pageContext.request.userPrincipal.name}">
+							<td>
+								<a type="button" href="deleteComm?cbno=${list.cbno}&bno=${list.bno}&mid=${bvo.mid}&nowPage=${nowPage}">삭제</a>
+							</td>
+						</c:if>
+						
+						 
 					</tr>
 				</c:forEach>
 				<!-- 끝 -->
