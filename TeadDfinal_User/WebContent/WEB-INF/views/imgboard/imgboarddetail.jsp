@@ -77,7 +77,13 @@
 		text-align: left;
 		
 	}
-	.col-md-4 {
+	.col-md-4{
+		border-radius:15px;
+		margin: 10px;
+		width: 210px;
+		padding-top: 15px;
+		padding-bottom: 10px;
+ 		background-color: rgba(255, 255, 255, 0.8);
  		margin-top: 15px;
  		margin-bottom: 15px;
 	}
@@ -534,15 +540,18 @@
 		<!-- 댓글 입력  -->
 		<tr>
 		
-			<th>Comments</th>
+			<th>Comment</th>
 			<td colspan="8">
 				<form method="post" action="commInsert">
 			    	<div class="input-group col-xs-12">
-			    		<input type="hidden" name="mid" id="mid" value="${pageContext.request.userPrincipal.name}"/>
+			    	
+<%-- 			    		<input type="hidden" name="mid" id="mid" value="${pageContext.request.userPrincipal.name}"/> --%>
 			    		<input type="hidden" name="bno" id="bno" value="${avo.bno}"/>
 			    		<input type="hidden" name="anino" id="anino" value="${avo.anino}"/>
 			    		<input type="hidden" name="cbip" value="<%=request.getRemoteAddr() %>">
+			    		<input type="hidden" name="nowPage" value="${nowPage}" />
 			        	<input type="text" name="cbcontent" class="form-control input-sm " placeholder="Your comments" required="required">
+			        	
 			            	<span class="input-group-btn">
 <!-- 				            	 <span class="btn btn-success btn-sm">&nbsp; -->
 			                    <button type="submit" value="ADD" class="btn btn-success btn-sm">&nbsp;
@@ -561,7 +570,8 @@
 			<th><span class="glyphicon glyphicon-user"></span></th>
 			<td colspan="8">
 				<table width="100%">
-					<tr> <th style="border-left: 1px solid #f0fff0;">ID</th> <th  class="reply">Comment</th> <th>Date</th><th>삭제</th> </tr>
+<!-- 					<tr> <th style="border-left: 1px solid #f0fff0;">ID</th> <th  class="reply">Comments</th> <th>Date</th><th>삭제</th> </tr> -->
+					<tr> <th style="border-left: 1px solid #f0fff0;">ID</th> <th  class="reply">Comments</th> <th>Date</th> <th style="width: 15px; font-size: 10px;"></th	> </tr>
 					<!-- 댓글 부분 이곳에서 반복처리하면 됩니다. 시작 -->
 					
 		<%-- 			 <s:iterator value="list"> <!-- 갑가져오기 -->
@@ -573,15 +583,20 @@
 					<c:forEach var="cbvo" items="${cbvo }">
 					<tr> 
 						<td>${cbvo.mid }</td>
-						<td class="reply">
+<!-- 						<td class="reply"> -->
+						<td class="reply" style="text-align: left; padding-left: 20px; width: 220px">
 							${cbvo.cbcontent }
-							<!-- Comment내용이나오겠지,아마도! -->
 						</td>
 						<td>${cbvo.cbdate }</td> 
-																			<!-- 수정해야지 함. -->
-						<td><%-- <input type="button" value="삭제" onclick="location='commDelete?cbno=${cbvo.cbno}&anino=${avo.anino}&bno=${avo.bno }'"> --%>
-							<a type="button" href="commDelete?cbno=${cbvo.cbno}&anino=${avo.anino}&bno=${avo.bno}">삭제</a>
-						</td>
+
+						<!-- 본인이 쓴 댓글만 지울 수 있게 수정 -->
+						<c:if test="${cbvo.mid == pageContext.request.userPrincipal.name}">
+							<td>
+								<a type="button" href="commDelete?cbno=${cbvo.cbno}&anino=${avo.anino}&bno=${cbvo.bno}&mid=${cbvo.mid}&nowPage=${nowPage}">삭제</a>
+							</td>
+						</c:if>
+
+
 					</tr>
 					</c:forEach>
 					<!-- 끝 -->
@@ -593,14 +608,14 @@
 	<table><tr height="30px"><!-- 높이 조절용 칸 떼우기 --><td></td></tr></table>
 	
 	<c:if test="${pageContext.request.userPrincipal.name == avo.mid}">
-		<button type="button" class="btn btn-success btn-sm" onclick="location='updateformAnimal?anino=${avo.anino}'">　수　　정　</button>
-		<button type="button" class="btn btn-success btn-sm" onclick="location='deleteAnimal?anino=${avo.anino}&nowPage=1&searchtype=&bcode=${avo.bcode }'">　삭　　제　</button>
+		<button type="button" class="btn btn-success btn-sm" onclick="location='updateformAnimal?anino=${avo.anino}&nowPage=${nowPage}'">　수　　정　</button>
+		<button type="button" class="btn btn-success btn-sm" onclick="location='deleteAnimal?anino=${avo.anino}&nowPage=${nowPage}&searchtype=&bcode=${avo.bcode }'">　삭　　제　</button>
 	</c:if>
 	
 	<c:if test="${pageContext.request.userPrincipal.name != null}">
 		<button type="button" class="btn btn-success btn-sm" id="reportBtn">　신　　고　 </button>
 	</c:if>
 	
-	<button type="button" class="btn btn-success btn-sm" onclick="location='selectallAnimal?bcode=${avo.bcode}&nowPage=1&searchType='">　목　　록　</button>
+	<button type="button" class="btn btn-success btn-sm" onclick="location='selectallAnimal?bcode=${avo.bcode}&nowPage=${nowPage}&searchType='">　목　　록　</button>
 	
 </div>		

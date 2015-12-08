@@ -40,7 +40,7 @@ var stmnTimer;
      	alert(reward[0].mid);
      	alert(reward[0].aniimg);
      	alert(reward[0].anireward); */
-     	$('#don').html(reward[0].anireward+"￦");
+     	$('#don').html("￦"+reward[0].anireward);
      	$('#wantedbaby').attr("src", "img/"+reward[0].aniimg);
 //      	selectoneAnimal?anino=81&bno=221&mid=1111
      	$('#link').prop('href', "selectoneAnimal?anino="+reward[0].anino+"&bno="+reward[0].bno+"&mid="+reward[0].mid);
