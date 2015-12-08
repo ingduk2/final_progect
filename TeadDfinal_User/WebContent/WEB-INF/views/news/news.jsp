@@ -148,7 +148,7 @@ $(function() {
 <!-- <span>Category:</span><input type="text" id="category"><input type="button" value="검색" id="search"> -->
 
 <div class="titlename">
-	<h3 id="titlename">▣ '유기견'관련 뉴스</h3>
+	<h3 id="titlename">▣ '유기동물'관련 뉴스</h3>
 <hr style="margin-top: 3px">
 </div>
 

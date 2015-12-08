@@ -21,17 +21,6 @@ $(document).ready(function(){
 	.glyphicon {
 		color: #8fbc8f
 	}
-	/* 	tootip style */
-		#itsfloatdiv{
-		position: fixed; position: absolute; 
-/* 		z-index: -1; */
-		overflow: hidden;
-		left: 0px;
-		top: 160px;
-		margin: 0;
-		padding: 0
-	}
-
 /* 	tootip style */
 	.plz>a:HOVER, .plz>td>a:focus{
 		color: green;
@@ -80,6 +69,28 @@ $(document).ready(function(){
 .titlename{width: 50%; margin: auto;}
 #titlename{text-align: left; margin-bottom: 0px; margin-left: 8px; color: #27592F}
 
+
+/* 채팅창 */
+	.label-success{
+		background-color:#69EEA8
+	}
+	#itsfloatdiv{
+		position: fixed; position: absolute; 
+		overflow: hidden;
+		left: 0px;
+		top: 160px;
+		margin: 0;
+		padding: 0;
+		background-color: white;
+		border-radius:10px;
+		color: black;
+		width: 280px
+	}
+	.chatchat{
+			clear: both;
+			width: 100%;
+			padding: 2px
+	}
 </style>
 
 <script>
@@ -129,7 +140,7 @@ function send(){ //서버로 데이터를 전송하는 메서드
 }
 </script>
 
-<c:if test="${bcode!=1 }">
+<%-- <c:if test="${bcode!=1 }">
 <div id="itsfloatdiv">
 
 <input type="hidden" id="cid" value="${pageContext.request.userPrincipal.name}">
@@ -141,6 +152,31 @@ function send(){ //서버로 데이터를 전송하는 메서드
 <a href="javascript:connect();">재접속</a>
 <br>
 <input type="text" id="message"><a href="javascript:send();">전송</a>
+</div>
+</c:if> --%>
+
+<c:if test="${bcode!=1 }">
+<div id="itsfloatdiv">
+<input type="hidden" id="cid" value="${pageContext.request.userPrincipal.name}">
+<input type="hidden" id="ccode" value="board/${bcode }">
+
+<div class="chatchat" >
+	<!-- <div class="btn-group" style="clear: both;">
+	  <a type="button" class="btn btn-success" href="javascript:disconnect();">　퇴　　　장　</a>
+	  <a type="button" class="btn btn-success" href="javascript:connect();">　재　접　속　</a>
+	</div> -->
+	<div style="margin-top: 5px">
+	<span class="label label-success" style="background-color: #C8E798; font-size:1em;">미니채팅</span><small>*회원분들과 대화를 나눠보세요</small>
+	</div>
+	<hr style="margin-top: 5px; margin-bottom: 3px">
+	<div id="contents"><!-- 내용이 들어간다. --></div>
+	<div class="input-group" style="width:100%;">
+		<input type="text" class="form-control input-sm" type="text" id="message"/>
+		<span class="input-group-btn">
+    		<a type="button" class="btn btn-success btn-sm" href="javascript:send();">전송</a>
+		</span>
+	</div>
+</div>
 </div>
 </c:if>
 

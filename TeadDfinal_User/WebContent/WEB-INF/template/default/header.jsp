@@ -72,7 +72,7 @@ a:FOCUS, a:HOVER {
 					<!-- 비로그인 시 -->
 					<c:if test="${pageContext.request.userPrincipal.name == null}">
 						<!--로그인--><a class="loginout" href="login"><img src="img/login_top_btn.png"></a>&nbsp;&nbsp;<font color="#b5b2b2">|</font>&nbsp;
-						<!--회원가입--><a class="loginout" href="formJoin"><img src="img/joinus_top_btn.png"></a>&nbsp;<font color="#b5b2b2">|</font>&nbsp;
+						<!--회원가입--><a class="loginout" href="formJoin"><img src="img/joinus_top_btn.png"></a>&nbsp;
 					</c:if>
 					
 					<!-- 로그인 시 -->
@@ -81,10 +81,10 @@ a:FOCUS, a:HOVER {
 						
 						<!--로그아웃-->
 						<c:url var="logout" value="j_spring_security_logout"></c:url>
-						<a class="loginout" href="${logout }"><img src="img/logout_top_btn.png"></a>&nbsp;<font color="#b5b2b2">|</font>&nbsp;
+						<a class="loginout" href="${logout }"><img src="img/logout_top_btn.png"></a>&nbsp;
 					</c:if>
 					
-					<!--연락--><a class="loginout" href="#"><img src="img/contactus_top_btn.png"></a>&nbsp;&nbsp;
+					<!--연락--><!-- <font color="#b5b2b2">|</font>&nbsp;<a class="loginout" href="#"><img src="img/contactus_top_btn.png"></a>&nbsp;&nbsp; -->
 					
 				</td> 
 			</tr>
