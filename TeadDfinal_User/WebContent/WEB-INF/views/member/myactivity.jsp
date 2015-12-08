@@ -142,7 +142,7 @@ $(document).ready(function(){
 	<form action="" method="post">
 		<table><!-- 넘버링이랑, 검색, 글쓰기버튼,  --> 
 			<thead> 
-				<tr> <td colspan="5"> <!-- 페이징작업부분입니다. --> Numbering  </td> </tr>
+				<tr> <td colspan="5"> <!-- 페이징작업부분입니다. --> ${paging} </td> </tr>
 			</thead>
 			<tbody>
 				<tr>  

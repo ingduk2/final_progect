@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import kosta.teamd.mvc.dao.MemberDao;
@@ -19,6 +20,7 @@ import kosta.teamd.mvc.inter.MemberDeleteInter;
 import kosta.teamd.mvc.inter.MemberInsertInter;
 import kosta.teamd.mvc.inter.MemberSelectInter;
 import kosta.teamd.mvc.inter.MemberUpdateInter;
+import kosta.teamd.mvc.service.Paging;
 import kosta.teamd.vo.BoardVO;
 import kosta.teamd.vo.MemRolesVO;
 import kosta.teamd.vo.MemberVO;
@@ -28,6 +30,9 @@ public class MemberController {
 
 	@Autowired
 	private MemberDao mdao;
+	
+	@Autowired
+	private Paging page;
 	
 	// -- 회원 가입 페이지 연결 --
 	@RequestMapping(value="/formJoin")
@@ -217,15 +222,53 @@ public class MemberController {
 	}
 	
 	// -- 나의 활동 페이지 연결 --
+//	@RequestMapping(value="/selectAllMyActivity")
+//	public ModelAndView selectMyActivity(BoardVO bvo, Principal prcp) {
+//		
+//		bvo.setMid(prcp.getName());
+//		
+//		List<BoardVO> mine = mdao.selectAllMine(bvo);
+//		
+//		ModelAndView mav = new ModelAndView("member/myactivity");
+//		mav.addObject("mine", mine);
+//		
+//		return mav;
+//	}
+	// -- 나의 활동 페이지 연결 --
 	@RequestMapping(value="/selectAllMyActivity")
-	public ModelAndView selectMyActivity(BoardVO bvo, Principal prcp) {
+	public ModelAndView selectMyActivity(BoardVO bvo, Principal prcp, @RequestParam(defaultValue="1") int nowPage) {
 		
 		bvo.setMid(prcp.getName());
 		
+		int numPerPage = 10;
+		int numPerBlock = 5;
+		int start = (nowPage - 1) * numPerPage + 1;
+		int end = start + numPerPage - 1;
+		int total = mdao.selectAllMineCnt(bvo);
+		
+		bvo.setStart(start);
+		bvo.setEnd(end);
+		
 		List<BoardVO> mine = mdao.selectAllMine(bvo);
+		
+		String url = "selectAllMyActivity";
+		String type = bvo.getSearchType();
+		StringBuffer param = new StringBuffer();
+		
+		if (type == null) {
+			param.append("&searchType=");
+		}
+		else {
+			param.append("&searchType=").append(bvo.getSearchType());
+			param.append("&searchValue=").append(bvo.getSearchValue());
+		}
+		
+		page.Paging_D(total, nowPage, numPerPage, numPerBlock, url, param.toString());
+		String paging = page.getPagingCode();
 		
 		ModelAndView mav = new ModelAndView("member/myactivity");
 		mav.addObject("mine", mine);
+		mav.addObject("paging", paging);
 		
 		return mav;
 	}

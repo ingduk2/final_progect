@@ -97,13 +97,14 @@
     	
     	<!-- 회원 자신이 작성한 모든 글 검색 -->
     	<select id="selectAllMine" parameterType="bvo" resultType="bvo">
-			select bcode, boricode, bno, btitle, mid, bcontent,
+			select bcode, boricode, bno, subtitle(btitle) as btitle, mid, bcontent,
 	    		   to_char(bdate, 'yyyy/mm/dd') as	bdate,
 	    		   bhit, anino, bref, bseq, blvl, bip, bfile, brpt 
-			from board 
+			from (select rownum r_num, a.* from (
 			
-			<if test="searchType!=null">
-				<where>
+				select * from board where mid=#{mid}
+			
+				<if test="searchType!=null">
 					<choose>
 						<when test="searchType==1">
 							btitle like '%' || #{searchValue} || '%'
@@ -112,14 +113,29 @@
 							bcontent like '%' || #{searchValue} || '%'
 						</when>
 					</choose>
-				</where>
-				and mid=#{mid}
+				</if>
+				
+				order by bno desc
+			
+			) a )
+			
+			where r_num between #{start} and #{end}			
+    	</select>
+    	
+    	<!-- 회원 자신이 작성한 모든 글 갯수 검색 -->
+    	<select id="selectAllMineCnt" parameterType="bvo" resultType="int">
+    		select count(*) as cnt from board where mid=#{mid}
+    		
+    		<if test="searchType!=null">
+				<choose>
+					<when test="searchType==1">
+						and btitle like '%' || #{searchValue} || '%'
+					</when>
+					<when test="searchType==2">
+						and bcontent like '%' || #{searchValue} || '%'
+					</when>
+				</choose>
 			</if>
-			<if test="searchType==null">
-				where mid=#{mid}
-			</if>
-
-	    	order by bno desc
     	</select>
     
     <!-- 비밀번호 업데이트 -->
