@@ -79,19 +79,19 @@
 <script> //ÆË¾÷
 	function popup(){
 		var specs = "left=10,top=10,width=697,height=546, location=no, realzable=no, scrollbars=no";
-		window.open("popup?num=61", "popup", specs);
+		window.open("popup?num=1", "popup", specs);
 	}
 	function popup2(){
 		var specs = "left=10,top=10,width=697,height=515, location=no, realzable=no, scrollbars=no";
-		window.open("popup2?num=62", "popup", specs);
+		window.open("popup2?num=2", "popup", specs);
 	}
 	function popup3(){
 		var specs = "left=10,top=10,width=697,height=470, location=no, realzable=no, scrollbars=no";
-		window.open("popup3?num=63", "popup", specs);
+		window.open("popup3?num=3", "popup", specs);
 	}
 	function popup4(){
 		var specs = "left=10,top=10,width=697, height=515, location=no, realzable=no, scrollbars=no";
-		window.open("popup4?num=64", "popup", specs);
+		window.open("popup4?num=4", "popup", specs);
 	}
 </script>
 
