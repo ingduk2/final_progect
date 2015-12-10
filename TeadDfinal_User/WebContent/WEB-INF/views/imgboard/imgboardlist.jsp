@@ -46,6 +46,14 @@ function send(){ //서버로 데이터를 전송하는 메서드
 		alert("접속중이 아닙니다");
 	}
 }
+$(function() {
+	$('#message').keyup(function(event) {
+		if(event.which == 13){
+			send();
+		}
+	});	
+});
+
 </script>
 
 
@@ -138,9 +146,9 @@ function send(){ //서버로 데이터를 전송하는 메서드
 	<hr style="margin-top: 5px; margin-bottom: 3px">
 	<div id="contents"><!-- 내용이 들어간다. --></div>
 	<div class="input-group" style="width:100%;">
-		<input type="text" class="form-control input-sm" type="text" id="message"/>
+		<input type="text" class="form-control input-sm" id="message"/>
 		<span class="input-group-btn">
-    		<a type="button" class="btn btn-success btn-sm" href="javascript:send();">전송</a>
+    		<a type="button" class="btn btn-success btn-sm" id="btn" href="javascript:send();">전송</a>
 		</span>
 	</div>
 </div>

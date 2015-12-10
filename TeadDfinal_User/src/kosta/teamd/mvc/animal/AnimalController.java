@@ -96,7 +96,7 @@ public class AnimalController {
 		//폴더 경로 보고 바꿔주어야 함.
 		///Users/ingduk2/git/final/TeamDfinal
 		//선생님이랑 얘기를 해봐야할듯.. 파일이름겹치면 날라가버리고 사진 다 바뀌게 됨.
-//		inspath.append("C:\\Users\\kosta\\git\\final\\TeamDfinal\\WebContent\\upload\\").append(ofile);
+//		inspath.append("C:\\Users\\kosta\\git\\final\\\TeadDfinal_User\\WebContent\\upload\\").append(ofile);
 //		
 //	     try {
 //	    	 FileInputStream fis = new FileInputStream(path.toString()); 

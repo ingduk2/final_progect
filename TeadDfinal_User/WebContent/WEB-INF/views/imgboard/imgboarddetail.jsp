@@ -607,7 +607,7 @@
 		
 	<table><tr height="30px"><!-- ³ôÀÌ Á¶Àý¿ë Ä­ ¶¼¿ì±â --><td></td></tr></table>
 	
-	<c:if test="${pageContext.request.userPrincipal.name == avo.mid}">
+	<c:if test="${pageContext.request.userPrincipal.name == avo.mid or avo.anistate != 0} ">
 		<button type="button" class="btn btn-success btn-sm" onclick="location='updateformAnimal?anino=${avo.anino}&nowPage=${nowPage}'">¡¡¼ö¡¡¡¡Á¤¡¡</button>
 		<button type="button" class="btn btn-success btn-sm" onclick="location='deleteAnimal?anino=${avo.anino}&nowPage=${nowPage}&searchtype=&bcode=${avo.bcode }'">¡¡»è¡¡¡¡Á¦¡¡</button>
 	</c:if>

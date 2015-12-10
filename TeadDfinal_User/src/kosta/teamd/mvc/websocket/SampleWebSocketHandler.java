@@ -34,7 +34,7 @@ public class SampleWebSocketHandler extends TextWebSocketHandler {
 		setSessionList(new ArrayList<WebSocketSession>());
 		// list=new ArrayList<ChatVO>();
 		setList(new ArrayList<ChatVO>());
-		setTimeFormat(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"));
+		setTimeFormat(new SimpleDateFormat("HH:mm:ss"));
 		// TODO 자동 생성된 생성자 스텁
 	}
 
@@ -85,6 +85,13 @@ public class SampleWebSocketHandler extends TextWebSocketHandler {
 		} else if (cvo.getRoom().equals("animal") && cvo.getCode().equals("5")) {
 			for (ChatVO e : list) {
 				if (e.getRoom().equals("animal") && e.getCode().equals("5")) {
+					e.getSession().sendMessage(new TextMessage(broadCastMessage));
+				}
+				// code 추가되면 늘려야함 일단 동물게시판 하나랑 게시판들 분리시킬거임!
+			}
+		}else if (cvo.getRoom().equals("animal") && cvo.getCode().equals("6")) {
+			for (ChatVO e : list) {
+				if (e.getRoom().equals("animal") && e.getCode().equals("6")) {
 					e.getSession().sendMessage(new TextMessage(broadCastMessage));
 				}
 				// code 추가되면 늘려야함 일단 동물게시판 하나랑 게시판들 분리시킬거임!
@@ -153,6 +160,13 @@ public class SampleWebSocketHandler extends TextWebSocketHandler {
 		} else if (room.equals("animal") && code.equals("5")) {
 			for (ChatVO e : list) {
 				if (e.getRoom().equals("animal") && e.getCode().equals("5")) {
+					e.getSession().sendMessage(new TextMessage(broadCastMessage));
+				}
+				// code 추가되면 늘려야함 일단 동물게시판 하나랑 게시판들 분리시킬거임!
+			}
+		} else if (room.equals("animal") && code.equals("6")) {
+			for (ChatVO e : list) {
+				if (e.getRoom().equals("animal") && e.getCode().equals("6")) {
 					e.getSession().sendMessage(new TextMessage(broadCastMessage));
 				}
 				// code 추가되면 늘려야함 일단 동물게시판 하나랑 게시판들 분리시킬거임!

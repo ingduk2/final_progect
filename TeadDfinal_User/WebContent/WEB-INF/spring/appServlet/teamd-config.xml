@@ -93,7 +93,7 @@
 	<task:scheduler id="scheduler" pool-size="5"  />
 	<task:executor id="executor" pool-size="5"  rejection-policy="CALLER_RUNS"/>
 	
-	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean" />
+<!-- 	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean" /> -->
 	 
 	 	<!-- 스프링 메일 보내기 설정 -->
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
