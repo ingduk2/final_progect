@@ -92,7 +92,7 @@ function callendar(){
 					eventClick : function(calEvent, jsEvent, view) {
 						
 						var username=$('#name').val();
-						alert("username -- "+username);
+						//alert("username -- "+username);
 						var eve=$(this);
 						//사용자 나중에 분리할것임
 						//}else{
@@ -107,13 +107,13 @@ function callendar(){
 							                 
 							              },
 								        success: function(msg) { //데이터 받는 부분.response 
-								     		alert("--"+msg+"--");
+								     		//alert("--"+msg+"--");
 								        	if(msg=='delete'){
-								        		alert(msg);
+								        		alert("취소되었습니다.");
 								 
 								        		eve.css('background-color', 'green');
 								        	}else{
-								        		alert(msg);
+								        		alert("신청되었습니다.");
 								        		eve.css('background-color', 'red');
 								        	}
 								        
