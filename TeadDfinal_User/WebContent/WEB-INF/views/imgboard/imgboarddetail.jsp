@@ -56,8 +56,8 @@
 		padding-left: 10px;
 	}
 	.img {
-		width: 180px; 
-		height: 180px;
+		width: 160px; 
+		height: 160px;
 	}
 	.container {
 		width: 180px;
@@ -80,7 +80,7 @@
 	.col-md-4{
 		border-radius:15px;
 		margin: 10px;
-		width: 210px;
+		width: 190px;
 		padding-top: 15px;
 		padding-bottom: 10px;
  		background-color: rgba(255, 255, 255, 0.8);
@@ -374,6 +374,7 @@
 					  	  	
 					  	  	<c:param name="bno" value="${avo.bno}" />
 					  	  	<c:param name="mid" value="${avo.mid}" />
+					  	  	<c:param name="nowPage" value="${nowPage}" />
 					  	  	
 					  	  </c:url>
 					  
@@ -607,9 +608,9 @@
 		
 	<table><tr height="30px"><!-- 높이 조절용 칸 떼우기 --><td></td></tr></table>
 	
-	<c:if test="${pageContext.request.userPrincipal.name == avo.mid}">
+	<c:if test="${pageContext.request.userPrincipal.name == avo.mid and avo.bcode != 6}">
 		<button type="button" class="btn btn-success btn-sm" onclick="location='updateformAnimal?anino=${avo.anino}&nowPage=${nowPage}'">　수　　정　</button>
-		<button type="button" class="btn btn-success btn-sm" onclick="location='deleteAnimal?anino=${avo.anino}&nowPage=${nowPage}&searchtype=&bcode=${avo.bcode }'">　삭　　제　</button>
+		<button type="button" class="btn btn-success btn-sm" onclick="location='deleteAnimal?anino=${avo.anino}&nowPa	ge=${nowPage}&searchtype=&bcode=${avo.bcode }'">　삭　　제　</button>
 	</c:if>
 	
 	<c:if test="${pageContext.request.userPrincipal.name != null}">

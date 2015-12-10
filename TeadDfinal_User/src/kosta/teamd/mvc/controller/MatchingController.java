@@ -31,14 +31,14 @@ public class MatchingController {
 	private AnimalDao anidao;
 
 	@RequestMapping(value="/matchingAnimal")
-	public ModelAndView matchingAnimal(AnimalVO anivo, int bno, String mid) throws ParseException {
+	public ModelAndView matchingAnimal(AnimalVO anivo, int bno, String mid, String nowPage) throws ParseException {
 
 		ModelAndView mav = new ModelAndView("redirect:/selectoneAnimal");
 		// 글로 돌아가기 위한 기본 정보 등록
 		mav.addObject("anino", anivo.getAnino());
 		mav.addObject("bno", bno);
 		mav.addObject("mid", mid);
-		
+		mav.addObject("nowPage", nowPage);
 		// 동물 종, 지역, 날짜로 걸러낸 1차 리스트 생성
 		List<AnimalVO> matchlist = mcdao.machingdata(anivo);
 		
