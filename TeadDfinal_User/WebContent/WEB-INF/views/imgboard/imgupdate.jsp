@@ -610,7 +610,7 @@ var selint; // 인덱스 값을 저장하기 위한...
 			</tr>
 
 		</table>				
-
+ 
 		<input type="hidden" name="bcode" value="${avo.bcode}">
 		<input type="hidden" name="mid" value="${pageContext.request.userPrincipal.name}">
 		<input type="hidden" name="bip" value="<%= request.getRemoteAddr() %>">
