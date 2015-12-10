@@ -202,7 +202,7 @@
 
 
 <div>		
-
+<input type="hidden" name="mid" id="mid" value="${pageContext.request.userPrincipal.name}"/>
 	<!-- 공간 띄우기 용 -->
 	<table><tr height="50px"><td></td></tr></table>
 	
@@ -379,7 +379,7 @@
 					  
 						  <div style="text-align: center; margin-top: 20px;">
 						  <!-- 매칭이다 매칭!! -->
-						  	<a href="${matching}" type="button" class="btn btn-success btn-sm" style="width: 100px;"> 유사 정보 매칭 </a>
+						  	<a href="${matching}" type="button" class="btn btn-success btn-sm"> 유사 정보 매칭 </a>
 <!-- 						  	&nbsp;&nbsp;&nbsp; -->
 						  <!-- poi를 적용시켜 연결시키자! -->
 <!-- 						  	<button type="button" class="btn btn-success btn-sm" style="width: 100px;"> 전단지 출력 </button> -->

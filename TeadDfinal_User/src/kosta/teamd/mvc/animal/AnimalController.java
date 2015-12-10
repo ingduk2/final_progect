@@ -1,7 +1,13 @@
 package kosta.teamd.mvc.animal;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.net.URL;
 import java.security.Principal;
 import java.util.LinkedList;
 import java.util.List;
@@ -13,7 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import kosta.teamd.mvc.dao.AnimalDao;
@@ -232,6 +238,7 @@ public class AnimalController {
 			if (abvo.getFirst() != 313048) top.add(0, adao.imgDetail(abvo.getFirst()));
 			if (abvo.getSecond() != 313048) top.add(1, adao.imgDetail(abvo.getSecond()));
 			if (abvo.getThird() != 313048) top.add(2, adao.imgDetail(abvo.getThird()));
+			
 		
 			mav.addObject("top", top);
 			mav.addObject("size", top.size());
@@ -269,7 +276,7 @@ public class AnimalController {
 	//////수정
 	//이미지폼 실행
 	@RequestMapping(value="/updateformAnimal")
-	public ModelAndView updateformAnimal(int anino, String nowPage){
+	public ModelAndView updateformAnimal(int anino, String nowPage, HttpServletRequest request) throws FileNotFoundException{
 		AniBoardVO avo = adao.imgDetail(anino);
 		ModelAndView mav = new ModelAndView("imgboard/imgupdate");
 		mav.addObject("avo", avo);
@@ -281,23 +288,33 @@ public class AnimalController {
 	//이미지 업로드 실행 
 	@RequestMapping(value="/updateAnimal", method=RequestMethod.POST)
 	public ModelAndView updateAnimal(AnimalVO avo,  BoardVO bvo, HttpServletRequest request){
-		
 		HttpSession session = request.getSession();
 		String r_path = session.getServletContext().getRealPath("/");
 		String img_path = "\\img\\";
-		String ofile = avo.getManiimg().getOriginalFilename();
-		StringBuffer path = new StringBuffer();
-		path.append(r_path).append(img_path).append(ofile);
-		System.out.println(path);
-		File f = new File(path.toString());
-		try {
-			avo.getManiimg().transferTo(f);
-		} catch (IllegalStateException | IOException e) {		
-			e.printStackTrace();
+		String ofile = null; 
+		
+		if(avo.getManiimg().getSize() <= 0){
+			ofile = avo.getAniimg();
+			System.out.println("ofile : " + ofile);
+		}else{
+			ofile = avo.getManiimg().getOriginalFilename();;
+			StringBuffer path = new StringBuffer();
+			path.append(r_path).append(img_path).append(ofile);
+			System.out.println(path);
+			File f = new File(path.toString());
+			try {
+				avo.getManiimg().transferTo(f);
+			} catch (IllegalStateException | IOException e) {		
+				e.printStackTrace();
+			}
+			avo.setAniimg(ofile);
 		}
-		avo.setAniimg(ofile);
+	
+		System.out.println("avo.getAniimg : " + avo.getAniimg());
+		System.out.println("avo.setAniimg(ofile) : " + ofile);
+		
 		abi.update(bvo, avo);
-		return new ModelAndView("redirect:/selectoneAnimal?anino="+avo.getAnino()+"&bno="+bvo.getBno());
+		return  new ModelAndView("redirect:/selectoneAnimal?bcode="+bvo.getBcode()+"&bno="+bvo.getBno()+"&anino="+bvo.getAnino()+"&mid="+bvo.getMid()+"&nowPage=1&searchType=");
 	}
 	
 	

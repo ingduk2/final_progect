@@ -66,8 +66,9 @@
     <update id="imgupdate" parameterType="anivo">
 	 update animal set 
 		aniimg=#{aniimg}, anispecies=#{anispecies}, anibreed=#{anibreed}, aniname=#{aniname}, aniage=#{aniage},	anisex=#{anisex},
-		aniweight=#{aniweight},	anifeature=#{anifeature}, aniregion=#{aniregion}, anidate=#{anidate}, anireward=#{anireward}, anistate=#{anistate}
-	 where anino=#{anino}
+		aniweight=#{aniweight},	anifeature=#{anifeature}, aniregion=#{aniregion}, anidate=#{anidate}, anireward=#{anireward}, 
+		anistate=#{anistate}, anineutral=#{anineutral}
+		where anino=#{anino}
     </update>
     
     
