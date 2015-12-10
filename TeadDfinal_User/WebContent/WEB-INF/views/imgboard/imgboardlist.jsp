@@ -97,7 +97,7 @@ $(function() {
 /*  		border: 1px solid silver;  */
 		border-radius:15px;
 		margin: 10px;
-		width: 200px;
+		width: 190px;
 		padding-bottom: 5px;
  		background-color: rgba(255, 255, 255, 0.8);
 	}

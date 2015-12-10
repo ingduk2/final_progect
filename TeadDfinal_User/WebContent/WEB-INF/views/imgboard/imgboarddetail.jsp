@@ -56,8 +56,8 @@
 		padding-left: 10px;
 	}
 	.img {
-		width: 180px; 
-		height: 180px;
+		width: 160px; 
+		height: 160px;
 	}
 	.container {
 		width: 180px;
@@ -80,7 +80,7 @@
 	.col-md-4{
 		border-radius:15px;
 		margin: 10px;
-		width: 210px;
+		width: 190px;
 		padding-top: 15px;
 		padding-bottom: 10px;
  		background-color: rgba(255, 255, 255, 0.8);

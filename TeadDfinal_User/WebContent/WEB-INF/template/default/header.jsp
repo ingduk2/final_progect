@@ -112,7 +112,6 @@ a:FOCUS, a:HOVER {
 						    	</c:if>
 						    
 						    	<li><a href="formCal">봉사하기</a></li>
-						    	<li><a href="#">설문조사</a></li>
 							</ul>
 						</li>
 						
@@ -121,7 +120,6 @@ a:FOCUS, a:HOVER {
 								<li><a href="selectallBoard?bcode=1&nowPage=1&searchType=">공지사항</a></li>
 <!-- 								<li><a href="#">자주 묻는 질문</a></li> -->
 						    	<li><a href="selectallCenter">동물 보호 센터</a></li>
-						    	<li><a href="formChart?year=2012">통계 자료</a></li>
 							</ul>
 						</li>
 								
