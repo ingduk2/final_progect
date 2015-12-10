@@ -34,7 +34,7 @@ public class SampleWebSocketHandler extends TextWebSocketHandler {
 		setSessionList(new ArrayList<WebSocketSession>());
 		// list=new ArrayList<ChatVO>();
 		setList(new ArrayList<ChatVO>());
-		setTimeFormat(new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"));
+		setTimeFormat(new SimpleDateFormat("yy/MM/dd HH:mm:ss"));
 		// TODO 자동 생성된 생성자 스텁
 	}
 

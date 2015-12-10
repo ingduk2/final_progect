@@ -13,7 +13,6 @@ sub3cnt number(10) default 0,
 sdate date
 );
 
-
 create sequence survey_seq
 increment by 1
 start with 1;
@@ -22,22 +21,20 @@ start with 1;
 --drop table survey;
 
 create table surveylog(
-lognum number constraint surveylog_num_pk primary key,
+num number constraint surveylog_num_pk primary key,
 sno number not null,
 surip varchar2(30),
 surdate date,
 constraint surveylog_sno_fk foreign key(sno) references survey(num)
 );
-create sequence surveylo_seq
+
+create sequence surveylog_seq
 increment by 1
 start with 1;
 
-
-commit;
-
+-- insert into surveylog values(surveylog_seq.nextVal,0,'',sysdate);
 
 set define off;
-
 
 desc survey;
 insert into survey values(survey_seq.nextVal,
@@ -171,17 +168,11 @@ insert into survey values(survey_seq.nextVal,'<h3>TNR<small>여러분의 소중�
 	   <p>','현재 서울에만 20만 마리의 길고양이가 있는 것으로 추정됩니다. 중성화 수술 비용도 마리당 14만 원 정도로 적지 않은데요. 늘어나는 길고양이, 어떻게 해결해야 할까요?'
 ,3,'','일정 개체수를 넘어설 경우 포획해서 안락사시킨다','중성화 수술을 통해 장기적으로 개체수를 조절한다','기타',0,0,0,sysdate);
 
+
+commit;
+
 ---------------------------------------------------------------
 ------------동일 IP투표 방지----------------
-create table surveylog(
-num number constraint surveylog_num_pk primary key,
-sno number not null,
-surip varchar2(30),
-surdate date);
-create sequence surveylog_seq
-increment by 1
-start with 1;
 
-insert into surveylog values(surveylog_seq.nextVal,0,'',sysdate);
 
 

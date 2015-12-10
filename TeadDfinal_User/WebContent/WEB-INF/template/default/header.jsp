@@ -99,7 +99,7 @@ a:FOCUS, a:HOVER {
 						
 						<li><a class="dropdown-toggle" href="selectallAnimal?bcode=4&nowPage=1&searchType=">찾아주세요</a></li>
 						
-						<li><a class="dropdown-toggle" href="selectallAnimal?bcode=5&nowPage=1&searchType=">잡았다요놈</a></li>
+						<li><a class="dropdown-toggle" href="selectallAnimal?bcode=5&nowPage=1&searchType=">나를찾아줘</a></li>
 						
 						<li class="dropdown"><a class="dropdown-toggle" data-toggle="dropdown" href="#">　참여하기　<span class="caret"><!--화살표--></span></a>
 							<ul class="dropdown-menu">

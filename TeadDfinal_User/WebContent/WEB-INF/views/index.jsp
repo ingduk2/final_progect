@@ -118,6 +118,7 @@
 	</table> 
 	</div>
 
+	<!-- index page 입양 하기 바로가기 로그인 체크 -->
 	<div id="imgtest">
 		<c:if test="${pageContext.request.userPrincipal.name == null}">
 			<a href="login">
@@ -135,7 +136,7 @@
 
 		<div class="subimgmenuborder">
 		
-		<span class="label label-success">입양대기</span>
+		<span class="label label-success">찾아주세요</span>
 		<div class="panel panel-default">
 			<div id="myCarousel" class="carousel slide text-center" data-ride="carousel">
 			    <!-- Indicators -->
@@ -158,7 +159,7 @@
 				  	</c:if>
 				  
 						  <div class="panel-body">
-						  	<a href="selectoneAnimal?anino=${mainminiimgboard1.anino}&bno=${mainminiimgboard1.bno}">
+						  	<a href="selectoneAnimal?anino=${mainminiimgboard1.anino}&bno=${mainminiimgboard1.bno}&nowPage=1">
 						  		<img src="img/${mainminiimgboard1.aniimg}" height="122px">
 						  	</a>
 						  </div>
@@ -182,7 +183,7 @@
 		
 		
 		<div class="subimgmenuborder">
-		<span class="label label-success">발견신고</span>
+		<span class="label label-success">나를찾아줘</span>
 		<div class="panel panel-default">
 			<div id="myCarousel2" class="carousel slide text-center" data-ride="carousel">
 			<!--Indicators -->
@@ -206,7 +207,7 @@
 				  	</c:if>
 				  	
 						  <div class="panel-body">
-						  	<a href="selectoneAnimal?anino=${mainminiimgboard2.anino}&bno=${mainminiimgboard2.bno}">
+						  	<a href="selectoneAnimal?anino=${mainminiimgboard2.anino}&bno=${mainminiimgboard2.bno}&nowPage=1">
 						  		<img src="img/${mainminiimgboard2.aniimg}" height="122px">
 						  	</a>
 						  </div>
@@ -249,8 +250,14 @@
 		  					<c:forEach var="minilist" items="${minilist}">
 		  						<tr>
 		  							<td>
-		  								<a href="selectoneBoard?bno=${minilist.bno}&mid=${minilist.mid}">
-		  									${minilist.btitle}.....(${minilist.bdate})
+		  								<a href="selectoneBoard?bno=${minilist.bno}&mid=${minilist.mid}&nowPage=1">
+		  									
+		  									<c:if test="${minilist.btitle.length() < 20}">
+		  										${minilist.btitle}(${minilist.bdate})
+		  									</c:if>
+		  									<c:if test="${minilist.btitle.length() > 20}">
+		  										${minilist.btitle}.....(${minilist.bdate})
+		  									</c:if>
 		  								</a>
 		  							</td>
 		  						</tr>
@@ -279,8 +286,13 @@
 		  					<c:forEach var="minilist2" items="${minilist2}">
 		  						<tr>
 		  							<td>
-		  								<a href="selectoneBoard?bno=${minilist2.bno}&mid=${minilist2.mid}">
-		  									${minilist2.btitle}.....(${minilist2.bdate})
+		  								<a href="selectoneBoard?bno=${minilist2.bno}&mid=${minilist2.mid}&nowPage=1">
+		  									<c:if test="${minilist2.btitle.length() < 20}">
+		  										${minilist2.btitle}(${minilist2.bdate})
+		  									</c:if>
+		  									<c:if test="${minilist2.btitle.length() > 20}">
+		  										${minilist2.btitle}.....(${minilist2.bdate})
+		  									</c:if>
 		  								</a>
 		  							</td>
 		  						</tr>
