@@ -62,6 +62,7 @@
 </style>
 
 <script>
+	
 	// 파일 업로드용 스크립트 
 	$(document).on('change', '.btn-file :file', function() {
 		  var input = $(this),
@@ -72,30 +73,20 @@
 	
 	$(document).ready( function() {
 	
+	// 로드시 파일을 가져옴.
+// 	var path = "${maniimg}".lastIndexOf("\\")+1;
+// 	var file =  "${maniimg}".substring(path, "${maniimg}".length);
+// 	document.getElementById('maniimg').value=file;	
+		
 	// 분류 선택	 id="anistate" value="${avo.anistate}
 	$('#anistate option').each(function(){
 		var sel = $(this).val();
 		if(sel == "${avo.anistate}"){
 			$(this).attr("selected", "selected");
-		}
+		}	
 	});
 		
-	// 동물  선택
-	$('#bigkind option').each(function(){
-		var sel = $(this).val();
-		if(sel == "${avo.anispecies}"){
-			$(this).attr("selected", "selected");
-			
-			// 품종 선택  id="smallkind" value="${avo.anibreed}"
-			$('#smallkind option').each(function(){
-			var sel = $(this).val();
-			if(sel == "${avo.anibreed}"){
-				alert(sel)
-				$(this).attr("selected", "selected");
-			}
-		});
-		}
-	});
+
 	
 	// 성별 선택  value="${avo.anisex}" id="anisex"
 		$('#anisex option').each(function(){
@@ -105,6 +96,27 @@
 		}
 	});
 		
+		
+var i=0; // 인덱스 값을 위한...
+var selint; // 인덱스 값을 저장하기 위한...
+		// 동물  선택
+		
+		$('#bigkind option').each(function(){
+				var sel = $(this).val();
+				selint = i++;
+				if(sel == "${avo.anispecies}"){
+					$(this).attr("selected", "selected");
+					getKind(selint); // 동물 종에 따른 배열 값을 가져오기 위해 여기서 실행
+				}
+			});
+		
+		// 품종 선택  
+		$('#smallkind option').each(function(){
+		var sel = $(this).val();
+		if(sel == "${avo.anibreed}"){
+			$(this).attr("selected", "selected");
+		}
+	});
 	
 		
 	// 중성화 선택
@@ -114,8 +126,6 @@
 	        $(this).attr("selected", "selected");
 	});
 
-			
-		
 		
 		// 동물 종별 수명
 		$('#bigkind').change(function(){
@@ -241,69 +251,69 @@
 	// bcode 5, 6 (목격, 개인 보호)
 	function checksubmit() {
 		
-		if (document.imgboardwriteform.btitle.value == "") {
+		if (document.imgupdate.btitle.value == "") {
 			alert("제목을 입력해주세요")
-			document.imgboardwriteform.btitle.focus()
+			document.imgupdate.btitle.focus()
 			return false
 		}
-		if (document.imgboardwriteform.anistate.value == "0") {
+		if (document.imgupdate.anistate.value == "0") {
 			alert("분류를 선택해주세요")
-			document.imgboardwriteform.anistate.focus()
+			document.imgupdate.anistate.focus()
 			return false
 		}
-		if (document.imgboardwriteform.anispecies.value == "0") {
+		if (document.imgupdate.anispecies.value == "0") {
 			alert("동물을 선택해주세요")
-			document.imgboardwriteform.anispecies.focus()
+			document.imgupdate.anispecies.focus()
 			return false
 		}
-		if (document.imgboardwriteform.anidate.value == "") {
+		if (document.imgupdate.anidate.value == "") {
 			alert("날짜를 입력해주세요")
-			document.imgboardwriteform.anidate.focus()
+			document.imgupdate.anidate.focus()
 			return false
 		}
-		if (document.imgboardwriteform.aniregion.value == "") {
+		if (document.imgupdate.aniregion.value == "") {
 			alert("지역을 입력해주세요")
-			document.imgboardwriteform.regionbtn.focus()
+			document.imgupdate.regionbtn.focus()
 			return false
 		}
-		if (document.imgboardwriteform.anibreed.value == "-- 선택 --") {
+		if (document.imgupdate.anibreed.value == "-- 선택 --") {
 			// alert("품종에 디폴트 값을 넣는다")
-			document.imgboardwriteform.anibreed.value = " "
+			document.imgupdate.anibreed.value = " "
 			// return false
 		}
-		if (document.imgboardwriteform.aniname.value == "") {
+		if (document.imgupdate.aniname.value == "") {
 			// alert("이름에 디폴트 값을 넣는다")
-			document.imgboardwriteform.aniname.value = " "
+			document.imgupdate.aniname.value = " "
 			// return false
 		}
-		if (document.imgboardwriteform.anisex.value == "0") {
+		if (document.imgupdate.anisex.value == "0") {
 			// alert("성별에 디폴트 값을 넣는다")
-			document.imgboardwriteform.anisex.value = "모름"
+			document.imgupdate.anisex.value = "모름"
 			// return false
 		}
-		if (document.imgboardwriteform.anineutral.value == "0") {
+		if (document.imgupdate.anineutral.value == "0") {
 			// alert("중성화에 디폴트 값을 넣는다")
-			document.imgboardwriteform.anineutral.value = "모름"
+			document.imgupdate.anineutral.value = "모름"
 			// return false
 		}
-		if (document.imgboardwriteform.aniage.value == "") {
+		if (document.imgupdate.aniage.value == "") {
 			// alert("나이에 디폴트 값을 넣는다")
-			document.imgboardwriteform.aniage.value = "0"
+			document.imgupdate.aniage.value = "0"
 			// return false
 		}
-		if (document.imgboardwriteform.aniweight.value == "") {
+		if (document.imgupdate.aniweight.value == "") {
 			// alert("몸무게에 디폴트 값을 넣는다")
-			document.imgboardwriteform.aniweight.value = "0"
+			document.imgupdate.aniweight.value = "0"
 			// return false
 		}
-		if (document.imgboardwriteform.anifeature.value == "") {
+		if (document.imgupdate.anifeature.value == "") {
 			// alert("특징에 디폴트 값을 넣는다")
-			document.imgboardwriteform.anifeature.value = " "
+			document.imgupdate.anifeature.value = " "
 			// return false
 		}
-		if (document.imgboardwriteform.bcontent.value == "") {
+		if (document.imgupdate.bcontent.value == "") {
 			// alert("내용에 디폴트 값을 넣는다")
-			document.imgboardwriteform.bcontent.value = " "
+			document.imgupdate.bcontent.value = " "
 			// return false
 		}
 		
@@ -313,74 +323,74 @@
 	// bcode 4 (실종 신고)
 	function checksubmit4() {
 		
-		if (document.imgboardwriteform.btitle.value == "") {
+		if (document.imgupdate.btitle.value == "") {
 			alert("제목을 입력해주세요")
-			document.imgboardwriteform.btitle.focus()
+			document.imgupdate.btitle.focus()
 			return false
 		}
-		if (document.imgboardwriteform.maniimg.value == "") {
-			alert("사진을 등록해주세요")
-			document.imgboardwriteform.maniimg.focus()
-			return false
-		}
-		if (document.imgboardwriteform.anistate.value == "0") {
+// 		if (document.imgupdate.maniimg.value == "") {
+// 			alert("사진을 등록해주세요")
+// 			document.imgupdate.maniimg.focus()
+// 			return false
+// 		}
+		if (document.imgupdate.anistate.value == "0") {
 			alert("분류를 선택해주세요")
-			document.imgboardwriteform.anistate.focus()
+			document.imgupdate.anistate.focus()
 			return false
 		}
-		if (document.imgboardwriteform.anispecies.value == "0") {
+		if (document.imgupdate.anispecies.value == "0") {
 			alert("동물을 선택해주세요")
-			document.imgboardwriteform.anispecies.focus()
+			document.imgupdate.anispecies.focus()
 			return false
 		}
-		if (document.imgboardwriteform.anibreed.value == "-- 선택 --") {
+		if (document.imgupdate.anibreed.value == "-- 선택 --") {
 			alert("품종을 선택해주세요")
-			document.imgboardwriteform.anibreed.focus()
+			document.imgupdate.anibreed.focus()
 			return false
 		}
-		if (document.imgboardwriteform.aniname.value == "") {
+		if (document.imgupdate.aniname.value == "") {
 			alert("이름을 입력해주세요")
-			document.imgboardwriteform.aniname.focus()
+			document.imgupdate.aniname.focus()
 			return false
 		}
-		if (document.imgboardwriteform.anisex.value == "0") {
+		if (document.imgupdate.anisex.value == "0") {
 			alert("성별을 선택해주세요")
-			document.imgboardwriteform.anisex.focus()
+			document.imgupdate.anisex.focus()
 			return false
 		}
-		if (document.imgboardwriteform.anineutral.value == "0") {
+		if (document.imgupdate.anineutral.value == "0") {
 			alert("중성화 여부를 선택해주세요")
-			document.imgboardwriteform.anineutral.focus()
+			document.imgupdate.anineutral.focus()
 			return false
 		}
-		if (document.imgboardwriteform.aniage.value == "") {
+		if (document.imgupdate.aniage.value == "") {
 			alert("나이를 입력해주세요")
-			document.imgboardwriteform.aniage.focus()
+			document.imgupdate.aniage.focus()
 			return false
 		}
-		if (document.imgboardwriteform.aniweight.value == "") {
+		if (document.imgupdate.aniweight.value == "") {
 			alert("몸무게를 입력해주세요")
-			document.imgboardwriteform.aniweight.focus()
+			document.imgupdate.aniweight.focus()
 			return false
 		}
-		if (document.imgboardwriteform.anidate.value == "") {
+		if (document.imgupdate.anidate.value == "") {
 			alert("날짜를 입력해주세요")
-			document.imgboardwriteform.anidate.focus()
+			document.imgupdate.anidate.focus()
 			return false
 		}
-		if (document.imgboardwriteform.aniregion.value == "") {
+		if (document.imgupdate.aniregion.value == "") {
 			alert("지역을 입력해주세요")
-			document.imgboardwriteform.regionbtn.focus()
+			document.imgupdate.regionbtn.focus()
 			return false
 		}
-		if (document.imgboardwriteform.anireward.value == "") {
+		if (document.imgupdate.anireward.value == "") {
 			alert("사례금을 입력해주세요")
-			document.imgboardwriteform.anireward.focus()
+			document.imgupdate.anireward.focus()
 			return false
 		}
-		if (document.imgboardwriteform.anifeature.value == "") {
+		if (document.imgupdate.anifeature.value == "") {
 			alert("특징을 입력해주세요")
-			document.imgboardwriteform.anifeature.focus()
+			document.imgupdate.anifeature.focus()
 			return false
 		}
 		
@@ -396,14 +406,17 @@
 	<!-- 공간 띄우기 용 -->
 	<table><tr height="50px"><td></td></tr></table>
 
-	<c:if test="${avo.bcode == 4}">
-	<form action="insertImgBoard" method="post" enctype="multipart/form-data"
-		  name="imgboardwriteform" onsubmit="return checksubmit4()">
-	</c:if>
-	<c:if test="${avo.bcode != 4}">
-	<form action="insertImgBoard" method="post" enctype="multipart/form-data"
-		  name="imgboardwriteform" onsubmit="return checksubmit()">
-	</c:if>
+<%-- 	<c:if test="${avo.bcode == 4}"> --%>
+<!-- 	<form action="insertImgBoard" method="post" enctype="multipart/form-data" -->
+<!-- 		  name="imgboardwriteform" onsubmit="return checksubmit4()"> -->
+<%-- 	</c:if> --%>
+<%-- 	<c:if test="${avo.bcode != 4}"> --%>
+<!-- 	<form action="insertImgBoard" method="post" enctype="multipart/form-data" -->
+<!-- 		  name="imgboardwriteform" onsubmit="return checksubmit()"> -->
+<%-- 	</c:if> --%>
+	
+	<form action="updateAnimal" method="post" enctype="multipart/form-data"
+		  name="imgupdate" onsubmit="return checksubmit4()">
 		<table width="500px">				
 			<tr> <th colspan="2">　</th> </tr>	
 			
@@ -418,11 +431,11 @@
 				<th>사진</th>
 				<td>
 					<div class="input-group">
-						<input type="text" class="form-control input-sm" placeholder="업로드 할 파일을 선택하세요" readonly value="${avo.aniimg}">
+						<input type="text" class="form-control input-sm" name="aniimg" id="aniimg" placeholder="업로드 할 파일을 선택하세요" readonly value="${avo.aniimg}">
 						<span class="input-group-btn">
 							<span class="btn btn-success btn-file btn-sm">
 								<span class="glyphicon glyphicon-folder-open"></span>
-								&nbsp;ImageUpload<input name="maniimg" type="file" multiple="multiple">
+								&nbsp;ImageUpload<input name="maniimg" id="maniimg" type="file" multiple="multiple" >
 							</span>
 						</span>
 					</div>
@@ -516,13 +529,13 @@
 							<th style="width: 60px">나이</th>
 							<td style="width: 160px">
 								<input type="number" name="aniage" class="form-control input-sm" id="aniage"
-									   placeholder="나이를 입력해주세요" min="1" value="${avo.aniage}" />
+									   placeholder="나이를 입력해주세요" min="0" value="${avo.aniage}" />
 							</td>
 						 
 							<th style="width: 60px">몸무게</th>
 							<td style="width: 160px">
 								<input type="number" name="aniweight" class="form-control input-sm"
-									   placeholder="몸무게를 입력해주세요" min="1" value="${avo.aniweight}" />
+									   placeholder="몸무게를 입력해주세요" min="0" value="${avo.aniweight}" />
 							</td>
 						</tr>
 						
@@ -601,7 +614,7 @@
 		<input type="hidden" name="bcode" value="${avo.bcode}">
 		<input type="hidden" name="mid" value="${pageContext.request.userPrincipal.name}">
 		<input type="hidden" name="bip" value="<%= request.getRemoteAddr() %>">
-
+		<input type="hidden" name="anino" value="${avo.anino }">
 		<table><tr height="30px"><!-- 높이 조절용 칸 떼우기 --><td></td></tr></table>
 		<button type="submit" class="btn btn-success btn-sm">　완　　료　</button>
 		<button type="button" class="btn btn-success btn-sm" onclick="location='selectoneAnimal?bcode=${avo.bcode}&anino=${avo.anino}&bno=${avo.bno}&mid=${avo.mid}&nowPage=${nowPage}'">　취　　소　</button>

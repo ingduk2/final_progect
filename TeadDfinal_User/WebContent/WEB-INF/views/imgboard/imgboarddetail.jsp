@@ -202,7 +202,7 @@
 
 
 <div>		
-
+<input type="hidden" name="mid" id="mid" value="${pageContext.request.userPrincipal.name}"/>
 	<!-- 공간 띄우기 용 -->
 	<table><tr height="50px"><td></td></tr></table>
 	

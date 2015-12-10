@@ -75,10 +75,10 @@
 		// 동물 종별 수명
 		$('#bigkind').change(function(){
 			var age;
-			alert($('#bigkind').val());
+// 			alert($('#bigkind').val());
 			if($('#bigkind').val()=="강아지"){
 				age=25;
-				alert(age)
+// 				alert(age)
 				$('#aniage').val("");
 				 $('#aniage').attr("max", age);				
 			}else if($('#bigkind').val()=="고양이"){

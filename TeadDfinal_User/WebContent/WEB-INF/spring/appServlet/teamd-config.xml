@@ -97,17 +97,15 @@
 	 
 	 	<!-- 스프링 메일 보내기 설정 -->
 	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-	<property name="host" value="smtp.gmail.com"/>
+	<property name="host" value="smtp.gmail.com"/> 
 	<property name="port" value="587"/>
 	<property name="username" value="ggamagu100@gmail.com"/>
 	<property name="password" value="akekgk1357"/>
 	<property name="defaultEncoding" value="UTF-8"/>
 	<property name="javaMailProperties">
 	<props>
-	<prop key="mail.smtp.auth">true</prop>
-	<prop key="mail.smtp.starttls.enable">true</prop>
-	<prop key="mail.smtp.timeout">8500</prop>
-<!-- 	<prop key="mail.debug">true</prop> -->
+	<prop key="mail.smtp.auth">true</prop>  <!-- 메일 인증 허가 -->
+	<prop key="mail.smtp.starttls.enable">true</prop> <!-- 메일 전송 방식 -->
 	</props>
 	</property>
 	</bean>
