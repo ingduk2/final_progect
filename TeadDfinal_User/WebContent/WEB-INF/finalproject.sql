@@ -197,7 +197,7 @@ create table center(
 cnum number constraint center_cnum_pk primary key,
 cname varchar2(40),
 caddr varchar2(100),
-cxy varchar2(30)
+cxy varchar2(100)
 );
 --센터 seq
 create sequence center_seq
@@ -282,3 +282,13 @@ is
     return v_subpad;
   end if;
   end;
+
+  
+  
+----------관리자 save DB  
+  create table save(
+memcnt number,
+boardcnt number,
+animalcnt number
+);
+insert into save values(0,0,0);

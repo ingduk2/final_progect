@@ -92,7 +92,7 @@ function callendar(){
 					eventClick : function(calEvent, jsEvent, view) {
 						
 						var username=$('#name').val();
-						//alert("username -- "+username);
+
 						var eve=$(this);
 						//사용자 나중에 분리할것임
 						//}else{
@@ -122,7 +122,7 @@ function callendar(){
 								            alert("Request: " + JSON.stringify(a));
 								        }
 								    });
-							
+					
 							
 							
 // 							$(this).css('background-color', 'red');
